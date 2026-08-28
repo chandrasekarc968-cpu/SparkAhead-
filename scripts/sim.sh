@@ -2,30 +2,42 @@
 # ==============================================================================
 # sim.sh — Simulation wrapper
 # Project : VELTRAXX'26 PS02 — Multi-Master AXI4-Lite Arbiter
-# Usage   : bash scripts/sim.sh <top_module> "<source_files>"
+# Usage   : bash scripts/sim.sh <top_module> "<source_files>" <output_dir>
+# Fallback: Icarus Verilog → SKIPPED
 # ==============================================================================
 set -euo pipefail
 
-TOP="$1"
-SRCS="$2"
+TOP="${1:-}"
+SRCS="${2:-}"
+OUT_DIR="${3:-outputs}"
+
+# ---------- guard: no sources ----------
+if [ -z "$SRCS" ] || [ -z "$(echo "$SRCS" | xargs)" ]; then
+    echo "[SKIPPED] sim — no RTL or testbench source files found."
+    echo "          Add .sv files to src/rtl/ and tb/ then re-run."
+    exit 0
+fi
 
 echo "--- Simulation: top=${TOP} ---"
+echo "    Sources: ${SRCS}"
 
-# TODO: Replace the commands below with your simulator invocation.
-# Examples (Verilator):
-#   verilator --cc --exe --build -Wall ${SRCS} --top-module ${TOP}
-#   ./obj_dir/V${TOP}
-#
-# Examples (Icarus Verilog):
-#   iverilog -g2012 -o outputs/${TOP}.vvp ${SRCS}
-#   vvp outputs/${TOP}.vvp
-#
-# Examples (Synopsys VCS):
-#   vcs -sverilog -full64 -debug_access+all ${SRCS} -top ${TOP} -o outputs/${TOP}.simv
-#   ./outputs/${TOP}.simv
-#
-# Examples (Cadence Xcelium):
-#   xrun -sv -access +rwc ${SRCS} -top ${TOP}
-echo "[TODO] Insert simulation tool commands here."
+# ---------- try Icarus Verilog ----------
+if command -v iverilog &>/dev/null; then
+    echo "[INFO] Using Icarus Verilog for simulation."
+    mkdir -p "${OUT_DIR}"
+    # shellcheck disable=SC2086
+    iverilog -g2012 -o "${OUT_DIR}/${TOP}.vvp" ${SRCS}
+    if command -v vvp &>/dev/null; then
+        vvp "${OUT_DIR}/${TOP}.vvp"
+    else
+        echo "[WARNING] iverilog compiled successfully but 'vvp' not found — cannot execute."
+    fi
+    echo "--- Simulation (Icarus): DONE ---"
+    exit 0
+fi
 
-echo "--- Simulation: complete ---"
+# ---------- nothing available ----------
+echo "[SKIPPED] sim — Icarus Verilog (iverilog) not found on PATH."
+echo "          Install it to enable simulation:"
+echo "            • Icarus Verilog: https://steveicarus.github.io/iverilog/"
+exit 0
