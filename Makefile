@@ -1,15 +1,36 @@
 # ==============================================================================
-# Root Makefile — VELTRAXX'26 PS02 Multi-Master AXI4-Lite Arbiter
+# VELTRAXX'26 PS02 — Multi-Master AXI4-Lite Arbiter (Root Makefile)
 # ==============================================================================
-# Delegates all targets to scripts/Makefile so the build flow works from
-# the repository root via: make lint | sim | formal | synth | clean
+# Convenience wrapper — delegates to scripts/Makefile
 # ==============================================================================
 
-SHELL := /bin/bash
+SCRIPTS_DIR := scripts
 
-TARGETS := lint sim formal synth clean
+.PHONY: lint sim sim-stress formal synth wave clean all check
 
-.PHONY: $(TARGETS)
+# Default target
+all: lint sim sim-stress
 
-$(TARGETS):
-	@$(MAKE) -f scripts/Makefile $@
+# Run all checks (CI target)
+check: lint sim sim-stress synth
+
+lint:
+	$(MAKE) -C $(SCRIPTS_DIR) lint
+
+sim:
+	$(MAKE) -C $(SCRIPTS_DIR) sim
+
+sim-stress:
+	$(MAKE) -C $(SCRIPTS_DIR) sim-stress
+
+formal:
+	$(MAKE) -C $(SCRIPTS_DIR) formal
+
+synth:
+	$(MAKE) -C $(SCRIPTS_DIR) synth
+
+wave:
+	$(MAKE) -C $(SCRIPTS_DIR) wave
+
+clean:
+	$(MAKE) -C $(SCRIPTS_DIR) clean

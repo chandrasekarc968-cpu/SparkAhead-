@@ -1,58 +1,131 @@
 # ==============================================================================
-# scripts/Makefile — VELTRAXX'26 PS02 Multi-Master AXI4-Lite Arbiter
+# VELTRAXX'26 PS02 — Multi-Master AXI4-Lite Arbiter Makefile (scripts/)
 # ==============================================================================
-#
-# ROOT_DIR is derived from the location of this Makefile, ensuring correct path
-# resolution regardless of the caller's working directory.
-#
+# Targets: lint, sim, sim-stress, formal, synth, wave, clean
 # ==============================================================================
 
-SHELL       := /bin/bash
+SHELL      := /bin/bash
+PROJ_ROOT  := $(shell cd .. && pwd)
+RTL_DIR    := $(PROJ_ROOT)/src/rtl
+TB_DIR     := $(PROJ_ROOT)/tb/sim
+FORMAL_DIR := $(PROJ_ROOT)/formal
+OUT_DIR    := $(PROJ_ROOT)/build
+LOG_DIR    := $(OUT_DIR)/logs
 
-# Derive scripts directory and repo root directory from this Makefile's path.
-# Handle paths with spaces by passing $(MAKEFILE_LIST) as a single quoted argument.
-THIS_MAKEFILE := $(MAKEFILE_LIST)
-ROOT_DIR      := $(shell python3 -c "import os, sys; print(os.path.abspath(os.path.join(os.path.dirname(sys.argv[1].strip()), '..')))" '$(THIS_MAKEFILE)' 2>/dev/null || (cd "$$(dirname "$(THIS_MAKEFILE)")/.." 2>/dev/null && pwd) || pwd)
+# RTL files (order matters: leaf modules first)
+RTL_FILES  := $(RTL_DIR)/axi4lite_pkg.sv \
+              $(RTL_DIR)/axi4lite_address_decoder.sv \
+              $(RTL_DIR)/axi4lite_qos_scheduler.sv \
+              $(RTL_DIR)/axi4lite_response_router.sv \
+              $(RTL_DIR)/axi4lite_write_arbiter.sv \
+              $(RTL_DIR)/axi4lite_read_arbiter.sv \
+              $(RTL_DIR)/axi4lite_arbiter_top.sv
 
-# Configurable top-level module
-TOP         ?= axi4lite_arbiter_top
+# Default simulation top
+SIM_TOP    ?= tb_axi4lite_arbiter
 
-# Directory layout
-RTL_DIR     := $(ROOT_DIR)/src/rtl
-TB_SIM_DIR  := $(ROOT_DIR)/tb/sim
-TB_TEST_DIR := $(ROOT_DIR)/tb/tests
-SDC         := $(ROOT_DIR)/constraints/timing.sdc
-LOG_DIR     := $(ROOT_DIR)/logs
-OUT_DIR     := $(ROOT_DIR)/outputs
-SCRIPT_DIR  := $(ROOT_DIR)/scripts
+.PHONY: lint sim sim-stress formal synth wave clean
 
-# ==============================================================================
-# Targets
-# ==============================================================================
-.PHONY: lint sim formal synth clean
-
+# --------------------------------------------------------------------------
+# Lint: Verilator --lint-only or iverilog syntax-only
+# --------------------------------------------------------------------------
 lint:
-	@mkdir -p '$(LOG_DIR)'
-	@echo "=== Running RTL lint ==="
-	@bash '$(SCRIPT_DIR)/lint.sh' '$(RTL_DIR)' 2>&1 | tee '$(LOG_DIR)/lint.log'
+	@mkdir -p $(OUT_DIR) $(LOG_DIR)
+	@echo "=== LINT ==="
+	@if command -v verilator &>/dev/null; then \
+		verilator --lint-only -Wall --timing \
+			$(RTL_FILES) \
+			2>&1 | tee $(LOG_DIR)/lint.log; \
+	elif command -v iverilog &>/dev/null; then \
+		iverilog -g2012 -Wall -o /dev/null \
+			$(RTL_FILES) \
+			2>&1 | tee $(LOG_DIR)/lint.log; \
+	else \
+		echo "ERROR: No linter found (need verilator or iverilog)"; exit 1; \
+	fi
+	@echo "=== LINT COMPLETE ==="
 
+# --------------------------------------------------------------------------
+# Simulation: Directed regression (33 tests)
+# --------------------------------------------------------------------------
 sim:
-	@mkdir -p '$(LOG_DIR)' '$(OUT_DIR)'
-	@echo "=== Running simulation ==="
-	@bash '$(SCRIPT_DIR)/sim.sh' '$(TOP)' '$(RTL_DIR)' '$(TB_SIM_DIR)' '$(TB_TEST_DIR)' '$(OUT_DIR)' 2>&1 | tee '$(LOG_DIR)/sim.log'
+	@mkdir -p $(OUT_DIR) $(LOG_DIR)
+	@echo "=== SIMULATION: $(SIM_TOP) ==="
+	@if command -v iverilog &>/dev/null; then \
+		iverilog -g2012 -Wall -o $(OUT_DIR)/$(SIM_TOP).vvp \
+			$(RTL_FILES) $(TB_DIR)/$(SIM_TOP).sv \
+			2>&1 | tee $(LOG_DIR)/sim_compile.log; \
+		vvp $(OUT_DIR)/$(SIM_TOP).vvp \
+			2>&1 | tee $(LOG_DIR)/sim.log; \
+	else \
+		echo "ERROR: iverilog not found"; exit 1; \
+	fi
+	@echo "=== SIMULATION COMPLETE ==="
 
+# --------------------------------------------------------------------------
+# Stress Simulation: 10,000 random transactions
+# --------------------------------------------------------------------------
+sim-stress:
+	@mkdir -p $(OUT_DIR) $(LOG_DIR)
+	@echo "=== STRESS SIMULATION ==="
+	@if command -v iverilog &>/dev/null; then \
+		iverilog -g2012 -Wall -o $(OUT_DIR)/tb_axi4lite_stress.vvp \
+			$(RTL_FILES) $(TB_DIR)/tb_axi4lite_stress.sv \
+			2>&1 | tee $(LOG_DIR)/stress_compile.log; \
+		vvp $(OUT_DIR)/tb_axi4lite_stress.vvp \
+			2>&1 | tee $(LOG_DIR)/stress.log; \
+	else \
+		echo "ERROR: iverilog not found"; exit 1; \
+	fi
+	@echo "=== STRESS SIMULATION COMPLETE ==="
+
+# --------------------------------------------------------------------------
+# Formal: SymbiYosys BMC
+# --------------------------------------------------------------------------
 formal:
-	@mkdir -p '$(LOG_DIR)'
-	@echo "=== Running formal verification ==="
-	@bash '$(SCRIPT_DIR)/formal.sh' '$(TOP)' '$(RTL_DIR)' '$(ROOT_DIR)' 2>&1 | tee '$(LOG_DIR)/formal.log'
+	@mkdir -p $(OUT_DIR) $(LOG_DIR)
+	@echo "=== FORMAL VERIFICATION ==="
+	@if command -v sby &>/dev/null; then \
+		cd $(PROJ_ROOT) && sby -f $(FORMAL_DIR)/arbiter.sby \
+			2>&1 | tee $(LOG_DIR)/formal.log; \
+	else \
+		echo "ERROR: sby (SymbiYosys) not found"; exit 1; \
+	fi
+	@echo "=== FORMAL COMPLETE ==="
 
+# --------------------------------------------------------------------------
+# Synthesis: Yosys FPGA elaboration check
+# --------------------------------------------------------------------------
 synth:
-	@mkdir -p '$(LOG_DIR)' '$(OUT_DIR)'
-	@echo "=== Running synthesis ==="
-	@bash '$(SCRIPT_DIR)/synth.sh' '$(TOP)' '$(RTL_DIR)' '$(SDC)' '$(OUT_DIR)' 2>&1 | tee '$(LOG_DIR)/synth.log'
+	@mkdir -p $(OUT_DIR) $(LOG_DIR)
+	@echo "=== SYNTHESIS ==="
+	@if command -v yosys &>/dev/null; then \
+		yosys -p "read_verilog -sv $(RTL_FILES); \
+			synth -top axi4lite_arbiter_top; \
+			stat; \
+			write_verilog $(OUT_DIR)/synth_netlist.v" \
+			2>&1 | tee $(LOG_DIR)/synth.log; \
+	else \
+		echo "ERROR: yosys not found"; exit 1; \
+	fi
+	@echo "=== SYNTHESIS COMPLETE ==="
 
+# --------------------------------------------------------------------------
+# Wave: Open waveform viewer
+# --------------------------------------------------------------------------
+wave:
+	@echo "=== OPENING WAVEFORMS ==="
+	@if command -v gtkwave &>/dev/null; then \
+		gtkwave $(SIM_TOP).vcd &; \
+	else \
+		echo "VCD file available: $(SIM_TOP).vcd"; \
+		echo "Use gtkwave or similar viewer to open it."; \
+	fi
+
+# --------------------------------------------------------------------------
+# Clean
+# --------------------------------------------------------------------------
 clean:
-	@echo "=== Cleaning build artifacts ==="
-	@rm -rf '$(LOG_DIR)'/*
-	@rm -rf '$(OUT_DIR)'/*
-	@echo "Done."
+	@echo "=== CLEANING ==="
+	rm -rf $(OUT_DIR) *.vcd *.vvp arbiter_bmc
+	@echo "=== CLEAN COMPLETE ==="

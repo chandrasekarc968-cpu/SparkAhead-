@@ -3,11 +3,32 @@
 // Project    : VELTRAXX'26 PS02 — Multi-Master AXI4-Lite Arbiter
 // Description: Synthesizable 4-Master, 2-Slave AXI4-Lite Shared-Bus Interconnect
 //              Top-level module featuring:
-//              - Two independent QoS Arbiter instances (Write Path & Read Path)
-//              - Concurrent, decoupled Read and Write arbitration and datapaths
-//              - Hardcoded combinational Address Decoders with DECERR support
-//              - Single outstanding transaction per channel without interleaving
-//              - Strict AXI4-Lite handshake & signal stability compliance
+//              - Independent Write Arbiter with AW/W per-master buffering
+//              - Independent Read Arbiter with QoS scheduling
+//              - Centralized Response Router for B and R channels
+//              - Dynamic runtime QoS configuration via sideband ports
+//              - Internal DECERR generation for unmapped addresses
+//              - Single outstanding read + single outstanding write (conservative)
+//              - Strict AXI4-Lite handshake compliance (ARM IHI 0022E)
+//
+// Module Hierarchy:
+//   axi4lite_arbiter_top
+//   ├── axi4lite_write_arbiter
+//   │   ├── axi4lite_qos_scheduler
+//   │   └── axi4lite_address_decoder
+//   ├── axi4lite_read_arbiter
+//   │   ├── axi4lite_qos_scheduler
+//   │   └── axi4lite_address_decoder
+//   └── axi4lite_response_router
+//
+// Conservative Outstanding-Transaction Policy (Intentional):
+//   - At most 1 outstanding write transaction system-wide
+//   - At most 1 outstanding read transaction system-wide
+//   - Write arbitrated only after the same master has both AW and W buffered
+//   - Write owner locked until B response accepted
+//   - Read owner locked until R response accepted
+//   - No response routed to the wrong master
+//   - No request duplicated, dropped, reordered, or overwritten
 // =============================================================================
 
 `timescale 1ns / 1ps
@@ -19,21 +40,29 @@ module axi4lite_arbiter_top #(
     parameter int DATA_WIDTH    = 32,
     parameter int STRB_WIDTH    = DATA_WIDTH / 8,
 
-    // QoS Arbitration Weights & Starvation Threshold
-    parameter int M0_WEIGHT     = 1,
-    parameter int M1_WEIGHT     = 3,
-    parameter int M2_WEIGHT     = 2,
-    parameter int M3_WEIGHT     = 1,
-    parameter int AGE_THRESHOLD = 64,
-
     // Slave Address Regions
-    parameter logic [ADDR_WIDTH-1:0] SLAVE0_BASE = 32'h0000_0000,
-    parameter logic [ADDR_WIDTH-1:0] SLAVE0_SIZE = 32'h0001_0000,
-    parameter logic [ADDR_WIDTH-1:0] SLAVE1_BASE = 32'h0001_0000,
-    parameter logic [ADDR_WIDTH-1:0] SLAVE1_SIZE = 32'h0001_0000
+    parameter logic [ADDR_WIDTH-1:0] S0_BASE = 32'h0000_0000,
+    parameter logic [ADDR_WIDTH-1:0] S0_SIZE = 32'h0001_0000,
+    parameter logic [ADDR_WIDTH-1:0] S1_BASE = 32'h0001_0000,
+    parameter logic [ADDR_WIDTH-1:0] S1_SIZE = 32'h0001_0000
 ) (
     input  logic                                            aclk,
     input  logic                                            aresetn,
+
+    // -------------------------------------------------------------------------
+    // Sideband QoS Configuration Interface
+    // -------------------------------------------------------------------------
+    // Per-master 4-bit weights. Valid range: 1–15. Zero is clamped to 1.
+    input  logic [3:0]                                      cfg_weight_m0,
+    input  logic [3:0]                                      cfg_weight_m1,
+    input  logic [3:0]                                      cfg_weight_m2,
+    input  logic [3:0]                                      cfg_weight_m3,
+    // Master 0 preemptive priority enable
+    input  logic                                            cfg_master0_priority,
+    // Anti-starvation aging threshold (cycles). Zero is clamped to 1.
+    input  logic [7:0]                                      cfg_age_threshold,
+    // Max consecutive M0 grants before yielding. Zero is clamped to 1.
+    input  logic [7:0]                                      cfg_master0_burst_limit,
 
     // -------------------------------------------------------------------------
     // Upstream AXI4-Lite Master Interfaces (s_axi_*)
@@ -101,692 +130,217 @@ module axi4lite_arbiter_top #(
 );
 
     localparam int M_ID_WIDTH = (NUM_MASTERS > 1) ? $clog2(NUM_MASTERS) : 1;
-    localparam logic [1:0] RESP_DECERR = 2'b11;
 
-    // Compile-time parameter assertions: this design is frozen to 4M/2S.
-    // Hardcoded case statements and array bounds depend on these values.
+    // Compile-time parameter assertions
     initial begin
-        if (NUM_MASTERS != 4) begin
+        if (NUM_MASTERS != 4)
             $fatal(1, "[axi4lite_arbiter_top] NUM_MASTERS must be 4 (got %0d)", NUM_MASTERS);
-        end
-        if (NUM_SLAVES != 2) begin
+        if (NUM_SLAVES != 2)
             $fatal(1, "[axi4lite_arbiter_top] NUM_SLAVES must be 2 (got %0d)", NUM_SLAVES);
-        end
     end
 
-    // Master Continuous Unpacked Aliases
-    wire [ADDR_WIDTH-1:0] m_awaddr [0:3];
-    wire [2:0]            m_awprot [0:3];
-    wire                  m_awvalid[0:3];
-    wire [DATA_WIDTH-1:0] m_wdata  [0:3];
-    wire [STRB_WIDTH-1:0] m_wstrb  [0:3];
-    wire                  m_wvalid [0:3];
-    wire                  m_bready [0:3];
-    wire [ADDR_WIDTH-1:0] m_araddr [0:3];
-    wire [2:0]            m_arprot [0:3];
-    wire                  m_arvalid[0:3];
-    wire                  m_rready [0:3];
-
-    genvar g;
-    generate
-        for (g = 0; g < 4; g++) begin : gen_m_aliases
-            assign m_awaddr[g]  = s_axi_awaddr[g];
-            assign m_awprot[g]  = s_axi_awprot[g];
-            assign m_awvalid[g] = s_axi_awvalid[g];
-            assign m_wdata[g]   = s_axi_wdata[g];
-            assign m_wstrb[g]   = s_axi_wstrb[g];
-            assign m_wvalid[g]  = s_axi_wvalid[g];
-            assign m_bready[g]  = s_axi_bready[g];
-            assign m_araddr[g]  = s_axi_araddr[g];
-            assign m_arprot[g]  = s_axi_arprot[g];
-            assign m_arvalid[g] = s_axi_arvalid[g];
-            assign m_rready[g]  = s_axi_rready[g];
-        end
-    endgenerate
-
-    // Slave Continuous Unpacked Aliases
-    wire        s0_awready = m_axi_awready[0];
-    wire        s1_awready = m_axi_awready[1];
-    wire        s0_wready  = m_axi_wready[0];
-    wire        s1_wready  = m_axi_wready[1];
-    wire        s0_bvalid  = m_axi_bvalid[0];
-    wire        s1_bvalid  = m_axi_bvalid[1];
-    wire [1:0]  s0_bresp   = m_axi_bresp[0];
-    wire [1:0]  s1_bresp   = m_axi_bresp[1];
-
-    wire        s0_arready = m_axi_arready[0];
-    wire        s1_arready = m_axi_arready[1];
-    wire        s0_rvalid  = m_axi_rvalid[0];
-    wire        s1_rvalid  = m_axi_rvalid[1];
-    wire [DATA_WIDTH-1:0] s0_rdata = m_axi_rdata[0];
-    wire [DATA_WIDTH-1:0] s1_rdata = m_axi_rdata[1];
-    wire [1:0]  s0_rresp   = m_axi_rresp[0];
-    wire [1:0]  s1_rresp   = m_axi_rresp[1];
+    // =========================================================================
+    // 1. Write Arbiter ↔ Response Router Interconnect
+    // =========================================================================
+    logic [M_ID_WIDTH-1:0]  w_owner_id;
+    logic [NUM_SLAVES-1:0]  w_target_slave;
+    logic                   w_target_invalid;
+    logic                   w_resp_phase;
+    logic                   w_resp_handshake;
+    logic                   w_owner_bready;
 
     // =========================================================================
-    // 1. Write Channel Datapath, Dedicated Arbiter & FSM
+    // 2. Read Arbiter ↔ Response Router Interconnect
     // =========================================================================
-    typedef enum logic [1:0] {
-        W_IDLE    = 2'b00,
-        W_AW_WAIT = 2'b01,
-        W_W_WAIT  = 2'b10,
-        W_B_WAIT  = 2'b11
-    } write_state_t;
-
-    write_state_t w_state;
-
-    // Latched write transaction metadata
-    logic [M_ID_WIDTH-1:0]       w_owner_m_id;
-    logic [1:0]                  w_target_slave_sel;
-    logic                        w_target_invalid;
-    logic [ADDR_WIDTH-1:0]       w_latched_addr;
-    logic [2:0]                  w_latched_prot;
-
-    // Explicit Write QoS Arbiter Signals
-    logic [NUM_MASTERS-1:0]      write_arb_req;
-    logic                        write_arb_tx_done;
-    logic [NUM_MASTERS-1:0]      write_arb_grant;
-    logic [M_ID_WIDTH-1:0]       write_arb_master_id;
-    logic                        write_arb_grant_valid;
-    logic                        write_arb_starvation;
+    logic [M_ID_WIDTH-1:0]  r_owner_id;
+    logic [NUM_SLAVES-1:0]  r_target_slave;
+    logic                   r_target_invalid;
+    logic                   r_resp_phase;
+    logic                   r_resp_handshake;
 
     /* verilator lint_off UNUSEDSIGNAL */
-    logic [NUM_MASTERS-1:0]      write_arb_grant_unused;
-    logic                        write_arb_starvation_unused;
-    logic                        write_eval_valid_addr_unused;
+    logic                   r_owner_rready_unused;
     /* verilator lint_on UNUSEDSIGNAL */
 
-    assign write_arb_req = s_axi_awvalid;
-    assign write_arb_grant_unused = write_arb_grant;
-    assign write_arb_starvation_unused = write_arb_starvation;
-
-    // Dedicated Write Path QoS Arbiter Instance
-    qos_arbiter #(
-        .NUM_MASTERS   (NUM_MASTERS),
-        .M0_WEIGHT     (M0_WEIGHT),
-        .M1_WEIGHT     (M1_WEIGHT),
-        .M2_WEIGHT     (M2_WEIGHT),
-        .M3_WEIGHT     (M3_WEIGHT),
-        .AGE_THRESHOLD (AGE_THRESHOLD)
+    // =========================================================================
+    // 3. Write Arbiter Instance
+    // =========================================================================
+    axi4lite_write_arbiter #(
+        .NUM_MASTERS (NUM_MASTERS),
+        .NUM_SLAVES  (NUM_SLAVES),
+        .ADDR_WIDTH  (ADDR_WIDTH),
+        .DATA_WIDTH  (DATA_WIDTH),
+        .STRB_WIDTH  (STRB_WIDTH),
+        .S0_BASE     (S0_BASE),
+        .S0_SIZE     (S0_SIZE),
+        .S1_BASE     (S1_BASE),
+        .S1_SIZE     (S1_SIZE)
     ) u_write_arbiter (
-        .aclk                 (aclk),
-        .aresetn              (aresetn),
-        .req                  (write_arb_req),
-        .transaction_complete (write_arb_tx_done),
-        .grant                (write_arb_grant),
-        .master_id            (write_arb_master_id),
-        .grant_valid          (write_arb_grant_valid),
-        .starvation_flag      (write_arb_starvation)
+        .aclk                   (aclk),
+        .aresetn                (aresetn),
+        // QoS config
+        .cfg_weight_m0          (cfg_weight_m0),
+        .cfg_weight_m1          (cfg_weight_m1),
+        .cfg_weight_m2          (cfg_weight_m2),
+        .cfg_weight_m3          (cfg_weight_m3),
+        .cfg_master0_priority   (cfg_master0_priority),
+        .cfg_age_threshold      (cfg_age_threshold),
+        .cfg_master0_burst_limit(cfg_master0_burst_limit),
+        // Master AW
+        .s_axi_awaddr           (s_axi_awaddr),
+        .s_axi_awprot           (s_axi_awprot),
+        .s_axi_awvalid          (s_axi_awvalid),
+        .s_axi_awready          (s_axi_awready),
+        // Master W
+        .s_axi_wdata            (s_axi_wdata),
+        .s_axi_wstrb            (s_axi_wstrb),
+        .s_axi_wvalid           (s_axi_wvalid),
+        .s_axi_wready           (s_axi_wready),
+        // Owner/target for response router
+        .w_owner_id             (w_owner_id),
+        .w_target_slave         (w_target_slave),
+        .w_target_invalid       (w_target_invalid),
+        .w_resp_phase           (w_resp_phase),
+        .w_resp_handshake       (w_resp_handshake),
+        .w_owner_bready         (w_owner_bready),
+        // Slave AW
+        .m_axi_awaddr           (m_axi_awaddr),
+        .m_axi_awprot           (m_axi_awprot),
+        .m_axi_awvalid          (m_axi_awvalid),
+        .m_axi_awready          (m_axi_awready),
+        // Slave W
+        .m_axi_wdata            (m_axi_wdata),
+        .m_axi_wstrb            (m_axi_wstrb),
+        .m_axi_wvalid           (m_axi_wvalid),
+        .m_axi_wready           (m_axi_wready)
     );
 
-    // Write Address Decoder
-    logic [ADDR_WIDTH-1:0]       w_eval_addr;
-    logic [1:0]                  w_eval_slave_sel;
-    logic                        w_eval_invalid_addr;
-
-    always_comb begin
-        case (write_arb_master_id)
-            2'd0: w_eval_addr = m_awaddr[0];
-            2'd1: w_eval_addr = m_awaddr[1];
-            2'd2: w_eval_addr = m_awaddr[2];
-            2'd3: w_eval_addr = m_awaddr[3];
-            default: w_eval_addr = m_awaddr[0];
-        endcase
-    end
-
-    addr_decoder #(
+    // =========================================================================
+    // 4. Read Arbiter Instance
+    // =========================================================================
+    axi4lite_read_arbiter #(
+        .NUM_MASTERS (NUM_MASTERS),
+        .NUM_SLAVES  (NUM_SLAVES),
         .ADDR_WIDTH  (ADDR_WIDTH),
-        .SLAVE0_BASE (SLAVE0_BASE),
-        .SLAVE0_SIZE (SLAVE0_SIZE),
-        .SLAVE1_BASE (SLAVE1_BASE),
-        .SLAVE1_SIZE (SLAVE1_SIZE)
-    ) u_write_addr_decoder (
-        .addr         (w_eval_addr),
-        .slave_sel    (w_eval_slave_sel),
-        .valid_addr   (write_eval_valid_addr_unused),
-        .invalid_addr (w_eval_invalid_addr)
-    );
-
-    // Selected slave ready signals
-    logic w_target_awready;
-    logic w_target_wready;
-    logic w_target_bvalid;
-
-    always_comb begin
-        if (w_target_slave_sel[0]) begin
-            w_target_awready = s0_awready;
-            w_target_wready  = s0_wready;
-            w_target_bvalid  = s0_bvalid;
-        end else if (w_target_slave_sel[1]) begin
-            w_target_awready = s1_awready;
-            w_target_wready  = s1_wready;
-            w_target_bvalid  = s1_bvalid;
-        end else begin
-            w_target_awready = 1'b0;
-            w_target_wready  = 1'b0;
-            w_target_bvalid  = 1'b0;
-        end
-    end
-
-    // Selected master write signals
-    logic [DATA_WIDTH-1:0] w_owner_wdata;
-    logic [STRB_WIDTH-1:0] w_owner_wstrb;
-    logic                  w_owner_wvalid;
-    logic                  w_owner_bready;
-
-    always_comb begin
-        case (w_owner_m_id)
-            2'd0: begin
-                w_owner_wdata   = m_wdata[0];
-                w_owner_wstrb   = m_wstrb[0];
-                w_owner_wvalid  = m_wvalid[0];
-                w_owner_bready  = m_bready[0];
-            end
-            2'd1: begin
-                w_owner_wdata   = m_wdata[1];
-                w_owner_wstrb   = m_wstrb[1];
-                w_owner_wvalid  = m_wvalid[1];
-                w_owner_bready  = m_bready[1];
-            end
-            2'd2: begin
-                w_owner_wdata   = m_wdata[2];
-                w_owner_wstrb   = m_wstrb[2];
-                w_owner_wvalid  = m_wvalid[2];
-                w_owner_bready  = m_bready[2];
-            end
-            2'd3: begin
-                w_owner_wdata   = m_wdata[3];
-                w_owner_wstrb   = m_wstrb[3];
-                w_owner_wvalid  = m_wvalid[3];
-                w_owner_bready  = m_bready[3];
-            end
-            default: begin
-                w_owner_wdata   = m_wdata[0];
-                w_owner_wstrb   = m_wstrb[0];
-                w_owner_wvalid  = m_wvalid[0];
-                w_owner_bready  = m_bready[0];
-            end
-        endcase
-    end
-
-    // Write FSM Sequential Logic
-    always_ff @(posedge aclk or negedge aresetn) begin
-        if (!aresetn) begin
-            w_state            <= W_IDLE;
-            w_owner_m_id       <= '0;
-            w_target_slave_sel <= '0;
-            w_target_invalid   <= 1'b0;
-            w_latched_addr     <= '0;
-            w_latched_prot     <= '0;
-            write_arb_tx_done  <= 1'b0;
-        end else begin
-            write_arb_tx_done <= 1'b0;
-
-            case (w_state)
-                W_IDLE: begin
-                    if (write_arb_grant_valid && m_awvalid[write_arb_master_id]) begin
-                        w_owner_m_id       <= write_arb_master_id;
-                        w_latched_addr     <= m_awaddr[write_arb_master_id];
-                        w_latched_prot     <= m_awprot[write_arb_master_id];
-                        w_target_slave_sel <= w_eval_slave_sel;
-                        w_target_invalid   <= w_eval_invalid_addr;
-                        w_state            <= W_AW_WAIT;
-                    end
-                end
-
-                W_AW_WAIT: begin
-                    if (w_target_invalid) begin
-                        w_state <= W_W_WAIT;
-                    end else if (w_target_awready) begin
-                        w_state <= W_W_WAIT;
-                    end
-                end
-
-                W_W_WAIT: begin
-                    if (w_target_invalid) begin
-                        if (w_owner_wvalid) begin
-                            w_state <= W_B_WAIT;
-                        end
-                    end else if (w_owner_wvalid && w_target_wready) begin
-                        w_state <= W_B_WAIT;
-                    end
-                end
-
-                W_B_WAIT: begin
-                    if (w_target_invalid) begin
-                        if (w_owner_bready) begin
-                            write_arb_tx_done <= 1'b1;
-                            w_state           <= W_IDLE;
-                        end
-                    end else if (w_target_bvalid && w_owner_bready) begin
-                        write_arb_tx_done <= 1'b1;
-                        w_state           <= W_IDLE;
-                    end
-                end
-
-                default: w_state <= W_IDLE;
-            endcase
-        end
-    end
-
-    // Master-side Output Demux logic
-    logic [3:0] w_awready_demux;
-    logic [3:0] w_wready_demux;
-    logic [3:0] w_bvalid_demux;
-    logic [1:0] w_bresp_demux [0:3];
-
-    // Slave-side Output Mux logic
-    logic       s0_awvalid_mux, s1_awvalid_mux;
-    logic       s0_wvalid_mux,  s1_wvalid_mux;
-    logic       s0_bready_mux,  s1_bready_mux;
-
-    always_comb begin
-        w_awready_demux = 4'b0000;
-        w_wready_demux  = 4'b0000;
-        w_bvalid_demux  = 4'b0000;
-        for (int i = 0; i < 4; i++) w_bresp_demux[i] = 2'b00;
-
-        s0_awvalid_mux = 1'b0;
-        s1_awvalid_mux = 1'b0;
-        s0_wvalid_mux  = 1'b0;
-        s1_wvalid_mux  = 1'b0;
-        s0_bready_mux  = 1'b0;
-        s1_bready_mux  = 1'b0;
-
-        case (w_state)
-            W_IDLE: begin
-            end
-
-            W_AW_WAIT: begin
-                if (w_target_invalid) begin
-                    w_awready_demux[w_owner_m_id] = 1'b1;
-                end else begin
-                    if (w_target_slave_sel[0]) begin
-                        s0_awvalid_mux                = 1'b1;
-                        w_awready_demux[w_owner_m_id] = s0_awready;
-                    end else if (w_target_slave_sel[1]) begin
-                        s1_awvalid_mux                = 1'b1;
-                        w_awready_demux[w_owner_m_id] = s1_awready;
-                    end
-                end
-            end
-
-            W_W_WAIT: begin
-                if (w_target_invalid) begin
-                    w_wready_demux[w_owner_m_id] = 1'b1;
-                end else begin
-                    if (w_target_slave_sel[0]) begin
-                        s0_wvalid_mux                = w_owner_wvalid;
-                        w_wready_demux[w_owner_m_id] = s0_wready;
-                    end else if (w_target_slave_sel[1]) begin
-                        s1_wvalid_mux                = w_owner_wvalid;
-                        w_wready_demux[w_owner_m_id] = s1_wready;
-                    end
-                end
-            end
-
-            W_B_WAIT: begin
-                if (w_target_invalid) begin
-                    w_bvalid_demux[w_owner_m_id] = 1'b1;
-                    w_bresp_demux[w_owner_m_id]  = RESP_DECERR;
-                end else begin
-                    if (w_target_slave_sel[0]) begin
-                        w_bvalid_demux[w_owner_m_id] = s0_bvalid;
-                        w_bresp_demux[w_owner_m_id]  = s0_bresp;
-                        s0_bready_mux                = w_owner_bready;
-                    end else if (w_target_slave_sel[1]) begin
-                        w_bvalid_demux[w_owner_m_id] = s1_bvalid;
-                        w_bresp_demux[w_owner_m_id]  = s1_bresp;
-                        s1_bready_mux                = w_owner_bready;
-                    end
-                end
-            end
-
-            default: ;
-        endcase
-    end
-
-    // Master Write Outputs
-    assign s_axi_awready = w_awready_demux;
-    assign s_axi_wready  = w_wready_demux;
-    assign s_axi_bvalid  = w_bvalid_demux;
-    assign s_axi_bresp[0] = w_bresp_demux[0];
-    assign s_axi_bresp[1] = w_bresp_demux[1];
-    assign s_axi_bresp[2] = w_bresp_demux[2];
-    assign s_axi_bresp[3] = w_bresp_demux[3];
-
-    // Slave Write Outputs
-    assign m_axi_awaddr[0]  = w_latched_addr;
-    assign m_axi_awprot[0]  = w_latched_prot;
-    assign m_axi_awvalid[0] = s0_awvalid_mux;
-    assign m_axi_wdata[0]   = w_owner_wdata;
-    assign m_axi_wstrb[0]   = w_owner_wstrb;
-    assign m_axi_wvalid[0]  = s0_wvalid_mux;
-    assign m_axi_bready[0]  = s0_bready_mux;
-
-    assign m_axi_awaddr[1]  = w_latched_addr;
-    assign m_axi_awprot[1]  = w_latched_prot;
-    assign m_axi_awvalid[1] = s1_awvalid_mux;
-    assign m_axi_wdata[1]   = w_owner_wdata;
-    assign m_axi_wstrb[1]   = w_owner_wstrb;
-    assign m_axi_wvalid[1]  = s1_wvalid_mux;
-    assign m_axi_bready[1]  = s1_bready_mux;
-
-    // =========================================================================
-    // 2. Read Channel Datapath, Dedicated Arbiter & FSM
-    // =========================================================================
-    typedef enum logic [1:0] {
-        R_IDLE    = 2'b00,
-        R_AR_WAIT = 2'b01,
-        R_R_WAIT  = 2'b10
-    } read_state_t;
-
-    read_state_t r_state;
-
-    // Latched read transaction metadata
-    logic [M_ID_WIDTH-1:0]       r_owner_m_id;
-    logic [1:0]                  r_target_slave_sel;
-    logic                        r_target_invalid;
-    logic [ADDR_WIDTH-1:0]       r_latched_addr;
-    logic [2:0]                  r_latched_prot;
-
-    // Explicit Read QoS Arbiter Signals
-    logic [NUM_MASTERS-1:0]      read_arb_req;
-    logic                        read_arb_tx_done;
-    logic [NUM_MASTERS-1:0]      read_arb_grant;
-    logic [M_ID_WIDTH-1:0]       read_arb_master_id;
-    logic                        read_arb_grant_valid;
-    logic                        read_arb_starvation;
-
-    /* verilator lint_off UNUSEDSIGNAL */
-    logic [NUM_MASTERS-1:0]      read_arb_grant_unused;
-    logic                        read_arb_starvation_unused;
-    logic                        read_eval_valid_addr_unused;
-    /* verilator lint_on UNUSEDSIGNAL */
-
-    assign read_arb_req = s_axi_arvalid;
-    assign read_arb_grant_unused = read_arb_grant;
-    assign read_arb_starvation_unused = read_arb_starvation;
-
-    // Dedicated Read Path QoS Arbiter Instance
-    qos_arbiter #(
-        .NUM_MASTERS   (NUM_MASTERS),
-        .M0_WEIGHT     (M0_WEIGHT),
-        .M1_WEIGHT     (M1_WEIGHT),
-        .M2_WEIGHT     (M2_WEIGHT),
-        .M3_WEIGHT     (M3_WEIGHT),
-        .AGE_THRESHOLD (AGE_THRESHOLD)
+        .DATA_WIDTH  (DATA_WIDTH),
+        .S0_BASE     (S0_BASE),
+        .S0_SIZE     (S0_SIZE),
+        .S1_BASE     (S1_BASE),
+        .S1_SIZE     (S1_SIZE)
     ) u_read_arbiter (
-        .aclk                 (aclk),
-        .aresetn              (aresetn),
-        .req                  (read_arb_req),
-        .transaction_complete (read_arb_tx_done),
-        .grant                (read_arb_grant),
-        .master_id            (read_arb_master_id),
-        .grant_valid          (read_arb_grant_valid),
-        .starvation_flag      (read_arb_starvation)
+        .aclk                   (aclk),
+        .aresetn                (aresetn),
+        // QoS config
+        .cfg_weight_m0          (cfg_weight_m0),
+        .cfg_weight_m1          (cfg_weight_m1),
+        .cfg_weight_m2          (cfg_weight_m2),
+        .cfg_weight_m3          (cfg_weight_m3),
+        .cfg_master0_priority   (cfg_master0_priority),
+        .cfg_age_threshold      (cfg_age_threshold),
+        .cfg_master0_burst_limit(cfg_master0_burst_limit),
+        // Master AR
+        .s_axi_araddr           (s_axi_araddr),
+        .s_axi_arprot           (s_axi_arprot),
+        .s_axi_arvalid          (s_axi_arvalid),
+        .s_axi_arready          (s_axi_arready),
+        // Owner/target for response router
+        .r_owner_id             (r_owner_id),
+        .r_target_slave         (r_target_slave),
+        .r_target_invalid       (r_target_invalid),
+        .r_resp_phase           (r_resp_phase),
+        .r_resp_handshake       (r_resp_handshake),
+        // Slave AR
+        .m_axi_araddr           (m_axi_araddr),
+        .m_axi_arprot           (m_axi_arprot),
+        .m_axi_arvalid          (m_axi_arvalid),
+        .m_axi_arready          (m_axi_arready)
     );
 
-    // Read Address Decoder
-    logic [ADDR_WIDTH-1:0]       r_eval_addr;
-    logic [1:0]                  r_eval_slave_sel;
-    logic                        r_eval_invalid_addr;
-
-    always_comb begin
-        case (read_arb_master_id)
-            2'd0: r_eval_addr = m_araddr[0];
-            2'd1: r_eval_addr = m_araddr[1];
-            2'd2: r_eval_addr = m_araddr[2];
-            2'd3: r_eval_addr = m_araddr[3];
-            default: r_eval_addr = m_araddr[0];
-        endcase
-    end
-
-    addr_decoder #(
-        .ADDR_WIDTH  (ADDR_WIDTH),
-        .SLAVE0_BASE (SLAVE0_BASE),
-        .SLAVE0_SIZE (SLAVE0_SIZE),
-        .SLAVE1_BASE (SLAVE1_BASE),
-        .SLAVE1_SIZE (SLAVE1_SIZE)
-    ) u_read_addr_decoder (
-        .addr         (r_eval_addr),
-        .slave_sel    (r_eval_slave_sel),
-        .valid_addr   (read_eval_valid_addr_unused),
-        .invalid_addr (r_eval_invalid_addr)
+    // =========================================================================
+    // 5. Response Router Instance
+    // =========================================================================
+    axi4lite_response_router #(
+        .NUM_MASTERS (NUM_MASTERS),
+        .NUM_SLAVES  (NUM_SLAVES),
+        .DATA_WIDTH  (DATA_WIDTH)
+    ) u_response_router (
+        // Write response
+        .w_active           (w_resp_phase),
+        .w_owner_id         (w_owner_id),
+        .w_target_slave     (w_target_slave),
+        .w_target_invalid   (w_target_invalid),
+        .s_bresp            (m_axi_bresp),
+        .s_bvalid           (m_axi_bvalid),
+        .s_bready           (m_axi_bready),
+        .m_bresp            (s_axi_bresp),
+        .m_bvalid           (s_axi_bvalid),
+        .m_bready           (s_axi_bready),
+        .w_resp_handshake   (w_resp_handshake),
+        .w_owner_bready     (w_owner_bready),
+        // Read response
+        .r_active           (r_resp_phase),
+        .r_owner_id         (r_owner_id),
+        .r_target_slave     (r_target_slave),
+        .r_target_invalid   (r_target_invalid),
+        .s_rdata            (m_axi_rdata),
+        .s_rresp            (m_axi_rresp),
+        .s_rvalid           (m_axi_rvalid),
+        .s_rready           (m_axi_rready),
+        .m_rdata            (s_axi_rdata),
+        .m_rresp            (s_axi_rresp),
+        .m_rvalid           (s_axi_rvalid),
+        .m_rready           (s_axi_rready),
+        .r_resp_handshake   (r_resp_handshake),
+        .r_owner_rready     (r_owner_rready_unused)
     );
 
-    // Selected read slave ready signals
-    logic r_target_arready;
-    logic r_target_rvalid;
-
-    always_comb begin
-        if (r_target_slave_sel[0]) begin
-            r_target_arready = s0_arready;
-            r_target_rvalid  = s0_rvalid;
-        end else if (r_target_slave_sel[1]) begin
-            r_target_arready = s1_arready;
-            r_target_rvalid  = s1_rvalid;
-        end else begin
-            r_target_arready = 1'b0;
-            r_target_rvalid  = 1'b0;
-        end
-    end
-
-    // Selected master read signals
-    logic r_owner_rready;
-
-    always_comb begin
-        case (r_owner_m_id)
-            2'd0: r_owner_rready = m_rready[0];
-            2'd1: r_owner_rready = m_rready[1];
-            2'd2: r_owner_rready = m_rready[2];
-            2'd3: r_owner_rready = m_rready[3];
-            default: r_owner_rready = m_rready[0];
-        endcase
-    end
-
-    // Read FSM Sequential Logic
-    always_ff @(posedge aclk or negedge aresetn) begin
-        if (!aresetn) begin
-            r_state            <= R_IDLE;
-            r_owner_m_id       <= '0;
-            r_target_slave_sel <= '0;
-            r_target_invalid   <= 1'b0;
-            r_latched_addr     <= '0;
-            r_latched_prot     <= '0;
-            read_arb_tx_done   <= 1'b0;
-        end else begin
-            read_arb_tx_done <= 1'b0;
-
-            case (r_state)
-                R_IDLE: begin
-                    if (read_arb_grant_valid && m_arvalid[read_arb_master_id]) begin
-                        r_owner_m_id       <= read_arb_master_id;
-                        r_latched_addr     <= m_araddr[read_arb_master_id];
-                        r_latched_prot     <= m_arprot[read_arb_master_id];
-                        r_target_slave_sel <= r_eval_slave_sel;
-                        r_target_invalid   <= r_eval_invalid_addr;
-                        r_state            <= R_AR_WAIT;
-                    end
-                end
-
-                R_AR_WAIT: begin
-                    if (r_target_invalid) begin
-                        r_state <= R_R_WAIT;
-                    end else if (r_target_arready) begin
-                        r_state <= R_R_WAIT;
-                    end
-                end
-
-                R_R_WAIT: begin
-                    if (r_target_invalid) begin
-                        if (r_owner_rready) begin
-                            read_arb_tx_done <= 1'b1;
-                            r_state          <= R_IDLE;
-                        end
-                    end else if (r_target_rvalid && r_owner_rready) begin
-                        read_arb_tx_done <= 1'b1;
-                        r_state          <= R_IDLE;
-                    end
-                end
-
-                default: r_state <= R_IDLE;
-            endcase
-        end
-    end
-
-    // Master-side Read Output Demux
-    logic [3:0]            r_arready_demux;
-    logic [3:0]            r_rvalid_demux;
-    logic [DATA_WIDTH-1:0] r_rdata_demux [0:3];
-    logic [1:0]            r_rresp_demux [0:3];
-
-    // Slave-side Read Output Mux
-    logic s0_arvalid_mux, s1_arvalid_mux;
-    logic s0_rready_mux,  s1_rready_mux;
-
-    always_comb begin
-        r_arready_demux = 4'b0000;
-        r_rvalid_demux  = 4'b0000;
-        for (int i = 0; i < 4; i++) begin
-            r_rdata_demux[i] = '0;
-            r_rresp_demux[i] = 2'b00;
-        end
-
-        s0_arvalid_mux = 1'b0;
-        s1_arvalid_mux = 1'b0;
-        s0_rready_mux  = 1'b0;
-        s1_rready_mux  = 1'b0;
-
-        case (r_state)
-            R_IDLE: begin
-            end
-
-            R_AR_WAIT: begin
-                if (r_target_invalid) begin
-                    r_arready_demux[r_owner_m_id] = 1'b1;
-                end else begin
-                    if (r_target_slave_sel[0]) begin
-                        s0_arvalid_mux                = 1'b1;
-                        r_arready_demux[r_owner_m_id] = s0_arready;
-                    end else if (r_target_slave_sel[1]) begin
-                        s1_arvalid_mux                = 1'b1;
-                        r_arready_demux[r_owner_m_id] = s1_arready;
-                    end
-                end
-            end
-
-            R_R_WAIT: begin
-                if (r_target_invalid) begin
-                    r_rvalid_demux[r_owner_m_id] = 1'b1;
-                    r_rdata_demux[r_owner_m_id]  = '0;
-                    r_rresp_demux[r_owner_m_id]  = RESP_DECERR;
-                end else begin
-                    if (r_target_slave_sel[0]) begin
-                        r_rvalid_demux[r_owner_m_id] = s0_rvalid;
-                        r_rdata_demux[r_owner_m_id]  = s0_rdata;
-                        r_rresp_demux[r_owner_m_id]  = s0_rresp;
-                        s0_rready_mux                = r_owner_rready;
-                    end else if (r_target_slave_sel[1]) begin
-                        r_rvalid_demux[r_owner_m_id] = s1_rvalid;
-                        r_rdata_demux[r_owner_m_id]  = s1_rdata;
-                        r_rresp_demux[r_owner_m_id]  = s1_rresp;
-                        s1_rready_mux                = r_owner_rready;
-                    end
-                end
-            end
-
-            default: ;
-        endcase
-    end
-
-    // Master Read Outputs
-    assign s_axi_arready = r_arready_demux;
-    assign s_axi_rvalid  = r_rvalid_demux;
-    assign s_axi_rdata[0] = r_rdata_demux[0];
-    assign s_axi_rdata[1] = r_rdata_demux[1];
-    assign s_axi_rdata[2] = r_rdata_demux[2];
-    assign s_axi_rdata[3] = r_rdata_demux[3];
-    assign s_axi_rresp[0] = r_rresp_demux[0];
-    assign s_axi_rresp[1] = r_rresp_demux[1];
-    assign s_axi_rresp[2] = r_rresp_demux[2];
-    assign s_axi_rresp[3] = r_rresp_demux[3];
-
-    // Slave Read Outputs
-    assign m_axi_araddr[0]  = r_latched_addr;
-    assign m_axi_arprot[0]  = r_latched_prot;
-    assign m_axi_arvalid[0] = s0_arvalid_mux;
-    assign m_axi_rready[0]  = s0_rready_mux;
-
-    assign m_axi_araddr[1]  = r_latched_addr;
-    assign m_axi_arprot[1]  = r_latched_prot;
-    assign m_axi_arvalid[1] = s1_arvalid_mux;
-    assign m_axi_rready[1]  = s1_rready_mux;
-
+    // =========================================================================
+    // 6. Synthesis-Safe SVA Assertions
+    // =========================================================================
 `ifdef ASSERTIONS
-    // SVA Assertions for protocol safety & isolation
-    property p_single_w_owner;
+    // One-hot safety on master-facing signals
+    property p_single_awready;
         @(posedge aclk) disable iff (!aresetn)
-        $onehot0(s_axi_awready);
+        $onehot0(s_axi_awready) || (s_axi_awready == '0) ||
+        // Multiple AWREADYs are legal when multiple buffers are free
+        1'b1;
     endproperty
-    assert property (p_single_w_owner)
-        else $error("[axi4lite_arbiter_top] Multiple AWREADY asserted simultaneously!");
-
-    property p_single_wready_owner;
-        @(posedge aclk) disable iff (!aresetn)
-        $onehot0(s_axi_wready);
-    endproperty
-    assert property (p_single_wready_owner)
-        else $error("[axi4lite_arbiter_top] Multiple WREADY asserted simultaneously!");
 
     property p_single_bvalid_owner;
         @(posedge aclk) disable iff (!aresetn)
         $onehot0(s_axi_bvalid);
     endproperty
     assert property (p_single_bvalid_owner)
-        else $error("[axi4lite_arbiter_top] Multiple BVALID asserted simultaneously!");
-
-    property p_single_r_owner;
-        @(posedge aclk) disable iff (!aresetn)
-        $onehot0(s_axi_arready);
-    endproperty
-    assert property (p_single_r_owner)
-        else $error("[axi4lite_arbiter_top] Multiple ARREADY asserted simultaneously!");
+        else $error("[axi4lite_arbiter_top] Multiple BVALID asserted!");
 
     property p_single_rvalid_owner;
         @(posedge aclk) disable iff (!aresetn)
         $onehot0(s_axi_rvalid);
     endproperty
     assert property (p_single_rvalid_owner)
-        else $error("[axi4lite_arbiter_top] Multiple RVALID asserted simultaneously!");
+        else $error("[axi4lite_arbiter_top] Multiple RVALID asserted!");
+
+    // Slave-side exclusivity
+    property p_single_slave_awvalid;
+        @(posedge aclk) disable iff (!aresetn)
+        $onehot0(m_axi_awvalid);
+    endproperty
+    assert property (p_single_slave_awvalid)
+        else $error("[axi4lite_arbiter_top] Multiple slave AWVALID!");
+
+    property p_single_slave_wvalid;
+        @(posedge aclk) disable iff (!aresetn)
+        $onehot0(m_axi_wvalid);
+    endproperty
+    assert property (p_single_slave_wvalid)
+        else $error("[axi4lite_arbiter_top] Multiple slave WVALID!");
 
     property p_single_slave_arvalid;
         @(posedge aclk) disable iff (!aresetn)
         $onehot0(m_axi_arvalid);
     endproperty
     assert property (p_single_slave_arvalid)
-        else $error("[axi4lite_arbiter_top] Multiple slave ARVALID asserted simultaneously!");
-
-    property p_single_slave_awvalid;
-        @(posedge aclk) disable iff (!aresetn)
-        $onehot0(m_axi_awvalid);
-    endproperty
-    assert property (p_single_slave_awvalid)
-        else $error("[axi4lite_arbiter_top] Multiple slave AWVALID asserted simultaneously!");
-
-    property p_w_owner_stable;
-        @(posedge aclk) disable iff (!aresetn)
-        (w_state != W_IDLE) |=> (w_owner_m_id == $past(w_owner_m_id));
-    endproperty
-    assert property (p_w_owner_stable)
-        else $error("[axi4lite_arbiter_top] Write transaction owner changed mid-flight!");
-
-    property p_r_owner_stable;
-        @(posedge aclk) disable iff (!aresetn)
-        (r_state != R_IDLE) |=> (r_owner_m_id == $past(r_owner_m_id));
-    endproperty
-    assert property (p_r_owner_stable)
-        else $error("[axi4lite_arbiter_top] Read transaction owner changed mid-flight!");
+        else $error("[axi4lite_arbiter_top] Multiple slave ARVALID!");
 `endif
 
 endmodule

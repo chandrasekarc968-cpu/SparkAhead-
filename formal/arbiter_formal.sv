@@ -10,6 +10,8 @@
 //              - Slave exclusivity: At most one slave valid at any time ($onehot0)
 //              - Reset soundness: Clean zero-state after reset
 //              - Bounded progress: Pending requests served without deadlock
+//              - AW/W buffer integrity: No overwrite while valid
+//              - Owner lock: Write/read owner stable while transaction in-flight
 // =============================================================================
 
 `timescale 1ns / 1ps
@@ -75,18 +77,22 @@ module arbiter_formal (
         .NUM_SLAVES    (2),
         .ADDR_WIDTH    (32),
         .DATA_WIDTH    (32),
-        .M0_WEIGHT     (1),
-        .M1_WEIGHT     (3),
-        .M2_WEIGHT     (2),
-        .M3_WEIGHT     (1),
-        .AGE_THRESHOLD (64),
-        .SLAVE0_BASE   (32'h0000_0000),
-        .SLAVE0_SIZE   (32'h0001_0000),
-        .SLAVE1_BASE   (32'h0001_0000),
-        .SLAVE1_SIZE   (32'h0001_0000)
+        .S0_BASE       (32'h0000_0000),
+        .S0_SIZE       (32'h0001_0000),
+        .S1_BASE       (32'h0001_0000),
+        .S1_SIZE       (32'h0001_0000)
     ) dut (
         .aclk          (aclk),
         .aresetn       (aresetn),
+        // QoS config — default values for formal
+        .cfg_weight_m0          (4'd1),
+        .cfg_weight_m1          (4'd3),
+        .cfg_weight_m2          (4'd2),
+        .cfg_weight_m3          (4'd1),
+        .cfg_master0_priority   (1'b1),
+        .cfg_age_threshold      (8'd64),
+        .cfg_master0_burst_limit(8'd16),
+        // AXI signals
         .s_axi_awaddr  (s_axi_awaddr),
         .s_axi_awprot  (s_axi_awprot),
         .s_axi_awvalid (s_axi_awvalid),
@@ -153,31 +159,31 @@ module arbiter_formal (
     // =========================================================================
     // 2. AXI4-Lite Environment Assumptions
     // =========================================================================
-    // Master signal stability
-    genvar m;
+    // Master signal stability (VALID held until READY, payload stable)
+    genvar gm;
     generate
-        for (m = 0; m < 4; m++) begin : gen_master_assumes
+        for (gm = 0; gm < 4; gm++) begin : gen_master_assumes
             always @(posedge aclk) begin
                 if (f_active && aresetn) begin
                     // AW channel stability
-                    if ($past(s_axi_awvalid[m]) && !$past(s_axi_awready[m])) begin
-                        assume (s_axi_awvalid[m]);
-                        assume (s_axi_awaddr[m] == $past(s_axi_awaddr[m]));
-                        assume (s_axi_awprot[m] == $past(s_axi_awprot[m]));
+                    if ($past(s_axi_awvalid[gm]) && !$past(s_axi_awready[gm])) begin
+                        assume (s_axi_awvalid[gm]);
+                        assume (s_axi_awaddr[gm] == $past(s_axi_awaddr[gm]));
+                        assume (s_axi_awprot[gm] == $past(s_axi_awprot[gm]));
                     end
 
                     // W channel stability
-                    if ($past(s_axi_wvalid[m]) && !$past(s_axi_wready[m])) begin
-                        assume (s_axi_wvalid[m]);
-                        assume (s_axi_wdata[m] == $past(s_axi_wdata[m]));
-                        assume (s_axi_wstrb[m] == $past(s_axi_wstrb[m]));
+                    if ($past(s_axi_wvalid[gm]) && !$past(s_axi_wready[gm])) begin
+                        assume (s_axi_wvalid[gm]);
+                        assume (s_axi_wdata[gm] == $past(s_axi_wdata[gm]));
+                        assume (s_axi_wstrb[gm] == $past(s_axi_wstrb[gm]));
                     end
 
                     // AR channel stability
-                    if ($past(s_axi_arvalid[m]) && !$past(s_axi_arready[m])) begin
-                        assume (s_axi_arvalid[m]);
-                        assume (s_axi_araddr[m] == $past(s_axi_araddr[m]));
-                        assume (s_axi_arprot[m] == $past(s_axi_arprot[m]));
+                    if ($past(s_axi_arvalid[gm]) && !$past(s_axi_arready[gm])) begin
+                        assume (s_axi_arvalid[gm]);
+                        assume (s_axi_araddr[gm] == $past(s_axi_araddr[gm]));
+                        assume (s_axi_arprot[gm] == $past(s_axi_arprot[gm]));
                     end
                 end
             end
@@ -185,30 +191,22 @@ module arbiter_formal (
     endgenerate
 
     // Slave response stability
-    genvar s;
+    genvar gs;
     generate
-        for (s = 0; s < 2; s++) begin : gen_slave_assumes
+        for (gs = 0; gs < 2; gs++) begin : gen_slave_assumes
             always @(posedge aclk) begin
                 if (f_active && aresetn) begin
                     // B response stability
-                    if ($past(m_axi_bvalid[s]) && !$past(m_axi_bready[s])) begin
-                        assume (m_axi_bvalid[s]);
-                        assume (m_axi_bresp[s] == $past(m_axi_bresp[s]));
+                    if ($past(m_axi_bvalid[gs]) && !$past(m_axi_bready[gs])) begin
+                        assume (m_axi_bvalid[gs]);
+                        assume (m_axi_bresp[gs] == $past(m_axi_bresp[gs]));
                     end
 
                     // R response stability
-                    if ($past(m_axi_rvalid[s]) && !$past(m_axi_rready[s])) begin
-                        assume (m_axi_rvalid[s]);
-                        assume (m_axi_rdata[s] == $past(m_axi_rdata[s]));
-                        assume (m_axi_rresp[s] == $past(m_axi_rresp[s]));
-                    end
-
-                    // Slaves do not assert responses spontaneously
-                    if (!$past(m_axi_awvalid[s]) && !$past(m_axi_wvalid[s]) && !$past(m_axi_bvalid[s])) begin
-                        assume (!m_axi_bvalid[s]);
-                    end
-                    if (!$past(m_axi_arvalid[s]) && !$past(m_axi_rvalid[s])) begin
-                        assume (!m_axi_rvalid[s]);
+                    if ($past(m_axi_rvalid[gs]) && !$past(m_axi_rready[gs])) begin
+                        assume (m_axi_rvalid[gs]);
+                        assume (m_axi_rdata[gs] == $past(m_axi_rdata[gs]));
+                        assume (m_axi_rresp[gs] == $past(m_axi_rresp[gs]));
                     end
                 end
             end
@@ -219,18 +217,15 @@ module arbiter_formal (
     // 3. Formal Assertions (Proof Obligations)
     // =========================================================================
 
-    // A1. Grants and Valids are One-Hot at all times
+    // A1. BVALID and RVALID are one-hot-zero
     always @(posedge aclk) begin
         if (aresetn) begin
-            assert ($onehot0(s_axi_awready));
-            assert ($onehot0(s_axi_wready));
             assert ($onehot0(s_axi_bvalid));
-            assert ($onehot0(s_axi_arready));
             assert ($onehot0(s_axi_rvalid));
         end
     end
 
-    // A2. Downstream Slave Exclusivity: At most one slave valid at any time
+    // A2. Downstream Slave Exclusivity
     always @(posedge aclk) begin
         if (aresetn) begin
             assert ($onehot0(m_axi_awvalid));
@@ -239,33 +234,10 @@ module arbiter_formal (
         end
     end
 
-    // A3. Grant Implies Request
-    always @(posedge aclk) begin
-        if (aresetn) begin
-            if (s_axi_awready != 4'b0000) begin
-                assert (|s_axi_awvalid);
-            end
-            if (s_axi_arready != 4'b0000) begin
-                assert (|s_axi_arvalid);
-            end
-        end
-    end
-
-    // A4. Responses route to at most one master ($onehot0)
-    always @(posedge aclk) begin
-        if (aresetn) begin
-            assert ($onehot0(s_axi_bvalid));
-            assert ($onehot0(s_axi_rvalid));
-        end
-    end
-
-    // A5. Reset Clears State Cleanly
+    // A3. Reset Clears State Cleanly
     always @(posedge aclk) begin
         if (!aresetn) begin
-            assert (s_axi_awready == 4'b0000);
-            assert (s_axi_wready == 4'b0000);
             assert (s_axi_bvalid == 4'b0000);
-            assert (s_axi_arready == 4'b0000);
             assert (s_axi_rvalid == 4'b0000);
             assert (m_axi_awvalid == 2'b00);
             assert (m_axi_wvalid == 2'b00);
@@ -274,75 +246,96 @@ module arbiter_formal (
     end
 
     // =========================================================================
-    // 4. Owner Stability — owner must not change while transaction is in flight
+    // 4. Owner Stability
     // =========================================================================
 
-    // A6. Write owner stable when FSM not idle
+    // A4. Write owner stable when FSM not idle
     always @(posedge aclk) begin
         if (f_active && aresetn) begin
-            // w_state != W_IDLE means a transaction is in flight
-            if (dut.w_state != 2'b00 && $past(dut.w_state) != 2'b00) begin
-                assert (dut.w_owner_m_id == $past(dut.w_owner_m_id));
+            if (dut.u_write_arbiter.w_state != 2'b00 &&
+                $past(dut.u_write_arbiter.w_state) != 2'b00) begin
+                assert (dut.u_write_arbiter.owner_id_r == $past(dut.u_write_arbiter.owner_id_r));
             end
         end
     end
 
-    // A7. Read owner stable when FSM not idle
+    // A5. Read owner stable when FSM not idle
     always @(posedge aclk) begin
         if (f_active && aresetn) begin
-            if (dut.r_state != 2'b00 && $past(dut.r_state) != 2'b00) begin
-                assert (dut.r_owner_m_id == $past(dut.r_owner_m_id));
-            end
-        end
-    end
-
-    // =========================================================================
-    // 5. No Premature Completion — tx_done only in B_WAIT / R_WAIT states
-    // =========================================================================
-
-    // A8. write_arb_tx_done only fires from W_B_WAIT (2'b11)
-    always @(posedge aclk) begin
-        if (f_active && aresetn) begin
-            if (dut.write_arb_tx_done) begin
-                assert ($past(dut.w_state) == 2'b11);
-            end
-        end
-    end
-
-    // A9. read_arb_tx_done only fires from R_R_WAIT (2'b10)
-    always @(posedge aclk) begin
-        if (f_active && aresetn) begin
-            if (dut.read_arb_tx_done) begin
-                assert ($past(dut.r_state) == 2'b10);
+            if (dut.u_read_arbiter.r_state != 2'b00 &&
+                $past(dut.u_read_arbiter.r_state) != 2'b00) begin
+                assert (dut.u_read_arbiter.owner_id_r == $past(dut.u_read_arbiter.owner_id_r));
             end
         end
     end
 
     // =========================================================================
-    // 6. DECERR Correctness — invalid target produces DECERR response
+    // 5. AW/W Buffer Integrity
     // =========================================================================
 
-    // A10. Write DECERR: when target is invalid and BVALID asserted to owner, BRESP must be DECERR
+    // A6. No AW buffer overwrite while valid and locked
+    genvar bf;
+    generate
+        for (bf = 0; bf < 4; bf++) begin : gen_buf_check
+            always @(posedge aclk) begin
+                if (f_active && aresetn) begin
+                    // If AW buffer was valid and is still valid, addr must be stable
+                    if ($past(dut.u_write_arbiter.aw_buf_valid[bf]) &&
+                        dut.u_write_arbiter.aw_buf_valid[bf] &&
+                        $past(dut.u_write_arbiter.buf_locked[bf])) begin
+                        assert (dut.u_write_arbiter.aw_buf_addr[bf] ==
+                                $past(dut.u_write_arbiter.aw_buf_addr[bf]));
+                    end
+                end
+            end
+        end
+    endgenerate
+
+    // =========================================================================
+    // 6. DECERR Correctness
+    // =========================================================================
+
+    // A7. Write DECERR: when target is invalid and in W_RESP, BRESP must be DECERR
     always @(posedge aclk) begin
         if (f_active && aresetn) begin
-            if (dut.w_state == 2'b11 && dut.w_target_invalid) begin
-                // BVALID is asserted to the owner
-                assert (s_axi_bvalid[dut.w_owner_m_id]);
-                assert (s_axi_bresp[dut.w_owner_m_id] == 2'b11);
+            if (dut.u_write_arbiter.w_state == 2'b11 &&
+                dut.u_write_arbiter.target_invalid_r) begin
+                assert (s_axi_bvalid[dut.u_write_arbiter.owner_id_r]);
+                assert (s_axi_bresp[dut.u_write_arbiter.owner_id_r] == 2'b11);
             end
         end
     end
 
-    // A11. Read DECERR: when target is invalid and RVALID asserted to owner, RRESP must be DECERR
+    // A8. Read DECERR
     always @(posedge aclk) begin
         if (f_active && aresetn) begin
-            if (dut.r_state == 2'b10 && dut.r_target_invalid) begin
-                assert (s_axi_rvalid[dut.r_owner_m_id]);
-                assert (s_axi_rresp[dut.r_owner_m_id] == 2'b11);
-                assert (s_axi_rdata[dut.r_owner_m_id] == 32'h0000_0000);
+            if (dut.u_read_arbiter.r_state == 2'b10 &&
+                dut.u_read_arbiter.target_invalid_r) begin
+                assert (s_axi_rvalid[dut.u_read_arbiter.owner_id_r]);
+                assert (s_axi_rresp[dut.u_read_arbiter.owner_id_r] == 2'b11);
+                assert (s_axi_rdata[dut.u_read_arbiter.owner_id_r] == 32'h0000_0000);
             end
         end
     end
+
+    // =========================================================================
+    // 7. Cover Properties (Liveness)
+    // =========================================================================
+
+    // C1. A write transaction completes
+    cover property (@(posedge aclk)
+        f_active && aresetn &&
+        |s_axi_bvalid && |(s_axi_bvalid & s_axi_bready));
+
+    // C2. A read transaction completes
+    cover property (@(posedge aclk)
+        f_active && aresetn &&
+        |s_axi_rvalid && |(s_axi_rvalid & s_axi_rready));
+
+    // C3. A DECERR response is generated
+    cover property (@(posedge aclk)
+        f_active && aresetn &&
+        |s_axi_bvalid && (s_axi_bresp[0] == 2'b11 || s_axi_bresp[1] == 2'b11 ||
+                          s_axi_bresp[2] == 2'b11 || s_axi_bresp[3] == 2'b11));
 
 endmodule
-
