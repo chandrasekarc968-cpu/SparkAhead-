@@ -282,19 +282,30 @@ module axi4lite_qos_scheduler #(
     // =========================================================================
     // 7. Sequential State & Budget Management
     // =========================================================================
+    logic f_first_cycle;
+
     always_ff @(posedge aclk or negedge aresetn) begin
         if (!aresetn) begin
             current_master   <= '0;
             is_active        <= 1'b0;
             rr_ptr           <= ID_W'(1);
-            budget_1         <= w1;
-            budget_2         <= w2;
-            budget_3         <= w3;
+            budget_1         <= 4'd1;  // Safe constant; reloaded on first active cycle
+            budget_2         <= 4'd1;
+            budget_3         <= 4'd1;
             age_m1           <= 8'd0;
             age_m2           <= 8'd0;
             age_m3           <= 8'd0;
             m0_burst_count   <= 8'd0;
+            f_first_cycle    <= 1'b1;
         end else begin
+
+            // B5 fix: reload budgets from clamped weights on first cycle after reset
+            if (f_first_cycle) begin
+                budget_1      <= w1;
+                budget_2      <= w2;
+                budget_3      <= w3;
+                f_first_cycle <= 1'b0;
+            end
 
             // -----------------------------------------------------------------
             // Aging Timer Logic: increment for waiting, unrequested masters

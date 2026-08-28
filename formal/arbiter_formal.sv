@@ -338,4 +338,142 @@ module arbiter_formal (
         |s_axi_bvalid && (s_axi_bresp[0] == 2'b11 || s_axi_bresp[1] == 2'b11 ||
                           s_axi_bresp[2] == 2'b11 || s_axi_bresp[3] == 2'b11));
 
+    // C4. Concurrent read and write complete
+    cover property (@(posedge aclk)
+        f_active && aresetn &&
+        |s_axi_bvalid && |s_axi_rvalid);
+
+    // =========================================================================
+    // 8. Slave-Side VALID Stability (IHI 0022E §A3.3.1)
+    // =========================================================================
+    // Once the DUT drives AWVALID/WVALID/ARVALID to a slave, it must remain
+    // high with stable payload until READY is sampled high.
+
+    genvar vs;
+    generate
+        for (vs = 0; vs < 2; vs++) begin : gen_slave_valid_stability
+            // A9. Slave AWVALID stability
+            always @(posedge aclk) begin
+                if (f_active && aresetn) begin
+                    if ($past(m_axi_awvalid[vs]) && !$past(m_axi_awready[vs])) begin
+                        assert (m_axi_awvalid[vs]);
+                        assert (m_axi_awaddr[vs] == $past(m_axi_awaddr[vs]));
+                        assert (m_axi_awprot[vs] == $past(m_axi_awprot[vs]));
+                    end
+                end
+            end
+
+            // A10. Slave WVALID stability
+            always @(posedge aclk) begin
+                if (f_active && aresetn) begin
+                    if ($past(m_axi_wvalid[vs]) && !$past(m_axi_wready[vs])) begin
+                        assert (m_axi_wvalid[vs]);
+                        assert (m_axi_wdata[vs] == $past(m_axi_wdata[vs]));
+                        assert (m_axi_wstrb[vs] == $past(m_axi_wstrb[vs]));
+                    end
+                end
+            end
+
+            // A11. Slave ARVALID stability
+            always @(posedge aclk) begin
+                if (f_active && aresetn) begin
+                    if ($past(m_axi_arvalid[vs]) && !$past(m_axi_arready[vs])) begin
+                        assert (m_axi_arvalid[vs]);
+                        assert (m_axi_araddr[vs] == $past(m_axi_araddr[vs]));
+                        assert (m_axi_arprot[vs] == $past(m_axi_arprot[vs]));
+                    end
+                end
+            end
+        end
+    endgenerate
+
+    // =========================================================================
+    // 9. No Phantom Transactions
+    // =========================================================================
+
+    // A12. Slave AWVALID only when write FSM is in W_ADDR
+    always @(posedge aclk) begin
+        if (f_active && aresetn) begin
+            if (|m_axi_awvalid) begin
+                assert (dut.u_write_arbiter.w_state == 2'b01); // W_ADDR
+            end
+        end
+    end
+
+    // A13. Slave WVALID only when write FSM is in W_DATA
+    always @(posedge aclk) begin
+        if (f_active && aresetn) begin
+            if (|m_axi_wvalid) begin
+                assert (dut.u_write_arbiter.w_state == 2'b10); // W_DATA
+            end
+        end
+    end
+
+    // A14. Slave ARVALID only when read FSM is in R_ADDR
+    always @(posedge aclk) begin
+        if (f_active && aresetn) begin
+            if (|m_axi_arvalid) begin
+                assert (dut.u_read_arbiter.r_state == 2'b01); // R_ADDR
+            end
+        end
+    end
+
+    // =========================================================================
+    // 10. Response Isolation
+    // =========================================================================
+
+    // A15. BVALID only for write owner
+    genvar ri;
+    generate
+        for (ri = 0; ri < 4; ri++) begin : gen_resp_isolation
+            always @(posedge aclk) begin
+                if (f_active && aresetn) begin
+                    // If BVALID is asserted for master ri but ri is not the owner
+                    if (s_axi_bvalid[ri] && dut.u_write_arbiter.w_state == 2'b11) begin
+                        assert (dut.u_write_arbiter.owner_id_r == 2'(ri));
+                    end
+                    // If RVALID is asserted for master ri but ri is not the owner
+                    if (s_axi_rvalid[ri] && dut.u_read_arbiter.r_state == 2'b10) begin
+                        assert (dut.u_read_arbiter.owner_id_r == 2'(ri));
+                    end
+                end
+            end
+        end
+    endgenerate
+
+    // =========================================================================
+    // 11. Master-Side BVALID/RVALID Output Stability
+    // =========================================================================
+    // The DUT's BVALID/RVALID to masters must remain asserted with stable
+    // payload until BREADY/RREADY is sampled.
+    // NOTE: This is a pass-through from slave or DECERR generator, so stability
+    // depends on the slave's compliance (assumed above) and DECERR being
+    // unconditionally asserted while w_active. Checking the DUT's output directly.
+
+    genvar ms;
+    generate
+        for (ms = 0; ms < 4; ms++) begin : gen_master_resp_stability
+            // A16. BVALID stability to masters
+            always @(posedge aclk) begin
+                if (f_active && aresetn) begin
+                    if ($past(s_axi_bvalid[ms]) && !$past(s_axi_bready[ms])) begin
+                        assert (s_axi_bvalid[ms]);
+                        assert (s_axi_bresp[ms] == $past(s_axi_bresp[ms]));
+                    end
+                end
+            end
+
+            // A17. RVALID stability to masters
+            always @(posedge aclk) begin
+                if (f_active && aresetn) begin
+                    if ($past(s_axi_rvalid[ms]) && !$past(s_axi_rready[ms])) begin
+                        assert (s_axi_rvalid[ms]);
+                        assert (s_axi_rresp[ms] == $past(s_axi_rresp[ms]));
+                        assert (s_axi_rdata[ms] == $past(s_axi_rdata[ms]));
+                    end
+                end
+            end
+        end
+    endgenerate
+
 endmodule

@@ -182,13 +182,21 @@ module axi4lite_read_arbiter #(
 
             case (r_state)
                 R_IDLE: begin
-                    if (arb_grant_valid && s_axi_arvalid[arb_master_id]) begin
-                        owner_id_r       <= arb_master_id;
-                        latched_addr     <= s_axi_araddr[arb_master_id];
-                        latched_prot     <= s_axi_arprot[arb_master_id];
-                        target_slave_r   <= decode_slave_sel;
-                        target_invalid_r <= decode_invalid;
-                        r_state          <= R_ADDR;
+                    if (arb_grant_valid) begin
+                        if (s_axi_arvalid[arb_master_id]) begin
+                            // Normal path: master still requesting
+                            owner_id_r       <= arb_master_id;
+                            latched_addr     <= s_axi_araddr[arb_master_id];
+                            latched_prot     <= s_axi_arprot[arb_master_id];
+                            target_slave_r   <= decode_slave_sel;
+                            target_invalid_r <= decode_invalid;
+                            r_state          <= R_ADDR;
+                        end else begin
+                            // B4 fix: Master dropped ARVALID before clock edge.
+                            // Release the scheduler immediately to prevent deadlock.
+                            // Do NOT enter R_ADDR — no transaction to service.
+                            arb_tx_done <= 1'b1;
+                        end
                     end
                 end
 
