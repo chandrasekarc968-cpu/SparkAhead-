@@ -368,6 +368,80 @@ module tb_axi4lite_stress;
     end
 
     // =========================================================================
+    // VALID/Payload Stability Monitors (DUT outputs)
+    // =========================================================================
+    // Slave-side: DUT-driven AWVALID, WVALID, ARVALID must hold with stable payload
+    genvar vs;
+    generate
+        for (vs = 0; vs < NUM_SLAVES; vs++) begin : gen_slave_stability
+            // AWVALID stability
+            always @(posedge aclk) begin
+                if (aresetn && $past(aresetn)) begin
+                    if ($past(m_axi_awvalid[vs]) && !$past(m_axi_awready[vs])) begin
+                        assert (m_axi_awvalid[vs])
+                            else $error("[STABILITY] Slave %0d AWVALID dropped at %0t", vs, $time);
+                        assert (m_axi_awaddr[vs] == $past(m_axi_awaddr[vs]))
+                            else $error("[STABILITY] Slave %0d AWADDR changed at %0t", vs, $time);
+                    end
+                end
+            end
+            // WVALID stability
+            always @(posedge aclk) begin
+                if (aresetn && $past(aresetn)) begin
+                    if ($past(m_axi_wvalid[vs]) && !$past(m_axi_wready[vs])) begin
+                        assert (m_axi_wvalid[vs])
+                            else $error("[STABILITY] Slave %0d WVALID dropped at %0t", vs, $time);
+                        assert (m_axi_wdata[vs] == $past(m_axi_wdata[vs]))
+                            else $error("[STABILITY] Slave %0d WDATA changed at %0t", vs, $time);
+                    end
+                end
+            end
+            // ARVALID stability
+            always @(posedge aclk) begin
+                if (aresetn && $past(aresetn)) begin
+                    if ($past(m_axi_arvalid[vs]) && !$past(m_axi_arready[vs])) begin
+                        assert (m_axi_arvalid[vs])
+                            else $error("[STABILITY] Slave %0d ARVALID dropped at %0t", vs, $time);
+                        assert (m_axi_araddr[vs] == $past(m_axi_araddr[vs]))
+                            else $error("[STABILITY] Slave %0d ARADDR changed at %0t", vs, $time);
+                    end
+                end
+            end
+        end
+    endgenerate
+
+    // Master-side: DUT-driven BVALID, RVALID must hold with stable payload
+    genvar vm;
+    generate
+        for (vm = 0; vm < NUM_MASTERS; vm++) begin : gen_master_stability
+            // BVALID stability
+            always @(posedge aclk) begin
+                if (aresetn && $past(aresetn)) begin
+                    if ($past(s_axi_bvalid[vm]) && !$past(s_axi_bready[vm])) begin
+                        assert (s_axi_bvalid[vm])
+                            else $error("[STABILITY] Master %0d BVALID dropped at %0t", vm, $time);
+                        assert (s_axi_bresp[vm] == $past(s_axi_bresp[vm]))
+                            else $error("[STABILITY] Master %0d BRESP changed at %0t", vm, $time);
+                    end
+                end
+            end
+            // RVALID stability
+            always @(posedge aclk) begin
+                if (aresetn && $past(aresetn)) begin
+                    if ($past(s_axi_rvalid[vm]) && !$past(s_axi_rready[vm])) begin
+                        assert (s_axi_rvalid[vm])
+                            else $error("[STABILITY] Master %0d RVALID dropped at %0t", vm, $time);
+                        assert (s_axi_rdata[vm] == $past(s_axi_rdata[vm]))
+                            else $error("[STABILITY] Master %0d RDATA changed at %0t", vm, $time);
+                        assert (s_axi_rresp[vm] == $past(s_axi_rresp[vm]))
+                            else $error("[STABILITY] Master %0d RRESP changed at %0t", vm, $time);
+                    end
+                end
+            end
+        end
+    endgenerate
+
+    // =========================================================================
     // Completion and Report
     // =========================================================================
     initial begin

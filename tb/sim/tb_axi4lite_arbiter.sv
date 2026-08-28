@@ -993,6 +993,185 @@ module tb_axi4lite_arbiter;
         join
         check(w_resp == 2'b00, "Test 43: Valid write after DECERRs");
 
+        // -----------------------------------------------------------------
+        // Test 44: True anti-starvation — M0 continuously granted while M1 ages
+        // -----------------------------------------------------------------
+        $display("\n--- Test 44: True anti-starvation contention ---");
+        cfg_age_threshold = 8'd8;  // low threshold for faster test
+        cfg_master0_priority = 1'b1;
+        cfg_master0_burst_limit = 8'd255; // effectively unlimited burst
+        @(posedge aclk); #1;
+
+        // M0 runs 12 back-to-back writes (well beyond burst_limit=255 exemption)
+        // After M0 completes 8+ cycles of M1 aging, M1 should be promoted.
+        // Strategy: fire M0 writes while M1 is asserting AWVALID/WVALID continuously.
+        fork
+            begin : m0_flood
+                for (int b = 0; b < 12; b++) begin
+                    automatic int idx = b;
+                    @(posedge aclk); #1;
+                    s_axi_awaddr[0]  = 32'h0000_1000;
+                    s_axi_awprot[0]  = 3'b000;
+                    s_axi_awvalid[0] = 1'b1;
+                    s_axi_wdata[0]   = 32'hF000_0000 + idx[31:0];
+                    s_axi_wstrb[0]   = 4'hF;
+                    s_axi_wvalid[0]  = 1'b1;
+
+                    fork
+                        begin
+                            do @(posedge aclk); while (!s_axi_awready[0]);
+                            #1; s_axi_awvalid[0] = 1'b0;
+                        end
+                        begin
+                            do @(posedge aclk); while (!s_axi_wready[0]);
+                            #1; s_axi_wvalid[0] = 1'b0;
+                        end
+                    join
+
+                    #1; s_axi_bready[0] = 1'b1;
+                    do @(posedge aclk); while (!s_axi_bvalid[0]);
+                    #1; s_axi_bready[0] = 1'b0;
+                end
+            end
+
+            begin : m1_pending
+                // M1 asserts write request and waits
+                @(posedge aclk); #1;
+                s_axi_awaddr[1]  = 32'h0000_2000;
+                s_axi_awprot[1]  = 3'b000;
+                s_axi_awvalid[1] = 1'b1;
+                s_axi_wdata[1]   = 32'h1111_AAAA;
+                s_axi_wstrb[1]   = 4'hF;
+                s_axi_wvalid[1]  = 1'b1;
+
+                fork
+                    begin
+                        do @(posedge aclk); while (!s_axi_awready[1]);
+                        #1; s_axi_awvalid[1] = 1'b0;
+                    end
+                    begin
+                        do @(posedge aclk); while (!s_axi_wready[1]);
+                        #1; s_axi_wvalid[1] = 1'b0;
+                    end
+                join
+
+                #1; s_axi_bready[1] = 1'b1;
+                do @(posedge aclk); while (!s_axi_bvalid[1]);
+                w_resp = s_axi_bresp[1];
+                #1; s_axi_bready[1] = 1'b0;
+            end
+
+            begin : slave0_responder_44
+                // Respond to all writes on slave 0 (M0 and eventually M1)
+                for (int r = 0; r < 13; r++) begin
+                    while (!m_axi_awvalid[0]) @(posedge aclk);
+                    #1; m_axi_awready[0] = 1'b1;
+                    @(posedge aclk); #1; m_axi_awready[0] = 1'b0;
+                    while (!m_axi_wvalid[0]) @(posedge aclk);
+                    #1; m_axi_wready[0] = 1'b1;
+                    @(posedge aclk); #1; m_axi_wready[0] = 1'b0;
+                    #1; m_axi_bresp[0] = 2'b00;
+                    m_axi_bvalid[0] = 1'b1;
+                    do @(posedge aclk); while (!m_axi_bready[0]);
+                    #1; m_axi_bvalid[0] = 1'b0;
+                end
+            end
+        join
+        check(w_resp == 2'b00, "Test 44: M1 served via anti-starvation despite M0 flood");
+        cfg_age_threshold = 8'd64;
+        cfg_master0_burst_limit = 8'd16;
+        @(posedge aclk); #1;
+
+        // -----------------------------------------------------------------
+        // Test 45: Reset during W_DATA state
+        // -----------------------------------------------------------------
+        $display("\n--- Test 45: Reset during W_DATA ---");
+        @(posedge aclk); #1;
+        // Start a write, accept AW on slave, then reset before W completes
+        s_axi_awaddr[1]  = 32'h0000_1000;
+        s_axi_awprot[1]  = 3'b000;
+        s_axi_awvalid[1] = 1'b1;
+        s_axi_wdata[1]   = 32'hDEAD_BEEF;
+        s_axi_wstrb[1]   = 4'hF;
+        s_axi_wvalid[1]  = 1'b1;
+
+        // Wait for AW to be buffered
+        do @(posedge aclk); while (!s_axi_awready[1]);
+        #1; s_axi_awvalid[1] = 1'b0;
+        do @(posedge aclk); while (!s_axi_wready[1]);
+        #1; s_axi_wvalid[1] = 1'b0;
+
+        // Accept AW on slave
+        while (!m_axi_awvalid[0]) @(posedge aclk);
+        #1; m_axi_awready[0] = 1'b1;
+        @(posedge aclk); #1; m_axi_awready[0] = 1'b0;
+
+        // Now FSM should be in W_DATA — assert reset
+        repeat (2) @(posedge aclk);
+        #1; aresetn = 1'b0;
+        repeat (2) @(posedge aclk); #1;
+        check(m_axi_wvalid == '0, "Test 45: slave WVALID cleared after W_DATA reset");
+        check(s_axi_bvalid == '0, "Test 45: BVALID zero after W_DATA reset");
+
+        @(posedge aclk); #1;
+        aresetn = 1'b1;
+        repeat (2) @(posedge aclk); #1;
+
+        // Verify recovery
+        fork
+            master_write(1, 32'h0000_1000, 32'hAAAA_BBBB, 4'hF, 0, w_resp);
+            slave_respond_write(0, 0, 0, 2'b00);
+        join
+        check(w_resp == 2'b00, "Test 45: Write succeeds after W_DATA reset recovery");
+
+        // -----------------------------------------------------------------
+        // Test 46: Reset during W_RESP state
+        // -----------------------------------------------------------------
+        $display("\n--- Test 46: Reset during W_RESP ---");
+        @(posedge aclk); #1;
+        s_axi_awaddr[2]  = 32'h0001_1000;
+        s_axi_awprot[2]  = 3'b000;
+        s_axi_awvalid[2] = 1'b1;
+        s_axi_wdata[2]   = 32'h5555_6666;
+        s_axi_wstrb[2]   = 4'hF;
+        s_axi_wvalid[2]  = 1'b1;
+
+        fork
+            begin
+                do @(posedge aclk); while (!s_axi_awready[2]);
+                #1; s_axi_awvalid[2] = 1'b0;
+            end
+            begin
+                do @(posedge aclk); while (!s_axi_wready[2]);
+                #1; s_axi_wvalid[2] = 1'b0;
+            end
+        join
+
+        // Accept AW and W on slave 1
+        while (!m_axi_awvalid[1]) @(posedge aclk);
+        #1; m_axi_awready[1] = 1'b1;
+        @(posedge aclk); #1; m_axi_awready[1] = 1'b0;
+        while (!m_axi_wvalid[1]) @(posedge aclk);
+        #1; m_axi_wready[1] = 1'b1;
+        @(posedge aclk); #1; m_axi_wready[1] = 1'b0;
+
+        // Now FSM is in W_RESP — hit reset before B completes
+        repeat (2) @(posedge aclk);
+        #1; aresetn = 1'b0;
+        repeat (2) @(posedge aclk); #1;
+        check(s_axi_bvalid == '0, "Test 46: BVALID zero after W_RESP reset");
+
+        @(posedge aclk); #1;
+        aresetn = 1'b1;
+        repeat (2) @(posedge aclk); #1;
+
+        // Verify recovery
+        fork
+            master_read(0, 32'h0000_1000, 0, r_data, r_resp);
+            slave_respond_read(0, 0, 32'hFACE_CAFE, 2'b00);
+        join
+        check(r_resp == 2'b00, "Test 46: Read succeeds after W_RESP reset recovery");
+
         // =================================================================
         // Final Summary
         // =================================================================

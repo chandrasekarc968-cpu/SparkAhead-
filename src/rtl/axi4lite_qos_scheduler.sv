@@ -427,6 +427,30 @@ module axi4lite_qos_scheduler #(
     endproperty
     assert property (p_owner_stable_when_active)
         else $error("[axi4lite_qos_scheduler] Owner changed while active without tx_complete!");
+
+    // Grant-implies-request: when combinational grant fires for a candidate,
+    // that candidate must have a pending request.
+    genvar gi;
+    generate
+        for (gi = 0; gi < NUM_MASTERS; gi++) begin : gen_grant_req_check
+            property p_grant_implies_req;
+                @(posedge aclk) disable iff (!aresetn)
+                grant[gi] |-> req[gi];
+            endproperty
+            assert property (p_grant_implies_req)
+                else $error("[axi4lite_qos_scheduler] Grant[%0d] without request!", gi);
+        end
+    endgenerate
+
+    // No stale grant: after transaction_complete, if the previously active
+    // master has dropped its request and no new candidate is valid, grant_valid
+    // must deassert within 1 cycle.
+    property p_no_stale_grant;
+        @(posedge aclk) disable iff (!aresetn)
+        (is_active && transaction_complete && !cand_valid) |=> !grant_valid;
+    endproperty
+    assert property (p_no_stale_grant)
+        else $error("[axi4lite_qos_scheduler] Stale grant persists after tx_complete with no candidate!");
 `endif
 
 endmodule

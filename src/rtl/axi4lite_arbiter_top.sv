@@ -298,13 +298,9 @@ module axi4lite_arbiter_top #(
     // 6. Synthesis-Safe SVA Assertions
     // =========================================================================
 `ifdef ASSERTIONS
-    // One-hot safety on master-facing signals
-    property p_single_awready;
-        @(posedge aclk) disable iff (!aresetn)
-        $onehot0(s_axi_awready) || (s_axi_awready == '0) ||
-        // Multiple AWREADYs are legal when multiple buffers are free
-        1'b1;
-    endproperty
+    // Note: Multiple AWREADYs/WREADYs are legal — each master has an independent
+    // AW/W buffer, so multiple masters can be accepted simultaneously.
+    // ARREADYs are at-most-one since only the owner gets ARREADY.
 
     property p_single_bvalid_owner;
         @(posedge aclk) disable iff (!aresetn)

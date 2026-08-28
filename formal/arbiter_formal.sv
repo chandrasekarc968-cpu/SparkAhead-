@@ -476,4 +476,55 @@ module arbiter_formal (
         end
     endgenerate
 
+    // =========================================================================
+    // 12. AW/W Same-Master Pairing
+    // =========================================================================
+    // A18. The write arbiter's AW buffer and W buffer must belong to the
+    // same master when the FSM is not in W_IDLE.
+    always @(posedge aclk) begin
+        if (f_active && aresetn) begin
+            if (dut.u_write_arbiter.w_state != 2'b00) begin // Not W_IDLE
+                assert (dut.u_write_arbiter.aw_buf_master == dut.u_write_arbiter.w_buf_master);
+            end
+        end
+    end
+
+    // =========================================================================
+    // 13. Read/Write Path Independence
+    // =========================================================================
+    // A19. Both write and read FSMs can be simultaneously active.
+    // This is a cover property — ensure the solver can reach this state.
+    always @(posedge aclk) begin
+        if (f_active && aresetn) begin
+            cover (dut.u_write_arbiter.w_state != 2'b00 &&
+                   dut.u_read_arbiter.r_state != 2'b00);
+        end
+    end
+
+    // =========================================================================
+    // 14. Bounded Progress and Liveness (Cover Properties)
+    // =========================================================================
+
+    // A20. Cover: A write transaction completes end-to-end
+    always @(posedge aclk) begin
+        if (f_active && aresetn) begin
+            cover (dut.u_write_arbiter.arb_tx_done);
+        end
+    end
+
+    // A21. Cover: A read transaction completes end-to-end
+    always @(posedge aclk) begin
+        if (f_active && aresetn) begin
+            cover (dut.u_read_arbiter.arb_tx_done);
+        end
+    end
+
+    // A22. Cover: DECERR write and DECERR read both complete
+    always @(posedge aclk) begin
+        if (f_active && aresetn) begin
+            cover (|s_axi_bvalid && s_axi_bresp[dut.u_write_arbiter.owner_id_r] == 2'b11);
+            cover (|s_axi_rvalid && s_axi_rresp[dut.u_read_arbiter.owner_id_r] == 2'b11);
+        end
+    end
+
 endmodule

@@ -12,15 +12,16 @@ The arbiter bridges four independent AXI4-Lite master ports and two AXI4-Lite sl
 
 | Feature | Description |
 |---|---|
-| **Decoupled Read/Write Paths** | Two dedicated `qos_arbiter` instances operate concurrently. Write (AW/W/B) and Read (AR/R) channels can grant different masters in the exact same cycle. |
-| **Weighted Round-Robin (WRR)** | Masters M1, M2, and M3 are scheduled with configurable quotas ($3:2:1$). Quotas decrement upon completed transactions. |
-| **Locked Transaction Ownership** | Once a transaction is accepted (AW or AR handshake), the arbiter locks ownership until the final response handshake (B for writes, R for reads). The master's request signal is not re-evaluated during flight. |
-| **Transaction Boundary Preemption** | Master 0 holds highest priority but can only preempt when arbitrating a new transaction in `IDLE`. In-flight transactions are never interrupted. |
-| **Anti-Starvation Aging** | Starvation counters track pending lower-priority requests while M0 is active. At the 64-cycle threshold, M0 is suppressed to serve pending masters. |
-| **Combinational Address Decoding** | Hardcoded address map with zero pipeline latency: Slave 0 (`0x0000_0000`–`0x0000_FFFF`), Slave 1 (`0x0001_0000`–`0x0001_FFFF`). |
-| **Internal DECERR Generation** | Out-of-bounds accesses return AXI `DECERR` (`2'b11`) with zero read data (`RDATA=0`) internally, isolating external slaves. |
-| **Strict Single-Beat Architecture** | Designed exclusively for single-beat AXI4-Lite (no burst counters or burst signals). |
-| **Frozen 4M/2S Parameterization** | Compile-time assertions enforce `NUM_MASTERS == 4` and `NUM_SLAVES == 2`. Internal case statements are hardcoded to these values. |
+| **Decoupled Read/Write Paths** | Independent write arbiter/FSM and read arbiter/FSM operate concurrently. Write (AW/W/B) and Read (AR/R) channels can grant different masters in the same cycle. |
+| **Weighted Round-Robin (WRR)** | Masters M1–M3 are scheduled with runtime-configurable budget quotas (`cfg_weight_m1`=3, `cfg_weight_m2`=2, `cfg_weight_m3`=1). Quotas decrement on transaction completion. |
+| **Per-Master AW/W Skid Buffers** | Each master has independent AW and W buffers that decouple VALID/READY timing. AW and W can arrive in any order without deadlock. |
+| **Locked Transaction Ownership** | Once a transaction is accepted, the arbiter locks ownership until the final response handshake (B for writes, R for reads). |
+| **Master 0 Priority with Burst Limiting** | M0 has highest priority but is subject to a configurable burst limit (`cfg_master0_burst_limit`). After the limit, M0 is suppressed for one WRR round. |
+| **Per-Master Anti-Starvation Aging** | Independent 8-bit saturating age counters for M1, M2, M3. When any master's age exceeds `cfg_age_threshold`, it is promoted above M0 priority. |
+| **Combinational Address Decoding** | Zero-latency decode: Slave 0 (`0x0000_0000`–`0x0000_FFFF`), Slave 1 (`0x0001_0000`–`0x0001_FFFF`). |
+| **Internal DECERR Generation** | Out-of-bounds accesses return `DECERR` (`2'b11`) with `RDATA=0` internally, isolating external slaves. |
+| **Strict Single-Beat Architecture** | AXI4-Lite only — no burst signals or counters. |
+| **Frozen 4M/2S Parameterization** | Compile-time assertions enforce `NUM_MASTERS == 4` and `NUM_SLAVES == 2`. |
 
 ---
 
@@ -28,40 +29,39 @@ The arbiter bridges four independent AXI4-Lite master ports and two AXI4-Lite sl
 
 ```
 .
-├── README.md                  ← Top-level documentation & quickstart
-├── Makefile                   ← Top-level Makefile wrapper
+├── README.md                    ← This file
+├── Makefile                     ← Top-level wrapper (delegates to scripts/Makefile)
 ├── docs/
-│   ├── architecture.md        ← Detailed micro-architecture specification
-│   ├── design-decisions.md    ← Frozen MVP architectural scope & invariants
-│   └── verification-plan.md   ← Verification strategy, assertions & test matrix
-├── src/
-│   └── rtl/                   ← Synthesizable SystemVerilog RTL
-│       ├── addr_decoder.sv    ← Combinational address decoder with DECERR detection
-│       ├── axi4lite_arbiter_top.sv ← Top-level 4M-2S AXI4-Lite Interconnect
-│       ├── default_slave.sv   ← Standalone DECERR responder module
-│       └── qos_arbiter.sv     ← Parameterized QoS arbiter (WRR + Aging + M0 Priority)
+│   ├── architecture.md          ← Detailed micro-architecture specification
+│   ├── design-decisions.md      ← Frozen MVP scope & invariants
+│   └── verification-plan.md     ← Verification strategy & test matrix
+├── src/rtl/                     ← Synthesizable SystemVerilog RTL
+│   ├── axi4lite_pkg.sv          ← Package with FSM state types
+│   ├── axi4lite_address_decoder.sv ← Combinational address decoder
+│   ├── axi4lite_qos_scheduler.sv  ← QoS arbiter (WRR + Aging + M0 Priority)
+│   ├── axi4lite_response_router.sv ← Response mux/demux with DECERR generation
+│   ├── axi4lite_write_arbiter.sv   ← Write path (AW/W buffers + FSM)
+│   ├── axi4lite_read_arbiter.sv    ← Read path (FSM + ownership)
+│   └── axi4lite_arbiter_top.sv     ← Top-level interconnect
 ├── tb/
-│   ├── sim/                   ← Comprehensive top-level integration testbench
-│   │   └── tb_axi4lite_arbiter.sv
-│   └── tests/                 ← Unit & subsystem directed testbenches
-│       ├── tb_addr_decoder.sv
-│       ├── tb_qos_arbiter.sv
-│       ├── tb_axi4lite_write_path.sv
-│       ├── tb_axi4lite_read_path.sv
-│       └── tb_axi4lite_concurrent_rw.sv
-├── formal/                    ← SymbiYosys formal verification suite
-│   ├── arbiter.sby            ← SBY configuration (BMC depth 20, Z3 solver)
-│   └── arbiter_formal.sv      ← Formal property harness (11 assertions, assumptions)
+│   └── sim/                     ← Integration testbenches
+│       ├── tb_axi4lite_arbiter.sv   ← 46 directed regression tests
+│       └── tb_axi4lite_stress.sv    ← 10,000-txn randomized stress test
+├── formal/                      ← SymbiYosys formal verification
+│   ├── arbiter.sby              ← SBY config (BMC depth 40 + cover mode)
+│   └── arbiter_formal.sv        ← 22 assertion/cover property groups
 ├── constraints/
-│   └── timing.sdc             ← Informational SDC timing constraints template
+│   └── timing.sdc               ← SDC timing constraints (100 MHz)
+├── openlane/
+│   └── config.json              ← OpenLane2 ASIC flow config (SKY130/GF180)
 ├── scripts/
-│   ├── Makefile               ← Core build flow rules (ROOT_DIR from MAKEFILE_LIST)
-│   ├── lint.sh                ← Verilator / Icarus lint wrapper
-│   ├── sim.sh                 ← Icarus / vvp simulation runner (with PASS verification)
-│   ├── formal.sh              ← SymbiYosys formal runner (with assertion count check)
-│   └── synth.sh               ← Yosys synthesis & netlist generator
-├── logs/                      ← Reproducible execution logs (synth.log, etc.)
-└── outputs/                   ← Generated gate netlists and VVP binaries
+│   ├── Makefile                 ← Core build targets
+│   ├── lint.sh                  ← Verilator/iverilog lint wrapper
+│   ├── sim.sh                   ← Simulation runner
+│   ├── formal.sh                ← Formal verification runner
+│   └── synth.sh                 ← Yosys synthesis runner
+├── logs/                        ← Generated execution logs
+└── outputs/                     ← Generated netlists and binaries
 ```
 
 ---
@@ -70,72 +70,57 @@ The arbiter bridges four independent AXI4-Lite master ports and two AXI4-Lite sl
 
 All build targets are driven via GNU Make and use open-source EDA tools.
 
-### Supported Open-Source Tools
-- **RTL Lint**: Verilator `5.032` (or Icarus Verilog `12.0`)
-- **Simulation**: Icarus Verilog (`iverilog 12.0`) and `vvp` runtime
-- **Formal Verification**: SymbiYosys `0.68` (`sby`) with `Z3 5.1.0` SMT solver
-- **Logic Synthesis**: Yosys `0.52`
+### Required Open-Source Tools
+- **RTL Lint**: Verilator ≥5.0 (preferred) or Icarus Verilog ≥12.0
+- **Simulation**: Icarus Verilog (`iverilog`, `vvp`)
+- **Formal Verification**: SymbiYosys (`sby`) with Z3 SMT solver
+- **Logic Synthesis**: Yosys ≥0.40
+- **ASIC Flow (optional)**: OpenLane2 with SKY130 or GF180 PDK
 
-### Exact Build Commands
+### Build Commands
 
 ```bash
-# 1. Run RTL Lint (Verilator)
+# Run RTL Lint
 make lint
 
-# 2. Run Comprehensive Simulation Suite (17 tests, 47 assertions)
+# Run 46-test directed regression suite
 make sim
 
-# 3. Run Formal Verification (Bounded Model Checking, depth 20, 11 assertion groups)
+# Run 10,000-transaction randomized stress test
+make sim-stress
+
+# Run formal verification (BMC depth 40 + cover mode)
 make formal
 
-# 4. Run RTL Gate Synthesis (Yosys)
+# Run Yosys gate-level synthesis
 make synth
 
-# 5. Clean Generated Outputs and Logs
+# Run all checks (CI)
+make check
+
+# Clean generated outputs
 make clean
 ```
 
-### Running Specific Testbenches
-
-```bash
-TOP=tb_addr_decoder make sim
-TOP=tb_qos_arbiter make sim
-TOP=tb_axi4lite_write_path make sim
-TOP=tb_axi4lite_read_path make sim
-TOP=tb_axi4lite_concurrent_rw make sim
-```
-
 ---
 
-## Verification & Synthesis Results Summary
+## Verification Summary
 
-| Target | Tool | Scope / Test Count | Status |
+| Target | Tool | Scope | Status |
 |---|---|---|---|
-| **Lint** | Verilator 5.032 | All RTL files (`src/rtl/*.sv`) | **PASSED** (0 errors) |
-| **Simulation** | Icarus / vvp | 17 Directed Tests (`tb_axi4lite_arbiter.sv`) | **PASSED** (47 assertions checked) |
-| **Formal** | SymbiYosys / Z3 | BMC Depth 20 (11 assertion groups: one-hot, owner stability, DECERR, premature completion, reset) | **PASSED** (0 counterexamples) |
-| **Synthesis** | Yosys 0.52 | `axi4lite_arbiter_top` Gate Mapping | **SUCCESS** (5313 cells, 0 problems) |
+| **Lint** | Verilator / iverilog | 7 RTL source files | **BLOCKED** (no tools on system) |
+| **Simulation** | Icarus / vvp | 46 directed tests + 10K stress | **BLOCKED** (no tools on system) |
+| **Formal** | SymbiYosys / Z3 | 22 assertion/cover groups, BMC depth 40 | **BLOCKED** (no tools on system) |
+| **Synthesis** | Yosys | Gate-level mapping | **BLOCKED** (no tools on system) |
+| **ASIC Flow** | OpenLane2 | SKY130 / GF180 RTL-to-GDSII | **BLOCKED** (no PDK on system) |
 
----
-
-## Generated Artifacts
-
-- **Synthesized Netlist**: `outputs/axi4lite_arbiter_top_netlist.v`
-- **Simulation Binary**: `outputs/tb_axi4lite_arbiter.vvp`
-- **Synthesis Log**: `logs/synth.log`
-- **Formal Log**: `logs/formal.log`
+> **Note**: Install the [oss-cad-suite](https://github.com/YosysHQ/oss-cad-suite-build) to enable all verification and synthesis targets. For ASIC flow, install [OpenLane2](https://openlane2.readthedocs.io/) with the SKY130 PDK.
 
 ---
 
 ## Known Limitations
 
-1. **Single Outstanding Transaction Per Channel**: 1 outstanding write (AW/W/B) and 1 outstanding read (AR/R) at any time.
-2. **Fixed Address Map**: Address decoding regions are compile-time parameters without dynamic software remap registers.
-3. **Frozen 4M/2S**: Hardcoded to exactly 4 masters and 2 slaves. Changing `NUM_MASTERS` or `NUM_SLAVES` triggers a compile-time `$fatal`.
-4. **Timing Closure**: `make synth` performs logic synthesis only; SDC timing closure requires physical design (PnR) / static timing analysis (STA).
-
----
-
-## Proprietary EDA Tools Note
-
-Proprietary commercial EDA tools (Synopsys VCS / Design Compiler, Cadence Xcelium / Genus, Siemens Questa) are **not required** for this baseline flow. They serve solely as potential downstream integration points for commercial tapeout flows.
+1. **Single Outstanding Transaction Per Channel**: 1 outstanding write + 1 outstanding read at any time.
+2. **Fixed Address Map**: Compile-time parameters, no software-remappable registers.
+3. **Frozen 4M/2S**: Hardcoded to 4 masters and 2 slaves. Changing triggers `$fatal`.
+4. **Timing Closure**: `make synth` performs logic synthesis only; timing closure requires OpenLane2 or equivalent PnR + STA flow.

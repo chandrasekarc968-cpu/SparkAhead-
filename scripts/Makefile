@@ -10,7 +10,7 @@ RTL_DIR    := $(PROJ_ROOT)/src/rtl
 TB_DIR     := $(PROJ_ROOT)/tb/sim
 FORMAL_DIR := $(PROJ_ROOT)/formal
 OUT_DIR    := $(PROJ_ROOT)/build
-LOG_DIR    := $(OUT_DIR)/logs
+LOG_DIR    := $(PROJ_ROOT)/logs
 
 # RTL files (order matters: leaf modules first)
 RTL_FILES  := $(RTL_DIR)/axi4lite_pkg.sv \
@@ -46,7 +46,7 @@ lint:
 	@echo "=== LINT COMPLETE ==="
 
 # --------------------------------------------------------------------------
-# Simulation: Directed regression (33 tests)
+# Simulation: Directed regression (46 tests)
 # --------------------------------------------------------------------------
 sim:
 	@mkdir -p $(OUT_DIR) $(LOG_DIR)
@@ -94,7 +94,7 @@ formal:
 	@echo "=== FORMAL COMPLETE ==="
 
 # --------------------------------------------------------------------------
-# Synthesis: Yosys FPGA elaboration check
+# Synthesis: Yosys gate-level synthesis
 # --------------------------------------------------------------------------
 synth:
 	@mkdir -p $(OUT_DIR) $(LOG_DIR)
@@ -103,7 +103,7 @@ synth:
 		yosys -p "read_verilog -sv $(RTL_FILES); \
 			synth -top axi4lite_arbiter_top; \
 			stat; \
-			write_verilog $(OUT_DIR)/synth_netlist.v" \
+			write_verilog $(PROJ_ROOT)/outputs/axi4lite_arbiter_top_netlist.v" \
 			2>&1 | tee $(LOG_DIR)/synth.log; \
 	else \
 		echo "ERROR: yosys not found"; exit 1; \
@@ -127,5 +127,7 @@ wave:
 # --------------------------------------------------------------------------
 clean:
 	@echo "=== CLEANING ==="
-	rm -rf $(OUT_DIR) *.vcd *.vvp arbiter_bmc
+	rm -rf $(OUT_DIR) *.vcd *.vvp arbiter_bmc arbiter_cover
+	rm -f $(PROJ_ROOT)/logs/*.log
+	rm -f $(PROJ_ROOT)/outputs/*.v $(PROJ_ROOT)/outputs/*.vvp $(PROJ_ROOT)/outputs/*.log
 	@echo "=== CLEAN COMPLETE ==="

@@ -1,6 +1,11 @@
+[tasks]
+bmc
+cover
+
 [options]
-mode bmc
-depth 25
+bmc: mode bmc
+cover: mode cover
+depth 40
 
 [engines]
 smtbmc z3

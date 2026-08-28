@@ -16,18 +16,18 @@ flowchart LR
     subgraph Interconnect["axi4lite_arbiter_top"]
         direction TB
         subgraph WriteChannel["Write Channel (AW / W / B)"]
-            WARB["u_write_arbiter (qos_arbiter)"]
-            WDEC["u_write_addr_decoder (addr_decoder)"]
-            WFSM["Write FSM & Datapath"]
+            WARB["u_write_arbiter (axi4lite_write_arbiter)"]
+            WQOS["u_write_qos (axi4lite_qos_scheduler)"]
+            WDEC["u_w_addr_decoder (axi4lite_address_decoder)"]
         end
 
         subgraph ReadChannel["Read Channel (AR / R)"]
-            RARB["u_read_arbiter (qos_arbiter)"]
-            RDEC["u_read_addr_decoder (addr_decoder)"]
-            RFSM["Read FSM & Datapath"]
+            RARB["u_read_arbiter (axi4lite_read_arbiter)"]
+            RQOS["u_read_qos (axi4lite_qos_scheduler)"]
+            RDEC["u_r_addr_decoder (axi4lite_address_decoder)"]
         end
 
-        SHIM["Internal DECERR Shim"]
+        ROUTER["u_response_router (axi4lite_response_router)"]
     end
 
     subgraph Slaves
@@ -42,103 +42,123 @@ flowchart LR
 
     Interconnect --> S0
     Interconnect --> S1
-    Interconnect -. Unmapped .-> SHIM
 ```
 
 ---
 
-## 2. Top-Level Parameters
+## 2. Runtime Configuration Interface
 
-| Parameter | Type | Default Value | Description |
+| Port | Width | Description |
+|---|---|---|
+| `cfg_weight_m0` | `[3:0]` | Service weight for Master 0 (used when M0 participates in WRR) |
+| `cfg_weight_m1` | `[3:0]` | WRR budget for Master 1 (default: 3) |
+| `cfg_weight_m2` | `[3:0]` | WRR budget for Master 2 (default: 2) |
+| `cfg_weight_m3` | `[3:0]` | WRR budget for Master 3 (default: 1) |
+| `cfg_master0_priority` | `1` | Enable M0 high-priority preemption |
+| `cfg_age_threshold` | `[7:0]` | Per-master aging cycle threshold for anti-starvation |
+| `cfg_master0_burst_limit` | `[7:0]` | Max consecutive M0 grants before forced suppression |
+
+## 3. Compile-Time Parameters
+
+| Parameter | Type | Default | Description |
 |---|---|---|---|
-| `NUM_MASTERS` | `int` | `4` | Number of upstream AXI4-Lite master ports |
-| `NUM_SLAVES` | `int` | `2` | Number of downstream AXI4-Lite slave ports |
-| `ADDR_WIDTH` | `int` | `32` | Address bus width in bits |
-| `DATA_WIDTH` | `int` | `32` | Data bus width in bits |
-| `STRB_WIDTH` | `int` | `DATA_WIDTH / 8` | Write strobe width (4 bits for 32-bit data) |
-| `M0_WEIGHT` | `int` | `1` | Service weight for Master 0 (strictly priority mode) |
-| `M1_WEIGHT` | `int` | `3` | WRR weight / quota for Master 1 |
-| `M2_WEIGHT` | `int` | `2` | WRR weight / quota for Master 2 |
-| `M3_WEIGHT` | `int` | `1` | WRR weight / quota for Master 3 |
-| `AGE_THRESHOLD`| `int` | `64` | Starvation aging cycle threshold for M0 suppression |
-| `SLAVE0_BASE` | `logic [31:0]` | `32'h0000_0000` | Slave 0 Base Address |
-| `SLAVE0_SIZE` | `logic [31:0]` | `32'h0001_0000` | Slave 0 Address Space Size (64 KB) |
-| `SLAVE1_BASE` | `logic [31:0]` | `32'h0001_0000` | Slave 1 Base Address |
-| `SLAVE1_SIZE` | `logic [31:0]` | `32'h0001_0000` | Slave 1 Address Space Size (64 KB) |
+| `NUM_MASTERS` | `int` | `4` | Number of upstream master ports (must be 4) |
+| `NUM_SLAVES` | `int` | `2` | Number of downstream slave ports (must be 2) |
+| `ADDR_WIDTH` | `int` | `32` | Address bus width |
+| `DATA_WIDTH` | `int` | `32` | Data bus width |
+| `S0_BASE` | `logic [31:0]` | `32'h0000_0000` | Slave 0 base address |
+| `S0_SIZE` | `logic [31:0]` | `32'h0001_0000` | Slave 0 size (64 KB) |
+| `S1_BASE` | `logic [31:0]` | `32'h0001_0000` | Slave 1 base address |
+| `S1_SIZE` | `logic [31:0]` | `32'h0001_0000` | Slave 1 size (64 KB) |
 
 ---
 
-## 3. Module Hierarchy & Organization
+## 4. Module Hierarchy
 
 ```
 src/rtl/
-├── addr_decoder.sv          ← Zero-latency combinational address decoder
-├── qos_arbiter.sv           ← Parameterized QoS Arbiter (WRR + Aging + Priority)
-└── axi4lite_arbiter_top.sv  ← Top-level AXI4-Lite 4M-2S Interconnect
+├── axi4lite_pkg.sv              ← FSM state type definitions
+├── axi4lite_address_decoder.sv  ← Combinational address decoder (slave_sel + invalid_addr)
+├── axi4lite_qos_scheduler.sv   ← Budget-based WRR + M0 Priority + Per-master Aging
+├── axi4lite_response_router.sv ← Response mux/demux with inline DECERR generation
+├── axi4lite_write_arbiter.sv   ← Per-master AW/W skid buffers + Write FSM
+├── axi4lite_read_arbiter.sv    ← Read arbitration FSM
+└── axi4lite_arbiter_top.sv     ← Top-level instantiation and wiring
 ```
 
 ---
 
-## 4. Arbitration Algorithm & Policies
+## 5. Arbitration Algorithm & Policies
 
-### 4.1 Master 0 Priority & Preemption Boundary
-- **Preemption Rule**: Master 0 is evaluated whenever it requests service and no pending lower-priority master has reached the starvation aging threshold.
-- **In-Flight Lock**: Preemption occurs **only** at transaction decision boundaries (when the respective channel FSM is in `IDLE`). In-flight write transactions (AW $\to$ W $\to$ B) and in-flight read transactions (AR $\to$ R) are never interrupted or corrupted.
+### 5.1 Master 0 Priority & Burst Limiting
+- M0 is evaluated when `cfg_master0_priority` is asserted and no master has exceeded the age threshold.
+- Preemption occurs **only** at transaction boundaries (FSM in IDLE). In-flight transactions are never interrupted.
+- `cfg_master0_burst_limit` caps consecutive M0 grants. After the limit, M0 is demoted for one WRR round.
 
-### 4.2 Weighted Round-Robin (M1–M3)
-- Masters M1, M2, and M3 are arbitrated using dynamic quota counters initialized to `M1_WEIGHT` (3), `M2_WEIGHT` (2), and `M3_WEIGHT` (1).
-- Quotas decrement upon completion of each transaction (`transaction_complete` pulse).
-- When a master exhausts its quota or ceases requesting, the arbiter advances round-robin to the next requesting master.
-- When all active quotas reach zero, quotas are reloaded.
+### 5.2 Weighted Round-Robin (M0–M3)
+- Budget counters initialized to `cfg_weight_m*` (clamped: 0→1).
+- On transaction completion, the active master's budget decrements.
+- When budget exhausts, the round-robin pointer advances.
+- When all active budgets hit zero, all budgets reload.
 
-### 4.3 Anti-Starvation Aging
-- If Master 0 is actively granted while lower-priority requests (`M1`..`M3`) remain pending, an internal `aging_timer` increments every clock cycle.
-- When `aging_timer >= AGE_THRESHOLD` (64 cycles), `starvation_flag` asserts, suppressing M0 priority and forcing round-robin service among waiting masters.
-- The aging timer resets to zero upon completion of any lower-priority transaction.
-
----
-
-## 5. Address Decoding & DECERR Handling
-
-The `addr_decoder` module uses unsigned range comparisons:
-- **Slave 0**: `32'h0000_0000` to `32'h0000_FFFF` $\implies$ `slave_sel[0] = 1`
-- **Slave 1**: `32'h0001_0000` to `32'h0001_FFFF` $\implies$ `slave_sel[1] = 1`
-- **Unmapped Address**: All other addresses $\implies$ `invalid_addr = 1`
-
-### Internal DECERR Shim Behavior
-- When an unmapped address is targeted:
-  - Downstream slave `AWVALID`, `WVALID`, and `ARVALID` remain strictly deasserted.
-  - The interconnect acknowledges upstream `AWVALID`/`WVALID` or `ARVALID` internally.
-  - Returns `BRESP = 2'b11` (DECERR) on the write channel, or `RRESP = 2'b11` (DECERR) with `RDATA = 32'h0` on the read channel.
+### 5.3 Per-Master Anti-Starvation Aging
+- Independent 8-bit saturating age counters for M1, M2, M3.
+- Age increments each cycle a master has a pending request but is not being served.
+- Resets to zero when the master gets a grant.
+- When `age >= cfg_age_threshold`, the master is promoted above M0 priority and above WRR order.
+- Tie-breaking among aged masters uses the round-robin pointer.
 
 ---
 
-## 6. Channel Datapaths and Finite State Machines
+## 6. Write Path — AW/W Buffering Strategy
 
-### 6.1 Write Channel FSM (`w_state`)
+### 6.1 Per-Master Skid Buffers
+Each master has independent AW and W buffers:
+- Buffers accept the next request even while the current transaction is in-flight (pipelined READY).
+- `buf_locked` prevents overwrite during active transactions.
+- Arbitration eligibility requires **both** AW and W buffers valid for the same master.
 
-$$\text{W\_IDLE} \xrightarrow{\text{grant \& awvalid}} \text{W\_AW\_WAIT} \xrightarrow{\text{awready}} \text{W\_W\_WAIT} \xrightarrow{\text{wvalid \& wready}} \text{W\_B\_WAIT} \xrightarrow{\text{bvalid \& bready}} \text{W\_IDLE}$$
-
-- `W_IDLE`: Samples `u_write_arbiter` grant, latches `w_owner_m_id`, address, protection, and target slave.
-- `W_AW_WAIT`: Asserts `m_axi_awvalid` to target slave until `m_axi_awready` handshakes.
-- `W_W_WAIT`: Routes write data and strobes from owning master to target slave until handshake completes.
-- `W_B_WAIT`: Routes write response strictly to owning master. Upon `BREADY` handshake, asserts `write_arb_tx_done` for 1 cycle and returns to `W_IDLE`.
-
-### 6.2 Read Channel FSM (`r_state`)
-
-$$\text{R\_IDLE} \xrightarrow{\text{grant \& arvalid}} \text{R\_AR\_WAIT} \xrightarrow{\text{arready}} \text{R\_R\_WAIT} \xrightarrow{\text{rvalid \& rready}} \text{R\_IDLE}$$
-
-- `R_IDLE`: Samples `u_read_arbiter` grant, latches `r_owner_m_id`, address, protection, and target slave.
-- `R_AR_WAIT`: Asserts `m_axi_arvalid` to target slave until `m_axi_arready` handshakes.
-- `R_R_WAIT`: Routes read data and response strictly to owning master. Upon `RREADY` handshake, asserts `read_arb_tx_done` for 1 cycle and returns to `R_IDLE`.
+### 6.2 Write FSM (`w_state`)
+```
+W_IDLE → W_ADDR → W_DATA → W_RESP → W_IDLE
+```
+- `W_IDLE`: Samples QoS grant, latches owner, address, slave target.
+- `W_ADDR`: Asserts `m_axi_awvalid` to target slave until `m_axi_awready`.
+- `W_DATA`: Asserts `m_axi_wvalid` to target slave until `m_axi_wready`.
+- `W_RESP`: Routes `BRESP`/`BVALID` to owning master until `BREADY`.
 
 ---
 
-## 7. Clock & Reset Strategy
+## 7. Read Path
+
+### 7.1 Read FSM (`r_state`)
+```
+R_IDLE → R_ADDR → R_RESP → R_IDLE
+```
+- `R_IDLE`: Samples QoS grant, latches owner, address, slave target.
+- `R_ADDR`: Asserts `m_axi_arvalid` to target slave until `m_axi_arready`.
+- `R_RESP`: Routes `RDATA`/`RRESP`/`RVALID` to owning master until `RREADY`.
+
+---
+
+## 8. Address Decoding & DECERR Handling
+
+The `axi4lite_address_decoder` uses unsigned range comparisons:
+- **Slave 0**: `[S0_BASE, S0_BASE + S0_SIZE - 1]` → `slave_sel[0] = 1`
+- **Slave 1**: `[S1_BASE, S1_BASE + S1_SIZE - 1]` → `slave_sel[1] = 1`
+- **Unmapped**: `invalid_addr = 1`
+
+### DECERR Shim Behavior
+- Downstream slave VALID signals are deasserted for unmapped accesses.
+- The response router generates `BRESP = 2'b11` / `RRESP = 2'b11` with `RDATA = 32'h0` internally.
+
+---
+
+## 9. Clock & Reset Strategy
 
 - Single global clock: `aclk` (nominally 100 MHz).
 - Synchronous active-low reset: `aresetn`.
-- On reset assertion (`!aresetn`):
-  - FSMs return to `W_IDLE` / `R_IDLE`.
-  - All output valid and ready signals are driven to zero.
-  - Quotas and aging timers re-initialize cleanly without inferred latches.
+- On reset:
+  - FSMs return to IDLE states.
+  - All output VALID and READY signals driven to zero.
+  - Buffers, counters, and ownership registers clear cleanly.

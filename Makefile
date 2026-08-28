@@ -12,7 +12,7 @@ SCRIPTS_DIR := scripts
 all: lint sim sim-stress
 
 # Run all checks (CI target)
-check: lint sim sim-stress synth
+check: lint sim sim-stress formal synth
 
 lint:
 	$(MAKE) -C $(SCRIPTS_DIR) lint
