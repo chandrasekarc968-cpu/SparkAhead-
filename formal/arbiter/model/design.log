@@ -1,0 +1,2154 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2025  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.52 (git sha1 fee39a3284c90249e1d9684cf6944ffbbcbb8f90)
+
+-- Executing script file `../model/design.ys' --
+
+1. Executing Verilog-2005 frontend: addr_decoder.sv
+Parsing formal SystemVerilog input from `addr_decoder.sv' to AST representation.
+Storing AST representation for module `$abstract\addr_decoder'.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: qos_arbiter.sv
+Parsing formal SystemVerilog input from `qos_arbiter.sv' to AST representation.
+Storing AST representation for module `$abstract\qos_arbiter'.
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: axi4lite_arbiter_top.sv
+Parsing formal SystemVerilog input from `axi4lite_arbiter_top.sv' to AST representation.
+Storing AST representation for module `$abstract\axi4lite_arbiter_top'.
+Successfully finished Verilog frontend.
+
+4. Executing Verilog-2005 frontend: arbiter_formal.sv
+Parsing formal SystemVerilog input from `arbiter_formal.sv' to AST representation.
+Storing AST representation for module `$abstract\arbiter_formal'.
+Successfully finished Verilog frontend.
+
+5. Executing PREP pass.
+
+5.1. Executing HIERARCHY pass (managing design hierarchy).
+
+5.2. Executing AST frontend in derive mode using pre-parsed AST for module `\arbiter_formal'.
+Generating RTLIL representation for module `\arbiter_formal'.
+
+5.2.1. Analyzing design hierarchy..
+Top module:  \arbiter_formal
+Parameter \NUM_MASTERS = 4
+Parameter \NUM_SLAVES = 2
+Parameter \ADDR_WIDTH = 32
+Parameter \DATA_WIDTH = 32
+Parameter \M0_WEIGHT = 1
+Parameter \M1_WEIGHT = 3
+Parameter \M2_WEIGHT = 2
+Parameter \M3_WEIGHT = 1
+Parameter \AGE_THRESHOLD = 64
+Parameter \SLAVE0_BASE = 0
+Parameter \SLAVE0_SIZE = 65536
+Parameter \SLAVE1_BASE = 65536
+Parameter \SLAVE1_SIZE = 65536
+
+5.2.2. Executing AST frontend in derive mode using pre-parsed AST for module `\axi4lite_arbiter_top'.
+Parameter \NUM_MASTERS = 4
+Parameter \NUM_SLAVES = 2
+Parameter \ADDR_WIDTH = 32
+Parameter \DATA_WIDTH = 32
+Parameter \M0_WEIGHT = 1
+Parameter \M1_WEIGHT = 3
+Parameter \M2_WEIGHT = 2
+Parameter \M3_WEIGHT = 1
+Parameter \AGE_THRESHOLD = 64
+Parameter \SLAVE0_BASE = 0
+Parameter \SLAVE0_SIZE = 65536
+Parameter \SLAVE1_BASE = 65536
+Parameter \SLAVE1_SIZE = 65536
+Generating RTLIL representation for module `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top'.
+Warning: Replacing memory \r_rresp_demux with list of registers. See axi4lite_arbiter_top.sv:642
+Warning: Replacing memory \r_rdata_demux with list of registers. See axi4lite_arbiter_top.sv:641
+Warning: Replacing memory \w_bresp_demux with list of registers. See axi4lite_arbiter_top.sv:376
+
+5.2.3. Analyzing design hierarchy..
+Top module:  \arbiter_formal
+Used module:     $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top
+Parameter \ADDR_WIDTH = 32
+Parameter \SLAVE0_BASE = 0
+Parameter \SLAVE0_SIZE = 65536
+Parameter \SLAVE1_BASE = 65536
+Parameter \SLAVE1_SIZE = 65536
+
+5.2.4. Executing AST frontend in derive mode using pre-parsed AST for module `\addr_decoder'.
+Parameter \ADDR_WIDTH = 32
+Parameter \SLAVE0_BASE = 0
+Parameter \SLAVE0_SIZE = 65536
+Parameter \SLAVE1_BASE = 65536
+Parameter \SLAVE1_SIZE = 65536
+Generating RTLIL representation for module `$paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder'.
+Parameter \NUM_MASTERS = 4
+Parameter \M0_WEIGHT = 1
+Parameter \M1_WEIGHT = 3
+Parameter \M2_WEIGHT = 2
+Parameter \M3_WEIGHT = 1
+Parameter \AGE_THRESHOLD = 64
+
+5.2.5. Executing AST frontend in derive mode using pre-parsed AST for module `\qos_arbiter'.
+Parameter \NUM_MASTERS = 4
+Parameter \M0_WEIGHT = 1
+Parameter \M1_WEIGHT = 3
+Parameter \M2_WEIGHT = 2
+Parameter \M3_WEIGHT = 1
+Parameter \AGE_THRESHOLD = 64
+Generating RTLIL representation for module `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter'.
+Parameter \ADDR_WIDTH = 32
+Parameter \SLAVE0_BASE = 0
+Parameter \SLAVE0_SIZE = 65536
+Parameter \SLAVE1_BASE = 65536
+Parameter \SLAVE1_SIZE = 65536
+Found cached RTLIL representation for module `$paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder'.
+Parameter \NUM_MASTERS = 4
+Parameter \M0_WEIGHT = 1
+Parameter \M1_WEIGHT = 3
+Parameter \M2_WEIGHT = 2
+Parameter \M3_WEIGHT = 1
+Parameter \AGE_THRESHOLD = 64
+Found cached RTLIL representation for module `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter'.
+
+5.2.6. Analyzing design hierarchy..
+Top module:  \arbiter_formal
+Used module:     $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top
+Used module:         $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder
+Used module:         $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter
+
+5.2.7. Analyzing design hierarchy..
+Top module:  \arbiter_formal
+Used module:     $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top
+Used module:         $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder
+Used module:         $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter
+Removing unused module `$abstract\arbiter_formal'.
+Removing unused module `$abstract\axi4lite_arbiter_top'.
+Removing unused module `$abstract\qos_arbiter'.
+Removing unused module `$abstract\addr_decoder'.
+Removed 4 unused modules.
+Module arbiter_formal directly or indirectly contains formal properties -> setting "keep" attribute.
+
+5.3. Executing PROC pass (convert processes to netlists).
+
+5.3.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Cleaned up 0 empty switches.
+
+5.3.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 2 switch rules as full_case in process $proc$qos_arbiter.sv:0$887 in module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.
+Marked 4 switch rules as full_case in process $proc$qos_arbiter.sv:179$869 in module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.
+Marked 24 switch rules as full_case in process $proc$qos_arbiter.sv:0$847 in module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.
+Marked 6 switch rules as full_case in process $proc$qos_arbiter.sv:0$838 in module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.
+Marked 4 switch rules as full_case in process $proc$addr_decoder.sv:0$825 in module $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.
+Removed 6 dead cases from process $proc$axi4lite_arbiter_top.sv:0$708 in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+Marked 13 switch rules as full_case in process $proc$axi4lite_arbiter_top.sv:0$708 in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+Removed 3 dead cases from process $proc$axi4lite_arbiter_top.sv:578$679 in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+Marked 8 switch rules as full_case in process $proc$axi4lite_arbiter_top.sv:578$679 in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+Removed 1 dead cases from process $proc$axi4lite_arbiter_top.sv:0$678 in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+Marked 1 switch rules as full_case in process $proc$axi4lite_arbiter_top.sv:0$678 in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+Marked 2 switch rules as full_case in process $proc$axi4lite_arbiter_top.sv:0$677 in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+Removed 1 dead cases from process $proc$axi4lite_arbiter_top.sv:0$676 in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+Marked 1 switch rules as full_case in process $proc$axi4lite_arbiter_top.sv:0$676 in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+Removed 4 dead cases from process $proc$axi4lite_arbiter_top.sv:0$551 in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+Marked 13 switch rules as full_case in process $proc$axi4lite_arbiter_top.sv:0$551 in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+Removed 4 dead cases from process $proc$axi4lite_arbiter_top.sv:302$521 in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+Marked 9 switch rules as full_case in process $proc$axi4lite_arbiter_top.sv:302$521 in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+Removed 1 dead cases from process $proc$axi4lite_arbiter_top.sv:0$520 in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+Marked 1 switch rules as full_case in process $proc$axi4lite_arbiter_top.sv:0$520 in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+Marked 2 switch rules as full_case in process $proc$axi4lite_arbiter_top.sv:0$519 in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+Removed 1 dead cases from process $proc$axi4lite_arbiter_top.sv:0$518 in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+Marked 1 switch rules as full_case in process $proc$axi4lite_arbiter_top.sv:0$518 in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+Marked 1 switch rules as full_case in process $proc$arbiter_formal.sv:143$81 in module arbiter_formal.
+Marked 1 switch rules as full_case in process $proc$arbiter_formal.sv:134$77 in module arbiter_formal.
+Removed a total of 21 dead cases.
+
+5.3.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 2 redundant assignments.
+Promoted 220 assignments to connections.
+
+5.3.4. Executing PROC_INIT pass (extract init attributes).
+Found init rule in `\arbiter_formal.$proc$arbiter_formal.sv:133$487'.
+  Set init value: \f_reset_count = 3'000
+
+5.3.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \aresetn in `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:179$869'.
+Found async reset \aresetn in `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:578$679'.
+Found async reset \aresetn in `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:302$521'.
+
+5.3.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~140 debug messages>
+
+5.3.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:0$887'.
+     1/9: $2\grant_valid[0:0]
+     2/9: $2\master_id[1:0]
+     3/9: $2\grant[3:0]
+     4/9: $2$bitselwrite$pos$qos_arbiter.sv:253$835[1:0]$901
+     5/9: $1\grant_valid[0:0]
+     6/9: $1\master_id[1:0]
+     7/9: $1\grant[3:0]
+     8/9: $1$bitselwrite$pos$qos_arbiter.sv:249$834[1:0]$892
+     9/9: $1$bitselwrite$pos$qos_arbiter.sv:253$835[1:0]$893
+Creating decoders for process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:179$869'.
+     1/8: $0\age_counter[31:0]
+     2/8: $0\rr_ptr[1:0]
+     3/8: $0\quota_3[31:0]
+     4/8: $0\quota_2[31:0]
+     5/8: $0\quota_1[31:0]
+     6/8: $0\is_active[0:0]
+     7/8: $0\current_master[1:0]
+     8/8: $0\starvation_flag[0:0]
+Creating decoders for process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:0$847'.
+     1/48: $24\cand_valid[0:0]
+     2/48: $24\next_cand[1:0]
+     3/48: $23\cand_valid[0:0]
+     4/48: $23\next_cand[1:0]
+     5/48: $22\cand_valid[0:0]
+     6/48: $22\next_cand[1:0]
+     7/48: $21\cand_valid[0:0]
+     8/48: $21\next_cand[1:0]
+     9/48: $20\cand_valid[0:0]
+    10/48: $20\next_cand[1:0]
+    11/48: $19\cand_valid[0:0]
+    12/48: $19\next_cand[1:0]
+    13/48: $18\cand_valid[0:0]
+    14/48: $18\next_cand[1:0]
+    15/48: $17\cand_valid[0:0]
+    16/48: $17\next_cand[1:0]
+    17/48: $16\cand_valid[0:0]
+    18/48: $16\next_cand[1:0]
+    19/48: $15\cand_valid[0:0]
+    20/48: $15\next_cand[1:0]
+    21/48: $14\cand_valid[0:0]
+    22/48: $14\next_cand[1:0]
+    23/48: $13\cand_valid[0:0]
+    24/48: $13\next_cand[1:0]
+    25/48: $12\cand_valid[0:0]
+    26/48: $12\next_cand[1:0]
+    27/48: $11\cand_valid[0:0]
+    28/48: $11\next_cand[1:0]
+    29/48: $10\cand_valid[0:0]
+    30/48: $10\next_cand[1:0]
+    31/48: $9\cand_valid[0:0]
+    32/48: $9\next_cand[1:0]
+    33/48: $8\cand_valid[0:0]
+    34/48: $8\next_cand[1:0]
+    35/48: $7\cand_valid[0:0]
+    36/48: $7\next_cand[1:0]
+    37/48: $6\cand_valid[0:0]
+    38/48: $6\next_cand[1:0]
+    39/48: $5\cand_valid[0:0]
+    40/48: $5\next_cand[1:0]
+    41/48: $4\cand_valid[0:0]
+    42/48: $4\next_cand[1:0]
+    43/48: $3\cand_valid[0:0]
+    44/48: $3\next_cand[1:0]
+    45/48: $2\cand_valid[0:0]
+    46/48: $2\next_cand[1:0]
+    47/48: $1\cand_valid[0:0]
+    48/48: $1\next_cand[1:0]
+Creating decoders for process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:0$838'.
+     1/16: $3\eff_q3[31:0]
+     2/16: $5\eff_rr_ptr[1:0]
+     3/16: $3\eff_q2[31:0]
+     4/16: $4\eff_rr_ptr[1:0]
+     5/16: $3\eff_q1[31:0]
+     6/16: $3\eff_rr_ptr[1:0]
+     7/16: $2\eff_rr_ptr[1:0]
+     8/16: $2\eff_q1[31:0]
+     9/16: $2\eff_q3[31:0]
+    10/16: $2\eff_q2[31:0]
+    11/16: $2\eff_starvation[0:0]
+    12/16: $1\eff_rr_ptr[1:0]
+    13/16: $1\eff_q3[31:0]
+    14/16: $1\eff_q2[31:0]
+    15/16: $1\eff_q1[31:0]
+    16/16: $1\eff_starvation[0:0]
+Creating decoders for process `$paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.$proc$addr_decoder.sv:0$825'.
+     1/8: $2\invalid_addr[0:0]
+     2/8: $2\valid_addr[0:0]
+     3/8: $2\slave_sel[1:0]
+     4/8: $1\invalid_addr[0:0]
+     5/8: $1\valid_addr[0:0]
+     6/8: $1\slave_sel[1:0]
+     7/8: $1\match_s1[0:0]
+     8/8: $1\match_s0[0:0]
+Creating decoders for process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+Creating decoders for process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+     1/132: $7\r_rresp_demux[0][1:0]
+     2/132: $7\r_rresp_demux[3][1:0]
+     3/132: $7\r_rresp_demux[2][1:0]
+     4/132: $7\r_rresp_demux[1][1:0]
+     5/132: $7\r_rdata_demux[0][31:0]
+     6/132: $7\r_rdata_demux[3][31:0]
+     7/132: $7\r_rdata_demux[2][31:0]
+     8/132: $7\r_rdata_demux[1][31:0]
+     9/132: $4\s1_rready_mux[0:0]
+    10/132: $6\r_rresp_demux[3][1:0]
+    11/132: $6\r_rresp_demux[2][1:0]
+    12/132: $6\r_rresp_demux[1][1:0]
+    13/132: $6\r_rresp_demux[0][1:0]
+    14/132: $4$mem2reg_wr$\r_rresp_demux$axi4lite_arbiter_top.sv:682$517_ADDR[1:0]$815
+    15/132: $4$mem2reg_wr$\r_rresp_demux$axi4lite_arbiter_top.sv:682$517_DATA[1:0]$816
+    16/132: $6\r_rdata_demux[3][31:0]
+    17/132: $6\r_rdata_demux[2][31:0]
+    18/132: $6\r_rdata_demux[1][31:0]
+    19/132: $6\r_rdata_demux[0][31:0]
+    20/132: $4$mem2reg_wr$\r_rdata_demux$axi4lite_arbiter_top.sv:681$516_ADDR[1:0]$813
+    21/132: $4$mem2reg_wr$\r_rdata_demux$axi4lite_arbiter_top.sv:681$516_DATA[31:0]$814
+    22/132: $4\r_rvalid_demux[3:0]
+    23/132: $4$bitselwrite$pos$axi4lite_arbiter_top.sv:680$502[1:0]$812
+    24/132: $5\r_rresp_demux[0][1:0]
+    25/132: $5\r_rresp_demux[3][1:0]
+    26/132: $5\r_rresp_demux[2][1:0]
+    27/132: $5\r_rresp_demux[1][1:0]
+    28/132: $5\r_rdata_demux[0][31:0]
+    29/132: $5\r_rdata_demux[3][31:0]
+    30/132: $5\r_rdata_demux[2][31:0]
+    31/132: $5\r_rdata_demux[1][31:0]
+    32/132: $3\s0_rready_mux[0:0]
+    33/132: $4\r_rresp_demux[3][1:0]
+    34/132: $4\r_rresp_demux[2][1:0]
+    35/132: $4\r_rresp_demux[1][1:0]
+    36/132: $4\r_rresp_demux[0][1:0]
+    37/132: $3$mem2reg_wr$\r_rresp_demux$axi4lite_arbiter_top.sv:677$515_ADDR[1:0]$799
+    38/132: $3$mem2reg_wr$\r_rresp_demux$axi4lite_arbiter_top.sv:677$515_DATA[1:0]$800
+    39/132: $4\r_rdata_demux[3][31:0]
+    40/132: $4\r_rdata_demux[2][31:0]
+    41/132: $4\r_rdata_demux[1][31:0]
+    42/132: $4\r_rdata_demux[0][31:0]
+    43/132: $3$mem2reg_wr$\r_rdata_demux$axi4lite_arbiter_top.sv:676$514_ADDR[1:0]$797
+    44/132: $3$mem2reg_wr$\r_rdata_demux$axi4lite_arbiter_top.sv:676$514_DATA[31:0]$798
+    45/132: $3\r_rvalid_demux[3:0]
+    46/132: $3$bitselwrite$pos$axi4lite_arbiter_top.sv:675$501[1:0]$795
+    47/132: $3$mem2reg_wr$\r_rresp_demux$axi4lite_arbiter_top.sv:682$517_DATA[1:0]$804
+    48/132: $3$mem2reg_wr$\r_rresp_demux$axi4lite_arbiter_top.sv:682$517_ADDR[1:0]$803
+    49/132: $3$mem2reg_wr$\r_rdata_demux$axi4lite_arbiter_top.sv:681$516_DATA[31:0]$802
+    50/132: $3$mem2reg_wr$\r_rdata_demux$axi4lite_arbiter_top.sv:681$516_ADDR[1:0]$801
+    51/132: $3$bitselwrite$pos$axi4lite_arbiter_top.sv:680$502[1:0]$796
+    52/132: $3\s1_rready_mux[0:0]
+    53/132: $3\r_rresp_demux[0][1:0]
+    54/132: $3\r_rresp_demux[3][1:0]
+    55/132: $3\r_rresp_demux[2][1:0]
+    56/132: $3\r_rresp_demux[1][1:0]
+    57/132: $3\r_rdata_demux[0][31:0]
+    58/132: $3\r_rdata_demux[3][31:0]
+    59/132: $3\r_rdata_demux[2][31:0]
+    60/132: $3\r_rdata_demux[1][31:0]
+    61/132: $2\r_rresp_demux[3][1:0]
+    62/132: $2\r_rresp_demux[2][1:0]
+    63/132: $2\r_rresp_demux[1][1:0]
+    64/132: $2\r_rresp_demux[0][1:0]
+    65/132: $2$mem2reg_wr$\r_rresp_demux$axi4lite_arbiter_top.sv:672$513_ADDR[1:0]$778
+    66/132: $2$mem2reg_wr$\r_rresp_demux$axi4lite_arbiter_top.sv:672$513_DATA[1:0]$779
+    67/132: $2\r_rdata_demux[3][31:0]
+    68/132: $2\r_rdata_demux[2][31:0]
+    69/132: $2\r_rdata_demux[1][31:0]
+    70/132: $2\r_rdata_demux[0][31:0]
+    71/132: $2$mem2reg_wr$\r_rdata_demux$axi4lite_arbiter_top.sv:671$512_ADDR[1:0]$776
+    72/132: $2$mem2reg_wr$\r_rdata_demux$axi4lite_arbiter_top.sv:671$512_DATA[31:0]$777
+    73/132: $2\r_rvalid_demux[3:0]
+    74/132: $2$bitselwrite$pos$axi4lite_arbiter_top.sv:670$500[1:0]$773
+    75/132: $2$mem2reg_wr$\r_rresp_demux$axi4lite_arbiter_top.sv:682$517_DATA[1:0]$787
+    76/132: $2$mem2reg_wr$\r_rresp_demux$axi4lite_arbiter_top.sv:682$517_ADDR[1:0]$786
+    77/132: $2$mem2reg_wr$\r_rdata_demux$axi4lite_arbiter_top.sv:681$516_DATA[31:0]$785
+    78/132: $2$mem2reg_wr$\r_rdata_demux$axi4lite_arbiter_top.sv:681$516_ADDR[1:0]$784
+    79/132: $2$mem2reg_wr$\r_rresp_demux$axi4lite_arbiter_top.sv:677$515_DATA[1:0]$783
+    80/132: $2$mem2reg_wr$\r_rresp_demux$axi4lite_arbiter_top.sv:677$515_ADDR[1:0]$782
+    81/132: $2$mem2reg_wr$\r_rdata_demux$axi4lite_arbiter_top.sv:676$514_DATA[31:0]$781
+    82/132: $2$mem2reg_wr$\r_rdata_demux$axi4lite_arbiter_top.sv:676$514_ADDR[1:0]$780
+    83/132: $2$bitselwrite$pos$axi4lite_arbiter_top.sv:680$502[1:0]$775
+    84/132: $2$bitselwrite$pos$axi4lite_arbiter_top.sv:675$501[1:0]$774
+    85/132: $2\s1_rready_mux[0:0]
+    86/132: $2\s0_rready_mux[0:0]
+    87/132: $4\r_arready_demux[3:0]
+    88/132: $4$bitselwrite$pos$axi4lite_arbiter_top.sv:663$499[1:0]$765
+    89/132: $4\s1_arvalid_mux[0:0]
+    90/132: $3\r_arready_demux[3:0]
+    91/132: $3$bitselwrite$pos$axi4lite_arbiter_top.sv:660$498[1:0]$756
+    92/132: $3\s0_arvalid_mux[0:0]
+    93/132: $3$bitselwrite$pos$axi4lite_arbiter_top.sv:663$499[1:0]$757
+    94/132: $3\s1_arvalid_mux[0:0]
+    95/132: $2\r_arready_demux[3:0]
+    96/132: $2$bitselwrite$pos$axi4lite_arbiter_top.sv:656$497[1:0]$746
+    97/132: $2$bitselwrite$pos$axi4lite_arbiter_top.sv:663$499[1:0]$748
+    98/132: $2$bitselwrite$pos$axi4lite_arbiter_top.sv:660$498[1:0]$747
+    99/132: $2\s1_arvalid_mux[0:0]
+   100/132: $2\s0_arvalid_mux[0:0]
+   101/132: $1$mem2reg_wr$\r_rresp_demux$axi4lite_arbiter_top.sv:682$517_DATA[1:0]$745
+   102/132: $1$mem2reg_wr$\r_rresp_demux$axi4lite_arbiter_top.sv:682$517_ADDR[1:0]$744
+   103/132: $1$mem2reg_wr$\r_rdata_demux$axi4lite_arbiter_top.sv:681$516_DATA[31:0]$743
+   104/132: $1$mem2reg_wr$\r_rdata_demux$axi4lite_arbiter_top.sv:681$516_ADDR[1:0]$742
+   105/132: $1$mem2reg_wr$\r_rresp_demux$axi4lite_arbiter_top.sv:677$515_DATA[1:0]$741
+   106/132: $1$mem2reg_wr$\r_rresp_demux$axi4lite_arbiter_top.sv:677$515_ADDR[1:0]$740
+   107/132: $1$mem2reg_wr$\r_rdata_demux$axi4lite_arbiter_top.sv:676$514_DATA[31:0]$739
+   108/132: $1$mem2reg_wr$\r_rdata_demux$axi4lite_arbiter_top.sv:676$514_ADDR[1:0]$738
+   109/132: $1$mem2reg_wr$\r_rresp_demux$axi4lite_arbiter_top.sv:672$513_DATA[1:0]$737
+   110/132: $1$mem2reg_wr$\r_rresp_demux$axi4lite_arbiter_top.sv:672$513_ADDR[1:0]$736
+   111/132: $1$mem2reg_wr$\r_rdata_demux$axi4lite_arbiter_top.sv:671$512_DATA[31:0]$735
+   112/132: $1$mem2reg_wr$\r_rdata_demux$axi4lite_arbiter_top.sv:671$512_ADDR[1:0]$734
+   113/132: $1\r_rresp_demux[3][1:0]
+   114/132: $1\r_rresp_demux[2][1:0]
+   115/132: $1\r_rresp_demux[1][1:0]
+   116/132: $1\r_rresp_demux[0][1:0]
+   117/132: $1\r_rdata_demux[3][31:0]
+   118/132: $1\r_rdata_demux[2][31:0]
+   119/132: $1\r_rdata_demux[1][31:0]
+   120/132: $1\r_rdata_demux[0][31:0]
+   121/132: $1$bitselwrite$pos$axi4lite_arbiter_top.sv:680$502[1:0]$733
+   122/132: $1$bitselwrite$pos$axi4lite_arbiter_top.sv:675$501[1:0]$732
+   123/132: $1$bitselwrite$pos$axi4lite_arbiter_top.sv:670$500[1:0]$731
+   124/132: $1$bitselwrite$pos$axi4lite_arbiter_top.sv:663$499[1:0]$730
+   125/132: $1$bitselwrite$pos$axi4lite_arbiter_top.sv:660$498[1:0]$729
+   126/132: $1$bitselwrite$pos$axi4lite_arbiter_top.sv:656$497[1:0]$728
+   127/132: $1\s1_rready_mux[0:0]
+   128/132: $1\s0_rready_mux[0:0]
+   129/132: $1\s1_arvalid_mux[0:0]
+   130/132: $1\s0_arvalid_mux[0:0]
+   131/132: $1\r_rvalid_demux[3:0]
+   132/132: $1\r_arready_demux[3:0]
+Creating decoders for process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:578$679'.
+     1/26: $4$mem2reg_rd$\m_arprot$axi4lite_arbiter_top.sv:595$511_DATA[2:0]$706
+     2/26: $4$mem2reg_rd$\m_araddr$axi4lite_arbiter_top.sv:594$510_DATA[31:0]$705
+     3/26: $3$mem2reg_rd$\m_arprot$axi4lite_arbiter_top.sv:595$511_DATA[2:0]$704
+     4/26: $3$mem2reg_rd$\m_arprot$axi4lite_arbiter_top.sv:595$511_ADDR[1:0]$703
+     5/26: $3$mem2reg_rd$\m_araddr$axi4lite_arbiter_top.sv:594$510_DATA[31:0]$702
+     6/26: $3$mem2reg_rd$\m_araddr$axi4lite_arbiter_top.sv:594$510_ADDR[1:0]$701
+     7/26: $3$mem2reg_rd$\m_arvalid$axi4lite_arbiter_top.sv:592$509_DATA[0:0]$699
+     8/26: $2$mem2reg_rd$\m_arprot$axi4lite_arbiter_top.sv:595$511_DATA[2:0]$698
+     9/26: $2$mem2reg_rd$\m_arprot$axi4lite_arbiter_top.sv:595$511_ADDR[1:0]$697
+    10/26: $2$mem2reg_rd$\m_araddr$axi4lite_arbiter_top.sv:594$510_DATA[31:0]$696
+    11/26: $2$mem2reg_rd$\m_araddr$axi4lite_arbiter_top.sv:594$510_ADDR[1:0]$695
+    12/26: $2$mem2reg_rd$\m_arvalid$axi4lite_arbiter_top.sv:592$509_DATA[0:0]$694
+    13/26: $2$mem2reg_rd$\m_arvalid$axi4lite_arbiter_top.sv:592$509_ADDR[1:0]$693
+    14/26: $1$mem2reg_rd$\m_arprot$axi4lite_arbiter_top.sv:595$511_DATA[2:0]$692
+    15/26: $1$mem2reg_rd$\m_arprot$axi4lite_arbiter_top.sv:595$511_ADDR[1:0]$691
+    16/26: $1$mem2reg_rd$\m_araddr$axi4lite_arbiter_top.sv:594$510_DATA[31:0]$690
+    17/26: $1$mem2reg_rd$\m_araddr$axi4lite_arbiter_top.sv:594$510_ADDR[1:0]$689
+    18/26: $1$mem2reg_rd$\m_arvalid$axi4lite_arbiter_top.sv:592$509_DATA[0:0]$688
+    19/26: $1$mem2reg_rd$\m_arvalid$axi4lite_arbiter_top.sv:592$509_ADDR[1:0]$687
+    20/26: $0\read_arb_tx_done[0:0]
+    21/26: $0\r_latched_prot[2:0]
+    22/26: $0\r_latched_addr[31:0]
+    23/26: $0\r_target_invalid[0:0]
+    24/26: $0\r_target_slave_sel[1:0]
+    25/26: $0\r_owner_m_id[1:0]
+    26/26: $0\r_state[1:0]
+Creating decoders for process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$678'.
+     1/1: $1\r_owner_rready[0:0]
+Creating decoders for process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$677'.
+     1/4: $2\r_target_rvalid[0:0]
+     2/4: $2\r_target_arready[0:0]
+     3/4: $1\r_target_rvalid[0:0]
+     4/4: $1\r_target_arready[0:0]
+Creating decoders for process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$676'.
+     1/1: $1\r_eval_addr[31:0]
+Creating decoders for process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+     1/106: $7\w_bresp_demux[0][1:0]
+     2/106: $7\w_bresp_demux[3][1:0]
+     3/106: $7\w_bresp_demux[2][1:0]
+     4/106: $7\w_bresp_demux[1][1:0]
+     5/106: $4\s1_bready_mux[0:0]
+     6/106: $6\w_bresp_demux[3][1:0]
+     7/106: $6\w_bresp_demux[2][1:0]
+     8/106: $6\w_bresp_demux[1][1:0]
+     9/106: $6\w_bresp_demux[0][1:0]
+    10/106: $4$mem2reg_wr$\w_bresp_demux$axi4lite_arbiter_top.sv:428$508_ADDR[1:0]$667
+    11/106: $4$mem2reg_wr$\w_bresp_demux$axi4lite_arbiter_top.sv:428$508_DATA[1:0]$668
+    12/106: $4\w_bvalid_demux[3:0]
+    13/106: $4$bitselwrite$pos$axi4lite_arbiter_top.sv:427$496[1:0]$666
+    14/106: $5\w_bresp_demux[0][1:0]
+    15/106: $5\w_bresp_demux[3][1:0]
+    16/106: $5\w_bresp_demux[2][1:0]
+    17/106: $5\w_bresp_demux[1][1:0]
+    18/106: $3\s0_bready_mux[0:0]
+    19/106: $4\w_bresp_demux[3][1:0]
+    20/106: $4\w_bresp_demux[2][1:0]
+    21/106: $4\w_bresp_demux[1][1:0]
+    22/106: $4\w_bresp_demux[0][1:0]
+    23/106: $3$mem2reg_wr$\w_bresp_demux$axi4lite_arbiter_top.sv:424$507_ADDR[1:0]$655
+    24/106: $3$mem2reg_wr$\w_bresp_demux$axi4lite_arbiter_top.sv:424$507_DATA[1:0]$656
+    25/106: $3\w_bvalid_demux[3:0]
+    26/106: $3$bitselwrite$pos$axi4lite_arbiter_top.sv:423$495[1:0]$653
+    27/106: $3$mem2reg_wr$\w_bresp_demux$axi4lite_arbiter_top.sv:428$508_DATA[1:0]$658
+    28/106: $3$mem2reg_wr$\w_bresp_demux$axi4lite_arbiter_top.sv:428$508_ADDR[1:0]$657
+    29/106: $3$bitselwrite$pos$axi4lite_arbiter_top.sv:427$496[1:0]$654
+    30/106: $3\s1_bready_mux[0:0]
+    31/106: $3\w_bresp_demux[0][1:0]
+    32/106: $3\w_bresp_demux[3][1:0]
+    33/106: $3\w_bresp_demux[2][1:0]
+    34/106: $3\w_bresp_demux[1][1:0]
+    35/106: $2\w_bresp_demux[3][1:0]
+    36/106: $2\w_bresp_demux[2][1:0]
+    37/106: $2\w_bresp_demux[1][1:0]
+    38/106: $2\w_bresp_demux[0][1:0]
+    39/106: $2$mem2reg_wr$\w_bresp_demux$axi4lite_arbiter_top.sv:420$506_ADDR[1:0]$640
+    40/106: $2$mem2reg_wr$\w_bresp_demux$axi4lite_arbiter_top.sv:420$506_DATA[1:0]$641
+    41/106: $2\w_bvalid_demux[3:0]
+    42/106: $2$bitselwrite$pos$axi4lite_arbiter_top.sv:419$494[1:0]$637
+    43/106: $2$mem2reg_wr$\w_bresp_demux$axi4lite_arbiter_top.sv:428$508_DATA[1:0]$645
+    44/106: $2$mem2reg_wr$\w_bresp_demux$axi4lite_arbiter_top.sv:428$508_ADDR[1:0]$644
+    45/106: $2$mem2reg_wr$\w_bresp_demux$axi4lite_arbiter_top.sv:424$507_DATA[1:0]$643
+    46/106: $2$mem2reg_wr$\w_bresp_demux$axi4lite_arbiter_top.sv:424$507_ADDR[1:0]$642
+    47/106: $2$bitselwrite$pos$axi4lite_arbiter_top.sv:427$496[1:0]$639
+    48/106: $2$bitselwrite$pos$axi4lite_arbiter_top.sv:423$495[1:0]$638
+    49/106: $2\s1_bready_mux[0:0]
+    50/106: $2\s0_bready_mux[0:0]
+    51/106: $4\w_wready_demux[3:0]
+    52/106: $4$bitselwrite$pos$axi4lite_arbiter_top.sv:412$493[1:0]$629
+    53/106: $4\s1_wvalid_mux[0:0]
+    54/106: $3\w_wready_demux[3:0]
+    55/106: $3$bitselwrite$pos$axi4lite_arbiter_top.sv:409$492[1:0]$620
+    56/106: $3\s0_wvalid_mux[0:0]
+    57/106: $3$bitselwrite$pos$axi4lite_arbiter_top.sv:412$493[1:0]$621
+    58/106: $3\s1_wvalid_mux[0:0]
+    59/106: $2\w_wready_demux[3:0]
+    60/106: $2$bitselwrite$pos$axi4lite_arbiter_top.sv:405$491[1:0]$610
+    61/106: $2$bitselwrite$pos$axi4lite_arbiter_top.sv:412$493[1:0]$612
+    62/106: $2$bitselwrite$pos$axi4lite_arbiter_top.sv:409$492[1:0]$611
+    63/106: $2\s1_wvalid_mux[0:0]
+    64/106: $2\s0_wvalid_mux[0:0]
+    65/106: $4\w_awready_demux[3:0]
+    66/106: $4$bitselwrite$pos$axi4lite_arbiter_top.sv:398$490[1:0]$602
+    67/106: $4\s1_awvalid_mux[0:0]
+    68/106: $3\w_awready_demux[3:0]
+    69/106: $3$bitselwrite$pos$axi4lite_arbiter_top.sv:395$489[1:0]$593
+    70/106: $3\s0_awvalid_mux[0:0]
+    71/106: $3$bitselwrite$pos$axi4lite_arbiter_top.sv:398$490[1:0]$594
+    72/106: $3\s1_awvalid_mux[0:0]
+    73/106: $2\w_awready_demux[3:0]
+    74/106: $2$bitselwrite$pos$axi4lite_arbiter_top.sv:391$488[1:0]$583
+    75/106: $2$bitselwrite$pos$axi4lite_arbiter_top.sv:398$490[1:0]$585
+    76/106: $2$bitselwrite$pos$axi4lite_arbiter_top.sv:395$489[1:0]$584
+    77/106: $2\s1_awvalid_mux[0:0]
+    78/106: $2\s0_awvalid_mux[0:0]
+    79/106: $1$mem2reg_wr$\w_bresp_demux$axi4lite_arbiter_top.sv:428$508_DATA[1:0]$582
+    80/106: $1$mem2reg_wr$\w_bresp_demux$axi4lite_arbiter_top.sv:428$508_ADDR[1:0]$581
+    81/106: $1$mem2reg_wr$\w_bresp_demux$axi4lite_arbiter_top.sv:424$507_DATA[1:0]$580
+    82/106: $1$mem2reg_wr$\w_bresp_demux$axi4lite_arbiter_top.sv:424$507_ADDR[1:0]$579
+    83/106: $1$mem2reg_wr$\w_bresp_demux$axi4lite_arbiter_top.sv:420$506_DATA[1:0]$578
+    84/106: $1$mem2reg_wr$\w_bresp_demux$axi4lite_arbiter_top.sv:420$506_ADDR[1:0]$577
+    85/106: $1\w_bresp_demux[3][1:0]
+    86/106: $1\w_bresp_demux[2][1:0]
+    87/106: $1\w_bresp_demux[1][1:0]
+    88/106: $1\w_bresp_demux[0][1:0]
+    89/106: $1$bitselwrite$pos$axi4lite_arbiter_top.sv:427$496[1:0]$576
+    90/106: $1$bitselwrite$pos$axi4lite_arbiter_top.sv:423$495[1:0]$575
+    91/106: $1$bitselwrite$pos$axi4lite_arbiter_top.sv:419$494[1:0]$574
+    92/106: $1$bitselwrite$pos$axi4lite_arbiter_top.sv:412$493[1:0]$573
+    93/106: $1$bitselwrite$pos$axi4lite_arbiter_top.sv:409$492[1:0]$572
+    94/106: $1$bitselwrite$pos$axi4lite_arbiter_top.sv:405$491[1:0]$571
+    95/106: $1$bitselwrite$pos$axi4lite_arbiter_top.sv:398$490[1:0]$570
+    96/106: $1$bitselwrite$pos$axi4lite_arbiter_top.sv:395$489[1:0]$569
+    97/106: $1$bitselwrite$pos$axi4lite_arbiter_top.sv:391$488[1:0]$568
+    98/106: $1\s1_bready_mux[0:0]
+    99/106: $1\s0_bready_mux[0:0]
+   100/106: $1\s1_wvalid_mux[0:0]
+   101/106: $1\s0_wvalid_mux[0:0]
+   102/106: $1\s1_awvalid_mux[0:0]
+   103/106: $1\s0_awvalid_mux[0:0]
+   104/106: $1\w_bvalid_demux[3:0]
+   105/106: $1\w_wready_demux[3:0]
+   106/106: $1\w_awready_demux[3:0]
+Creating decoders for process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:302$521'.
+     1/26: $4$mem2reg_rd$\m_awprot$axi4lite_arbiter_top.sv:319$505_DATA[2:0]$548
+     2/26: $4$mem2reg_rd$\m_awaddr$axi4lite_arbiter_top.sv:318$504_DATA[31:0]$547
+     3/26: $3$mem2reg_rd$\m_awprot$axi4lite_arbiter_top.sv:319$505_DATA[2:0]$546
+     4/26: $3$mem2reg_rd$\m_awprot$axi4lite_arbiter_top.sv:319$505_ADDR[1:0]$545
+     5/26: $3$mem2reg_rd$\m_awaddr$axi4lite_arbiter_top.sv:318$504_DATA[31:0]$544
+     6/26: $3$mem2reg_rd$\m_awaddr$axi4lite_arbiter_top.sv:318$504_ADDR[1:0]$543
+     7/26: $3$mem2reg_rd$\m_awvalid$axi4lite_arbiter_top.sv:316$503_DATA[0:0]$541
+     8/26: $2$mem2reg_rd$\m_awprot$axi4lite_arbiter_top.sv:319$505_DATA[2:0]$540
+     9/26: $2$mem2reg_rd$\m_awprot$axi4lite_arbiter_top.sv:319$505_ADDR[1:0]$539
+    10/26: $2$mem2reg_rd$\m_awaddr$axi4lite_arbiter_top.sv:318$504_DATA[31:0]$538
+    11/26: $2$mem2reg_rd$\m_awaddr$axi4lite_arbiter_top.sv:318$504_ADDR[1:0]$537
+    12/26: $2$mem2reg_rd$\m_awvalid$axi4lite_arbiter_top.sv:316$503_DATA[0:0]$536
+    13/26: $2$mem2reg_rd$\m_awvalid$axi4lite_arbiter_top.sv:316$503_ADDR[1:0]$535
+    14/26: $1$mem2reg_rd$\m_awprot$axi4lite_arbiter_top.sv:319$505_DATA[2:0]$534
+    15/26: $1$mem2reg_rd$\m_awprot$axi4lite_arbiter_top.sv:319$505_ADDR[1:0]$533
+    16/26: $1$mem2reg_rd$\m_awaddr$axi4lite_arbiter_top.sv:318$504_DATA[31:0]$532
+    17/26: $1$mem2reg_rd$\m_awaddr$axi4lite_arbiter_top.sv:318$504_ADDR[1:0]$531
+    18/26: $1$mem2reg_rd$\m_awvalid$axi4lite_arbiter_top.sv:316$503_DATA[0:0]$530
+    19/26: $1$mem2reg_rd$\m_awvalid$axi4lite_arbiter_top.sv:316$503_ADDR[1:0]$529
+    20/26: $0\write_arb_tx_done[0:0]
+    21/26: $0\w_latched_prot[2:0]
+    22/26: $0\w_latched_addr[31:0]
+    23/26: $0\w_target_invalid[0:0]
+    24/26: $0\w_target_slave_sel[1:0]
+    25/26: $0\w_owner_m_id[1:0]
+    26/26: $0\w_state[1:0]
+Creating decoders for process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$520'.
+     1/4: $1\w_owner_bready[0:0]
+     2/4: $1\w_owner_wvalid[0:0]
+     3/4: $1\w_owner_wstrb[3:0]
+     4/4: $1\w_owner_wdata[31:0]
+Creating decoders for process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$519'.
+     1/6: $2\w_target_bvalid[0:0]
+     2/6: $2\w_target_wready[0:0]
+     3/6: $2\w_target_awready[0:0]
+     4/6: $1\w_target_bvalid[0:0]
+     5/6: $1\w_target_wready[0:0]
+     6/6: $1\w_target_awready[0:0]
+Creating decoders for process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$518'.
+     1/1: $1\w_eval_addr[31:0]
+Creating decoders for process `\arbiter_formal.$proc$arbiter_formal.sv:133$487'.
+Creating decoders for process `\arbiter_formal.$proc$arbiter_formal.sv:191$449'.
+     1/7: $assume$arbiter_formal.sv:211$485_EN
+     2/7: $assume$arbiter_formal.sv:208$480_EN
+     3/7: $assume$arbiter_formal.sv:203$473_EN
+     4/7: $assume$arbiter_formal.sv:202$471_EN
+     5/7: $assume$arbiter_formal.sv:201$470_EN
+     6/7: $assume$arbiter_formal.sv:196$466_EN
+     7/7: $assume$arbiter_formal.sv:195$465_EN
+Creating decoders for process `\arbiter_formal.$proc$arbiter_formal.sv:191$411'.
+     1/7: $assume$arbiter_formal.sv:211$447_EN
+     2/7: $assume$arbiter_formal.sv:208$442_EN
+     3/7: $assume$arbiter_formal.sv:203$435_EN
+     4/7: $assume$arbiter_formal.sv:202$433_EN
+     5/7: $assume$arbiter_formal.sv:201$432_EN
+     6/7: $assume$arbiter_formal.sv:196$428_EN
+     7/7: $assume$arbiter_formal.sv:195$427_EN
+Creating decoders for process `\arbiter_formal.$proc$arbiter_formal.sv:160$376'.
+     1/9: $assume$arbiter_formal.sv:180$409_EN
+     2/9: $assume$arbiter_formal.sv:179$407_EN
+     3/9: $assume$arbiter_formal.sv:178$406_EN
+     4/9: $assume$arbiter_formal.sv:173$402_EN
+     5/9: $assume$arbiter_formal.sv:172$400_EN
+     6/9: $assume$arbiter_formal.sv:171$399_EN
+     7/9: $assume$arbiter_formal.sv:166$395_EN
+     8/9: $assume$arbiter_formal.sv:165$393_EN
+     9/9: $assume$arbiter_formal.sv:164$392_EN
+Creating decoders for process `\arbiter_formal.$proc$arbiter_formal.sv:160$341'.
+     1/9: $assume$arbiter_formal.sv:180$374_EN
+     2/9: $assume$arbiter_formal.sv:179$372_EN
+     3/9: $assume$arbiter_formal.sv:178$371_EN
+     4/9: $assume$arbiter_formal.sv:173$367_EN
+     5/9: $assume$arbiter_formal.sv:172$365_EN
+     6/9: $assume$arbiter_formal.sv:171$364_EN
+     7/9: $assume$arbiter_formal.sv:166$360_EN
+     8/9: $assume$arbiter_formal.sv:165$358_EN
+     9/9: $assume$arbiter_formal.sv:164$357_EN
+Creating decoders for process `\arbiter_formal.$proc$arbiter_formal.sv:160$306'.
+     1/9: $assume$arbiter_formal.sv:180$339_EN
+     2/9: $assume$arbiter_formal.sv:179$337_EN
+     3/9: $assume$arbiter_formal.sv:178$336_EN
+     4/9: $assume$arbiter_formal.sv:173$332_EN
+     5/9: $assume$arbiter_formal.sv:172$330_EN
+     6/9: $assume$arbiter_formal.sv:171$329_EN
+     7/9: $assume$arbiter_formal.sv:166$325_EN
+     8/9: $assume$arbiter_formal.sv:165$323_EN
+     9/9: $assume$arbiter_formal.sv:164$322_EN
+Creating decoders for process `\arbiter_formal.$proc$arbiter_formal.sv:160$271'.
+     1/9: $assume$arbiter_formal.sv:180$304_EN
+     2/9: $assume$arbiter_formal.sv:179$302_EN
+     3/9: $assume$arbiter_formal.sv:178$301_EN
+     4/9: $assume$arbiter_formal.sv:173$297_EN
+     5/9: $assume$arbiter_formal.sv:172$295_EN
+     6/9: $assume$arbiter_formal.sv:171$294_EN
+     7/9: $assume$arbiter_formal.sv:166$290_EN
+     8/9: $assume$arbiter_formal.sv:165$288_EN
+     9/9: $assume$arbiter_formal.sv:164$287_EN
+Creating decoders for process `\arbiter_formal.$proc$arbiter_formal.sv:263$253'.
+     1/8: $assert$arbiter_formal.sv:272$269_EN
+     2/8: $assert$arbiter_formal.sv:271$267_EN
+     3/8: $assert$arbiter_formal.sv:270$265_EN
+     4/8: $assert$arbiter_formal.sv:269$263_EN
+     5/8: $assert$arbiter_formal.sv:268$261_EN
+     6/8: $assert$arbiter_formal.sv:267$259_EN
+     7/8: $assert$arbiter_formal.sv:266$257_EN
+     8/8: $assert$arbiter_formal.sv:265$255_EN
+Creating decoders for process `\arbiter_formal.$proc$arbiter_formal.sv:255$216'.
+     1/2: $assert$arbiter_formal.sv:258$235_EN
+     2/2: $assert$arbiter_formal.sv:257$217_EN
+Creating decoders for process `\arbiter_formal.$proc$arbiter_formal.sv:243$209'.
+     1/2: $assert$arbiter_formal.sv:249$214_EN
+     2/2: $assert$arbiter_formal.sv:246$211_EN
+Creating decoders for process `\arbiter_formal.$proc$arbiter_formal.sv:234$178'.
+     1/3: $assert$arbiter_formal.sv:238$199_EN
+     2/3: $assert$arbiter_formal.sv:237$189_EN
+     3/3: $assert$arbiter_formal.sv:236$179_EN
+Creating decoders for process `\arbiter_formal.$proc$arbiter_formal.sv:223$87'.
+     1/5: $assert$arbiter_formal.sv:229$160_EN
+     2/5: $assert$arbiter_formal.sv:228$142_EN
+     3/5: $assert$arbiter_formal.sv:227$124_EN
+     4/5: $assert$arbiter_formal.sv:226$106_EN
+     5/5: $assert$arbiter_formal.sv:225$88_EN
+Creating decoders for process `\arbiter_formal.$proc$arbiter_formal.sv:143$81'.
+     1/2: $assume$arbiter_formal.sv:147$85_EN
+     2/2: $assume$arbiter_formal.sv:145$83_EN
+Creating decoders for process `\arbiter_formal.$proc$arbiter_formal.sv:134$77'.
+     1/1: $0\f_reset_count[2:0]
+
+5.3.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.\grant' from process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:0$887'.
+No latch inferred for signal `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.\master_id' from process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:0$887'.
+No latch inferred for signal `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.\grant_valid' from process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:0$887'.
+No latch inferred for signal `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$bitselwrite$pos$qos_arbiter.sv:249$834' from process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:0$887'.
+No latch inferred for signal `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$bitselwrite$pos$qos_arbiter.sv:253$835' from process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:0$887'.
+No latch inferred for signal `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.\next_cand' from process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:0$847'.
+No latch inferred for signal `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.\cand_valid' from process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:0$847'.
+No latch inferred for signal `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.\eff_q1' from process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:0$838'.
+No latch inferred for signal `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.\eff_q2' from process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:0$838'.
+No latch inferred for signal `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.\eff_q3' from process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:0$838'.
+No latch inferred for signal `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.\eff_rr_ptr' from process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:0$838'.
+No latch inferred for signal `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.\eff_starvation' from process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:0$838'.
+No latch inferred for signal `$paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.\slave_sel' from process `$paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.$proc$addr_decoder.sv:0$825'.
+No latch inferred for signal `$paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.\valid_addr' from process `$paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.$proc$addr_decoder.sv:0$825'.
+No latch inferred for signal `$paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.\invalid_addr' from process `$paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.$proc$addr_decoder.sv:0$825'.
+No latch inferred for signal `$paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.\match_s0' from process `$paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.$proc$addr_decoder.sv:0$825'.
+No latch inferred for signal `$paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.\match_s1' from process `$paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.$proc$addr_decoder.sv:0$825'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_awaddr[0]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_awaddr[1]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_awaddr[2]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_awaddr[3]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_awprot[0]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_awprot[1]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_awprot[2]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_awprot[3]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_awvalid[0]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_awvalid[1]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_awvalid[2]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_awvalid[3]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_wdata[0]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_wdata[1]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_wdata[2]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_wdata[3]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_wstrb[0]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_wstrb[1]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_wstrb[2]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_wstrb[3]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_wvalid[0]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_wvalid[1]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_wvalid[2]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_wvalid[3]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_bready[0]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_bready[1]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_bready[2]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_bready[3]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_araddr[0]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_araddr[1]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_araddr[2]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_araddr[3]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_arprot[0]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_arprot[1]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_arprot[2]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_arprot[3]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_arvalid[0]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_arvalid[1]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_arvalid[2]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_arvalid[3]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_rready[0]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_rready[1]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_rready[2]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\m_rready[3]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\r_arready_demux' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\r_rvalid_demux' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\s0_arvalid_mux' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\s1_arvalid_mux' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\s0_rready_mux' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\s1_rready_mux' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$fordecl_block$3.i' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$bitselwrite$pos$axi4lite_arbiter_top.sv:656$497' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$bitselwrite$pos$axi4lite_arbiter_top.sv:660$498' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$bitselwrite$pos$axi4lite_arbiter_top.sv:663$499' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$bitselwrite$pos$axi4lite_arbiter_top.sv:670$500' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$bitselwrite$pos$axi4lite_arbiter_top.sv:675$501' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$bitselwrite$pos$axi4lite_arbiter_top.sv:680$502' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\r_rdata_demux[0]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\r_rdata_demux[1]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\r_rdata_demux[2]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\r_rdata_demux[3]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\r_rresp_demux[0]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\r_rresp_demux[1]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\r_rresp_demux[2]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\r_rresp_demux[3]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_wr$\r_rdata_demux$axi4lite_arbiter_top.sv:671$512_ADDR' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_wr$\r_rdata_demux$axi4lite_arbiter_top.sv:671$512_DATA' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_wr$\r_rresp_demux$axi4lite_arbiter_top.sv:672$513_ADDR' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_wr$\r_rresp_demux$axi4lite_arbiter_top.sv:672$513_DATA' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_wr$\r_rdata_demux$axi4lite_arbiter_top.sv:676$514_ADDR' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_wr$\r_rdata_demux$axi4lite_arbiter_top.sv:676$514_DATA' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_wr$\r_rresp_demux$axi4lite_arbiter_top.sv:677$515_ADDR' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_wr$\r_rresp_demux$axi4lite_arbiter_top.sv:677$515_DATA' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_wr$\r_rdata_demux$axi4lite_arbiter_top.sv:681$516_ADDR' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_wr$\r_rdata_demux$axi4lite_arbiter_top.sv:681$516_DATA' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_wr$\r_rresp_demux$axi4lite_arbiter_top.sv:682$517_ADDR' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_wr$\r_rresp_demux$axi4lite_arbiter_top.sv:682$517_DATA' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\r_owner_rready' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$678'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\r_target_arready' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$677'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\r_target_rvalid' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$677'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\r_eval_addr' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$676'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\w_awready_demux' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\w_wready_demux' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\w_bvalid_demux' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\s0_awvalid_mux' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\s1_awvalid_mux' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\s0_wvalid_mux' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\s1_wvalid_mux' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\s0_bready_mux' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\s1_bready_mux' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$fordecl_block$1.i' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$bitselwrite$pos$axi4lite_arbiter_top.sv:391$488' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$bitselwrite$pos$axi4lite_arbiter_top.sv:395$489' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$bitselwrite$pos$axi4lite_arbiter_top.sv:398$490' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$bitselwrite$pos$axi4lite_arbiter_top.sv:405$491' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$bitselwrite$pos$axi4lite_arbiter_top.sv:409$492' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$bitselwrite$pos$axi4lite_arbiter_top.sv:412$493' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$bitselwrite$pos$axi4lite_arbiter_top.sv:419$494' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$bitselwrite$pos$axi4lite_arbiter_top.sv:423$495' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$bitselwrite$pos$axi4lite_arbiter_top.sv:427$496' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\w_bresp_demux[0]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\w_bresp_demux[1]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\w_bresp_demux[2]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\w_bresp_demux[3]' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_wr$\w_bresp_demux$axi4lite_arbiter_top.sv:420$506_ADDR' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_wr$\w_bresp_demux$axi4lite_arbiter_top.sv:420$506_DATA' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_wr$\w_bresp_demux$axi4lite_arbiter_top.sv:424$507_ADDR' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_wr$\w_bresp_demux$axi4lite_arbiter_top.sv:424$507_DATA' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_wr$\w_bresp_demux$axi4lite_arbiter_top.sv:428$508_ADDR' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_wr$\w_bresp_demux$axi4lite_arbiter_top.sv:428$508_DATA' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\w_owner_wdata' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$520'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\w_owner_wstrb' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$520'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\w_owner_wvalid' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$520'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\w_owner_bready' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$520'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\w_target_awready' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$519'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\w_target_wready' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$519'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\w_target_bvalid' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$519'.
+No latch inferred for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\w_eval_addr' from process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$518'.
+
+5.3.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.\starvation_flag' using process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:179$869'.
+  created $adff cell `$procdff$4503' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.\current_master' using process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:179$869'.
+  created $adff cell `$procdff$4508' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.\is_active' using process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:179$869'.
+  created $adff cell `$procdff$4513' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.\quota_1' using process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:179$869'.
+  created $adff cell `$procdff$4518' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.\quota_2' using process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:179$869'.
+  created $adff cell `$procdff$4523' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.\quota_3' using process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:179$869'.
+  created $adff cell `$procdff$4528' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.\rr_ptr' using process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:179$869'.
+  created $adff cell `$procdff$4533' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.\age_counter' using process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:179$869'.
+  created $adff cell `$procdff$4538' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\r_state' using process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:578$679'.
+  created $adff cell `$procdff$4543' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\r_owner_m_id' using process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:578$679'.
+  created $adff cell `$procdff$4548' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\r_target_slave_sel' using process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:578$679'.
+  created $adff cell `$procdff$4553' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\r_target_invalid' using process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:578$679'.
+  created $adff cell `$procdff$4558' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\r_latched_addr' using process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:578$679'.
+  created $adff cell `$procdff$4563' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\r_latched_prot' using process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:578$679'.
+  created $adff cell `$procdff$4568' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\read_arb_tx_done' using process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:578$679'.
+  created $adff cell `$procdff$4573' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_rd$\m_arvalid$axi4lite_arbiter_top.sv:592$509_ADDR' using process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:578$679'.
+  created $adff cell `$procdff$4578' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_rd$\m_arvalid$axi4lite_arbiter_top.sv:592$509_DATA' using process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:578$679'.
+  created $adff cell `$procdff$4583' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_rd$\m_araddr$axi4lite_arbiter_top.sv:594$510_ADDR' using process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:578$679'.
+  created $adff cell `$procdff$4588' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_rd$\m_araddr$axi4lite_arbiter_top.sv:594$510_DATA' using process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:578$679'.
+  created $adff cell `$procdff$4593' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_rd$\m_arprot$axi4lite_arbiter_top.sv:595$511_ADDR' using process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:578$679'.
+  created $adff cell `$procdff$4598' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_rd$\m_arprot$axi4lite_arbiter_top.sv:595$511_DATA' using process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:578$679'.
+  created $adff cell `$procdff$4603' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\w_state' using process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:302$521'.
+  created $adff cell `$procdff$4608' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\w_owner_m_id' using process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:302$521'.
+  created $adff cell `$procdff$4613' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\w_target_slave_sel' using process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:302$521'.
+  created $adff cell `$procdff$4618' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\w_target_invalid' using process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:302$521'.
+  created $adff cell `$procdff$4623' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\w_latched_addr' using process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:302$521'.
+  created $adff cell `$procdff$4628' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\w_latched_prot' using process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:302$521'.
+  created $adff cell `$procdff$4633' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.\write_arb_tx_done' using process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:302$521'.
+  created $adff cell `$procdff$4638' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_rd$\m_awvalid$axi4lite_arbiter_top.sv:316$503_ADDR' using process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:302$521'.
+  created $adff cell `$procdff$4643' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_rd$\m_awvalid$axi4lite_arbiter_top.sv:316$503_DATA' using process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:302$521'.
+  created $adff cell `$procdff$4648' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_rd$\m_awaddr$axi4lite_arbiter_top.sv:318$504_ADDR' using process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:302$521'.
+  created $adff cell `$procdff$4653' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_rd$\m_awaddr$axi4lite_arbiter_top.sv:318$504_DATA' using process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:302$521'.
+  created $adff cell `$procdff$4658' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_rd$\m_awprot$axi4lite_arbiter_top.sv:319$505_ADDR' using process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:302$521'.
+  created $adff cell `$procdff$4663' with positive edge clock and positive level reset.
+Creating register for signal `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$mem2reg_rd$\m_awprot$axi4lite_arbiter_top.sv:319$505_DATA' using process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:302$521'.
+  created $adff cell `$procdff$4668' with positive edge clock and positive level reset.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:194$65$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:191$449'.
+  created $dff cell `$procdff$4669' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:194$66$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:191$449'.
+  created $dff cell `$procdff$4670' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:196$67$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:191$449'.
+  created $dff cell `$procdff$4671' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:200$68$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:191$449'.
+  created $dff cell `$procdff$4672' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:200$69$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:191$449'.
+  created $dff cell `$procdff$4673' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:202$70$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:191$449'.
+  created $dff cell `$procdff$4674' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:203$71$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:191$449'.
+  created $dff cell `$procdff$4675' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:207$72$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:191$449'.
+  created $dff cell `$procdff$4676' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:207$73$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:191$449'.
+  created $dff cell `$procdff$4677' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:207$74$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:191$449'.
+  created $dff cell `$procdff$4678' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:210$75$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:191$449'.
+  created $dff cell `$procdff$4679' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:210$76$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:191$449'.
+  created $dff cell `$procdff$4680' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:194$53$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:191$411'.
+  created $dff cell `$procdff$4681' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:194$54$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:191$411'.
+  created $dff cell `$procdff$4682' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:196$55$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:191$411'.
+  created $dff cell `$procdff$4683' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:200$56$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:191$411'.
+  created $dff cell `$procdff$4684' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:200$57$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:191$411'.
+  created $dff cell `$procdff$4685' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:202$58$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:191$411'.
+  created $dff cell `$procdff$4686' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:203$59$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:191$411'.
+  created $dff cell `$procdff$4687' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:207$60$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:191$411'.
+  created $dff cell `$procdff$4688' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:207$61$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:191$411'.
+  created $dff cell `$procdff$4689' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:207$62$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:191$411'.
+  created $dff cell `$procdff$4690' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:210$63$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:191$411'.
+  created $dff cell `$procdff$4691' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:210$64$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:191$411'.
+  created $dff cell `$procdff$4692' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:163$41$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$376'.
+  created $dff cell `$procdff$4693' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:163$42$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$376'.
+  created $dff cell `$procdff$4694' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:165$43$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$376'.
+  created $dff cell `$procdff$4695' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:166$44$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$376'.
+  created $dff cell `$procdff$4696' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:170$45$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$376'.
+  created $dff cell `$procdff$4697' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:170$46$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$376'.
+  created $dff cell `$procdff$4698' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:172$47$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$376'.
+  created $dff cell `$procdff$4699' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:173$48$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$376'.
+  created $dff cell `$procdff$4700' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:177$49$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$376'.
+  created $dff cell `$procdff$4701' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:177$50$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$376'.
+  created $dff cell `$procdff$4702' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:179$51$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$376'.
+  created $dff cell `$procdff$4703' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:180$52$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$376'.
+  created $dff cell `$procdff$4704' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:163$29$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$341'.
+  created $dff cell `$procdff$4705' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:163$30$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$341'.
+  created $dff cell `$procdff$4706' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:165$31$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$341'.
+  created $dff cell `$procdff$4707' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:166$32$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$341'.
+  created $dff cell `$procdff$4708' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:170$33$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$341'.
+  created $dff cell `$procdff$4709' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:170$34$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$341'.
+  created $dff cell `$procdff$4710' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:172$35$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$341'.
+  created $dff cell `$procdff$4711' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:173$36$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$341'.
+  created $dff cell `$procdff$4712' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:177$37$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$341'.
+  created $dff cell `$procdff$4713' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:177$38$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$341'.
+  created $dff cell `$procdff$4714' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:179$39$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$341'.
+  created $dff cell `$procdff$4715' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:180$40$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$341'.
+  created $dff cell `$procdff$4716' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:163$17$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$306'.
+  created $dff cell `$procdff$4717' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:163$18$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$306'.
+  created $dff cell `$procdff$4718' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:165$19$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$306'.
+  created $dff cell `$procdff$4719' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:166$20$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$306'.
+  created $dff cell `$procdff$4720' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:170$21$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$306'.
+  created $dff cell `$procdff$4721' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:170$22$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$306'.
+  created $dff cell `$procdff$4722' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:172$23$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$306'.
+  created $dff cell `$procdff$4723' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:173$24$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$306'.
+  created $dff cell `$procdff$4724' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:177$25$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$306'.
+  created $dff cell `$procdff$4725' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:177$26$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$306'.
+  created $dff cell `$procdff$4726' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:179$27$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$306'.
+  created $dff cell `$procdff$4727' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:180$28$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$306'.
+  created $dff cell `$procdff$4728' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:163$5$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$271'.
+  created $dff cell `$procdff$4729' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:163$6$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$271'.
+  created $dff cell `$procdff$4730' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:165$7$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$271'.
+  created $dff cell `$procdff$4731' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:166$8$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$271'.
+  created $dff cell `$procdff$4732' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:170$9$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$271'.
+  created $dff cell `$procdff$4733' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:170$10$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$271'.
+  created $dff cell `$procdff$4734' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:172$11$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$271'.
+  created $dff cell `$procdff$4735' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:173$12$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$271'.
+  created $dff cell `$procdff$4736' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:177$13$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$271'.
+  created $dff cell `$procdff$4737' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:177$14$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$271'.
+  created $dff cell `$procdff$4738' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:179$15$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$271'.
+  created $dff cell `$procdff$4739' with positive edge clock.
+Creating register for signal `\arbiter_formal.$past$arbiter_formal.sv:180$16$0' using process `\arbiter_formal.$proc$arbiter_formal.sv:160$271'.
+  created $dff cell `$procdff$4740' with positive edge clock.
+Creating register for signal `\arbiter_formal.\f_reset_count' using process `\arbiter_formal.$proc$arbiter_formal.sv:134$77'.
+  created $dff cell `$procdff$4741' with positive edge clock.
+
+5.3.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+5.3.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 2 empty switches in `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:0$887'.
+Removing empty process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:0$887'.
+Found and cleaned up 11 empty switches in `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:179$869'.
+Removing empty process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:179$869'.
+Found and cleaned up 24 empty switches in `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:0$847'.
+Removing empty process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:0$847'.
+Found and cleaned up 6 empty switches in `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:0$838'.
+Removing empty process `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$proc$qos_arbiter.sv:0$838'.
+Found and cleaned up 4 empty switches in `$paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.$proc$addr_decoder.sv:0$825'.
+Removing empty process `$paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.$proc$addr_decoder.sv:0$825'.
+Removing empty process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$824'.
+Found and cleaned up 13 empty switches in `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+Removing empty process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$708'.
+Found and cleaned up 10 empty switches in `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:578$679'.
+Removing empty process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:578$679'.
+Found and cleaned up 1 empty switch in `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$678'.
+Removing empty process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$678'.
+Found and cleaned up 2 empty switches in `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$677'.
+Removing empty process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$677'.
+Found and cleaned up 1 empty switch in `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$676'.
+Removing empty process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$676'.
+Found and cleaned up 13 empty switches in `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+Removing empty process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$551'.
+Found and cleaned up 13 empty switches in `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:302$521'.
+Removing empty process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:302$521'.
+Found and cleaned up 1 empty switch in `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$520'.
+Removing empty process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$520'.
+Found and cleaned up 2 empty switches in `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$519'.
+Removing empty process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$519'.
+Found and cleaned up 1 empty switch in `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$518'.
+Removing empty process `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$proc$axi4lite_arbiter_top.sv:0$518'.
+Removing empty process `arbiter_formal.$proc$arbiter_formal.sv:133$487'.
+Found and cleaned up 5 empty switches in `\arbiter_formal.$proc$arbiter_formal.sv:191$449'.
+Removing empty process `arbiter_formal.$proc$arbiter_formal.sv:191$449'.
+Found and cleaned up 5 empty switches in `\arbiter_formal.$proc$arbiter_formal.sv:191$411'.
+Removing empty process `arbiter_formal.$proc$arbiter_formal.sv:191$411'.
+Found and cleaned up 4 empty switches in `\arbiter_formal.$proc$arbiter_formal.sv:160$376'.
+Removing empty process `arbiter_formal.$proc$arbiter_formal.sv:160$376'.
+Found and cleaned up 4 empty switches in `\arbiter_formal.$proc$arbiter_formal.sv:160$341'.
+Removing empty process `arbiter_formal.$proc$arbiter_formal.sv:160$341'.
+Found and cleaned up 4 empty switches in `\arbiter_formal.$proc$arbiter_formal.sv:160$306'.
+Removing empty process `arbiter_formal.$proc$arbiter_formal.sv:160$306'.
+Found and cleaned up 4 empty switches in `\arbiter_formal.$proc$arbiter_formal.sv:160$271'.
+Removing empty process `arbiter_formal.$proc$arbiter_formal.sv:160$271'.
+Found and cleaned up 1 empty switch in `\arbiter_formal.$proc$arbiter_formal.sv:263$253'.
+Removing empty process `arbiter_formal.$proc$arbiter_formal.sv:263$253'.
+Found and cleaned up 1 empty switch in `\arbiter_formal.$proc$arbiter_formal.sv:255$216'.
+Removing empty process `arbiter_formal.$proc$arbiter_formal.sv:255$216'.
+Found and cleaned up 3 empty switches in `\arbiter_formal.$proc$arbiter_formal.sv:243$209'.
+Removing empty process `arbiter_formal.$proc$arbiter_formal.sv:243$209'.
+Found and cleaned up 1 empty switch in `\arbiter_formal.$proc$arbiter_formal.sv:234$178'.
+Removing empty process `arbiter_formal.$proc$arbiter_formal.sv:234$178'.
+Found and cleaned up 1 empty switch in `\arbiter_formal.$proc$arbiter_formal.sv:223$87'.
+Removing empty process `arbiter_formal.$proc$arbiter_formal.sv:223$87'.
+Found and cleaned up 1 empty switch in `\arbiter_formal.$proc$arbiter_formal.sv:143$81'.
+Removing empty process `arbiter_formal.$proc$arbiter_formal.sv:143$81'.
+Found and cleaned up 2 empty switches in `\arbiter_formal.$proc$arbiter_formal.sv:134$77'.
+Removing empty process `arbiter_formal.$proc$arbiter_formal.sv:134$77'.
+Cleaned up 140 empty switches.
+
+5.3.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.
+<suppressed ~46 debug messages>
+Optimizing module $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.
+<suppressed ~2 debug messages>
+Optimizing module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+<suppressed ~197 debug messages>
+Optimizing module arbiter_formal.
+<suppressed ~88 debug messages>
+
+5.4. Executing FUTURE pass.
+
+5.5. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.
+Optimizing module $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.
+Optimizing module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+Optimizing module arbiter_formal.
+
+5.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter..
+Finding unused cells or wires in module $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder..
+Finding unused cells or wires in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top..
+Finding unused cells or wires in module \arbiter_formal..
+Removed 527 unused cells and 2229 unused wires.
+<suppressed ~531 debug messages>
+
+5.7. Executing CHECK pass (checking for obvious problems).
+Checking module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top...
+Checking module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter...
+Checking module $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder...
+Checking module arbiter_formal...
+Found and reported 0 problems.
+
+5.8. Executing OPT pass (performing simple optimizations).
+
+5.8.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+Optimizing module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.
+Optimizing module $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.
+Optimizing module arbiter_formal.
+
+5.8.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top'.
+<suppressed ~1176 debug messages>
+Finding identical cells in module `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter'.
+<suppressed ~204 debug messages>
+Finding identical cells in module `$paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder'.
+Finding identical cells in module `\arbiter_formal'.
+<suppressed ~69 debug messages>
+Removed a total of 483 cells.
+
+5.8.3. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $procmux$2827.
+    dead port 2/2 on $mux $procmux$2829.
+    dead port 2/2 on $mux $procmux$2203.
+    dead port 1/2 on $mux $procmux$2847.
+    dead port 2/2 on $mux $procmux$2849.
+    dead port 2/2 on $mux $procmux$2856.
+    dead port 2/2 on $mux $procmux$2884.
+    dead port 2/2 on $mux $procmux$2891.
+    dead port 2/2 on $mux $procmux$1942.
+    dead port 1/2 on $mux $procmux$1945.
+    dead port 1/2 on $mux $procmux$1948.
+    dead port 2/2 on $mux $procmux$2224.
+    dead port 1/2 on $mux $procmux$2227.
+    dead port 2/2 on $mux $procmux$2229.
+    dead port 2/2 on $mux $procmux$1950.
+    dead port 2/2 on $mux $procmux$2238.
+    dead port 1/2 on $mux $procmux$2241.
+    dead port 2/2 on $mux $procmux$2243.
+    dead port 2/2 on $mux $procmux$3004.
+    dead port 2/2 on $mux $procmux$3006.
+    dead port 2/2 on $mux $procmux$1959.
+    dead port 2/2 on $mux $procmux$3017.
+    dead port 2/2 on $mux $procmux$3019.
+    dead port 1/2 on $mux $procmux$1962.
+    dead port 1/2 on $mux $procmux$1965.
+    dead port 2/2 on $mux $procmux$2252.
+    dead port 1/2 on $mux $procmux$2255.
+    dead port 2/2 on $mux $procmux$2257.
+    dead port 2/2 on $mux $procmux$1967.
+    dead port 2/2 on $mux $procmux$2266.
+    dead port 1/2 on $mux $procmux$2269.
+    dead port 2/2 on $mux $procmux$2271.
+    dead port 2/2 on $mux $procmux$1976.
+    dead port 1/2 on $mux $procmux$1979.
+    dead port 1/2 on $mux $procmux$3172.
+    dead port 1/2 on $mux $procmux$3178.
+    dead port 1/2 on $mux $procmux$1982.
+    dead port 2/2 on $mux $procmux$2280.
+    dead port 1/2 on $mux $procmux$2283.
+    dead port 2/2 on $mux $procmux$2285.
+    dead port 2/2 on $mux $procmux$3197.
+    dead port 1/2 on $mux $procmux$3200.
+    dead port 1/2 on $mux $procmux$3203.
+    dead port 2/2 on $mux $procmux$3205.
+    dead port 2/2 on $mux $procmux$1984.
+    dead port 2/2 on $mux $procmux$3213.
+    dead port 1/2 on $mux $procmux$3216.
+    dead port 1/2 on $mux $procmux$3219.
+    dead port 2/2 on $mux $procmux$3221.
+    dead port 2/2 on $mux $procmux$2294.
+    dead port 1/2 on $mux $procmux$2297.
+    dead port 2/2 on $mux $procmux$2299.
+    dead port 2/2 on $mux $procmux$3229.
+    dead port 1/2 on $mux $procmux$3232.
+    dead port 1/2 on $mux $procmux$3235.
+    dead port 2/2 on $mux $procmux$3237.
+    dead port 2/2 on $mux $procmux$1993.
+    dead port 1/2 on $mux $procmux$1996.
+    dead port 2/2 on $mux $procmux$3245.
+    dead port 1/2 on $mux $procmux$3248.
+    dead port 1/2 on $mux $procmux$3251.
+    dead port 2/2 on $mux $procmux$3253.
+    dead port 1/2 on $mux $procmux$1999.
+    dead port 1/2 on $mux $procmux$3259.
+    dead port 1/2 on $mux $procmux$3262.
+    dead port 2/2 on $mux $procmux$3264.
+    dead port 2/2 on $mux $procmux$2308.
+    dead port 1/2 on $mux $procmux$3270.
+    dead port 1/2 on $mux $procmux$3273.
+    dead port 2/2 on $mux $procmux$3275.
+    dead port 1/2 on $mux $procmux$2311.
+    dead port 1/2 on $mux $procmux$3281.
+    dead port 1/2 on $mux $procmux$3284.
+    dead port 2/2 on $mux $procmux$3286.
+    dead port 2/2 on $mux $procmux$2313.
+    dead port 1/2 on $mux $procmux$3292.
+    dead port 1/2 on $mux $procmux$3295.
+    dead port 2/2 on $mux $procmux$3297.
+    dead port 2/2 on $mux $procmux$2001.
+    dead port 1/2 on $mux $procmux$3303.
+    dead port 1/2 on $mux $procmux$3306.
+    dead port 2/2 on $mux $procmux$3308.
+    dead port 1/2 on $mux $procmux$3336.
+    dead port 1/2 on $mux $procmux$3339.
+    dead port 2/2 on $mux $procmux$3341.
+    dead port 2/2 on $mux $procmux$1908.
+    dead port 2/2 on $mux $procmux$2322.
+    dead port 2/2 on $mux $procmux$3360.
+    dead port 1/2 on $mux $procmux$3363.
+    dead port 2/2 on $mux $procmux$3365.
+    dead port 1/2 on $mux $procmux$2325.
+    dead port 2/2 on $mux $procmux$2327.
+    dead port 1/2 on $mux $procmux$1911.
+    dead port 1/2 on $mux $procmux$2334.
+    dead port 2/2 on $mux $procmux$3373.
+    dead port 1/2 on $mux $procmux$3376.
+    dead port 2/2 on $mux $procmux$3378.
+    dead port 2/2 on $mux $procmux$2336.
+    dead port 1/2 on $mux $procmux$1914.
+    dead port 1/2 on $mux $procmux$2343.
+    dead port 2/2 on $mux $procmux$2345.
+    dead port 2/2 on $mux $procmux$3386.
+    dead port 1/2 on $mux $procmux$3389.
+    dead port 2/2 on $mux $procmux$3391.
+    dead port 2/2 on $mux $procmux$2010.
+    dead port 1/2 on $mux $procmux$2352.
+    dead port 2/2 on $mux $procmux$2354.
+    dead port 1/2 on $mux $procmux$2013.
+    dead port 2/2 on $mux $procmux$3399.
+    dead port 1/2 on $mux $procmux$3402.
+    dead port 2/2 on $mux $procmux$3404.
+    dead port 1/2 on $mux $procmux$3410.
+    dead port 2/2 on $mux $procmux$3412.
+    dead port 1/2 on $mux $procmux$2361.
+    dead port 1/2 on $mux $procmux$3418.
+    dead port 2/2 on $mux $procmux$3420.
+    dead port 2/2 on $mux $procmux$2363.
+    dead port 1/2 on $mux $procmux$3426.
+    dead port 2/2 on $mux $procmux$3428.
+    dead port 1/2 on $mux $procmux$2016.
+    dead port 1/2 on $mux $procmux$3434.
+    dead port 2/2 on $mux $procmux$3436.
+    dead port 1/2 on $mux $procmux$3442.
+    dead port 2/2 on $mux $procmux$3444.
+    dead port 1/2 on $mux $procmux$2370.
+    dead port 1/2 on $mux $procmux$3466.
+    dead port 2/2 on $mux $procmux$3468.
+    dead port 2/2 on $mux $procmux$2372.
+    dead port 1/2 on $mux $procmux$3506.
+    dead port 2/2 on $mux $procmux$3508.
+    dead port 2/2 on $mux $procmux$2018.
+    dead port 1/2 on $mux $procmux$2397.
+    dead port 2/2 on $mux $procmux$2399.
+    dead port 2/2 on $mux $procmux$1916.
+    dead port 2/2 on $mux $procmux$3516.
+    dead port 2/2 on $mux $procmux$3518.
+    dead port 1/2 on $mux $procmux$2406.
+    dead port 2/2 on $mux $procmux$2408.
+    dead port 2/2 on $mux $procmux$3526.
+    dead port 2/2 on $mux $procmux$3528.
+    dead port 1/2 on $mux $procmux$2415.
+    dead port 2/2 on $mux $procmux$2417.
+    dead port 1/2 on $mux $procmux$2424.
+    dead port 2/2 on $mux $procmux$3536.
+    dead port 2/2 on $mux $procmux$3538.
+    dead port 2/2 on $mux $procmux$2426.
+    dead port 1/2 on $mux $procmux$2451.
+    dead port 2/2 on $mux $procmux$2453.
+    dead port 2/2 on $mux $procmux$3546.
+    dead port 2/2 on $mux $procmux$3548.
+    dead port 2/2 on $mux $procmux$3553.
+    dead port 2/2 on $mux $procmux$3558.
+    dead port 1/2 on $mux $procmux$2514.
+    dead port 2/2 on $mux $procmux$3563.
+    dead port 2/2 on $mux $procmux$2516.
+    dead port 2/2 on $mux $procmux$3568.
+    dead port 2/2 on $mux $procmux$3583.
+    dead port 2/2 on $mux $procmux$3623.
+    dead port 2/2 on $mux $procmux$2027.
+    dead port 2/2 on $mux $procmux$3628.
+    dead port 1/2 on $mux $procmux$2030.
+    dead port 1/2 on $mux $procmux$3635.
+    dead port 1/2 on $mux $procmux$3638.
+    dead port 2/2 on $mux $procmux$3640.
+    dead port 1/2 on $mux $procmux$3659.
+    dead port 1/2 on $mux $procmux$3662.
+    dead port 2/2 on $mux $procmux$3664.
+    dead port 1/2 on $mux $procmux$2033.
+    dead port 1/2 on $mux $procmux$3671.
+    dead port 2/2 on $mux $procmux$3673.
+    dead port 2/2 on $mux $procmux$2035.
+    dead port 1/2 on $mux $procmux$3689.
+    dead port 2/2 on $mux $procmux$3691.
+    dead port 2/2 on $mux $procmux$2525.
+    dead port 1/2 on $mux $procmux$3707.
+    dead port 2/2 on $mux $procmux$3709.
+    dead port 2/2 on $mux $procmux$2527.
+    dead port 2/2 on $mux $procmux$3715.
+    dead port 2/2 on $mux $procmux$3739.
+    dead port 2/2 on $mux $procmux$3745.
+    dead port 1/2 on $mux $procmux$3753.
+    dead port 1/2 on $mux $procmux$3756.
+    dead port 2/2 on $mux $procmux$3758.
+    dead port 1/2 on $mux $procmux$3779.
+    dead port 1/2 on $mux $procmux$3782.
+    dead port 2/2 on $mux $procmux$3784.
+    dead port 1/2 on $mux $procmux$2042.
+    dead port 1/2 on $mux $procmux$3792.
+    dead port 2/2 on $mux $procmux$3794.
+    dead port 1/2 on $mux $procmux$2045.
+    dead port 1/2 on $mux $procmux$3812.
+    dead port 2/2 on $mux $procmux$3814.
+    dead port 2/2 on $mux $procmux$2047.
+    dead port 1/2 on $mux $procmux$3832.
+    dead port 2/2 on $mux $procmux$3834.
+    dead port 2/2 on $mux $procmux$2536.
+    dead port 2/2 on $mux $procmux$3841.
+    dead port 2/2 on $mux $procmux$2538.
+    dead port 2/2 on $mux $procmux$3869.
+    dead port 2/2 on $mux $procmux$3876.
+    dead port 1/2 on $mux $procmux$2054.
+    dead port 1/2 on $mux $procmux$2057.
+    dead port 2/2 on $mux $procmux$2059.
+    dead port 2/2 on $mux $procmux$2547.
+    dead port 2/2 on $mux $procmux$2549.
+    dead port 2/2 on $mux $procmux$1925.
+    dead port 1/2 on $mux $procmux$2066.
+    dead port 1/2 on $mux $procmux$2069.
+    dead port 2/2 on $mux $procmux$2071.
+    dead port 2/2 on $mux $procmux$2558.
+    dead port 2/2 on $mux $procmux$2560.
+    dead port 1/2 on $mux $procmux$1928.
+    dead port 1/2 on $mux $procmux$2078.
+    dead port 1/2 on $mux $procmux$2081.
+    dead port 2/2 on $mux $procmux$2083.
+    dead port 2/2 on $mux $procmux$2569.
+    dead port 2/2 on $mux $procmux$2571.
+    dead port 1/2 on $mux $procmux$1931.
+    dead port 1/2 on $mux $procmux$2090.
+    dead port 1/2 on $mux $procmux$2093.
+    dead port 2/2 on $mux $procmux$2095.
+    dead port 2/2 on $mux $procmux$2580.
+    dead port 2/2 on $mux $procmux$2582.
+    dead port 2/2 on $mux $procmux$1933.
+    dead port 1/2 on $mux $procmux$2126.
+    dead port 1/2 on $mux $procmux$2129.
+    dead port 2/2 on $mux $procmux$2131.
+    dead port 2/2 on $mux $procmux$2591.
+    dead port 2/2 on $mux $procmux$2593.
+    dead port 1/2 on $mux $procmux$2138.
+    dead port 1/2 on $mux $procmux$2141.
+    dead port 2/2 on $mux $procmux$2143.
+    dead port 2/2 on $mux $procmux$2602.
+    dead port 2/2 on $mux $procmux$2604.
+    dead port 2/2 on $mux $procmux$2610.
+    dead port 2/2 on $mux $procmux$4027.
+    dead port 2/2 on $mux $procmux$4029.
+    dead port 2/2 on $mux $procmux$2616.
+    dead port 1/2 on $mux $procmux$2150.
+    dead port 2/2 on $mux $procmux$2622.
+    dead port 1/2 on $mux $procmux$2153.
+    dead port 2/2 on $mux $procmux$4040.
+    dead port 2/2 on $mux $procmux$4042.
+    dead port 2/2 on $mux $procmux$2628.
+    dead port 2/2 on $mux $procmux$2155.
+    dead port 2/2 on $mux $procmux$2646.
+    dead port 2/2 on $mux $procmux$2652.
+    dead port 2/2 on $mux $procmux$2658.
+    dead port 1/2 on $mux $procmux$2162.
+    dead port 2/2 on $mux $procmux$2664.
+    dead port 1/2 on $mux $procmux$2165.
+    dead port 2/2 on $mux $procmux$2682.
+    dead port 2/2 on $mux $procmux$2167.
+    dead port 2/2 on $mux $procmux$2754.
+    dead port 2/2 on $mux $procmux$2760.
+    dead port 1/2 on $mux $procmux$2768.
+    dead port 1/2 on $mux $procmux$2771.
+    dead port 2/2 on $mux $procmux$2773.
+    dead port 1/2 on $mux $procmux$2794.
+    dead port 1/2 on $mux $procmux$2797.
+    dead port 1/2 on $mux $procmux$4216.
+    dead port 1/2 on $mux $procmux$4222.
+    dead port 1/2 on $mux $procmux$4228.
+    dead port 2/2 on $mux $procmux$2799.
+    dead port 1/2 on $mux $procmux$2198.
+    dead port 1/2 on $mux $procmux$2807.
+    dead port 2/2 on $mux $procmux$2809.
+    dead port 1/2 on $mux $procmux$2201.
+Running muxtree optimizer on module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+      Replacing known input bits on port A of cell $procmux$1000: \is_active -> 1'1
+      Replacing known input bits on port A of cell $procmux$994: \is_active -> 1'0
+      Replacing known input bits on port B of cell $procmux$1414: $3\cand_valid[0:0] -> 1'1
+      Replacing known input bits on port A of cell $procmux$1387: $3\cand_valid[0:0] -> 1'0
+      Replacing known input bits on port A of cell $procmux$1046: $3\cand_valid[0:0] -> 1'0
+      Replacing known input bits on port A of cell $procmux$1155: $3\cand_valid[0:0] -> 1'0
+      Replacing known input bits on port A of cell $procmux$1270: $3\cand_valid[0:0] -> 1'0
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $procmux$1049.
+    dead port 1/2 on $mux $procmux$1052.
+    dead port 2/2 on $mux $procmux$1054.
+    dead port 1/2 on $mux $procmux$1056.
+    dead port 2/2 on $mux $procmux$1058.
+    dead port 1/2 on $mux $procmux$1061.
+    dead port 1/2 on $mux $procmux$1070.
+    dead port 1/2 on $mux $procmux$1073.
+    dead port 2/2 on $mux $procmux$1075.
+    dead port 1/2 on $mux $procmux$1077.
+    dead port 2/2 on $mux $procmux$1079.
+    dead port 1/2 on $mux $procmux$1082.
+    dead port 1/2 on $mux $procmux$1091.
+    dead port 2/2 on $mux $procmux$1093.
+    dead port 1/2 on $mux $procmux$1095.
+    dead port 2/2 on $mux $procmux$1097.
+    dead port 1/2 on $mux $procmux$1100.
+    dead port 1/2 on $mux $procmux$1109.
+    dead port 2/2 on $mux $procmux$1111.
+    dead port 1/2 on $mux $procmux$1113.
+    dead port 2/2 on $mux $procmux$1115.
+    dead port 1/2 on $mux $procmux$1118.
+    dead port 2/2 on $mux $procmux$1126.
+    dead port 1/2 on $mux $procmux$1128.
+    dead port 2/2 on $mux $procmux$1130.
+    dead port 1/2 on $mux $procmux$1133.
+    dead port 2/2 on $mux $procmux$1141.
+    dead port 1/2 on $mux $procmux$1143.
+    dead port 2/2 on $mux $procmux$1145.
+    dead port 1/2 on $mux $procmux$1148.
+    dead port 1/2 on $mux $procmux$1158.
+    dead port 1/2 on $mux $procmux$1161.
+    dead port 2/2 on $mux $procmux$1163.
+    dead port 1/2 on $mux $procmux$1165.
+    dead port 2/2 on $mux $procmux$1167.
+    dead port 1/2 on $mux $procmux$1170.
+    dead port 1/2 on $mux $procmux$1180.
+    dead port 1/2 on $mux $procmux$1183.
+    dead port 2/2 on $mux $procmux$1185.
+    dead port 1/2 on $mux $procmux$1187.
+    dead port 2/2 on $mux $procmux$1189.
+    dead port 1/2 on $mux $procmux$1192.
+    dead port 1/2 on $mux $procmux$1202.
+    dead port 2/2 on $mux $procmux$1204.
+    dead port 1/2 on $mux $procmux$1206.
+    dead port 2/2 on $mux $procmux$1208.
+    dead port 1/2 on $mux $procmux$1211.
+    dead port 1/2 on $mux $procmux$1221.
+    dead port 2/2 on $mux $procmux$1223.
+    dead port 1/2 on $mux $procmux$1225.
+    dead port 2/2 on $mux $procmux$1227.
+    dead port 1/2 on $mux $procmux$1230.
+    dead port 2/2 on $mux $procmux$1239.
+    dead port 1/2 on $mux $procmux$1241.
+    dead port 2/2 on $mux $procmux$1243.
+    dead port 1/2 on $mux $procmux$1246.
+    dead port 2/2 on $mux $procmux$1255.
+    dead port 1/2 on $mux $procmux$1257.
+    dead port 2/2 on $mux $procmux$1259.
+    dead port 1/2 on $mux $procmux$1262.
+    dead port 1/2 on $mux $procmux$1273.
+    dead port 1/2 on $mux $procmux$1276.
+    dead port 2/2 on $mux $procmux$1278.
+    dead port 1/2 on $mux $procmux$1280.
+    dead port 2/2 on $mux $procmux$1282.
+    dead port 1/2 on $mux $procmux$1285.
+    dead port 1/2 on $mux $procmux$1296.
+    dead port 1/2 on $mux $procmux$1299.
+    dead port 2/2 on $mux $procmux$1301.
+    dead port 1/2 on $mux $procmux$1303.
+    dead port 2/2 on $mux $procmux$1305.
+    dead port 1/2 on $mux $procmux$1308.
+    dead port 1/2 on $mux $procmux$1319.
+    dead port 2/2 on $mux $procmux$1321.
+    dead port 1/2 on $mux $procmux$1323.
+    dead port 2/2 on $mux $procmux$1325.
+    dead port 1/2 on $mux $procmux$1328.
+    dead port 1/2 on $mux $procmux$1339.
+    dead port 2/2 on $mux $procmux$1341.
+    dead port 1/2 on $mux $procmux$1343.
+    dead port 2/2 on $mux $procmux$1345.
+    dead port 1/2 on $mux $procmux$1348.
+    dead port 2/2 on $mux $procmux$1358.
+    dead port 1/2 on $mux $procmux$1360.
+    dead port 2/2 on $mux $procmux$1362.
+    dead port 1/2 on $mux $procmux$1365.
+    dead port 2/2 on $mux $procmux$1375.
+    dead port 1/2 on $mux $procmux$1377.
+    dead port 2/2 on $mux $procmux$1379.
+    dead port 1/2 on $mux $procmux$1382.
+    dead port 1/2 on $mux $procmux$1391.
+    dead port 2/2 on $mux $procmux$1393.
+    dead port 1/2 on $mux $procmux$1396.
+    dead port 1/2 on $mux $procmux$1405.
+    dead port 2/2 on $mux $procmux$1407.
+    dead port 1/2 on $mux $procmux$1410.
+    dead port 2/2 on $mux $procmux$1416.
+    dead port 1/2 on $mux $procmux$1419.
+    dead port 2/2 on $mux $procmux$1425.
+    dead port 1/2 on $mux $procmux$1428.
+    dead port 1/2 on $mux $procmux$1436.
+    dead port 1/2 on $mux $procmux$1439.
+    dead port 2/2 on $mux $procmux$1441.
+    dead port 2/2 on $mux $procmux$1443.
+    dead port 1/2 on $mux $procmux$1446.
+    dead port 1/2 on $mux $procmux$1454.
+    dead port 1/2 on $mux $procmux$1457.
+    dead port 2/2 on $mux $procmux$1459.
+    dead port 2/2 on $mux $procmux$1461.
+    dead port 1/2 on $mux $procmux$1464.
+    dead port 1/2 on $mux $procmux$1472.
+    dead port 2/2 on $mux $procmux$1474.
+    dead port 2/2 on $mux $procmux$1476.
+    dead port 1/2 on $mux $procmux$1479.
+    dead port 1/2 on $mux $procmux$1487.
+    dead port 2/2 on $mux $procmux$1489.
+    dead port 2/2 on $mux $procmux$1491.
+    dead port 1/2 on $mux $procmux$1494.
+    dead port 2/2 on $mux $procmux$1501.
+    dead port 2/2 on $mux $procmux$1503.
+    dead port 1/2 on $mux $procmux$1506.
+    dead port 2/2 on $mux $procmux$1513.
+    dead port 2/2 on $mux $procmux$1515.
+    dead port 1/2 on $mux $procmux$1518.
+    dead port 1/2 on $mux $procmux$1527.
+    dead port 1/2 on $mux $procmux$1530.
+    dead port 2/2 on $mux $procmux$1532.
+    dead port 2/2 on $mux $procmux$1534.
+    dead port 1/2 on $mux $procmux$1537.
+    dead port 1/2 on $mux $procmux$1546.
+    dead port 1/2 on $mux $procmux$1549.
+    dead port 2/2 on $mux $procmux$1551.
+    dead port 2/2 on $mux $procmux$1553.
+    dead port 1/2 on $mux $procmux$1556.
+    dead port 1/2 on $mux $procmux$1565.
+    dead port 2/2 on $mux $procmux$1567.
+    dead port 2/2 on $mux $procmux$1569.
+    dead port 1/2 on $mux $procmux$1572.
+    dead port 1/2 on $mux $procmux$1581.
+    dead port 2/2 on $mux $procmux$1583.
+    dead port 2/2 on $mux $procmux$1585.
+    dead port 1/2 on $mux $procmux$1588.
+    dead port 2/2 on $mux $procmux$1596.
+    dead port 2/2 on $mux $procmux$1598.
+    dead port 1/2 on $mux $procmux$1601.
+    dead port 2/2 on $mux $procmux$1609.
+    dead port 2/2 on $mux $procmux$1611.
+    dead port 1/2 on $mux $procmux$1614.
+    dead port 1/2 on $mux $procmux$1624.
+    dead port 1/2 on $mux $procmux$1627.
+    dead port 2/2 on $mux $procmux$1629.
+    dead port 2/2 on $mux $procmux$1631.
+    dead port 1/2 on $mux $procmux$1634.
+    dead port 1/2 on $mux $procmux$1644.
+    dead port 1/2 on $mux $procmux$1647.
+    dead port 2/2 on $mux $procmux$1649.
+    dead port 2/2 on $mux $procmux$1651.
+    dead port 1/2 on $mux $procmux$1654.
+    dead port 1/2 on $mux $procmux$1664.
+    dead port 2/2 on $mux $procmux$1666.
+    dead port 2/2 on $mux $procmux$1668.
+    dead port 1/2 on $mux $procmux$1671.
+    dead port 1/2 on $mux $procmux$1681.
+    dead port 2/2 on $mux $procmux$1683.
+    dead port 2/2 on $mux $procmux$1685.
+    dead port 1/2 on $mux $procmux$1688.
+    dead port 2/2 on $mux $procmux$1697.
+    dead port 2/2 on $mux $procmux$1699.
+    dead port 1/2 on $mux $procmux$1702.
+    dead port 2/2 on $mux $procmux$1711.
+    dead port 2/2 on $mux $procmux$1713.
+    dead port 1/2 on $mux $procmux$1716.
+    dead port 2/2 on $mux $procmux$1735.
+    dead port 1/2 on $mux $procmux$1738.
+    dead port 1/2 on $mux $procmux$1744.
+    dead port 1/2 on $mux $procmux$1750.
+    dead port 2/2 on $mux $procmux$1763.
+    dead port 2/2 on $mux $procmux$1765.
+    dead port 2/2 on $mux $procmux$1772.
+    dead port 2/2 on $mux $procmux$1774.
+    dead port 2/2 on $mux $procmux$1782.
+    dead port 2/2 on $mux $procmux$1784.
+    dead port 2/2 on $mux $procmux$1792.
+    dead port 2/2 on $mux $procmux$1794.
+    dead port 2/2 on $mux $procmux$1803.
+    dead port 2/2 on $mux $procmux$1805.
+    dead port 2/2 on $mux $procmux$1814.
+    dead port 2/2 on $mux $procmux$1816.
+    dead port 2/2 on $mux $procmux$1824.
+    dead port 1/2 on $mux $procmux$1029.
+    dead port 2/2 on $mux $procmux$1832.
+    dead port 1/2 on $mux $procmux$1032.
+    dead port 2/2 on $mux $procmux$1838.
+    dead port 1/2 on $mux $procmux$1037.
+    dead port 2/2 on $mux $procmux$1845.
+    dead port 2/2 on $mux $procmux$1851.
+    dead port 1/2 on $mux $procmux$913.
+    dead port 1/2 on $mux $procmux$919.
+    dead port 1/2 on $mux $procmux$925.
+    dead port 1/2 on $mux $procmux$1040.
+Running muxtree optimizer on module $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+    dead port 1/2 on $mux $procmux$1872.
+    dead port 1/2 on $mux $procmux$1878.
+    dead port 1/2 on $mux $procmux$1884.
+Running muxtree optimizer on module \arbiter_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 471 multiplexer ports.
+<suppressed ~155 debug messages>
+
+5.8.4. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+    New ctrl vector for $pmux cell $procmux$3240: { $procmux$3195_CMP $auto$opt_reduce.cc:137:opt_pmux$4743 }
+    New ctrl vector for $pmux cell $procmux$2303: { $procmux$1905_CMP $auto$opt_reduce.cc:137:opt_pmux$4745 }
+    New ctrl vector for $pmux cell $procmux$3541: { $procmux$3195_CMP $auto$opt_reduce.cc:137:opt_pmux$4747 }
+    New ctrl vector for $pmux cell $procmux$1920: { $auto$opt_reduce.cc:137:opt_pmux$4749 $procmux$1904_CMP }
+    New ctrl vector for $pmux cell $procmux$2520: { $procmux$1907_CMP $auto$opt_reduce.cc:137:opt_pmux$4751 }
+    New ctrl vector for $pmux cell $procmux$2261: { $procmux$1906_CMP $auto$opt_reduce.cc:137:opt_pmux$4753 }
+    New ctrl vector for $pmux cell $procmux$1971: { $procmux$1907_CMP $auto$opt_reduce.cc:137:opt_pmux$4755 }
+    New ctrl vector for $pmux cell $procmux$2317: { $procmux$1906_CMP $auto$opt_reduce.cc:137:opt_pmux$4757 }
+    New ctrl vector for $pmux cell $procmux$2531: { $auto$opt_reduce.cc:137:opt_pmux$4759 $procmux$1904_CMP }
+    New ctrl vector for $pmux cell $procmux$3355: { $procmux$3196_CMP $auto$opt_reduce.cc:137:opt_pmux$4761 }
+    New ctrl vector for $pmux cell $procmux$2005: { $procmux$1905_CMP $auto$opt_reduce.cc:137:opt_pmux$4763 }
+    New ctrl vector for $pmux cell $procmux$2233: { $auto$opt_reduce.cc:137:opt_pmux$4765 $procmux$1904_CMP }
+    New ctrl vector for $pmux cell $procmux$3368: { $auto$opt_reduce.cc:137:opt_pmux$4767 $procmux$3193_CMP }
+    New ctrl vector for $pmux cell $procmux$2542: { $procmux$1905_CMP $auto$opt_reduce.cc:137:opt_pmux$4769 }
+    New ctrl vector for $pmux cell $procmux$3908: { $auto$opt_reduce.cc:137:opt_pmux$4771 $procmux$3206_CMP }
+    New ctrl vector for $pmux cell $procmux$3381: { $procmux$3194_CMP $auto$opt_reduce.cc:137:opt_pmux$4773 }
+    New ctrl vector for $pmux cell $procmux$3913: { $auto$opt_reduce.cc:137:opt_pmux$4775 $procmux$3206_CMP }
+    New ctrl vector for $pmux cell $procmux$2275: { $procmux$1907_CMP $auto$opt_reduce.cc:137:opt_pmux$4777 }
+    New ctrl vector for $pmux cell $procmux$3918: { $auto$opt_reduce.cc:137:opt_pmux$4779 $procmux$3206_CMP }
+    New ctrl vector for $pmux cell $procmux$2553: { $procmux$1906_CMP $auto$opt_reduce.cc:137:opt_pmux$4781 }
+    New ctrl vector for $pmux cell $procmux$1954: { $procmux$1906_CMP $auto$opt_reduce.cc:137:opt_pmux$4783 }
+    New ctrl vector for $pmux cell $procmux$3923: { $auto$opt_reduce.cc:137:opt_pmux$4785 $procmux$3206_CMP }
+    New ctrl vector for $pmux cell $procmux$3394: { $procmux$3195_CMP $auto$opt_reduce.cc:137:opt_pmux$4787 }
+    New ctrl vector for $pmux cell $procmux$3973: { $auto$opt_reduce.cc:137:opt_pmux$4789 $procmux$3206_CMP }
+    New ctrl vector for $pmux cell $procmux$2564: $auto$opt_reduce.cc:137:opt_pmux$4791
+    New ctrl vector for $pmux cell $procmux$3978: { $auto$opt_reduce.cc:137:opt_pmux$4793 $procmux$3206_CMP }
+    New ctrl vector for $pmux cell $procmux$3983: { $procmux$3641_CMP $auto$opt_reduce.cc:137:opt_pmux$4795 }
+    New ctrl vector for $pmux cell $procmux$2575: $auto$opt_reduce.cc:137:opt_pmux$4797
+    New ctrl vector for $pmux cell $procmux$3988: { $procmux$3641_CMP $auto$opt_reduce.cc:137:opt_pmux$4799 }
+    New ctrl vector for $pmux cell $procmux$3192: { $procmux$3196_CMP $auto$opt_reduce.cc:137:opt_pmux$4801 }
+    New ctrl vector for $pmux cell $procmux$3993: { $procmux$3759_CMP $auto$opt_reduce.cc:137:opt_pmux$4803 }
+    New ctrl vector for $pmux cell $procmux$2586: $auto$opt_reduce.cc:137:opt_pmux$4805
+    New ctrl vector for $pmux cell $procmux$3998: { $procmux$3759_CMP $auto$opt_reduce.cc:137:opt_pmux$4807 }
+    New ctrl vector for $pmux cell $procmux$4003: { $auto$opt_reduce.cc:137:opt_pmux$4809 $procmux$3206_CMP }
+    New ctrl vector for $pmux cell $procmux$2597: $auto$opt_reduce.cc:137:opt_pmux$4811
+    New ctrl vector for $pmux cell $procmux$4008: { $procmux$3641_CMP $auto$opt_reduce.cc:137:opt_pmux$4813 }
+    New ctrl vector for $pmux cell $procmux$2219: { $procmux$1907_CMP $auto$opt_reduce.cc:137:opt_pmux$4815 }
+    New ctrl vector for $pmux cell $procmux$1937: { $procmux$1905_CMP $auto$opt_reduce.cc:137:opt_pmux$4817 }
+    New ctrl vector for $pmux cell $procmux$4013: { $procmux$3759_CMP $auto$opt_reduce.cc:137:opt_pmux$4819 }
+    New ctrl vector for $pmux cell $procmux$3208: { $auto$opt_reduce.cc:137:opt_pmux$4821 $procmux$3193_CMP }
+    New ctrl vector for $pmux cell $procmux$2289: { $auto$opt_reduce.cc:137:opt_pmux$4823 $procmux$1904_CMP }
+    New ctrl vector for $pmux cell $procmux$1988: { $auto$opt_reduce.cc:137:opt_pmux$4825 $procmux$1904_CMP }
+    New ctrl vector for $pmux cell $procmux$3511: { $procmux$3196_CMP $auto$opt_reduce.cc:137:opt_pmux$4827 }
+    New ctrl vector for $pmux cell $procmux$3224: { $procmux$3194_CMP $auto$opt_reduce.cc:137:opt_pmux$4829 }
+    New ctrl vector for $pmux cell $procmux$1903: { $procmux$1907_CMP $auto$opt_reduce.cc:137:opt_pmux$4831 }
+    New ctrl vector for $pmux cell $procmux$3521: { $auto$opt_reduce.cc:137:opt_pmux$4833 $procmux$3193_CMP }
+    New ctrl vector for $pmux cell $procmux$2022: { $procmux$1906_CMP $auto$opt_reduce.cc:137:opt_pmux$4835 }
+    New ctrl vector for $pmux cell $procmux$2247: { $procmux$1905_CMP $auto$opt_reduce.cc:137:opt_pmux$4837 }
+    New ctrl vector for $pmux cell $procmux$3531: { $procmux$3194_CMP $auto$opt_reduce.cc:137:opt_pmux$4839 }
+  Optimizing cells in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+  Optimizing cells in module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.
+  Optimizing cells in module $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.
+  Optimizing cells in module \arbiter_formal.
+Performed a total of 49 changes.
+
+5.8.5. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top'.
+<suppressed ~126 debug messages>
+Finding identical cells in module `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter'.
+<suppressed ~9 debug messages>
+Finding identical cells in module `$paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder'.
+Finding identical cells in module `\arbiter_formal'.
+<suppressed ~228 debug messages>
+Removed a total of 121 cells.
+
+5.8.6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top..
+Finding unused cells or wires in module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter..
+Finding unused cells or wires in module $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder..
+Finding unused cells or wires in module \arbiter_formal..
+Removed 0 unused cells and 1075 unused wires.
+<suppressed ~4 debug messages>
+
+5.8.7. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+Optimizing module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.
+Optimizing module $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.
+Optimizing module arbiter_formal.
+
+5.8.8. Rerunning OPT passes. (Maybe there is more to do..)
+
+5.8.9. Executing OPT_MUXTREE pass (detect dead branches in mux trees).
+Running muxtree optimizer on module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Running muxtree optimizer on module \arbiter_formal..
+  Creating internal representation of mux trees.
+  Evaluating internal representation of mux trees.
+  Analyzing evaluation results.
+Removed 0 multiplexer ports.
+<suppressed ~112 debug messages>
+
+5.8.10. Executing OPT_REDUCE pass (consolidate $*mux and $reduce_* inputs).
+  Optimizing cells in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+  Optimizing cells in module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.
+  Optimizing cells in module $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.
+  Optimizing cells in module \arbiter_formal.
+Performed a total of 0 changes.
+
+5.8.11. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top'.
+Finding identical cells in module `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter'.
+Finding identical cells in module `$paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder'.
+Finding identical cells in module `\arbiter_formal'.
+Removed a total of 0 cells.
+
+5.8.12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top..
+Finding unused cells or wires in module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter..
+Finding unused cells or wires in module $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder..
+Finding unused cells or wires in module \arbiter_formal..
+
+5.8.13. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+Optimizing module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.
+Optimizing module $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.
+Optimizing module arbiter_formal.
+
+5.8.14. Finished OPT passes. (There is nothing left to do.)
+
+5.9. Executing WREDUCE pass (reducing word size of cells).
+Converting cell $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$neg$axi4lite_arbiter_top.sv:0$590 ($neg) from signed to unsigned.
+Removed top 1 bits (of 3) from port A of cell $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$neg$axi4lite_arbiter_top.sv:0$590 ($neg).
+Converting cell $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$neg$axi4lite_arbiter_top.sv:0$753 ($neg) from signed to unsigned.
+Removed top 1 bits (of 3) from port A of cell $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$neg$axi4lite_arbiter_top.sv:0$753 ($neg).
+Removed top 1 bits (of 2) from port B of cell $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$procmux$1906_CMP0 ($eq).
+Removed top 1 bits (of 2) from port B of cell $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$procmux$2774_CMP0 ($eq).
+Removed top 1 bits (of 2) from port B of cell $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$procmux$3002_CMP0 ($eq).
+Removed top 1 bits (of 2) from port B of cell $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$procmux$3195_CMP0 ($eq).
+Removed top 1 bits (of 2) from port B of cell $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$procmux$3759_CMP0 ($eq).
+Removed top 1 bits (of 2) from port B of cell $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$procmux$4025_CMP0 ($eq).
+Removed top 30 bits (of 32) from port B of cell $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$gt$qos_arbiter.sv:98$841 ($gt).
+Removed top 30 bits (of 32) from port B of cell $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$sub$qos_arbiter.sv:98$842 ($sub).
+Removed top 30 bits (of 32) from port B of cell $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$gt$qos_arbiter.sv:102$843 ($gt).
+Removed top 30 bits (of 32) from port B of cell $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$sub$qos_arbiter.sv:102$844 ($sub).
+Removed top 30 bits (of 32) from port B of cell $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$gt$qos_arbiter.sv:106$845 ($gt).
+Removed top 30 bits (of 32) from port B of cell $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$sub$qos_arbiter.sv:106$846 ($sub).
+Removed top 31 bits (of 32) from port B of cell $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$gt$qos_arbiter.sv:132$850 ($gt).
+Removed top 31 bits (of 32) from port B of cell $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$gt$qos_arbiter.sv:133$852 ($gt).
+Removed top 31 bits (of 32) from port B of cell $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$gt$qos_arbiter.sv:134$854 ($gt).
+Removed top 25 bits (of 32) from port B of cell $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$lt$qos_arbiter.sv:193$876 ($lt).
+Removed top 31 bits (of 32) from port B of cell $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$add$qos_arbiter.sv:194$877 ($add).
+Removed top 25 bits (of 32) from port B of cell $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$ge$qos_arbiter.sv:203$882 ($ge).
+Converting cell $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$neg$qos_arbiter.sv:0$898 ($neg) from signed to unsigned.
+Removed top 1 bits (of 3) from port A of cell $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$neg$qos_arbiter.sv:0$898 ($neg).
+Converting cell $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$neg$qos_arbiter.sv:0$906 ($neg) from signed to unsigned.
+Removed top 1 bits (of 3) from port A of cell $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$neg$qos_arbiter.sv:0$906 ($neg).
+Removed top 1 bits (of 2) from port B of cell $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$procmux$1279_CMP0 ($eq).
+Removed top 1 bits (of 2) from mux cell $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$procmux$1543 ($mux).
+Removed top 1 bits (of 2) from port B of cell $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$procmux$1804_CMP0 ($eq).
+Removed top 1 bits (of 2) from wire $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$9\next_cand[1:0].
+Removed top 32 bits (of 64) from port A of cell $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.$ge$addr_decoder.sv:34$826 ($ge).
+Removed top 63 bits (of 64) from port B of cell $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.$ge$addr_decoder.sv:34$826 ($ge).
+Removed top 32 bits (of 64) from port A of cell $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.$lt$addr_decoder.sv:35$828 ($lt).
+Removed top 47 bits (of 64) from port B of cell $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.$lt$addr_decoder.sv:35$828 ($lt).
+Removed top 32 bits (of 64) from port A of cell $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.$ge$addr_decoder.sv:43$830 ($ge).
+Removed top 47 bits (of 64) from port B of cell $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.$ge$addr_decoder.sv:43$830 ($ge).
+Removed top 32 bits (of 64) from port A of cell $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.$lt$addr_decoder.sv:44$832 ($lt).
+Removed top 46 bits (of 64) from port B of cell $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.$lt$addr_decoder.sv:44$832 ($lt).
+Removed top 2 bits (of 3) from port B of cell arbiter_formal.$add$arbiter_formal.sv:138$80 ($add).
+Removed top 1 bits (of 3) from port B of cell arbiter_formal.$ge$arbiter_formal.sv:151$86 ($ge).
+Removed top 31 bits (of 32) from port A of cell arbiter_formal.$add$arbiter_formal.sv:0$92 ($add).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$add$arbiter_formal.sv:0$92 ($add).
+Removed top 30 bits (of 32) from port Y of cell arbiter_formal.$add$arbiter_formal.sv:0$92 ($add).
+Removed top 30 bits (of 32) from port A of cell arbiter_formal.$add$arbiter_formal.sv:0$96 ($add).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$add$arbiter_formal.sv:0$96 ($add).
+Removed top 29 bits (of 32) from port Y of cell arbiter_formal.$add$arbiter_formal.sv:0$96 ($add).
+Removed top 29 bits (of 32) from port A of cell arbiter_formal.$add$arbiter_formal.sv:0$100 ($add).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$add$arbiter_formal.sv:0$100 ($add).
+Removed top 28 bits (of 32) from port Y of cell arbiter_formal.$add$arbiter_formal.sv:0$100 ($add).
+Removed top 28 bits (of 32) from port A of cell arbiter_formal.$add$arbiter_formal.sv:225$104 ($add).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$add$arbiter_formal.sv:225$104 ($add).
+Removed top 27 bits (of 32) from port Y of cell arbiter_formal.$add$arbiter_formal.sv:225$104 ($add).
+Removed top 27 bits (of 32) from port A of cell arbiter_formal.$le$arbiter_formal.sv:225$105 ($le).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$le$arbiter_formal.sv:225$105 ($le).
+Removed top 31 bits (of 32) from port A of cell arbiter_formal.$add$arbiter_formal.sv:0$110 ($add).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$add$arbiter_formal.sv:0$110 ($add).
+Removed top 30 bits (of 32) from port Y of cell arbiter_formal.$add$arbiter_formal.sv:0$110 ($add).
+Removed top 30 bits (of 32) from port A of cell arbiter_formal.$add$arbiter_formal.sv:0$114 ($add).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$add$arbiter_formal.sv:0$114 ($add).
+Removed top 29 bits (of 32) from port Y of cell arbiter_formal.$add$arbiter_formal.sv:0$114 ($add).
+Removed top 29 bits (of 32) from port A of cell arbiter_formal.$add$arbiter_formal.sv:0$118 ($add).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$add$arbiter_formal.sv:0$118 ($add).
+Removed top 28 bits (of 32) from port Y of cell arbiter_formal.$add$arbiter_formal.sv:0$118 ($add).
+Removed top 28 bits (of 32) from port A of cell arbiter_formal.$add$arbiter_formal.sv:226$122 ($add).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$add$arbiter_formal.sv:226$122 ($add).
+Removed top 27 bits (of 32) from port Y of cell arbiter_formal.$add$arbiter_formal.sv:226$122 ($add).
+Removed top 27 bits (of 32) from port A of cell arbiter_formal.$le$arbiter_formal.sv:226$123 ($le).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$le$arbiter_formal.sv:226$123 ($le).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$add$arbiter_formal.sv:227$140 ($add).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$le$arbiter_formal.sv:227$141 ($le).
+Removed top 31 bits (of 32) from port A of cell arbiter_formal.$add$arbiter_formal.sv:0$146 ($add).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$add$arbiter_formal.sv:0$146 ($add).
+Removed top 30 bits (of 32) from port Y of cell arbiter_formal.$add$arbiter_formal.sv:0$146 ($add).
+Removed top 30 bits (of 32) from port A of cell arbiter_formal.$add$arbiter_formal.sv:0$150 ($add).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$add$arbiter_formal.sv:0$150 ($add).
+Removed top 29 bits (of 32) from port Y of cell arbiter_formal.$add$arbiter_formal.sv:0$150 ($add).
+Removed top 29 bits (of 32) from port A of cell arbiter_formal.$add$arbiter_formal.sv:0$154 ($add).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$add$arbiter_formal.sv:0$154 ($add).
+Removed top 28 bits (of 32) from port Y of cell arbiter_formal.$add$arbiter_formal.sv:0$154 ($add).
+Removed top 28 bits (of 32) from port A of cell arbiter_formal.$add$arbiter_formal.sv:228$158 ($add).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$add$arbiter_formal.sv:228$158 ($add).
+Removed top 27 bits (of 32) from port Y of cell arbiter_formal.$add$arbiter_formal.sv:228$158 ($add).
+Removed top 27 bits (of 32) from port A of cell arbiter_formal.$le$arbiter_formal.sv:228$159 ($le).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$le$arbiter_formal.sv:228$159 ($le).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$add$arbiter_formal.sv:229$176 ($add).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$le$arbiter_formal.sv:229$177 ($le).
+Removed top 31 bits (of 32) from port A of cell arbiter_formal.$add$arbiter_formal.sv:0$183 ($add).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$add$arbiter_formal.sv:0$183 ($add).
+Removed top 30 bits (of 32) from port Y of cell arbiter_formal.$add$arbiter_formal.sv:0$183 ($add).
+Removed top 30 bits (of 32) from port A of cell arbiter_formal.$add$arbiter_formal.sv:236$187 ($add).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$add$arbiter_formal.sv:236$187 ($add).
+Removed top 29 bits (of 32) from port Y of cell arbiter_formal.$add$arbiter_formal.sv:236$187 ($add).
+Removed top 29 bits (of 32) from port A of cell arbiter_formal.$le$arbiter_formal.sv:236$188 ($le).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$le$arbiter_formal.sv:236$188 ($le).
+Removed top 31 bits (of 32) from port A of cell arbiter_formal.$add$arbiter_formal.sv:0$193 ($add).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$add$arbiter_formal.sv:0$193 ($add).
+Removed top 30 bits (of 32) from port Y of cell arbiter_formal.$add$arbiter_formal.sv:0$193 ($add).
+Removed top 30 bits (of 32) from port A of cell arbiter_formal.$add$arbiter_formal.sv:237$197 ($add).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$add$arbiter_formal.sv:237$197 ($add).
+Removed top 29 bits (of 32) from port Y of cell arbiter_formal.$add$arbiter_formal.sv:237$197 ($add).
+Removed top 29 bits (of 32) from port A of cell arbiter_formal.$le$arbiter_formal.sv:237$198 ($le).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$le$arbiter_formal.sv:237$198 ($le).
+Removed top 31 bits (of 32) from port A of cell arbiter_formal.$add$arbiter_formal.sv:0$203 ($add).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$add$arbiter_formal.sv:0$203 ($add).
+Removed top 30 bits (of 32) from port Y of cell arbiter_formal.$add$arbiter_formal.sv:0$203 ($add).
+Removed top 30 bits (of 32) from port A of cell arbiter_formal.$add$arbiter_formal.sv:238$207 ($add).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$add$arbiter_formal.sv:238$207 ($add).
+Removed top 29 bits (of 32) from port Y of cell arbiter_formal.$add$arbiter_formal.sv:238$207 ($add).
+Removed top 29 bits (of 32) from port A of cell arbiter_formal.$le$arbiter_formal.sv:238$208 ($le).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$le$arbiter_formal.sv:238$208 ($le).
+Removed top 31 bits (of 32) from port A of cell arbiter_formal.$add$arbiter_formal.sv:0$221 ($add).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$add$arbiter_formal.sv:0$221 ($add).
+Removed top 30 bits (of 32) from port Y of cell arbiter_formal.$add$arbiter_formal.sv:0$221 ($add).
+Removed top 30 bits (of 32) from port A of cell arbiter_formal.$add$arbiter_formal.sv:0$225 ($add).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$add$arbiter_formal.sv:0$225 ($add).
+Removed top 29 bits (of 32) from port Y of cell arbiter_formal.$add$arbiter_formal.sv:0$225 ($add).
+Removed top 29 bits (of 32) from port A of cell arbiter_formal.$add$arbiter_formal.sv:0$229 ($add).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$add$arbiter_formal.sv:0$229 ($add).
+Removed top 28 bits (of 32) from port Y of cell arbiter_formal.$add$arbiter_formal.sv:0$229 ($add).
+Removed top 31 bits (of 32) from port A of cell arbiter_formal.$add$arbiter_formal.sv:0$239 ($add).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$add$arbiter_formal.sv:0$239 ($add).
+Removed top 30 bits (of 32) from port Y of cell arbiter_formal.$add$arbiter_formal.sv:0$239 ($add).
+Removed top 30 bits (of 32) from port A of cell arbiter_formal.$add$arbiter_formal.sv:0$243 ($add).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$add$arbiter_formal.sv:0$243 ($add).
+Removed top 29 bits (of 32) from port Y of cell arbiter_formal.$add$arbiter_formal.sv:0$243 ($add).
+Removed top 29 bits (of 32) from port A of cell arbiter_formal.$add$arbiter_formal.sv:0$247 ($add).
+Removed top 31 bits (of 32) from port B of cell arbiter_formal.$add$arbiter_formal.sv:0$247 ($add).
+Removed top 28 bits (of 32) from port Y of cell arbiter_formal.$add$arbiter_formal.sv:0$247 ($add).
+Removed top 28 bits (of 32) from wire arbiter_formal.$add$arbiter_formal.sv:0$100_Y.
+Removed top 30 bits (of 32) from wire arbiter_formal.$add$arbiter_formal.sv:0$110_Y.
+Removed top 29 bits (of 32) from wire arbiter_formal.$add$arbiter_formal.sv:0$114_Y.
+Removed top 28 bits (of 32) from wire arbiter_formal.$add$arbiter_formal.sv:0$118_Y.
+Removed top 30 bits (of 32) from wire arbiter_formal.$add$arbiter_formal.sv:0$128_Y.
+Removed top 29 bits (of 32) from wire arbiter_formal.$add$arbiter_formal.sv:0$132_Y.
+Removed top 28 bits (of 32) from wire arbiter_formal.$add$arbiter_formal.sv:0$136_Y.
+Removed top 30 bits (of 32) from wire arbiter_formal.$add$arbiter_formal.sv:0$146_Y.
+Removed top 29 bits (of 32) from wire arbiter_formal.$add$arbiter_formal.sv:0$150_Y.
+Removed top 28 bits (of 32) from wire arbiter_formal.$add$arbiter_formal.sv:0$154_Y.
+Removed top 30 bits (of 32) from wire arbiter_formal.$add$arbiter_formal.sv:0$164_Y.
+Removed top 29 bits (of 32) from wire arbiter_formal.$add$arbiter_formal.sv:0$168_Y.
+Removed top 28 bits (of 32) from wire arbiter_formal.$add$arbiter_formal.sv:0$172_Y.
+Removed top 30 bits (of 32) from wire arbiter_formal.$add$arbiter_formal.sv:0$183_Y.
+Removed top 30 bits (of 32) from wire arbiter_formal.$add$arbiter_formal.sv:0$193_Y.
+Removed top 30 bits (of 32) from wire arbiter_formal.$add$arbiter_formal.sv:0$203_Y.
+Removed top 30 bits (of 32) from wire arbiter_formal.$add$arbiter_formal.sv:0$92_Y.
+Removed top 29 bits (of 32) from wire arbiter_formal.$add$arbiter_formal.sv:0$96_Y.
+Removed top 27 bits (of 32) from wire arbiter_formal.$add$arbiter_formal.sv:225$104_Y.
+Removed top 27 bits (of 32) from wire arbiter_formal.$add$arbiter_formal.sv:226$122_Y.
+Removed top 27 bits (of 32) from wire arbiter_formal.$add$arbiter_formal.sv:228$158_Y.
+Removed top 29 bits (of 32) from wire arbiter_formal.$add$arbiter_formal.sv:236$187_Y.
+Removed top 29 bits (of 32) from wire arbiter_formal.$add$arbiter_formal.sv:237$197_Y.
+Removed top 29 bits (of 32) from wire arbiter_formal.$add$arbiter_formal.sv:238$207_Y.
+Removed top 31 bits (of 32) from wire arbiter_formal.$eqx$arbiter_formal.sv:0$109_Y.
+Removed top 31 bits (of 32) from wire arbiter_formal.$eqx$arbiter_formal.sv:0$127_Y.
+Removed top 31 bits (of 32) from wire arbiter_formal.$eqx$arbiter_formal.sv:0$145_Y.
+Removed top 31 bits (of 32) from wire arbiter_formal.$eqx$arbiter_formal.sv:0$153_Y.
+Removed top 31 bits (of 32) from wire arbiter_formal.$eqx$arbiter_formal.sv:0$163_Y.
+Removed top 31 bits (of 32) from wire arbiter_formal.$eqx$arbiter_formal.sv:0$182_Y.
+Removed top 31 bits (of 32) from wire arbiter_formal.$eqx$arbiter_formal.sv:0$192_Y.
+Removed top 31 bits (of 32) from wire arbiter_formal.$eqx$arbiter_formal.sv:0$202_Y.
+Removed top 31 bits (of 32) from wire arbiter_formal.$eqx$arbiter_formal.sv:0$91_Y.
+
+5.10. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top..
+Finding unused cells or wires in module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter..
+Finding unused cells or wires in module $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder..
+Finding unused cells or wires in module \arbiter_formal..
+Removed 0 unused cells and 34 unused wires.
+<suppressed ~2 debug messages>
+
+5.11. Executing MEMORY_COLLECT pass (generating $mem cells).
+
+5.12. Executing OPT pass (performing simple optimizations).
+
+5.12.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+Optimizing module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.
+Optimizing module $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.
+Optimizing module arbiter_formal.
+
+5.12.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top'.
+Finding identical cells in module `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter'.
+<suppressed ~3 debug messages>
+Finding identical cells in module `$paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder'.
+Finding identical cells in module `\arbiter_formal'.
+Removed a total of 1 cells.
+
+5.12.3. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top..
+Finding unused cells or wires in module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter..
+Finding unused cells or wires in module $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder..
+Finding unused cells or wires in module \arbiter_formal..
+Removed 0 unused cells and 1 unused wires.
+<suppressed ~1 debug messages>
+
+5.12.4. Finished fast OPT passes.
+
+5.13. Printing statistics.
+
+=== $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top ===
+
+   Number of wires:                392
+   Number of wire bits:           3014
+   Number of public wires:         173
+   Number of public wire bits:    1850
+   Number of ports:                 40
+   Number of port bits:            914
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                276
+     $adff                          14
+     $eq                            17
+     $logic_and                      5
+     $logic_not                      6
+     $mux                          146
+     $neg                            2
+     $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter      2
+     $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder      2
+     $pmux                          58
+     $reduce_or                     12
+     $shift                         12
+
+=== $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter ===
+
+   Number of wires:                159
+   Number of wire bits:           1269
+   Number of public wires:          27
+   Number of public wire bits:     255
+   Number of ports:                  8
+   Number of port bits:             15
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                151
+     $add                            1
+     $adff                           8
+     $eq                             6
+     $ge                             1
+     $gt                             6
+     $logic_and                      8
+     $logic_not                      6
+     $logic_or                       3
+     $lt                             1
+     $mux                           95
+     $neg                            2
+     $or                             2
+     $pmux                           5
+     $reduce_bool                    1
+     $shift                          2
+     $shiftx                         1
+     $sub                            3
+
+=== $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder ===
+
+   Number of wires:                 15
+   Number of wire bits:             48
+   Number of public wires:           6
+   Number of public wire bits:      38
+   Number of ports:                  4
+   Number of port bits:             36
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 14
+     $ge                             2
+     $logic_and                      2
+     $lt                             2
+     $mux                            8
+
+=== arbiter_formal ===
+
+   Number of wires:                323
+   Number of wire bits:           2124
+   Number of public wires:          42
+   Number of public wire bits:     918
+   Number of ports:                 40
+   Number of port bits:            914
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                356
+     $add                           27
+     $check                         72
+     $dff                           73
+     $eq                            30
+     $eqx                           26
+     $ge                             1
+     $le                             8
+     $logic_and                     23
+     $logic_not                     40
+     $lt                             1
+     $mux                           50
+     $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top      1
+     $reduce_bool                    2
+     $reduce_or                      2
+
+=== design hierarchy ===
+
+   arbiter_formal                    1
+     $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top      1
+       $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter      2
+       $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder      2
+
+   Number of wires:               1063
+   Number of wire bits:           7772
+   Number of public wires:         281
+   Number of public wire bits:    3354
+   Number of ports:                104
+   Number of port bits:           1930
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                957
+     $add                           29
+     $adff                          30
+     $check                         72
+     $dff                           73
+     $eq                            59
+     $eqx                           26
+     $ge                             7
+     $gt                            12
+     $le                             8
+     $logic_and                     48
+     $logic_not                     58
+     $logic_or                       6
+     $lt                             7
+     $mux                          402
+     $neg                            6
+     $or                             4
+     $pmux                          68
+     $reduce_bool                    4
+     $reduce_or                     14
+     $shift                         16
+     $shiftx                         2
+     $sub                            6
+
+5.14. Executing CHECK pass (checking for obvious problems).
+Checking module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top...
+Checking module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter...
+Checking module $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder...
+Checking module arbiter_formal...
+Found and reported 0 problems.
+
+6. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `arbiter_formal'. Setting top module to arbiter_formal.
+
+6.1. Analyzing design hierarchy..
+Top module:  \arbiter_formal
+Used module:     $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top
+Used module:         $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder
+Used module:         $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter
+
+6.2. Analyzing design hierarchy..
+Top module:  \arbiter_formal
+Used module:     $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top
+Used module:         $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder
+Used module:         $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter
+Removed 0 unused modules.
+Module arbiter_formal directly or indirectly contains formal properties -> setting "keep" attribute.
+
+7. Executing jny backend.
+
+8. Executing RTLIL backend.
+Output filename: ../model/design.il
+
+Warnings: 3 unique messages, 3 total
+End of script. Logfile hash: 2e48fa7b6c, CPU: user 0.16s system 0.02s, MEM: 25.75 MB peak
+Yosys 0.52 (git sha1 fee39a3284c90249e1d9684cf6944ffbbcbb8f90)
+Time spent: 23% 5x opt_clean (0 sec), 14% 6x opt_expr (0 sec), ...

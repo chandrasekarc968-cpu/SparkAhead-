@@ -1,0 +1,19 @@
+[options]
+mode bmc
+depth 20
+
+[engines]
+smtbmc z3
+
+[script]
+read -formal addr_decoder.sv
+read -formal qos_arbiter.sv
+read -formal axi4lite_arbiter_top.sv
+read -formal arbiter_formal.sv
+prep -top arbiter_formal
+
+[files]
+src/rtl/addr_decoder.sv
+src/rtl/qos_arbiter.sv
+src/rtl/axi4lite_arbiter_top.sv
+formal/arbiter_formal.sv

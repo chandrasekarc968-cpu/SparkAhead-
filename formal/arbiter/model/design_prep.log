@@ -1,0 +1,118 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2025  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.52 (git sha1 fee39a3284c90249e1d9684cf6944ffbbcbb8f90)
+
+-- Executing script file `design_prep.ys' --
+
+1. Executing RTLIL frontend.
+Input filename: design.il
+
+2. Executing SCC pass (detecting logic loops).
+Found 0 SCCs in module arbiter_formal.
+Found 0 SCCs in module $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.
+Found 0 SCCs in module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.
+Found 0 SCCs in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+Found 0 SCCs.
+
+3. Executing SIMPLEMAP pass (map simple cells to gate primitives).
+
+4. Executing MEMORY_NORDFF pass (extracting $dff cells from memories).
+
+5. Executing ASYNC2SYNC pass.
+Replacing $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$procdff$4538 ($adff): ARST=\aresetn, D=$0\age_counter[31:0], Q=\age_counter
+Replacing $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$procdff$4533 ($adff): ARST=\aresetn, D=$0\rr_ptr[1:0], Q=\rr_ptr
+Replacing $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$procdff$4528 ($adff): ARST=\aresetn, D=$0\quota_3[31:0], Q=\quota_3
+Replacing $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$procdff$4523 ($adff): ARST=\aresetn, D=$0\quota_2[31:0], Q=\quota_2
+Replacing $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$procdff$4518 ($adff): ARST=\aresetn, D=$0\quota_1[31:0], Q=\quota_1
+Replacing $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$procdff$4513 ($adff): ARST=\aresetn, D=$0\is_active[0:0], Q=\is_active
+Replacing $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$procdff$4508 ($adff): ARST=\aresetn, D=$0\current_master[1:0], Q=\current_master
+Replacing $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.$procdff$4503 ($adff): ARST=\aresetn, D=$0\starvation_flag[0:0], Q=\starvation_flag
+Replacing $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$procdff$4638 ($adff): ARST=\aresetn, D=$0\write_arb_tx_done[0:0], Q=\write_arb_tx_done
+Replacing $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$procdff$4633 ($adff): ARST=\aresetn, D=$0\w_latched_prot[2:0], Q=\w_latched_prot
+Replacing $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$procdff$4628 ($adff): ARST=\aresetn, D=$0\w_latched_addr[31:0], Q=\w_latched_addr
+Replacing $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$procdff$4623 ($adff): ARST=\aresetn, D=$0\w_target_invalid[0:0], Q=\w_target_invalid
+Replacing $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$procdff$4618 ($adff): ARST=\aresetn, D=$0\w_target_slave_sel[1:0], Q=\w_target_slave_sel
+Replacing $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$procdff$4613 ($adff): ARST=\aresetn, D=$0\w_owner_m_id[1:0], Q=\w_owner_m_id
+Replacing $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$procdff$4608 ($adff): ARST=\aresetn, D=$0\w_state[1:0], Q=\w_state
+Replacing $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$procdff$4573 ($adff): ARST=\aresetn, D=$0\read_arb_tx_done[0:0], Q=\read_arb_tx_done
+Replacing $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$procdff$4568 ($adff): ARST=\aresetn, D=$0\r_latched_prot[2:0], Q=\r_latched_prot
+Replacing $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$procdff$4563 ($adff): ARST=\aresetn, D=$0\r_latched_addr[31:0], Q=\r_latched_addr
+Replacing $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$procdff$4558 ($adff): ARST=\aresetn, D=$0\r_target_invalid[0:0], Q=\r_target_invalid
+Replacing $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$procdff$4553 ($adff): ARST=\aresetn, D=$0\r_target_slave_sel[1:0], Q=\r_target_slave_sel
+Replacing $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$procdff$4548 ($adff): ARST=\aresetn, D=$0\r_owner_m_id[1:0], Q=\r_owner_m_id
+Replacing $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.$procdff$4543 ($adff): ARST=\aresetn, D=$0\r_state[1:0], Q=\r_state
+
+6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \arbiter_formal..
+Finding unused cells or wires in module $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder..
+Finding unused cells or wires in module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter..
+Finding unused cells or wires in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top..
+Removed 320 unused cells and 320 unused wires.
+<suppressed ~321 debug messages>
+
+7. Executing FORMALFF pass.
+
+8. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top..
+Finding unused cells or wires in module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter..
+Finding unused cells or wires in module $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder..
+Finding unused cells or wires in module \arbiter_formal..
+Removed 3 unused cells and 3 unused wires.
+<suppressed ~6 debug messages>
+
+9. Executing CHECK pass (checking for obvious problems).
+Checking module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top...
+Checking module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter...
+Checking module $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder...
+Checking module arbiter_formal...
+Found and reported 0 problems.
+
+10. Executing SETUNDEF pass (replace undef values with defined constants).
+
+11. Executing OPT pass (performing simple optimizations).
+
+11.1. Executing OPT_EXPR pass (perform const folding).
+Optimizing module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+Optimizing module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.
+Optimizing module $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.
+Optimizing module arbiter_formal.
+<suppressed ~8 debug messages>
+
+11.2. Executing OPT_MERGE pass (detect identical cells).
+Finding identical cells in module `$paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top'.
+Finding identical cells in module `$paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter'.
+Finding identical cells in module `$paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder'.
+Finding identical cells in module `\arbiter_formal'.
+<suppressed ~58 debug messages>
+Removed a total of 20 cells.
+
+11.3. Executing OPT_DFF pass (perform DFF optimizations).
+
+11.4. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top..
+Finding unused cells or wires in module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter..
+Finding unused cells or wires in module $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder..
+Finding unused cells or wires in module \arbiter_formal..
+Removed 0 unused cells and 26 unused wires.
+<suppressed ~9 debug messages>
+
+11.5. Finished fast OPT passes.
+
+12. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top..
+Finding unused cells or wires in module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter..
+Finding unused cells or wires in module $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder..
+Finding unused cells or wires in module \arbiter_formal..
+Removed 0 unused cells and 155 unused wires.
+<suppressed ~3 debug messages>
+
+13. Executing RTLIL backend.
+Output filename: ../model/design_prep.il
+
+End of script. Logfile hash: 0c468d81a8, CPU: user 0.07s system 0.00s, MEM: 17.39 MB peak
+Yosys 0.52 (git sha1 fee39a3284c90249e1d9684cf6944ffbbcbb8f90)
+Time spent: 44% 4x opt_clean (0 sec), 9% 2x read_rtlil (0 sec), ...

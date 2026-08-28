@@ -7,6 +7,8 @@
 # ==============================================================================
 set -euo pipefail
 
+export PATH="/home/herald/.local/bin:$HOME/.local/bin:$PATH"
+
 TOP="${1:-axi4lite_arbiter_top}"
 RTL_DIR="${2:-.}"
 ROOT_DIR="${3:-.}"
@@ -14,8 +16,8 @@ ROOT_DIR="${3:-.}"
 # ---- check if any real .sby file exists ----
 shopt -s nullglob
 SBY_FILES=(
-    "$ROOT_DIR"/*.sby
     "$ROOT_DIR"/formal/*.sby
+    "$ROOT_DIR"/*.sby
     "$ROOT_DIR"/scripts/*.sby
     "$ROOT_DIR"/tb/formal/*.sby
 )

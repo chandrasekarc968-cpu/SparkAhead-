@@ -1,0 +1,11 @@
+# running in /mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter/src/
+read -formal addr_decoder.sv
+read -formal qos_arbiter.sv
+read -formal axi4lite_arbiter_top.sv
+read -formal arbiter_formal.sv
+prep -top arbiter_formal
+
+hierarchy -smtcheck
+rename -witness
+write_jny -no-connections ../model/design.json
+write_rtlil ../model/design.il

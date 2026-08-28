@@ -1,0 +1,199 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2025  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.52 (git sha1 fee39a3284c90249e1d9684cf6944ffbbcbb8f90)
+
+-- Executing script file `design_smt2.ys' --
+
+1. Executing RTLIL frontend.
+Input filename: design_prep.il
+
+2. Executing HIERARCHY pass (managing design hierarchy).
+Attribute `top' found on module `arbiter_formal'. Setting top module to arbiter_formal.
+
+2.1. Analyzing design hierarchy..
+Top module:  \arbiter_formal
+Used module:     $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top
+Used module:         $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter
+Used module:         $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder
+
+2.2. Analyzing design hierarchy..
+Top module:  \arbiter_formal
+Used module:     $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top
+Used module:         $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter
+Used module:         $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder
+Removed 0 unused modules.
+Module arbiter_formal directly or indirectly contains formal properties -> setting "keep" attribute.
+
+3. Executing FORMALFF pass.
+
+4. Executing DFFUNMAP pass (unmap clock enable and synchronous reset from FFs).
+
+5. Printing statistics.
+
+=== arbiter_formal ===
+
+   Number of wires:                338
+   Number of wire bits:           1891
+   Number of public wires:         114
+   Number of public wire bits:     990
+   Number of ports:                 40
+   Number of port bits:            914
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                370
+     $add                           19
+     $anyinit                       72
+     $assert                        18
+     $assume                        53
+     $eq                            30
+     $eqx                           26
+     $ff                            23
+     $ge                             1
+     $le                             8
+     $logic_and                     23
+     $logic_not                     40
+     $lt                             1
+     $mux                           50
+     $not                            1
+     $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top      1
+     $reduce_bool                    2
+     $reduce_or                      2
+
+=== $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder ===
+
+   Number of wires:                 15
+   Number of wire bits:             48
+   Number of public wires:           6
+   Number of public wire bits:      38
+   Number of ports:                  4
+   Number of port bits:             36
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                 14
+     $ge                             2
+     $logic_and                      2
+     $lt                             2
+     $mux                            8
+
+=== $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter ===
+
+   Number of wires:                178
+   Number of wire bits:           1540
+   Number of public wires:          37
+   Number of public wire bits:     391
+   Number of ports:                  8
+   Number of port bits:             15
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                171
+     $add                            1
+     $anyinit                        8
+     $anyseq                         2
+     $assume                         1
+     $eq                             6
+     $ge                             1
+     $gt                             6
+     $logic_and                      8
+     $logic_not                      6
+     $logic_or                       3
+     $lt                             1
+     $mux                          111
+     $neg                            2
+     $not                            1
+     $or                             2
+     $pmux                           5
+     $reduce_bool                    1
+     $shift                          2
+     $shiftx                         1
+     $sub                            3
+
+=== $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top ===
+
+   Number of wires:                480
+   Number of wire bits:           3662
+   Number of public wires:         246
+   Number of public wire bits:    2411
+   Number of ports:                 40
+   Number of port bits:            914
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:                365
+     $anyinit                       14
+     $anyseq                        59
+     $assume                         1
+     $eq                            17
+     $logic_and                      5
+     $logic_not                      6
+     $mux                          174
+     $neg                            2
+     $not                            1
+     $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter      2
+     $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder      2
+     $pmux                          58
+     $reduce_or                     12
+     $shift                         12
+
+=== design hierarchy ===
+
+   arbiter_formal                    1
+     $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top      1
+       $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter      2
+       $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder      2
+
+   Number of wires:               1204
+   Number of wire bits:           8729
+   Number of public wires:         446
+   Number of public wire bits:    4259
+   Number of ports:                104
+   Number of port bits:           1930
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:               1100
+     $add                           21
+     $anyinit                      102
+     $anyseq                        63
+     $assert                        18
+     $assume                        56
+     $eq                            59
+     $eqx                           26
+     $ff                            23
+     $ge                             7
+     $gt                            12
+     $le                             8
+     $logic_and                     48
+     $logic_not                     58
+     $logic_or                       6
+     $lt                             7
+     $mux                          462
+     $neg                            6
+     $not                            4
+     $or                             4
+     $pmux                          68
+     $reduce_bool                    4
+     $reduce_or                     14
+     $shift                         16
+     $shiftx                         2
+     $sub                            6
+
+6. Executing SMT2 backend.
+
+6.1. Executing BMUXMAP pass.
+
+6.2. Executing DEMUXMAP pass.
+Creating SMT-LIBv2 representation of module $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter.
+Creating SMT-LIBv2 representation of module $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder.
+Creating SMT-LIBv2 representation of module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
+Creating SMT-LIBv2 representation of module arbiter_formal.
+
+End of script. Logfile hash: ba5c5f2688, CPU: user 0.02s system 0.01s, MEM: 16.59 MB peak
+Yosys 0.52 (git sha1 fee39a3284c90249e1d9684cf6944ffbbcbb8f90)
+Time spent: 61% 2x write_smt2 (0 sec), 32% 2x read_rtlil (0 sec), ...

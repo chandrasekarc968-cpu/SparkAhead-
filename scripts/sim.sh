@@ -13,16 +13,46 @@ TB_SIM_DIR="${3:-.}"
 TB_TEST_DIR="${4:-.}"
 OUT_DIR="${5:-outputs}"
 
-# ---- collect all .sv / .v sources, excluding placeholders ----
+# ---- determine simulation top module ----
+if [[ "$TOP" == tb_* ]]; then
+    SIM_TOP="$TOP"
+elif [ "$TOP" = "axi4lite_arbiter_top" ]; then
+    SIM_TOP="tb_axi4lite_arbiter"
+elif [ -f "$TB_SIM_DIR/tb_${TOP}.sv" ] || [ -f "$TB_TEST_DIR/tb_${TOP}.sv" ]; then
+    SIM_TOP="tb_${TOP}"
+else
+    SIM_TOP="$TOP"
+fi
+
+# ---- collect RTL sources ----
 shopt -s nullglob
-ALL_SRCS=()
-for dir in "$RTL_DIR" "$TB_SIM_DIR" "$TB_TEST_DIR"; do
-    for f in "$dir"/*.sv "$dir"/*.v; do
-        [[ "$(basename "$f")" == .gitkeep* ]] && continue
-        ALL_SRCS+=("$f")
-    done
+RTL_SRCS=()
+for f in "$RTL_DIR"/*.sv "$RTL_DIR"/*.v; do
+    [[ "$(basename "$f")" == .gitkeep* ]] && continue
+    RTL_SRCS+=("$f")
 done
+
+# ---- collect matching testbench source ----
+TB_SRCS=()
+for dir in "$TB_SIM_DIR" "$TB_TEST_DIR"; do
+    if [ -f "$dir/${SIM_TOP}.sv" ]; then
+        TB_SRCS+=("$dir/${SIM_TOP}.sv")
+        break
+    fi
+done
+
+# Fallback: if no specific TB file matched SIM_TOP, include all TB files
+if [ ${#TB_SRCS[@]} -eq 0 ]; then
+    for dir in "$TB_SIM_DIR" "$TB_TEST_DIR"; do
+        for f in "$dir"/*.sv "$dir"/*.v; do
+            [[ "$(basename "$f")" == .gitkeep* ]] && continue
+            TB_SRCS+=("$f")
+        done
+    done
+fi
 shopt -u nullglob
+
+ALL_SRCS=("${RTL_SRCS[@]}" "${TB_SRCS[@]}")
 
 # ---- guard: no sources ----
 if [ ${#ALL_SRCS[@]} -eq 0 ]; then
@@ -31,22 +61,22 @@ if [ ${#ALL_SRCS[@]} -eq 0 ]; then
     exit 0
 fi
 
-echo "--- Simulation: top=${TOP}, ${#ALL_SRCS[@]} source file(s) ---"
+echo "--- Simulation: sim_top=${SIM_TOP} (target=${TOP}), ${#ALL_SRCS[@]} source file(s) ---"
 for f in "${ALL_SRCS[@]}"; do echo "  $f"; done
 
 # ---- try Icarus Verilog ----
 if command -v iverilog &>/dev/null; then
     echo "[INFO] Using Icarus Verilog for simulation compilation."
     mkdir -p "$OUT_DIR"
-    iverilog -g2012 -o "$OUT_DIR/${TOP}.vvp" "${ALL_SRCS[@]}"
+    iverilog -g2012 -s "${SIM_TOP}" -o "$OUT_DIR/${SIM_TOP}.vvp" "${ALL_SRCS[@]}"
 
     if command -v vvp &>/dev/null; then
         echo "[INFO] Running simulation with vvp..."
-        vvp "$OUT_DIR/${TOP}.vvp"
+        vvp "$OUT_DIR/${SIM_TOP}.vvp"
         echo "--- Simulation (Icarus/vvp): PASSED ---"
         exit 0
     else
-        echo "[ERROR] Simulation compiled to $OUT_DIR/${TOP}.vvp but 'vvp' runtime is not installed."
+        echo "[ERROR] Simulation compiled to $OUT_DIR/${SIM_TOP}.vvp but 'vvp' runtime is not installed."
         exit 1
     fi
 fi

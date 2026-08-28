@@ -1,0 +1,8 @@
+# running in /mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter/model/
+read_rtlil design_prep.il
+hierarchy -smtcheck
+delete */t:$print
+formalff -assume
+dffunmap
+stat
+write_smt2 -wires design_smt2.smt2

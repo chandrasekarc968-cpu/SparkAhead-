@@ -1,0 +1,9 @@
+--- Lint: checking 3 file(s) ---
+  /mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/addr_decoder.sv
+  /mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_arbiter_top.sv
+  /mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/qos_arbiter.sv
+[INFO] Using Verilator for lint.
+- V e r i l a t i o n   R e p o r t: Verilator 5.032 2025-01-01 rev (Debian 5.032-1)
+- Verilator: Built from 0.125 MB sources in 4 modules, into 0.203 MB in 5 C++ files needing 0.000 MB
+- Verilator: Walltime 0.026 s (elab=0.002, cvt=0.008, bld=0.000); cpu 0.016 s on 1 threads; alloced 10.203 MB
+--- Lint (Verilator): PASSED ---
