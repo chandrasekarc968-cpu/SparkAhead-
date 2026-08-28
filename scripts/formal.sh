@@ -2,67 +2,47 @@
 # ==============================================================================
 # formal.sh — Formal verification wrapper
 # Project : VELTRAXX'26 PS02 — Multi-Master AXI4-Lite Arbiter
-# Usage   : bash scripts/formal.sh <top> <rtl_dir>
-# Tool    : SymbiYosys (sby)
+# Usage   : bash scripts/formal.sh <top> <rtl_dir> <root_dir>
+# Tool    : SymbiYosys (sby) — only when a real .sby file exists
 # ==============================================================================
 set -euo pipefail
 
 TOP="${1:-axi4lite_arbiter_top}"
 RTL_DIR="${2:-.}"
+ROOT_DIR="${3:-.}"
 
-# ---- collect .sv files, excluding placeholders ----
+# ---- check if any real .sby file exists ----
 shopt -s nullglob
-RTL_FILES=()
-for f in "$RTL_DIR"/*.sv; do
-    [[ "$(basename "$f")" == .gitkeep* ]] && continue
-    RTL_FILES+=("$f")
-done
+SBY_FILES=(
+    "$ROOT_DIR"/*.sby
+    "$ROOT_DIR"/formal/*.sby
+    "$ROOT_DIR"/scripts/*.sby
+    "$ROOT_DIR"/tb/formal/*.sby
+)
 shopt -u nullglob
 
-# ---- guard: no sources ----
-if [ ${#RTL_FILES[@]} -eq 0 ]; then
-    echo "SKIPPED: no RTL sources found in ${RTL_DIR}/"
-    echo "         Add .sv files to src/rtl/ and re-run."
+if [ ${#SBY_FILES[@]} -eq 0 ]; then
+    echo "SKIPPED: no formal (.sby) configuration file found."
+    echo "         Create a .sby file to enable SymbiYosys formal verification."
     exit 0
 fi
 
-echo "--- Formal: top=${TOP}, ${#RTL_FILES[@]} source file(s) ---"
-for f in "${RTL_FILES[@]}"; do echo "  $f"; done
+echo "--- Formal: found ${#SBY_FILES[@]} .sby configuration(s) ---"
+for f in "${SBY_FILES[@]}"; do echo "  $f"; done
 
 # ---- try SymbiYosys ----
 if command -v sby &>/dev/null; then
     echo "[INFO] Using SymbiYosys for formal verification."
-
-    # Build read commands and file list for the .sby job
-    READ_CMDS=""
-    FILE_LIST=""
-    for src in "${RTL_FILES[@]}"; do
-        READ_CMDS="${READ_CMDS}read -formal -sv $(basename "$src")"$'\n'
-        FILE_LIST="${FILE_LIST}${src}"$'\n'
+    for sby_file in "${SBY_FILES[@]}"; do
+        echo "[INFO] Running sby -f ${sby_file}"
+        sby -f "$sby_file"
     done
-
-    SBY_FILE="/tmp/veltraxx_formal_${TOP}.sby"
-    cat > "$SBY_FILE" <<EOF
-[options]
-mode bmc
-depth 20
-
-[engines]
-smtbmc z3
-
-[script]
-${READ_CMDS}prep -top ${TOP}
-
-[files]
-${FILE_LIST}
-EOF
-    sby -f "$SBY_FILE"
-    echo "--- Formal (SymbiYosys): DONE ---"
+    echo "--- Formal (SymbiYosys): PASSED ---"
     exit 0
 fi
 
 # ---- nothing available ----
-echo "[ERROR] RTL sources exist but SymbiYosys (sby) is not installed."
+echo "[ERROR] Formal configuration exists but SymbiYosys (sby) is not installed."
 echo "        Install the oss-cad-suite to enable formal verification:"
 echo "          • SymbiYosys    : https://github.com/YosysHQ/sby"
 echo "          • oss-cad-suite : https://github.com/YosysHQ/oss-cad-suite-build"

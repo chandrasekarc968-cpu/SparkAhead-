@@ -13,11 +13,11 @@ TB_SIM_DIR="${3:-.}"
 TB_TEST_DIR="${4:-.}"
 OUT_DIR="${5:-outputs}"
 
-# ---- collect all .sv sources, excluding placeholders ----
+# ---- collect all .sv / .v sources, excluding placeholders ----
 shopt -s nullglob
 ALL_SRCS=()
 for dir in "$RTL_DIR" "$TB_SIM_DIR" "$TB_TEST_DIR"; do
-    for f in "$dir"/*.sv; do
+    for f in "$dir"/*.sv "$dir"/*.v; do
         [[ "$(basename "$f")" == .gitkeep* ]] && continue
         ALL_SRCS+=("$f")
     done
@@ -36,16 +36,19 @@ for f in "${ALL_SRCS[@]}"; do echo "  $f"; done
 
 # ---- try Icarus Verilog ----
 if command -v iverilog &>/dev/null; then
-    echo "[INFO] Using Icarus Verilog for simulation."
+    echo "[INFO] Using Icarus Verilog for simulation compilation."
     mkdir -p "$OUT_DIR"
     iverilog -g2012 -o "$OUT_DIR/${TOP}.vvp" "${ALL_SRCS[@]}"
+
     if command -v vvp &>/dev/null; then
+        echo "[INFO] Running simulation with vvp..."
         vvp "$OUT_DIR/${TOP}.vvp"
+        echo "--- Simulation (Icarus/vvp): PASSED ---"
+        exit 0
     else
-        echo "[WARNING] iverilog compiled OK but 'vvp' not found — cannot execute."
+        echo "[ERROR] Simulation compiled to $OUT_DIR/${TOP}.vvp but 'vvp' runtime is not installed."
+        exit 1
     fi
-    echo "--- Simulation (Icarus): DONE ---"
-    exit 0
 fi
 
 # ---- nothing available ----

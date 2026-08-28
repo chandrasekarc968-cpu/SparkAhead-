@@ -9,10 +9,10 @@ set -euo pipefail
 
 RTL_DIR="${1:-.}"
 
-# ---- collect .sv files, excluding placeholders ----
+# ---- collect .sv / .v files, excluding placeholders ----
 shopt -s nullglob
 RTL_FILES=()
-for f in "$RTL_DIR"/*.sv; do
+for f in "$RTL_DIR"/*.sv "$RTL_DIR"/*.v; do
     [[ "$(basename "$f")" == .gitkeep* ]] && continue
     RTL_FILES+=("$f")
 done
@@ -45,7 +45,7 @@ if command -v iverilog &>/dev/null; then
 fi
 
 # ---- nothing available ----
-echo "[ERROR] RTL sources exist but no lint tool is installed."
+echo "[ERROR] RTL sources exist but neither Verilator nor Icarus Verilog is installed."
 echo "        Install one of the following:"
 echo "          • Verilator : https://verilator.org"
 echo "          • Icarus    : https://steveicarus.github.io/iverilog/"

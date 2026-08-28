@@ -12,10 +12,10 @@ RTL_DIR="${2:-.}"
 SDC="${3:-}"
 OUT_DIR="${4:-outputs}"
 
-# ---- collect .sv files, excluding placeholders ----
+# ---- collect .sv / .v files, excluding placeholders ----
 shopt -s nullglob
 RTL_FILES=()
-for f in "$RTL_DIR"/*.sv; do
+for f in "$RTL_DIR"/*.sv "$RTL_DIR"/*.v; do
     [[ "$(basename "$f")" == .gitkeep* ]] && continue
     RTL_FILES+=("$f")
 done
@@ -46,9 +46,14 @@ if command -v yosys &>/dev/null; then
     YOSYS_CMDS="${YOSYS_CMDS}synth -top ${TOP}; write_verilog \"${OUT_DIR}/${TOP}_netlist.v\""
 
     yosys -p "$YOSYS_CMDS"
-    echo "--- Synthesis (Yosys): DONE ---"
-    echo "    Netlist: ${OUT_DIR}/${TOP}_netlist.v"
-    exit 0
+    if [ -f "${OUT_DIR}/${TOP}_netlist.v" ]; then
+        echo "--- Synthesis (Yosys): SUCCESS ---"
+        echo "    Netlist: ${OUT_DIR}/${TOP}_netlist.v"
+        exit 0
+    else
+        echo "[ERROR] Yosys synthesis ran but failed to produce expected netlist ${OUT_DIR}/${TOP}_netlist.v"
+        exit 1
+    fi
 fi
 
 # ---- nothing available ----
