@@ -1,13 +1,11 @@
 # ==============================================================================
 # Root Makefile — VELTRAXX'26 PS02 Multi-Master AXI4-Lite Arbiter
 # ==============================================================================
-# Delegates all targets to scripts/Makefile so the build flow works from
-# the repository root via:   make lint | sim | formal | synth | clean
+# Delegates all targets to scripts/Makefile.
+# Usage:  make lint | make sim | make formal | make synth | make clean
 # ==============================================================================
 
-TARGETS := lint sim formal synth clean
+.PHONY: lint sim formal synth clean
 
-.PHONY: $(TARGETS)
-
-$(TARGETS):
+lint sim formal synth clean:
 	$(MAKE) -f scripts/Makefile $@

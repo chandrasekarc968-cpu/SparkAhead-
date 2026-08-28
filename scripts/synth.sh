@@ -2,49 +2,58 @@
 # ==============================================================================
 # synth.sh — Synthesis wrapper
 # Project : VELTRAXX'26 PS02 — Multi-Master AXI4-Lite Arbiter
-# Usage   : bash scripts/synth.sh <top_module> "<rtl_files>" <sdc_file> <output_dir>
-# Fallback: Yosys → clear install message
+# Usage   : bash scripts/synth.sh <top> <rtl_dir> <sdc_file> <out_dir>
+# Tool    : Yosys
 # ==============================================================================
 set -euo pipefail
 
-TOP="${1:-}"
-SRCS="${2:-}"
+TOP="${1:-axi4lite_arbiter_top}"
+RTL_DIR="${2:-.}"
 SDC="${3:-}"
 OUT_DIR="${4:-outputs}"
 
-# ---------- guard: no sources ----------
-if [ -z "$SRCS" ] || [ -z "$(echo "$SRCS" | xargs)" ]; then
-    echo "[SKIPPED] synth — no RTL source files found."
-    echo "          Add .sv files to src/rtl/ and re-run."
+# ---- collect .sv files, excluding placeholders ----
+shopt -s nullglob
+RTL_FILES=()
+for f in "$RTL_DIR"/*.sv; do
+    [[ "$(basename "$f")" == .gitkeep* ]] && continue
+    RTL_FILES+=("$f")
+done
+shopt -u nullglob
+
+# ---- guard: no sources ----
+if [ ${#RTL_FILES[@]} -eq 0 ]; then
+    echo "SKIPPED: no RTL sources found in ${RTL_DIR}/"
+    echo "         Add .sv files to src/rtl/ and re-run."
     exit 0
 fi
 
-echo "--- Synthesis: top=${TOP} ---"
-echo "    Sources: ${SRCS}"
-echo "    SDC    : ${SDC}"
+echo "--- Synthesis: top=${TOP}, ${#RTL_FILES[@]} source file(s) ---"
+for f in "${RTL_FILES[@]}"; do echo "  $f"; done
+echo "    SDC    : ${SDC:-<none>}"
 echo "    Output : ${OUT_DIR}"
 
-# ---------- try Yosys ----------
+# ---- try Yosys ----
 if command -v yosys &>/dev/null; then
     echo "[INFO] Using Yosys for synthesis."
-    mkdir -p "${OUT_DIR}"
+    mkdir -p "$OUT_DIR"
 
-    # Build a Yosys command string from the source list
-    READ_CMDS=""
-    # shellcheck disable=SC2086
-    for src in ${SRCS}; do
-        READ_CMDS="${READ_CMDS} read_verilog -sv ${src};"
+    # Build Yosys read commands
+    YOSYS_CMDS=""
+    for src in "${RTL_FILES[@]}"; do
+        YOSYS_CMDS="${YOSYS_CMDS}read_verilog -sv \"${src}\"; "
     done
+    YOSYS_CMDS="${YOSYS_CMDS}synth -top ${TOP}; write_verilog \"${OUT_DIR}/${TOP}_netlist.v\""
 
-    yosys -p "${READ_CMDS} synth -top ${TOP}; write_verilog ${OUT_DIR}/${TOP}_netlist.v"
+    yosys -p "$YOSYS_CMDS"
     echo "--- Synthesis (Yosys): DONE ---"
     echo "    Netlist: ${OUT_DIR}/${TOP}_netlist.v"
     exit 0
 fi
 
-# ---------- nothing available ----------
-echo "[SKIPPED] synth — Yosys not found on PATH."
-echo "          Install the oss-cad-suite to enable synthesis:"
-echo "            • Yosys         : https://github.com/YosysHQ/yosys"
-echo "            • oss-cad-suite : https://github.com/YosysHQ/oss-cad-suite-build"
-exit 0
+# ---- nothing available ----
+echo "[ERROR] RTL sources exist but Yosys is not installed."
+echo "        Install the oss-cad-suite to enable synthesis:"
+echo "          • Yosys         : https://github.com/YosysHQ/yosys"
+echo "          • oss-cad-suite : https://github.com/YosysHQ/oss-cad-suite-build"
+exit 1
