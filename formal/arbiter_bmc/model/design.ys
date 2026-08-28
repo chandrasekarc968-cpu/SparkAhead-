@@ -1,0 +1,15 @@
+# running in formal/arbiter_bmc/src/
+read -formal axi4lite_pkg.sv
+read -formal axi4lite_address_decoder.sv
+read -formal axi4lite_qos_scheduler.sv
+read -formal axi4lite_response_router.sv
+read -formal axi4lite_write_arbiter.sv
+read -formal axi4lite_read_arbiter.sv
+read -formal axi4lite_arbiter_top.sv
+read -formal arbiter_formal.sv
+prep -top arbiter_formal
+
+hierarchy -smtcheck
+rename -witness
+write_jny -no-connections ../model/design.json
+write_rtlil ../model/design.il

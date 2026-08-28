@@ -1,0 +1,13 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2025  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.52 (git sha1 fee39a3284c90249e1d9684cf6944ffbbcbb8f90)
+
+-- Executing script file `../model/design.ys' --
+
+1. Executing Verilog-2005 frontend: axi4lite_pkg.sv
+Parsing formal SystemVerilog input from `axi4lite_pkg.sv' to AST representation.
+axi4lite_pkg.sv:56: ERROR: syntax error, unexpected '?', expecting ';'

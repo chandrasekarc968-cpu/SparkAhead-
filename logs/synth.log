@@ -1,0 +1,23 @@
+
+ /----------------------------------------------------------------------------\
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |  Copyright (C) 2012 - 2025  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |  Distributed under an ISC-like license, type "license" to see terms        |
+ \----------------------------------------------------------------------------/
+ Yosys 0.52 (git sha1 fee39a3284c90249e1d9684cf6944ffbbcbb8f90)
+
+-- Running command `read_verilog -sv "src/rtl/axi4lite_address_decoder.sv"; read_verilog -sv "src/rtl/axi4lite_arbiter_top.sv"; read_verilog -sv "src/rtl/axi4lite_pkg.sv"; read_verilog -sv "src/rtl/axi4lite_qos_scheduler.sv"; read_verilog -sv "src/rtl/axi4lite_read_arbiter.sv"; read_verilog -sv "src/rtl/axi4lite_response_router.sv"; read_verilog -sv "src/rtl/axi4lite_write_arbiter.sv"; hierarchy -check -top axi4lite_arbiter_top; proc; opt; synth -top axi4lite_arbiter_top; stat; write_verilog "outputs/axi4lite_arbiter_top_netlist.v"' --
+
+1. Executing Verilog-2005 frontend: src/rtl/axi4lite_address_decoder.sv
+Parsing SystemVerilog input from `src/rtl/axi4lite_address_decoder.sv' to AST representation.
+Generating RTLIL representation for module `\axi4lite_address_decoder'.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: src/rtl/axi4lite_arbiter_top.sv
+Parsing SystemVerilog input from `src/rtl/axi4lite_arbiter_top.sv' to AST representation.
+Generating RTLIL representation for module `\axi4lite_arbiter_top'.
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: src/rtl/axi4lite_pkg.sv
+Parsing SystemVerilog input from `src/rtl/axi4lite_pkg.sv' to AST representation.
+src/rtl/axi4lite_pkg.sv:56: ERROR: syntax error, unexpected '?', expecting ';'

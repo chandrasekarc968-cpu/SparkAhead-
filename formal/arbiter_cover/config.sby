@@ -1,0 +1,27 @@
+[options]
+mode cover
+depth 40
+
+[engines]
+smtbmc z3
+
+[script]
+read -formal axi4lite_pkg.sv
+read -formal axi4lite_address_decoder.sv
+read -formal axi4lite_qos_scheduler.sv
+read -formal axi4lite_response_router.sv
+read -formal axi4lite_write_arbiter.sv
+read -formal axi4lite_read_arbiter.sv
+read -formal axi4lite_arbiter_top.sv
+read -formal arbiter_formal.sv
+prep -top arbiter_formal
+
+[files]
+src/rtl/axi4lite_pkg.sv
+src/rtl/axi4lite_address_decoder.sv
+src/rtl/axi4lite_qos_scheduler.sv
+src/rtl/axi4lite_response_router.sv
+src/rtl/axi4lite_write_arbiter.sv
+src/rtl/axi4lite_read_arbiter.sv
+src/rtl/axi4lite_arbiter_top.sv
+formal/arbiter_formal.sv

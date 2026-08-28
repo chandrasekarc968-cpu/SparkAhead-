@@ -53,10 +53,7 @@ package axi4lite_pkg;
     // Specification: valid weights are 1–15. Zero is clamped to 1.
     // -------------------------------------------------------------------------
     function automatic logic [3:0] clamp_weight(input logic [3:0] w);
-        if (w == 4'd0)
-            clamp_weight = 4'd1;
-        else
-            clamp_weight = w;
+        return (w == 4'd0) ? 4'd1 : w;
     endfunction
 
 endpackage
