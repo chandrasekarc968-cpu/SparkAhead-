@@ -11,6 +11,7 @@ TOP="${1:-axi4lite_arbiter_top}"
 RTL_DIR="${2:-.}"
 SDC="${3:-}"
 OUT_DIR="${4:-outputs}"
+LOG_DIR="${ROOT_DIR:-.}/logs"
 
 # ---- collect .sv / .v files, excluding placeholders ----
 shopt -s nullglob
@@ -30,30 +31,50 @@ fi
 
 echo "--- Synthesis: top=${TOP}, ${#RTL_FILES[@]} source file(s) ---"
 for f in "${RTL_FILES[@]}"; do echo "  $f"; done
-echo "    SDC    : ${SDC:-<none>}"
-echo "    Output : ${OUT_DIR}"
+if [ -n "${SDC}" ] && [ -f "${SDC}" ]; then
+    echo "    SDC (Informational) : ${SDC}"
+else
+    echo "    SDC                 : ${SDC:-<none>}"
+fi
+echo "    Output Directory    : ${OUT_DIR}"
 
 # ---- try Yosys ----
 if command -v yosys &>/dev/null; then
     echo "[INFO] Using Yosys for synthesis."
     mkdir -p "$OUT_DIR"
+    mkdir -p "$LOG_DIR"
 
-    # Build Yosys read commands
+    # Build explicit synthesis command chain
     YOSYS_CMDS=""
     for src in "${RTL_FILES[@]}"; do
         YOSYS_CMDS="${YOSYS_CMDS}read_verilog -sv \"${src}\"; "
     done
-    YOSYS_CMDS="${YOSYS_CMDS}synth -top ${TOP}; write_verilog \"${OUT_DIR}/${TOP}_netlist.v\""
+    YOSYS_CMDS="${YOSYS_CMDS}hierarchy -check -top ${TOP}; "
+    YOSYS_CMDS="${YOSYS_CMDS}proc; opt; synth -top ${TOP}; "
+    YOSYS_CMDS="${YOSYS_CMDS}stat; "
+    YOSYS_CMDS="${YOSYS_CMDS}write_verilog \"${OUT_DIR}/${TOP}_netlist.v\""
 
-    yosys -p "$YOSYS_CMDS"
-    if [ -f "${OUT_DIR}/${TOP}_netlist.v" ]; then
-        echo "--- Synthesis (Yosys): SUCCESS ---"
-        echo "    Netlist: ${OUT_DIR}/${TOP}_netlist.v"
-        exit 0
-    else
-        echo "[ERROR] Yosys synthesis ran but failed to produce expected netlist ${OUT_DIR}/${TOP}_netlist.v"
+    # Execute Yosys synthesis and capture full statistics log
+    yosys -l "${LOG_DIR}/synth.log" -p "$YOSYS_CMDS"
+
+    # Verify generated artifact
+    NETLIST="${OUT_DIR}/${TOP}_netlist.v"
+    if [ ! -f "$NETLIST" ]; then
+        echo "[ERROR] Yosys synthesis failed: expected netlist '$NETLIST' was not generated."
         exit 1
     fi
+
+    # Verify that the netlist contains the top module definition
+    if ! grep -Eq "module +(\\\\?${TOP}|${TOP}) *[\\(;]" "$NETLIST"; then
+        echo "[ERROR] Netlist '$NETLIST' was generated but does not contain top module '${TOP}'."
+        exit 1
+    fi
+
+    echo "--- Synthesis (Yosys): SUCCESS ---"
+    echo "    Netlist : ${NETLIST}"
+    echo "    Log     : ${LOG_DIR}/synth.log"
+    echo "    Note    : Logic synthesis completed; SDC timing closure is not claimed."
+    exit 0
 fi
 
 # ---- nothing available ----

@@ -194,6 +194,6 @@ Creating SMT-LIBv2 representation of module $paramod$59f66e305bd3b47082af7a1e202
 Creating SMT-LIBv2 representation of module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
 Creating SMT-LIBv2 representation of module arbiter_formal.
 
-End of script. Logfile hash: ba5c5f2688, CPU: user 0.02s system 0.01s, MEM: 16.59 MB peak
+End of script. Logfile hash: ba5c5f2688, CPU: user 0.01s system 0.01s, MEM: 16.60 MB peak
 Yosys 0.52 (git sha1 fee39a3284c90249e1d9684cf6944ffbbcbb8f90)
-Time spent: 61% 2x write_smt2 (0 sec), 32% 2x read_rtlil (0 sec), ...
+Time spent: 59% 2x write_smt2 (0 sec), 33% 2x read_rtlil (0 sec), ...

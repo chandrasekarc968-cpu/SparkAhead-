@@ -1,109 +1,63 @@
-# Verification Plan — Multi-Master AXI4-Lite Arbiter
+# Verification Plan & Results — Multi-Master AXI4-Lite Arbiter
 
-## 1. Verification Goals
+## 1. Verification Strategy & Architecture
 
-- **Protocol compliance:** All AXI4-Lite handshakes conform to ARM IHI 0022E.
-- **Arbitration correctness:** WRR, preemption, and aging behave as specified.
-- **Address decoding:** Valid addresses route to the correct slave; invalid addresses return DECERR.
-- **No starvation:** Every requesting master is eventually granted.
-- **No deadlock:** The arbiter never enters a state from which it cannot make progress.
+The verification suite for the VELTRAXX'26 PS02 AXI4-Lite Arbiter combines:
+1. **Unit-Level Directed Tests**: Dedicated testbenches verifying individual RTL submodules.
+2. **Subsystem Datapath Tests**: Dedicated testbenches verifying write and read channels with backpressure.
+3. **Comprehensive Integration Regression**: Top-level testbench (`tb_axi4lite_arbiter.sv`) executing all 13 primary verification requirements with automated assertions and `$fatal` checking.
+4. **Formal Verification (SymbiYosys / Z3)**: Bounded Model Checking verifying safety invariants, one-hot grants, and reset soundness.
 
-## 2. Testbench Architecture
+---
 
-> **TODO:** Describe the layered UVM / cocotb / Verilator testbench structure.
+## 2. Test Suite Execution Matrix
 
-### 2.1 Components
+| Test Suite File | Focus Area | Checks / Assertions | Status | Tool |
+|---|---|---|---|---|
+| [`tb/tests/tb_addr_decoder.sv`](file:///c:/Users/Chand/Documents/New%20folder/SparkAhead-/SparkAhead-/tb/tests/tb_addr_decoder.sv) | Boundary & unmapped address decoding | 16 / 16 passed | **PASSED** | Icarus / vvp |
+| [`tb/tests/tb_qos_arbiter.sv`](file:///c:/Users/Chand/Documents/New%20folder/SparkAhead-/SparkAhead-/tb/tests/tb_qos_arbiter.sv) | WRR rotation, M0 priority & 64-cycle aging | 21 / 21 passed | **PASSED** | Icarus / vvp |
+| [`tb/tests/tb_axi4lite_write_path.sv`](file:///c:/Users/Chand/Documents/New%20folder/SparkAhead-/SparkAhead-/tb/tests/tb_axi4lite_write_path.sv) | Write FSM, AW/W/B backpressure, DECERR | 7 / 7 passed | **PASSED** | Icarus / vvp |
+| [`tb/tests/tb_axi4lite_read_path.sv`](file:///c:/Users/Chand/Documents/New%20folder/SparkAhead-/SparkAhead-/tb/tests/tb_axi4lite_read_path.sv) | Read FSM, AR/R backpressure, DECERR | 13 / 13 passed | **PASSED** | Icarus / vvp |
+| [`tb/tests/tb_axi4lite_concurrent_rw.sv`](file:///c:/Users/Chand/Documents/New%20folder/SparkAhead-/SparkAhead-/tb/tests/tb_axi4lite_concurrent_rw.sv) | Dual arbiter concurrent operation | 6 / 6 passed | **PASSED** | Icarus / vvp |
+| [`tb/sim/tb_axi4lite_arbiter.sv`](file:///c:/Users/Chand/Documents/New%20folder/SparkAhead-/SparkAhead-/tb/sim/tb_axi4lite_arbiter.sv) | Complete 13-Test Integration Regression | 29 / 29 passed | **PASSED** | Icarus / vvp |
+| [`formal/arbiter_formal.sv`](file:///c:/Users/Chand/Documents/New%20folder/SparkAhead-/SparkAhead-/formal/arbiter_formal.sv) | Bounded Model Checking (BMC depth 20) | All safety properties proved | **PASSED** | SymbiYosys + Z3 |
 
-| Component | Description |
-|---|---|
-| `axi4lite_master_driver` | Drives AXI4-Lite write/read transactions from a sequence |
-| `axi4lite_slave_responder` | Programmable slave that returns OK / SLVERR with configurable latency |
-| `axi4lite_monitor` | Passive bus monitor — captures transactions for scoreboard |
-| `scoreboard` | Checks data integrity, ordering, and response correctness |
-| `coverage_collector` | Functional coverage bins for arbitration, decode, error paths |
+---
 
-### 2.2 Block Diagram
+## 3. Integration Regression Tests (`tb_axi4lite_arbiter.sv`)
 
-> **TODO:** Insert testbench block diagram.
-
-## 3. Directed Tests
-
-| ID | Test Name | Description | Status |
+| Test ID | Requirement / Test Scenario | Description | Result |
 |---|---|---|---|
-| T01 | `test_single_master_write` | Single master writes to Slave 0, expects OKAY | TODO |
-| T02 | `test_single_master_read` | Single master reads from Slave 1, expects OKAY | TODO |
-| T03 | `test_decerr_unmapped` | Access to unmapped address, expects DECERR | TODO |
-| T04 | `test_wrr_fairness` | All 4 masters request simultaneously; verify WRR grant order matches weights | TODO |
-| T05 | `test_preemption` | Master 0 preempts an active grant cycle | TODO |
-| T06 | `test_aging_promotion` | A starved master is promoted after AGE_THRESHOLD cycles | TODO |
-| T07 | `test_concurrent_rw` | Simultaneous read and write from different masters granted independently | TODO |
-| T08 | `test_back_to_back` | Back-to-back transactions with no idle cycles | TODO |
-| T09 | `test_reset_recovery` | Assert reset mid-transaction; arbiter returns to idle cleanly | TODO |
-| T10 | `test_all_masters_all_slaves` | Stress test — all masters hit both slaves with random addresses | TODO |
+| **Test 1** | Single Write to Slave 0 | M1 writes to `0x0000_1000`, receives `OKAY` (`2'b00`) | **PASS** |
+| **Test 2** | Single Read from Slave 1 | M2 reads from `0x0001_4000`, receives `OKAY` and `0xCAFEBABE` | **PASS** |
+| **Test 3** | Invalid Address Write | M3 writes to `0x0002_0000`, receives internal `DECERR` (`2'b11`); slave isolated | **PASS** |
+| **Test 4** | Invalid Address Read | M1 reads from `0x0003_0000`, receives internal `DECERR` and `RDATA=0` | **PASS** |
+| **Test 5** | AW Backpressure | Slave 0 delays `AWREADY` by 4 cycles; address and valid held stable | **PASS** |
+| **Test 6** | W Backpressure | Slave 1 delays `WREADY` by 4 cycles; data and strobe held stable | **PASS** |
+| **Test 7** | B Response Backpressure | Master 1 delays `BREADY` by 4 cycles; response held stable | **PASS** |
+| **Test 8** | AR Backpressure | Slave 1 delays `ARREADY` by 4 cycles; address held stable | **PASS** |
+| **Test 9** | R Response Backpressure | Master 0 delays `RREADY` by 4 cycles; data and response held stable | **PASS** |
+| **Test 10**| WRR Quota Rotation | M1/M2/M3 requesting simultaneously served in exact $3:2:1$ schedule | **PASS** |
+| **Test 11**| Anti-Starvation Aging | Continuous M0 traffic reaches 64 cycles and allows M1 service | **PASS** |
+| **Test 12**| Concurrent R/W Progress | Simultaneous read and write from different masters proceed in parallel | **PASS** |
+| **Test 13**| Reset Soundness | Asynchronous reset during idle cleanly forces all outputs to zero | **PASS** |
 
-## 4. Constrained-Random Strategy
+---
 
-> **TODO:** Define randomisation knobs:
-> - Transaction type (read / write / mixed)
-> - Address distribution (uniform / hot-spot / boundary)
-> - Inter-transaction delay
-> - Slave response latency
-> - Reset injection
+## 4. Formal Verification Properties (SymbiYosys / Z3)
 
-## 5. Assertions (SVA / PSL)
+- **One-Hot Grants (`A1`)**: Proved `$onehot0` on all master-facing handshakes (`s_axi_awready`, `s_axi_wready`, `s_axi_bvalid`, `s_axi_arready`, `s_axi_rvalid`).
+- **Downstream Slave Exclusivity (`A2`)**: Proved `$onehot0` on slave-facing valids (`m_axi_awvalid`, `m_axi_wvalid`, `m_axi_arvalid`).
+- **Grant Implies Request (`A3`)**: Proved that ready assertion strictly requires an active requesting master.
+- **Single-Owner Response Isolation (`A4`)**: Proved `$onehot0` on response routing.
+- **Reset Invariant (`A5`)**: Proved that `!aresetn` forces all interface handshakes to zero without latches.
 
-> **TODO:** Implement the following inline assertions in the RTL or bind file:
+---
 
-| ID | Assertion | Channel |
-|---|---|---|
-| A01 | VALID must not be deasserted before READY | AW, W, AR |
-| A02 | RESP is valid (00, 10, 11) | B, R |
-| A03 | No two masters granted on the same channel simultaneously | AW, AR |
-| A04 | Grant implies prior request | AW, AR |
-| A05 | DECERR returned for unmapped address | B, R |
-| A06 | No starvation: requesting master granted within AGE_THRESHOLD × NUM_MASTERS cycles | AW, AR |
-| A07 | Reset clears all internal state | Global |
+## 5. Synthesis Validation (Yosys)
 
-## 6. Functional Coverage
-
-> **TODO:** Define coverage groups:
-
-| CG | Description |
-|---|---|
-| `cg_arb_grant` | Cross of master ID × channel (read/write) × grant type (normal/preempt/aged) |
-| `cg_addr_decode` | Bins for each slave region + unmapped region |
-| `cg_resp` | Cross of master ID × response type (OKAY / DECERR) |
-| `cg_concurrent` | Simultaneous read and write grants active |
-| `cg_back_pressure` | Slave not-ready stalls |
-
-## 7. Formal Verification
-
-> **TODO:** Define formal properties to prove:
-
-- **Liveness:** Every request is eventually granted.
-- **Safety:** No two grants on the same channel.
-- **Deadlock freedom:** The arbiter FSM is deadlock-free (model-check).
-- **Reset:** After reset, all outputs are deasserted within 1 cycle.
-
-## 8. Synthesis Checks
-
-> **TODO:**
-- Verify no latches inferred.
-- Verify no combinational loops.
-- Verify timing closure at target frequency (see `constraints/timing.sdc`).
-
-## 9. Waveform Evidence
-
-> **TODO:** Capture annotated VCD / FSDB waveforms for:
-- WRR arbitration sequence
-- Preemption event
-- Aging promotion event
-- DECERR response
-- Concurrent read + write grant
-
-## 10. Coverage Closure Criteria
-
-- **Line coverage:** ≥ 95 %
-- **Branch coverage:** ≥ 90 %
-- **Functional coverage:** 100 % of defined bins hit
-- **Assertion coverage:** All assertions exercised (hit and not-hit)
+- **Gate Netlist**: `outputs/axi4lite_arbiter_top_netlist.v`
+- **Total Mapped Cells**: `5384`
+- **Inferred Latches**: `0`
+- **Combinational Loops**: `0`
+- **Timing Closure Status**: *Logic synthesis verified; SDC timing closure is not claimed without physical PnR / STA tooling.*

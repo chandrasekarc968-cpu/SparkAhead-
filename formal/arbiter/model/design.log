@@ -2149,6 +2149,6 @@ Module arbiter_formal directly or indirectly contains formal properties -> setti
 Output filename: ../model/design.il
 
 Warnings: 3 unique messages, 3 total
-End of script. Logfile hash: 2e48fa7b6c, CPU: user 0.16s system 0.02s, MEM: 25.75 MB peak
+End of script. Logfile hash: 2e48fa7b6c, CPU: user 0.18s system 0.01s, MEM: 25.55 MB peak
 Yosys 0.52 (git sha1 fee39a3284c90249e1d9684cf6944ffbbcbb8f90)
-Time spent: 23% 5x opt_clean (0 sec), 14% 6x opt_expr (0 sec), ...
+Time spent: 23% 5x opt_clean (0 sec), 14% 2x hierarchy (0 sec), ...
