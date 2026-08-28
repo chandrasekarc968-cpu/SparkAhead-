@@ -72,8 +72,21 @@ if command -v iverilog &>/dev/null; then
 
     if command -v vvp &>/dev/null; then
         echo "[INFO] Running simulation with vvp..."
-        vvp "$OUT_DIR/${SIM_TOP}.vvp"
-        echo "--- Simulation (Icarus/vvp): PASSED ---"
+        SIM_LOG="$OUT_DIR/${SIM_TOP}_sim.log"
+        vvp "$OUT_DIR/${SIM_TOP}.vvp" 2>&1 | tee "$SIM_LOG"
+        VVP_RC=${PIPESTATUS[0]}
+        if [ $VVP_RC -ne 0 ]; then
+            echo "[ERROR] Simulation exited with non-zero return code ($VVP_RC)."
+            exit 1
+        fi
+        # Verify at least one real check ran
+        if ! grep -q '\[PASS\]' "$SIM_LOG"; then
+            echo "[ERROR] Simulation completed but no [PASS] check markers found in output."
+            echo "        The testbench must contain assertion checks that print [PASS]."
+            exit 1
+        fi
+        PASS_COUNT=$(grep -c '\[PASS\]' "$SIM_LOG")
+        echo "--- Simulation (Icarus/vvp): PASSED ($PASS_COUNT checks verified) ---"
         exit 0
     else
         echo "[ERROR] Simulation compiled to $OUT_DIR/${SIM_TOP}.vvp but 'vvp' runtime is not installed."

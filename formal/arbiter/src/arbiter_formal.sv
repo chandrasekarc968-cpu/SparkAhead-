@@ -273,4 +273,76 @@ module arbiter_formal (
         end
     end
 
+    // =========================================================================
+    // 4. Owner Stability — owner must not change while transaction is in flight
+    // =========================================================================
+
+    // A6. Write owner stable when FSM not idle
+    always @(posedge aclk) begin
+        if (f_active && aresetn) begin
+            // w_state != W_IDLE means a transaction is in flight
+            if (dut.w_state != 2'b00 && $past(dut.w_state) != 2'b00) begin
+                assert (dut.w_owner_m_id == $past(dut.w_owner_m_id));
+            end
+        end
+    end
+
+    // A7. Read owner stable when FSM not idle
+    always @(posedge aclk) begin
+        if (f_active && aresetn) begin
+            if (dut.r_state != 2'b00 && $past(dut.r_state) != 2'b00) begin
+                assert (dut.r_owner_m_id == $past(dut.r_owner_m_id));
+            end
+        end
+    end
+
+    // =========================================================================
+    // 5. No Premature Completion — tx_done only in B_WAIT / R_WAIT states
+    // =========================================================================
+
+    // A8. write_arb_tx_done only fires from W_B_WAIT (2'b11)
+    always @(posedge aclk) begin
+        if (f_active && aresetn) begin
+            if (dut.write_arb_tx_done) begin
+                assert ($past(dut.w_state) == 2'b11);
+            end
+        end
+    end
+
+    // A9. read_arb_tx_done only fires from R_R_WAIT (2'b10)
+    always @(posedge aclk) begin
+        if (f_active && aresetn) begin
+            if (dut.read_arb_tx_done) begin
+                assert ($past(dut.r_state) == 2'b10);
+            end
+        end
+    end
+
+    // =========================================================================
+    // 6. DECERR Correctness — invalid target produces DECERR response
+    // =========================================================================
+
+    // A10. Write DECERR: when target is invalid and BVALID asserted to owner, BRESP must be DECERR
+    always @(posedge aclk) begin
+        if (f_active && aresetn) begin
+            if (dut.w_state == 2'b11 && dut.w_target_invalid) begin
+                // BVALID is asserted to the owner
+                assert (s_axi_bvalid[dut.w_owner_m_id]);
+                assert (s_axi_bresp[dut.w_owner_m_id] == 2'b11);
+            end
+        end
+    end
+
+    // A11. Read DECERR: when target is invalid and RVALID asserted to owner, RRESP must be DECERR
+    always @(posedge aclk) begin
+        if (f_active && aresetn) begin
+            if (dut.r_state == 2'b10 && dut.r_target_invalid) begin
+                assert (s_axi_rvalid[dut.r_owner_m_id]);
+                assert (s_axi_rresp[dut.r_owner_m_id] == 2'b11);
+                assert (s_axi_rdata[dut.r_owner_m_id] == 32'h0000_0000);
+            end
+        end
+    end
+
 endmodule
+

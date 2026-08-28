@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-<testsuite timestamp="2026-08-28T07:44:19" hostname="kavi" package="arbiter" id="0" name="default" tests="20" errors="0" failures="0" time="0" skipped="0">
+<testsuite timestamp="2026-08-28T08:07:29" hostname="kavi" package="arbiter" id="0" name="default" tests="29" errors="0" failures="0" time="0" skipped="0">
 <properties>
 <property name="os" value="Linux"/>
 <property name="expect" value="PASS"/>
@@ -8,111 +8,149 @@
 </properties>
 <testcase classname="default" name="build execution" time="0">
 </testcase>
-<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:225.13-225.45" time="0" type="ASSERT" location="arbiter_formal.sv:225.13-225.45" id="_witness_.check_assert_arbiter_formal_sv_225_88">
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:225.13-225.45" time="0" type="ASSERT" location="arbiter_formal.sv:225.13-225.45" id="_witness_.check_assert_arbiter_formal_sv_225_94">
 </testcase>
-<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:226.13-226.44" time="0" type="ASSERT" location="arbiter_formal.sv:226.13-226.44" id="_witness_.check_assert_arbiter_formal_sv_226_106">
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:226.13-226.44" time="0" type="ASSERT" location="arbiter_formal.sv:226.13-226.44" id="_witness_.check_assert_arbiter_formal_sv_226_112">
 </testcase>
-<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:227.13-227.44" time="0" type="ASSERT" location="arbiter_formal.sv:227.13-227.44" id="_witness_.check_assert_arbiter_formal_sv_227_124">
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:227.13-227.44" time="0" type="ASSERT" location="arbiter_formal.sv:227.13-227.44" id="_witness_.check_assert_arbiter_formal_sv_227_130">
 </testcase>
-<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:228.13-228.45" time="0" type="ASSERT" location="arbiter_formal.sv:228.13-228.45" id="_witness_.check_assert_arbiter_formal_sv_228_142">
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:228.13-228.45" time="0" type="ASSERT" location="arbiter_formal.sv:228.13-228.45" id="_witness_.check_assert_arbiter_formal_sv_228_148">
 </testcase>
-<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:229.13-229.44" time="0" type="ASSERT" location="arbiter_formal.sv:229.13-229.44" id="_witness_.check_assert_arbiter_formal_sv_229_160">
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:229.13-229.44" time="0" type="ASSERT" location="arbiter_formal.sv:229.13-229.44" id="_witness_.check_assert_arbiter_formal_sv_229_166">
 </testcase>
-<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:236.13-236.45" time="0" type="ASSERT" location="arbiter_formal.sv:236.13-236.45" id="_witness_.check_assert_arbiter_formal_sv_236_179">
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:236.13-236.45" time="0" type="ASSERT" location="arbiter_formal.sv:236.13-236.45" id="_witness_.check_assert_arbiter_formal_sv_236_185">
 </testcase>
-<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:237.13-237.44" time="0" type="ASSERT" location="arbiter_formal.sv:237.13-237.44" id="_witness_.check_assert_arbiter_formal_sv_237_189">
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:237.13-237.44" time="0" type="ASSERT" location="arbiter_formal.sv:237.13-237.44" id="_witness_.check_assert_arbiter_formal_sv_237_195">
 </testcase>
-<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:238.13-238.45" time="0" type="ASSERT" location="arbiter_formal.sv:238.13-238.45" id="_witness_.check_assert_arbiter_formal_sv_238_199">
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:238.13-238.45" time="0" type="ASSERT" location="arbiter_formal.sv:238.13-238.45" id="_witness_.check_assert_arbiter_formal_sv_238_205">
 </testcase>
-<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:246.17-246.40" time="0" type="ASSERT" location="arbiter_formal.sv:246.17-246.40" id="_witness_.check_assert_arbiter_formal_sv_246_211">
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:246.17-246.40" time="0" type="ASSERT" location="arbiter_formal.sv:246.17-246.40" id="_witness_.check_assert_arbiter_formal_sv_246_217">
 </testcase>
-<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:249.17-249.40" time="0" type="ASSERT" location="arbiter_formal.sv:249.17-249.40" id="_witness_.check_assert_arbiter_formal_sv_249_214">
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:249.17-249.40" time="0" type="ASSERT" location="arbiter_formal.sv:249.17-249.40" id="_witness_.check_assert_arbiter_formal_sv_249_220">
 </testcase>
-<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:257.13-257.44" time="0" type="ASSERT" location="arbiter_formal.sv:257.13-257.44" id="_witness_.check_assert_arbiter_formal_sv_257_217">
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:257.13-257.44" time="0" type="ASSERT" location="arbiter_formal.sv:257.13-257.44" id="_witness_.check_assert_arbiter_formal_sv_257_223">
 </testcase>
-<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:258.13-258.44" time="0" type="ASSERT" location="arbiter_formal.sv:258.13-258.44" id="_witness_.check_assert_arbiter_formal_sv_258_235">
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:258.13-258.44" time="0" type="ASSERT" location="arbiter_formal.sv:258.13-258.44" id="_witness_.check_assert_arbiter_formal_sv_258_241">
 </testcase>
-<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:265.13-265.46" time="0" type="ASSERT" location="arbiter_formal.sv:265.13-265.46" id="_witness_.check_assert_arbiter_formal_sv_265_255">
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:265.13-265.46" time="0" type="ASSERT" location="arbiter_formal.sv:265.13-265.46" id="_witness_.check_assert_arbiter_formal_sv_265_261">
 </testcase>
-<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:266.13-266.45" time="0" type="ASSERT" location="arbiter_formal.sv:266.13-266.45" id="_witness_.check_assert_arbiter_formal_sv_266_257">
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:266.13-266.45" time="0" type="ASSERT" location="arbiter_formal.sv:266.13-266.45" id="_witness_.check_assert_arbiter_formal_sv_266_263">
 </testcase>
-<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:267.13-267.45" time="0" type="ASSERT" location="arbiter_formal.sv:267.13-267.45" id="_witness_.check_assert_arbiter_formal_sv_267_259">
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:267.13-267.45" time="0" type="ASSERT" location="arbiter_formal.sv:267.13-267.45" id="_witness_.check_assert_arbiter_formal_sv_267_265">
 </testcase>
-<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:268.13-268.46" time="0" type="ASSERT" location="arbiter_formal.sv:268.13-268.46" id="_witness_.check_assert_arbiter_formal_sv_268_261">
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:268.13-268.46" time="0" type="ASSERT" location="arbiter_formal.sv:268.13-268.46" id="_witness_.check_assert_arbiter_formal_sv_268_267">
 </testcase>
-<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:269.13-269.45" time="0" type="ASSERT" location="arbiter_formal.sv:269.13-269.45" id="_witness_.check_assert_arbiter_formal_sv_269_263">
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:269.13-269.45" time="0" type="ASSERT" location="arbiter_formal.sv:269.13-269.45" id="_witness_.check_assert_arbiter_formal_sv_269_269">
 </testcase>
-<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:270.13-270.44" time="0" type="ASSERT" location="arbiter_formal.sv:270.13-270.44" id="_witness_.check_assert_arbiter_formal_sv_270_265">
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:270.13-270.44" time="0" type="ASSERT" location="arbiter_formal.sv:270.13-270.44" id="_witness_.check_assert_arbiter_formal_sv_270_271">
 </testcase>
-<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:271.13-271.43" time="0" type="ASSERT" location="arbiter_formal.sv:271.13-271.43" id="_witness_.check_assert_arbiter_formal_sv_271_267">
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:271.13-271.43" time="0" type="ASSERT" location="arbiter_formal.sv:271.13-271.43" id="_witness_.check_assert_arbiter_formal_sv_271_273">
 </testcase>
-<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:272.13-272.44" time="0" type="ASSERT" location="arbiter_formal.sv:272.13-272.44" id="_witness_.check_assert_arbiter_formal_sv_272_269">
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:272.13-272.44" time="0" type="ASSERT" location="arbiter_formal.sv:272.13-272.44" id="_witness_.check_assert_arbiter_formal_sv_272_275">
 </testcase>
-<system-out>SBY  7:44:18 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] Removing directory '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter'.
-SBY  7:44:18 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/addr_decoder.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter/src/addr_decoder.sv'.
-SBY  7:44:18 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/qos_arbiter.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter/src/qos_arbiter.sv'.
-SBY  7:44:18 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_arbiter_top.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter/src/axi4lite_arbiter_top.sv'.
-SBY  7:44:18 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_formal.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter/src/arbiter_formal.sv'.
-SBY  7:44:18 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: smtbmc z3
-SBY  7:44:18 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] base: starting process &quot;cd &quot;/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter/src&quot;; yosys -ql ../model/design.log ../model/design.ys&quot;
-SBY  7:44:18 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] base: Warning: Replacing memory \r_rresp_demux with list of registers. See axi4lite_arbiter_top.sv:642
-SBY  7:44:18 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] base: Warning: Replacing memory \r_rdata_demux with list of registers. See axi4lite_arbiter_top.sv:641
-SBY  7:44:18 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] base: Warning: Replacing memory \w_bresp_demux with list of registers. See axi4lite_arbiter_top.sv:376
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] base: finished (returncode=0)
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] prep: starting process &quot;cd &quot;/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter/model&quot;; yosys -ql design_prep.log design_prep.ys&quot;
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] prep: finished (returncode=0)
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] smt2: starting process &quot;cd &quot;/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter/model&quot;; yosys -ql design_smt2.log design_smt2.ys&quot;
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] smt2: finished (returncode=0)
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: starting process &quot;cd &quot;/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter&quot;; yosys-smtbmc -s z3 --presat --noprogress -t 20  --append 0 --dump-vcd engine_0/trace.vcd --dump-yw engine_0/trace.yw --dump-vlogtb engine_0/trace_tb.v --dump-smtc engine_0/trace.smtc model/design_smt2.smt2&quot;
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Solver: z3
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 0..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 0..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 1..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 1..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 2..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 2..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 3..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 3..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 4..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 4..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 5..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 5..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 6..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 6..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 7..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 7..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 8..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 8..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 9..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 9..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 10..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 10..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 11..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 11..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 12..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 12..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 13..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 13..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 14..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 14..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 15..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 15..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 16..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 16..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 17..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 17..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 18..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 18..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 19..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 19..
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Status: passed
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: finished (returncode=0)
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: Status returned by engine: pass
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:01 (1)
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] summary: engine_0 (smtbmc z3) returned pass
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] summary: engine_0 did not produce any traces
-SBY  7:44:19 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] DONE (PASS, rc=0)
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:285.17-285.69" time="0" type="ASSERT" location="arbiter_formal.sv:285.17-285.69" id="_witness_.check_assert_arbiter_formal_sv_285_284">
+</testcase>
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:294.17-294.69" time="0" type="ASSERT" location="arbiter_formal.sv:294.17-294.69" id="_witness_.check_assert_arbiter_formal_sv_294_293">
+</testcase>
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:307.17-307.53" time="0" type="ASSERT" location="arbiter_formal.sv:307.17-307.53" id="_witness_.check_assert_arbiter_formal_sv_307_298">
+</testcase>
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:316.17-316.53" time="0" type="ASSERT" location="arbiter_formal.sv:316.17-316.53" id="_witness_.check_assert_arbiter_formal_sv_316_303">
+</testcase>
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:330.17-330.56" time="0" type="ASSERT" location="arbiter_formal.sv:330.17-330.56" id="_witness_.check_assert_arbiter_formal_sv_330_309">
+</testcase>
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:331.17-331.64" time="0" type="ASSERT" location="arbiter_formal.sv:331.17-331.64" id="_witness_.check_assert_arbiter_formal_sv_331_311">
+</testcase>
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:340.17-340.56" time="0" type="ASSERT" location="arbiter_formal.sv:340.17-340.56" id="_witness_.check_assert_arbiter_formal_sv_340_319">
+</testcase>
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:341.17-341.64" time="0" type="ASSERT" location="arbiter_formal.sv:341.17-341.64" id="_witness_.check_assert_arbiter_formal_sv_341_321">
+</testcase>
+<testcase classname="default" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:342.17-342.72" time="0" type="ASSERT" location="arbiter_formal.sv:342.17-342.72" id="_witness_.check_assert_arbiter_formal_sv_342_325">
+</testcase>
+<system-out>SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] Removing directory '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter'.
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/addr_decoder.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter/src/addr_decoder.sv'.
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/qos_arbiter.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter/src/qos_arbiter.sv'.
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_arbiter_top.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter/src/axi4lite_arbiter_top.sv'.
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_formal.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter/src/arbiter_formal.sv'.
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: smtbmc z3
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] base: starting process &quot;cd &quot;/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter/src&quot;; yosys -ql ../model/design.log ../model/design.ys&quot;
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] base: arbiter_formal.sv:284: Warning: Identifier `\dut.w_state' is implicitly declared.
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] base: arbiter_formal.sv:285: Warning: Identifier `\dut.w_owner_m_id' is implicitly declared.
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] base: arbiter_formal.sv:293: Warning: Identifier `\dut.r_state' is implicitly declared.
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] base: arbiter_formal.sv:294: Warning: Identifier `\dut.r_owner_m_id' is implicitly declared.
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] base: arbiter_formal.sv:306: Warning: Identifier `\dut.write_arb_tx_done' is implicitly declared.
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] base: arbiter_formal.sv:315: Warning: Identifier `\dut.read_arb_tx_done' is implicitly declared.
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] base: arbiter_formal.sv:328: Warning: Identifier `\dut.w_target_invalid' is implicitly declared.
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] base: arbiter_formal.sv:339: Warning: Identifier `\dut.r_target_invalid' is implicitly declared.
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] base: Warning: Replacing memory \r_rresp_demux with list of registers. See axi4lite_arbiter_top.sv:653
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] base: Warning: Replacing memory \r_rdata_demux with list of registers. See axi4lite_arbiter_top.sv:652
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] base: Warning: Replacing memory \w_bresp_demux with list of registers. See axi4lite_arbiter_top.sv:387
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] base: Warning: Wire arbiter_formal.\dut.write_arb_tx_done is used but has no driver.
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] base: Warning: Wire arbiter_formal.\dut.read_arb_tx_done is used but has no driver.
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] base: Warning: Wire arbiter_formal.\dut.r_state is used but has no driver.
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] base: Warning: Wire arbiter_formal.\dut.w_state is used but has no driver.
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] base: Warning: Wire arbiter_formal.\dut.r_owner_m_id is used but has no driver.
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] base: Warning: Wire arbiter_formal.\dut.w_owner_m_id is used but has no driver.
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] base: finished (returncode=0)
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] prep: starting process &quot;cd &quot;/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter/model&quot;; yosys -ql design_prep.log design_prep.ys&quot;
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] prep: Warning: Wire arbiter_formal.\dut.write_arb_tx_done is used but has no driver.
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] prep: Warning: Wire arbiter_formal.\dut.read_arb_tx_done is used but has no driver.
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] prep: Warning: Wire arbiter_formal.\dut.r_state is used but has no driver.
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] prep: Warning: Wire arbiter_formal.\dut.w_state is used but has no driver.
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] prep: Warning: Wire arbiter_formal.\dut.r_owner_m_id is used but has no driver.
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] prep: Warning: Wire arbiter_formal.\dut.w_owner_m_id is used but has no driver.
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] prep: finished (returncode=0)
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] smt2: starting process &quot;cd &quot;/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter/model&quot;; yosys -ql design_smt2.log design_smt2.ys&quot;
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] smt2: finished (returncode=0)
+SBY  8:07:28 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: starting process &quot;cd &quot;/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter&quot;; yosys-smtbmc -s z3 --presat --noprogress -t 20  --append 0 --dump-vcd engine_0/trace.vcd --dump-yw engine_0/trace.yw --dump-vlogtb engine_0/trace_tb.v --dump-smtc engine_0/trace.smtc model/design_smt2.smt2&quot;
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Solver: z3
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 0..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 0..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 1..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 1..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 2..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 2..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 3..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 3..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 4..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 4..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 5..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 5..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 6..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 6..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 7..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 7..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 8..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 8..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 9..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 9..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 10..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 10..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 11..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 11..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 12..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 12..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 13..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 13..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 14..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 14..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 15..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 15..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 16..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 16..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 17..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 17..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 18..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 18..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assumptions in step 19..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Checking assertions in step 19..
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: ##   0:00:00  Status: passed
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: finished (returncode=0)
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] engine_0: Status returned by engine: pass
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:01 (1)
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] summary: engine_0 (smtbmc z3) returned pass
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] summary: engine_0 did not produce any traces
+SBY  8:07:29 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter] DONE (PASS, rc=0)
 </system-out>
 <system-err>
 </system-err>

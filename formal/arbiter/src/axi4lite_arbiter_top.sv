@@ -103,6 +103,17 @@ module axi4lite_arbiter_top #(
     localparam int M_ID_WIDTH = (NUM_MASTERS > 1) ? $clog2(NUM_MASTERS) : 1;
     localparam logic [1:0] RESP_DECERR = 2'b11;
 
+    // Compile-time parameter assertions: this design is frozen to 4M/2S.
+    // Hardcoded case statements and array bounds depend on these values.
+    initial begin
+        if (NUM_MASTERS != 4) begin
+            $fatal(1, "[axi4lite_arbiter_top] NUM_MASTERS must be 4 (got %0d)", NUM_MASTERS);
+        end
+        if (NUM_SLAVES != 2) begin
+            $fatal(1, "[axi4lite_arbiter_top] NUM_SLAVES must be 2 (got %0d)", NUM_SLAVES);
+        end
+    end
+
     // Master Continuous Unpacked Aliases
     wire [ADDR_WIDTH-1:0] m_awaddr [0:3];
     wire [2:0]            m_awprot [0:3];

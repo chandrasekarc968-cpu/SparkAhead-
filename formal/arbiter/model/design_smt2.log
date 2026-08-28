@@ -36,33 +36,35 @@ Module arbiter_formal directly or indirectly contains formal properties -> setti
 
 === arbiter_formal ===
 
-   Number of wires:                338
-   Number of wire bits:           1891
-   Number of public wires:         114
-   Number of public wire bits:     990
+   Number of wires:                380
+   Number of wire bits:           1966
+   Number of public wires:         124
+   Number of public wire bits:    1000
    Number of ports:                 40
    Number of port bits:            914
    Number of memories:               0
    Number of memory bits:            0
    Number of processes:              0
-   Number of cells:                370
+   Number of cells:                421
      $add                           19
-     $anyinit                       72
-     $assert                        18
+     $anyinit                       76
+     $anyseq                         6
+     $assert                        27
      $assume                        53
-     $eq                            30
+     $eq                            34
      $eqx                           26
-     $ff                            23
+     $ff                            35
      $ge                             1
      $le                             8
-     $logic_and                     23
-     $logic_not                     40
+     $logic_and                     25
+     $logic_not                     41
      $lt                             1
-     $mux                           50
+     $mux                           58
      $not                            1
      $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top      1
      $reduce_bool                    2
      $reduce_or                      2
+     $shiftx                         5
 
 === $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder ===
 
@@ -83,8 +85,8 @@ Module arbiter_formal directly or indirectly contains formal properties -> setti
 
 === $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter ===
 
-   Number of wires:                178
-   Number of wire bits:           1540
+   Number of wires:                168
+   Number of wire bits:           1405
    Number of public wires:          37
    Number of public wire bits:     391
    Number of ports:                  8
@@ -92,7 +94,7 @@ Module arbiter_formal directly or indirectly contains formal properties -> setti
    Number of memories:               0
    Number of memory bits:            0
    Number of processes:              0
-   Number of cells:                171
+   Number of cells:                161
      $add                            1
      $anyinit                        8
      $anyseq                         2
@@ -100,18 +102,17 @@ Module arbiter_formal directly or indirectly contains formal properties -> setti
      $eq                             6
      $ge                             1
      $gt                             6
-     $logic_and                      8
-     $logic_not                      6
-     $logic_or                       3
+     $logic_and                      7
+     $logic_not                      5
+     $logic_or                       2
      $lt                             1
-     $mux                          111
+     $mux                          105
      $neg                            2
      $not                            1
      $or                             2
      $pmux                           5
      $reduce_bool                    1
      $shift                          2
-     $shiftx                         1
      $sub                            3
 
 === $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top ===
@@ -148,32 +149,32 @@ Module arbiter_formal directly or indirectly contains formal properties -> setti
        $paramod$508cca98229eff1b70362476b43647777eac3ce1\qos_arbiter      2
        $paramod$59f66e305bd3b47082af7a1e20206251db0b33b5\addr_decoder      2
 
-   Number of wires:               1204
-   Number of wire bits:           8729
-   Number of public wires:         446
-   Number of public wire bits:    4259
+   Number of wires:               1226
+   Number of wire bits:           8534
+   Number of public wires:         456
+   Number of public wire bits:    4269
    Number of ports:                104
    Number of port bits:           1930
    Number of memories:               0
    Number of memory bits:            0
    Number of processes:              0
-   Number of cells:               1100
+   Number of cells:               1131
      $add                           21
-     $anyinit                      102
-     $anyseq                        63
-     $assert                        18
+     $anyinit                      106
+     $anyseq                        69
+     $assert                        27
      $assume                        56
-     $eq                            59
+     $eq                            63
      $eqx                           26
-     $ff                            23
+     $ff                            35
      $ge                             7
      $gt                            12
      $le                             8
      $logic_and                     48
-     $logic_not                     58
-     $logic_or                       6
+     $logic_not                     57
+     $logic_or                       4
      $lt                             7
-     $mux                          462
+     $mux                          458
      $neg                            6
      $not                            4
      $or                             4
@@ -181,7 +182,7 @@ Module arbiter_formal directly or indirectly contains formal properties -> setti
      $reduce_bool                    4
      $reduce_or                     14
      $shift                         16
-     $shiftx                         2
+     $shiftx                         5
      $sub                            6
 
 6. Executing SMT2 backend.
@@ -194,6 +195,6 @@ Creating SMT-LIBv2 representation of module $paramod$59f66e305bd3b47082af7a1e202
 Creating SMT-LIBv2 representation of module $paramod$20bf198c79fefe63fb33258281db4746901c4585\axi4lite_arbiter_top.
 Creating SMT-LIBv2 representation of module arbiter_formal.
 
-End of script. Logfile hash: ba5c5f2688, CPU: user 0.01s system 0.01s, MEM: 16.60 MB peak
+End of script. Logfile hash: 6d81e02433, CPU: user 0.02s system 0.01s, MEM: 16.55 MB peak
 Yosys 0.52 (git sha1 fee39a3284c90249e1d9684cf6944ffbbcbb8f90)
-Time spent: 59% 2x write_smt2 (0 sec), 33% 2x read_rtlil (0 sec), ...
+Time spent: 61% 2x write_smt2 (0 sec), 32% 2x read_rtlil (0 sec), ...

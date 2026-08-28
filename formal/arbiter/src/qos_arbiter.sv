@@ -205,18 +205,19 @@ module qos_arbiter #(
             end
 
             // --- State Transition & Quota Update ---
+            // Ownership is held locked until transaction_complete fires.
+            // The top-level FSM signals transaction_complete only after
+            // the final handshake (B for writes, R for reads).
             if (is_active) begin
-                if (transaction_complete || !req[current_master]) begin
-                    if (transaction_complete) begin
-                        quota_1 <= eff_q1;
-                        quota_2 <= eff_q2;
-                        quota_3 <= eff_q3;
-                        rr_ptr  <= eff_rr_ptr;
+                if (transaction_complete) begin
+                    quota_1 <= eff_q1;
+                    quota_2 <= eff_q2;
+                    quota_3 <= eff_q3;
+                    rr_ptr  <= eff_rr_ptr;
 
-                        if (current_master != 0) begin
-                            age_counter     <= 0;
-                            starvation_flag <= 1'b0;
-                        end
+                    if (current_master != 0) begin
+                        age_counter     <= 0;
+                        starvation_flag <= 1'b0;
                     end
 
                     // Transition to next candidate if available, else idle
@@ -245,7 +246,10 @@ module qos_arbiter #(
         master_id   = '0;
         grant_valid = 1'b0;
 
-        if (is_active && req[current_master]) begin
+        // When active, the arbiter has committed to current_master.
+        // The grant stays asserted regardless of the live request state
+        // because the top-level FSM owns the full transaction lifecycle.
+        if (is_active) begin
             grant[current_master] = 1'b1;
             master_id             = current_master;
             grant_valid           = 1'b1;

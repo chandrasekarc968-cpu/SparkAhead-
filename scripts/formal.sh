@@ -36,6 +36,34 @@ for f in "${SBY_FILES[@]}"; do echo "  $f"; done
 if command -v sby &>/dev/null; then
     echo "[INFO] Using SymbiYosys for formal verification."
     for sby_file in "${SBY_FILES[@]}"; do
+        # Verify that real assertions exist in the formal sources
+        SBY_DIR="$(dirname "$sby_file")"
+        FORMAL_SRCS=()
+        while IFS= read -r line; do
+            # Look for files listed in [files] section
+            if [[ "$line" =~ \.sv$ ]] || [[ "$line" =~ \.v$ ]]; then
+                # Try relative to sby directory first, then ROOT_DIR
+                if [ -f "$SBY_DIR/$line" ]; then
+                    FORMAL_SRCS+=("$SBY_DIR/$line")
+                elif [ -f "$ROOT_DIR/$line" ]; then
+                    FORMAL_SRCS+=("$ROOT_DIR/$line")
+                fi
+            fi
+        done < "$sby_file"
+
+        ASSERT_COUNT=0
+        for src in "${FORMAL_SRCS[@]}"; do
+            count=$(grep -c 'assert' "$src" 2>/dev/null || true)
+            ASSERT_COUNT=$((ASSERT_COUNT + count))
+        done
+
+        if [ "$ASSERT_COUNT" -eq 0 ]; then
+            echo "[ERROR] Formal configuration '$sby_file' has no assertions in its source files."
+            echo "        Add real 'assert' statements to your formal harness before running."
+            exit 1
+        fi
+        echo "[INFO] Found $ASSERT_COUNT assertion(s) across formal sources."
+
         echo "[INFO] Running sby -f ${sby_file}"
         sby -f "$sby_file"
     done
