@@ -25,6 +25,212 @@ The arbiter bridges four independent AXI4-Lite master ports and two AXI4-Lite sl
 
 ---
 
+## Complete Step-by-Step: Clone to GDS
+
+Follow these steps on **Ubuntu 22.04+** to go from zero to a finished GDSII layout.
+
+### Step 1: Install Prerequisites
+
+```bash
+# Update system
+sudo apt-get update && sudo apt-get upgrade -y
+
+# Install build essentials and Git
+sudo apt-get install -y git make curl unzip
+
+# Install Docker (required for OpenLane2)
+sudo apt-get install -y docker.io
+sudo systemctl enable --now docker
+sudo usermod -aG docker $USER
+
+# IMPORTANT: Log out and log back in so the docker group takes effect
+# Verify with:
+docker run --rm hello-world
+```
+
+### Step 2: Install Verification Tools (Optional but Recommended)
+
+```bash
+# Option A: Install via apt (quick, may be older versions)
+sudo apt-get install -y verilator iverilog
+
+# Option B: Install oss-cad-suite (recommended — includes Yosys, SymbiYosys, Z3)
+# Download the latest release from:
+#   https://github.com/YosysHQ/oss-cad-suite-build/releases
+# Then:
+tar -xzf oss-cad-suite-linux-x64-*.tgz -C ~/
+echo 'export PATH="$HOME/oss-cad-suite/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+```
+
+### Step 3: Clone the Repository
+
+```bash
+git clone https://github.com/chandrasekarc968-cpu/SparkAhead-.git
+cd SparkAhead-
+```
+
+### Step 4: Run RTL Lint (Verify RTL is Clean)
+
+```bash
+make lint
+```
+
+**Expected output:**
+```
+=== LINT ===
+- V e r i l a t i o n   R e p o r t: Verilator 5.032 ...
+=== LINT COMPLETE ===
+```
+
+### Step 5: Run Simulation (Verify Functional Correctness)
+
+```bash
+make sim
+```
+
+> **Note**: Requires `iverilog` and `vvp`. If not installed, skip to Step 7.
+
+### Step 6: Validate OpenLane Config
+
+```bash
+make check-config
+```
+
+**Expected output:**
+```
+=== OpenLane Config Sanity Check ===
+  [OK]   DESIGN_NAME = axi4lite_arbiter_top
+  [OK]   CLOCK_PORT = aclk
+  [OK]   CLOCK_PERIOD = 10.0
+  [OK]   PDK = sky130A
+  [OK]   STD_CELL_LIBRARY = sky130_fd_sc_hd
+  ...
+[PASS] Config looks good.
+```
+
+### Step 7: Run OpenLane2 RTL-to-GDS (Generates the GDS)
+
+This is the main step. It runs the full ASIC flow inside Docker:
+**sv2v → Yosys Synthesis → Floorplan → Placement → CTS → Routing → DRC → LVS → GDS**
+
+```bash
+make openlane
+```
+
+**What happens:**
+1. `sv2v` converts SystemVerilog to Verilog-2005
+2. Docker pulls the OpenLane2 image (`ghcr.io/efabless/openlane2:2.0.4`) on first run (~3 GB download)
+3. The Docker container automatically downloads the SKY130 PDK via Volare
+4. OpenLane2 runs all 75 stages of the RTL-to-GDS flow
+5. Results are copied to `outputs/` and `logs/`
+
+**Expected runtime:** ~5–8 minutes (after Docker image is cached)
+
+**Expected final output:**
+```
+=== OpenLane Flow COMPLETE ===
+Outputs are available in: openlane/runs/
+[INFO] Copying test data to logs/ and outputs/ directories...
+=== OPENLANE COMPLETE ===
+```
+
+### Step 8: Verify the Generated GDS
+
+```bash
+# Check that the GDS file was generated
+ls -lh outputs/axi4lite_arbiter_top.gds
+
+# View the design metrics
+cat logs/openlane_metrics.json | python3 -m json.tool | head -20
+
+# Or run the showcase for a quick summary
+make showcase
+```
+
+**Expected output files in `outputs/`:**
+
+| File | Description | Size |
+|---|---|---|
+| `axi4lite_arbiter_top.gds` | Final GDSII layout | ~19 MB |
+| `axi4lite_arbiter_top.def` | Design Exchange Format | ~12 MB |
+| `axi4lite_arbiter_top.lef` | Library Exchange Format | ~229 KB |
+| `axi4lite_arbiter_top.nl.v` | Gate-level netlist | ~4.3 MB |
+
+**Expected log files in `logs/`:**
+
+| File | Description |
+|---|---|
+| `openlane.log` | Full OpenLane execution log |
+| `openlane_metrics.json` | Design metrics (area, timing, DRC, LVS) |
+| `openlane_metrics.csv` | Same metrics in CSV format |
+
+### Alternative: Run the Complete Pipeline in One Command
+
+```bash
+make rtl-to-gds
+```
+
+This runs **lint → simulation → formal → OpenLane** in sequence, stopping on the first error, and prints all final artifact paths at the end.
+
+---
+
+## All Available Make Targets
+
+| Command | What It Does |
+|---|---|
+| `make lint` | RTL lint check (Verilator or iverilog) |
+| `make sim` | Run 46-test directed regression suite |
+| `make sim-stress` | Run 10,000-transaction randomized stress test |
+| `make formal` | Formal verification (SymbiYosys BMC + cover) |
+| `make synth` | Yosys gate-level synthesis (with sky130 mapping if PDK_ROOT set) |
+| `make openlane` | OpenLane2 RTL-to-GDS via Docker |
+| `make pnr` | Same as `make openlane` |
+| `make rtl-to-gds` | Full pipeline: lint → sim → formal → OpenLane |
+| `make showcase` | Lightweight demo: lint + sim + display metrics |
+| `make check-config` | Validate `openlane/config.json` |
+| `make check` | Run all checks (CI target) |
+| `make clean` | Remove all generated outputs |
+
+---
+
+## Advanced Setup Options
+
+### Option A: Python venv + OpenLane (--dockerized)
+
+> **Note**: OpenLane2's Python package requires **Python 3.10–3.12**.
+> Python 3.13+ is NOT supported due to `libparse` build failures.
+
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate
+pip install openlane
+python -m openlane --dockerized openlane/config.json
+```
+
+### Option B: Nix-based OpenLane
+
+```bash
+# Install Nix
+sh <(curl -L https://nixos.org/nix/install) --daemon
+echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+
+# Run OpenLane directly
+nix run github:efabless/openlane2 -- openlane/config.json
+```
+
+### PDK_ROOT Setup (Native Only)
+
+If running OpenLane natively (not via Docker), set `PDK_ROOT`:
+
+```bash
+export PDK_ROOT=$HOME/.volare
+```
+
+The Docker-based flow handles PDK installation automatically — no `PDK_ROOT` needed.
+
+---
+
 ## Directory Layout
 
 ```
@@ -70,144 +276,6 @@ The arbiter bridges four independent AXI4-Lite master ports and two AXI4-Lite sl
 
 ---
 
-## Quick Start
-
-```bash
-# Run RTL lint check
-make lint
-
-# Run 46-test regression suite
-make sim
-
-# Run lightweight showcase (lint + sim + display metrics)
-make showcase
-
-# Run full RTL-to-GDS flow (requires Docker)
-make rtl-to-gds
-```
-
----
-
-## Toolchain & Build Instructions
-
-All build targets are driven via GNU Make and use open-source EDA tools.
-
-### Required Open-Source Tools
-- **RTL Lint**: Verilator ≥5.0 (preferred) or Icarus Verilog ≥12.0
-- **Simulation**: Icarus Verilog (`iverilog`, `vvp`)
-- **Formal Verification**: SymbiYosys (`sby`) with Z3 SMT solver
-- **Logic Synthesis**: Yosys ≥0.40
-- **ASIC Flow**: OpenLane2 v2.0.4+ with SKY130 PDK (via Docker)
-
-### Ubuntu Setup
-
-#### Option 1: Docker-based OpenLane (Recommended)
-
-This is the simplest path — Docker handles the PDK and all OpenLane dependencies.
-
-```bash
-# 1. Install Docker
-sudo apt-get update
-sudo apt-get install -y docker.io
-sudo usermod -aG docker $USER
-# Log out and back in for group change to take effect
-
-# 2. Install verification tools (oss-cad-suite)
-# Download from https://github.com/YosysHQ/oss-cad-suite-build/releases
-# Or install individually:
-sudo apt-get install -y verilator iverilog
-
-# 3. Run the flow
-make lint           # Lint check
-make sim            # Simulation
-make openlane       # Full RTL-to-GDS via Docker
-```
-
-#### Option 2: Python venv + OpenLane (--dockerized)
-
-> **Note**: OpenLane2's Python package (`openlane`) requires Python 3.10–3.12.
-> Python 3.14 is NOT supported due to `libparse` build failures.
-
-```bash
-# 1. Create virtual environment
-python3.12 -m venv .venv
-source .venv/bin/activate
-
-# 2. Install OpenLane
-pip install openlane
-
-# 3. Run via Docker backend
-python -m openlane --dockerized openlane/config.json
-
-# 4. Or use the provided script
-bash scripts/openlane.sh
-```
-
-#### Option 3: Nix-based OpenLane
-
-```bash
-# 1. Install Nix (multi-user)
-sh <(curl -L https://nixos.org/nix/install) --daemon
-
-# 2. Enable flakes
-echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
-
-# 3. Run OpenLane
-nix run github:efabless/openlane2 -- openlane/config.json
-```
-
-### PDK_ROOT Setup
-
-If running OpenLane natively (not via Docker), set `PDK_ROOT`:
-
-```bash
-export PDK_ROOT=$HOME/.volare
-# Or wherever your sky130A PDK is installed
-```
-
-The Docker-based flow handles PDK installation automatically.
-
-### Build Commands
-
-```bash
-# Run RTL Lint
-make lint
-
-# Run 46-test directed regression suite
-make sim
-
-# Run 10,000-transaction randomized stress test
-make sim-stress
-
-# Run formal verification (BMC depth 40 + cover mode)
-make formal
-
-# Run Yosys gate-level synthesis
-make synth
-
-# Run OpenLane 2 RTL-to-GDS flow via Docker
-make openlane
-# or equivalently:
-make pnr
-
-# Run complete RTL-to-GDS pipeline (lint + sim + formal + OpenLane)
-make rtl-to-gds
-
-# Lightweight demo: lint + sim + display design metrics
-make showcase
-
-# Validate OpenLane config
-make check-config
-
-# Run all checks (CI)
-make check
-
-# Clean generated outputs
-make clean
-```
-
----
-
 ## Verification Summary
 
 | Target | Tool | Scope | Status |
@@ -225,12 +293,49 @@ make clean
 | Metric | Value |
 |---|---|
 | **Target Clock** | 100 MHz (10 ns) |
-| **Cell Count** | 16,393 |
-| **Area** | 58,311 μm² |
-| **Setup Slack** | +1.63 ns (worst corner) |
+| **PDK** | SKY130 (sky130_fd_sc_hd) |
+| **Cell Count** | 16,391 |
+| **Area** | 58,227 μm² |
+| **Die Size** | 900 × 900 μm |
+| **Utilization** | 7.5% |
+| **Setup Slack (nom_tt)** | +2.12 ns |
+| **Setup Slack (nom_ss)** | +0.30 ns |
 | **DRC** | 0 errors (Magic + KLayout) |
 | **LVS** | 0 errors |
-| **Antenna Violations** | 22 pins / 21 nets (non-blocking) |
+| **Total Power** | 18.7 mW |
+| **Antenna Violations** | 27 pins / 23 nets (non-blocking) |
+
+---
+
+## Troubleshooting
+
+### Docker permission denied
+```
+Got permission denied while trying to connect to the Docker daemon socket
+```
+**Fix:** Run `sudo usermod -aG docker $USER` and **log out / log back in**.
+
+### sv2v not found
+The `openlane.sh` script automatically downloads `sv2v` on first run. If it fails:
+```bash
+curl -sL https://github.com/zachjs/sv2v/releases/download/v0.0.11/sv2v-Linux.zip -o /tmp/sv2v.zip
+unzip -qo /tmp/sv2v.zip -d /tmp/sv2v_bin
+cp /tmp/sv2v_bin/sv2v-Linux/sv2v scripts/
+```
+
+### OpenLane Docker image pull fails
+```bash
+# Manually pull the image
+docker pull ghcr.io/efabless/openlane2:2.0.4
+```
+
+### Python 3.14 / libparse build error
+OpenLane2 requires **Python 3.10–3.12**. If your system default is newer:
+```bash
+sudo apt-get install -y python3.12 python3.12-venv
+python3.12 -m venv .venv
+source .venv/bin/activate
+```
 
 ---
 
@@ -239,4 +344,4 @@ make clean
 1. **Single Outstanding Transaction Per Channel**: 1 outstanding write + 1 outstanding read at any time.
 2. **Fixed Address Map**: Compile-time parameters, no software-remappable registers.
 3. **Frozen 4M/2S**: Hardcoded to 4 masters and 2 slaves. Changing triggers `$fatal`.
-4. **Hold Timing**: Marginal hold violations (~30 ps) on the slowest signoff corner (max_ss_100C_1v60). Non-blocking for tapeout preparation.
+4. **Hold Timing**: Marginal hold violations (~68 ps) on the slowest signoff corner (max_ss_100C_1v60). Non-blocking for tapeout preparation.
