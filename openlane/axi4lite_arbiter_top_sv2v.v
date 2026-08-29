@@ -79,12 +79,10 @@ module axi4lite_qos_scheduler (
 	output reg grant_valid;
 	output wire starvation_flag;
 	localparam signed [31:0] ID_W = $clog2(NUM_MASTERS);
-	reg [3:0] w0;
 	reg [3:0] w1;
 	reg [3:0] w2;
 	reg [3:0] w3;
 	always @(*) begin
-		w0 = (cfg_weight_m0 == 4'd0 ? 4'd1 : cfg_weight_m0);
 		w1 = (cfg_weight_m1 == 4'd0 ? 4'd1 : cfg_weight_m1);
 		w2 = (cfg_weight_m2 == 4'd0 ? 4'd1 : cfg_weight_m2);
 		w3 = (cfg_weight_m3 == 4'd0 ? 4'd1 : cfg_weight_m3);
@@ -448,7 +446,6 @@ module axi4lite_response_router (
 	m_bvalid,
 	m_bready,
 	w_resp_handshake,
-	w_owner_bready,
 	r_active,
 	r_owner_id,
 	r_target_slave,
@@ -478,7 +475,6 @@ module axi4lite_response_router (
 	output reg [NUM_MASTERS - 1:0] m_bvalid;
 	input wire [NUM_MASTERS - 1:0] m_bready;
 	output reg w_resp_handshake;
-	output reg w_owner_bready;
 	input wire r_active;
 	input wire [$clog2(NUM_MASTERS) - 1:0] r_owner_id;
 	input wire [NUM_SLAVES - 1:0] r_target_slave;
@@ -509,9 +505,7 @@ module axi4lite_response_router (
 				s_bready[i] = 1'b0;
 		end
 		w_resp_handshake = 1'b0;
-		w_owner_bready = 1'b0;
 		if (w_active) begin
-			w_owner_bready = m_bready[w_owner_id];
 			if (w_target_invalid) begin
 				m_bvalid[w_owner_id] = 1'b1;
 				m_bresp[w_owner_id * 2+:2] = RESP_DECERR;
@@ -596,7 +590,6 @@ module axi4lite_write_arbiter (
 	w_target_invalid,
 	w_resp_phase,
 	w_resp_handshake,
-	w_owner_bready,
 	m_axi_awaddr,
 	m_axi_awprot,
 	m_axi_awvalid,
@@ -637,7 +630,6 @@ module axi4lite_write_arbiter (
 	output wire w_target_invalid;
 	output wire w_resp_phase;
 	input wire w_resp_handshake;
-	input wire w_owner_bready;
 	output reg [(NUM_SLAVES * ADDR_WIDTH) - 1:0] m_axi_awaddr;
 	output reg [(NUM_SLAVES * 3) - 1:0] m_axi_awprot;
 	output reg [NUM_SLAVES - 1:0] m_axi_awvalid;
@@ -664,7 +656,6 @@ module axi4lite_write_arbiter (
 	reg [DATA_WIDTH - 1:0] latched_wdata;
 	reg [STRB_WIDTH - 1:0] latched_wstrb;
 	reg arb_tx_done;
-	wire [NUM_MASTERS - 1:0] arb_grant;
 	wire [ID_W - 1:0] arb_master_id;
 	wire arb_grant_valid;
 	wire arb_starvation_unused;
@@ -680,7 +671,7 @@ module axi4lite_write_arbiter (
 		.cfg_master0_burst_limit(cfg_master0_burst_limit),
 		.req(write_eligible),
 		.transaction_complete(arb_tx_done),
-		.grant(arb_grant),
+		.grant(),
 		.master_id(arb_master_id),
 		.grant_valid(arb_grant_valid),
 		.starvation_flag(arb_starvation_unused)
@@ -870,7 +861,6 @@ module axi4lite_read_arbiter (
 	parameter signed [31:0] NUM_MASTERS = 4;
 	parameter signed [31:0] NUM_SLAVES = 2;
 	parameter signed [31:0] ADDR_WIDTH = 32;
-	parameter signed [31:0] DATA_WIDTH = 32;
 	parameter [ADDR_WIDTH - 1:0] S0_BASE = 32'h00000000;
 	parameter [ADDR_WIDTH - 1:0] S0_SIZE = 32'h00010000;
 	parameter [ADDR_WIDTH - 1:0] S1_BASE = 32'h00010000;
@@ -1146,7 +1136,6 @@ module axi4lite_arbiter_top (
 	wire w_target_invalid;
 	wire w_resp_phase;
 	wire w_resp_handshake;
-	wire w_owner_bready;
 	wire [M_ID_WIDTH - 1:0] r_owner_id;
 	wire [NUM_SLAVES - 1:0] r_target_slave;
 	wire r_target_invalid;
@@ -1186,7 +1175,6 @@ module axi4lite_arbiter_top (
 		.w_target_invalid(w_target_invalid),
 		.w_resp_phase(w_resp_phase),
 		.w_resp_handshake(w_resp_handshake),
-		.w_owner_bready(w_owner_bready),
 		.m_axi_awaddr(m_axi_awaddr),
 		.m_axi_awprot(m_axi_awprot),
 		.m_axi_awvalid(m_axi_awvalid),
@@ -1200,7 +1188,6 @@ module axi4lite_arbiter_top (
 		.NUM_MASTERS(NUM_MASTERS),
 		.NUM_SLAVES(NUM_SLAVES),
 		.ADDR_WIDTH(ADDR_WIDTH),
-		.DATA_WIDTH(DATA_WIDTH),
 		.S0_BASE(S0_BASE),
 		.S0_SIZE(S0_SIZE),
 		.S1_BASE(S1_BASE),
@@ -1245,7 +1232,6 @@ module axi4lite_arbiter_top (
 		.m_bvalid(s_axi_bvalid),
 		.m_bready(s_axi_bready),
 		.w_resp_handshake(w_resp_handshake),
-		.w_owner_bready(w_owner_bready),
 		.r_active(r_resp_phase),
 		.r_owner_id(r_owner_id),
 		.r_target_slave(r_target_slave),

@@ -1,4 +1,4 @@
-# running in formal/arbiter_cover/model/
+# running in /mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover/model/
 read_rtlil design_prep.il
 hierarchy -smtcheck
 delete */t:$print

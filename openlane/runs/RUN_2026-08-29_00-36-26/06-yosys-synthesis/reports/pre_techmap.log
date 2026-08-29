@@ -1,0 +1,40 @@
+47. Printing statistics.
+
+=== axi4lite_arbiter_top ===
+
+   Number of wires:               3547
+   Number of wire bits:           4929
+   Number of public wires:          94
+   Number of public wire bits:    1372
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:               4260
+     $_ANDNOT_                     782
+     $_AND_                        112
+     $_DFFE_PN0P_                  424
+     $_DFF_PN0_                     84
+     $_DFF_PN1_                     11
+     $_MUX_                        901
+     $_NAND_                       159
+     $_NOR_                        137
+     $_NOT_                        583
+     $_ORNOT_                       75
+     $_OR_                         854
+     $_XNOR_                        16
+     $_XOR_                        122
+
+   Area for cell type $_NOT_ is unknown!
+   Area for cell type $_AND_ is unknown!
+   Area for cell type $_NAND_ is unknown!
+   Area for cell type $_OR_ is unknown!
+   Area for cell type $_NOR_ is unknown!
+   Area for cell type $_XOR_ is unknown!
+   Area for cell type $_XNOR_ is unknown!
+   Area for cell type $_ANDNOT_ is unknown!
+   Area for cell type $_ORNOT_ is unknown!
+   Area for cell type $_MUX_ is unknown!
+   Area for cell type $_DFF_PN0_ is unknown!
+   Area for cell type $_DFF_PN1_ is unknown!
+   Area for cell type $_DFFE_PN0P_ is unknown!
+

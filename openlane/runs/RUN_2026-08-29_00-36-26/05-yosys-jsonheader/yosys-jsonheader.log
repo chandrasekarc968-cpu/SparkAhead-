@@ -1,0 +1,1285 @@
+
+ /----------------------------------------------------------------------------\
+ |                                                                            |
+ |  yosys -- Yosys Open SYnthesis Suite                                       |
+ |                                                                            |
+ |  Copyright (C) 2012 - 2020  Claire Xenia Wolf <claire@yosyshq.com>         |
+ |                                                                            |
+ |  Permission to use, copy, modify, and/or distribute this software for any  |
+ |  purpose with or without fee is hereby granted, provided that the above    |
+ |  copyright notice and this permission notice appear in all copies.         |
+ |                                                                            |
+ |  THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES  |
+ |  WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF          |
+ |  MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR   |
+ |  ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES    |
+ |  WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN     |
+ |  ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF   |
+ |  OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.            |
+ |                                                                            |
+ \----------------------------------------------------------------------------/
+
+ Yosys 0.38 (git sha1 543faed9c8c, clang++ 16.0.6 -fPIC -Os)
+
+Loaded SDC plugin
+[TCL: yosys -import] Command name collision: found pre-existing command `cd' -> skip.
+[TCL: yosys -import] Command name collision: found pre-existing command `eval' -> skip.
+[TCL: yosys -import] Command name collision: found pre-existing command `exec' -> skip.
+[TCL: yosys -import] Command name collision: found pre-existing command `read' -> skip.
+[TCL: yosys -import] Command name collision: found pre-existing command `trace' -> skip.
+
+1. Executing Verilog-2005 frontend: /work/openlane/runs/RUN_2026-08-29_00-36-26/tmp/0ea3cdae120244328da29c765caeb2b2.bb.v
+Parsing SystemVerilog input from `/work/openlane/runs/RUN_2026-08-29_00-36-26/tmp/0ea3cdae120244328da29c765caeb2b2.bb.v' to AST representation.
+Generating RTLIL representation for module `\sky130_ef_sc_hd__decap_12'.
+Generating RTLIL representation for module `\sky130_ef_sc_hd__fill_12'.
+Generating RTLIL representation for module `\sky130_ef_sc_hd__fill_4'.
+Generating RTLIL representation for module `\sky130_ef_sc_hd__fill_8'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a2111o_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a2111o_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a2111o_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a2111oi_0'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a2111oi_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a2111oi_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a2111oi_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a211o_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a211o_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a211o_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a211oi_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a211oi_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a211oi_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a21bo_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a21bo_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a21bo_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a21boi_0'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a21boi_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a21boi_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a21boi_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a21o_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a21o_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a21o_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a21oi_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a21oi_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a21oi_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a221o_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a221o_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a221o_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a221oi_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a221oi_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a221oi_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a222oi_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a22o_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a22o_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a22o_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a22oi_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a22oi_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a22oi_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a2bb2o_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a2bb2o_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a2bb2o_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a2bb2oi_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a2bb2oi_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a2bb2oi_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a311o_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a311o_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a311o_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a311oi_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a311oi_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a311oi_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a31o_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a31o_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a31o_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a31oi_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a31oi_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a31oi_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a32o_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a32o_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a32o_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a32oi_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a32oi_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a32oi_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a41o_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a41o_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a41o_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a41oi_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a41oi_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__a41oi_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__and2_0'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__and2_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__and2_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__and2_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__and2b_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__and2b_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__and2b_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__and3_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__and3_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__and3_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__and3b_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__and3b_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__and3b_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__and4_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__and4_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__and4_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__and4b_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__and4b_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__and4b_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__and4bb_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__and4bb_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__and4bb_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__buf_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__buf_12'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__buf_16'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__buf_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__buf_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__buf_6'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__buf_8'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__bufbuf_16'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__bufbuf_8'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__bufinv_16'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__bufinv_8'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__clkbuf_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__clkbuf_16'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__clkbuf_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__clkbuf_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__clkbuf_8'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__clkdlybuf4s15_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__clkdlybuf4s15_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__clkdlybuf4s18_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__clkdlybuf4s18_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__clkdlybuf4s25_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__clkdlybuf4s25_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__clkdlybuf4s50_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__clkdlybuf4s50_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__clkinv_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__clkinv_16'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__clkinv_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__clkinv_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__clkinv_8'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__clkinvlp_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__clkinvlp_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__conb_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__decap_12'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__decap_3'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__decap_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__decap_6'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__decap_8'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dfbbn_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dfbbn_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dfbbp_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dfrbp_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dfrbp_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dfrtn_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dfrtp_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dfrtp_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dfrtp_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dfsbp_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dfsbp_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dfstp_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dfstp_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dfstp_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dfxbp_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dfxbp_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dfxtp_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dfxtp_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dfxtp_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__diode_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dlclkp_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dlclkp_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dlclkp_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dlrbn_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dlrbn_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dlrbp_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dlrbp_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dlrtn_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dlrtn_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dlrtn_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dlrtp_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dlrtp_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dlrtp_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dlxbn_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dlxbn_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dlxbp_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dlxtn_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dlxtn_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dlxtn_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dlxtp_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dlygate4sd1_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dlygate4sd2_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dlygate4sd3_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dlymetal6s2s_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dlymetal6s4s_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__dlymetal6s6s_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__ebufn_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__ebufn_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__ebufn_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__ebufn_8'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__edfxbp_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__edfxtp_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__einvn_0'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__einvn_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__einvn_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__einvn_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__einvn_8'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__einvp_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__einvp_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__einvp_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__einvp_8'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__fa_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__fa_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__fa_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__fah_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__fahcin_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__fahcon_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__fill_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__fill_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__fill_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__fill_8'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__ha_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__ha_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__ha_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__inv_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__inv_12'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__inv_16'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__inv_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__inv_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__inv_6'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__inv_8'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_bleeder_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_clkbufkapwr_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_clkbufkapwr_16'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_clkbufkapwr_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_clkbufkapwr_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_clkbufkapwr_8'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_clkinvkapwr_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_clkinvkapwr_16'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_clkinvkapwr_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_clkinvkapwr_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_clkinvkapwr_8'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_decapkapwr_12'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_decapkapwr_3'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_decapkapwr_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_decapkapwr_6'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_decapkapwr_8'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_inputiso0n_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_inputiso0p_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_inputiso1n_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_inputiso1p_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_inputisolatch_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_isobufsrc_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_isobufsrc_16'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_isobufsrc_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_isobufsrc_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_isobufsrc_8'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_isobufsrckapwr_16'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_lsbuf_lh_hl_isowell_tap_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_lsbuf_lh_hl_isowell_tap_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_lsbuf_lh_hl_isowell_tap_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_tap_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_tap_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__lpflow_lsbuf_lh_isowell_tap_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__macro_sparecell'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__maj3_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__maj3_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__maj3_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__mux2_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__mux2_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__mux2_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__mux2_8'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__mux2i_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__mux2i_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__mux2i_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__mux4_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__mux4_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__mux4_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nand2_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nand2_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nand2_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nand2_8'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nand2b_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nand2b_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nand2b_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nand3_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nand3_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nand3_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nand3b_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nand3b_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nand3b_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nand4_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nand4_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nand4_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nand4b_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nand4b_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nand4b_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nand4bb_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nand4bb_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nand4bb_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nor2_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nor2_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nor2_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nor2_8'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nor2b_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nor2b_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nor2b_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nor3_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nor3_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nor3_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nor3b_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nor3b_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nor3b_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nor4_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nor4_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nor4_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nor4b_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nor4b_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nor4b_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nor4bb_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nor4bb_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__nor4bb_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o2111a_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o2111a_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o2111a_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o2111ai_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o2111ai_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o2111ai_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o211a_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o211a_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o211a_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o211ai_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o211ai_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o211ai_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o21a_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o21a_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o21a_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o21ai_0'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o21ai_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o21ai_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o21ai_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o21ba_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o21ba_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o21ba_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o21bai_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o21bai_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o21bai_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o221a_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o221a_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o221a_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o221ai_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o221ai_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o221ai_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o22a_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o22a_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o22a_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o22ai_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o22ai_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o22ai_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o2bb2a_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o2bb2a_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o2bb2a_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o2bb2ai_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o2bb2ai_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o2bb2ai_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o311a_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o311a_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o311a_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o311ai_0'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o311ai_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o311ai_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o311ai_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o31a_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o31a_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o31a_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o31ai_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o31ai_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o31ai_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o32a_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o32a_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o32a_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o32ai_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o32ai_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o32ai_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o41a_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o41a_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o41a_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o41ai_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o41ai_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__o41ai_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__or2_0'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__or2_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__or2_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__or2_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__or2b_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__or2b_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__or2b_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__or3_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__or3_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__or3_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__or3b_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__or3b_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__or3b_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__or4_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__or4_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__or4_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__or4b_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__or4b_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__or4b_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__or4bb_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__or4bb_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__or4bb_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__probe_p_8'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__probec_p_8'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sdfbbn_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sdfbbn_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sdfbbp_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sdfrbp_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sdfrbp_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sdfrtn_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sdfrtp_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sdfrtp_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sdfrtp_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sdfsbp_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sdfsbp_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sdfstp_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sdfstp_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sdfstp_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sdfxbp_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sdfxbp_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sdfxtp_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sdfxtp_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sdfxtp_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sdlclkp_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sdlclkp_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sdlclkp_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sedfxbp_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sedfxbp_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sedfxtp_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sedfxtp_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__sedfxtp_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__tap_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__tap_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__tapvgnd2_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__tapvgnd_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__tapvpwrvgnd_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__xnor2_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__xnor2_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__xnor2_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__xnor3_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__xnor3_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__xnor3_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__xor2_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__xor2_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__xor2_4'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__xor3_1'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__xor3_2'.
+Generating RTLIL representation for module `\sky130_fd_sc_hd__xor3_4'.
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: /work/openlane/axi4lite_arbiter_top_sv2v.v
+Parsing SystemVerilog input from `/work/openlane/axi4lite_arbiter_top_sv2v.v' to AST representation.
+Generating RTLIL representation for module `\axi4lite_address_decoder'.
+Generating RTLIL representation for module `\axi4lite_qos_scheduler'.
+Generating RTLIL representation for module `\axi4lite_response_router'.
+Generating RTLIL representation for module `\axi4lite_write_arbiter'.
+Generating RTLIL representation for module `\axi4lite_read_arbiter'.
+Generating RTLIL representation for module `\axi4lite_arbiter_top'.
+Successfully finished Verilog frontend.
+
+3. Executing HIERARCHY pass (managing design hierarchy).
+
+3.1. Analyzing design hierarchy..
+Top module:  \axi4lite_arbiter_top
+Used module:     \axi4lite_response_router
+Used module:     \axi4lite_read_arbiter
+Used module:         \axi4lite_address_decoder
+Used module:         \axi4lite_qos_scheduler
+Used module:     \axi4lite_write_arbiter
+Parameter \ADDR_WIDTH = 32
+Parameter \S0_BASE = 0
+Parameter \S0_SIZE = 65536
+Parameter \S1_BASE = 65536
+Parameter \S1_SIZE = 65536
+
+3.2. Executing AST frontend in derive mode using pre-parsed AST for module `\axi4lite_address_decoder'.
+Parameter \ADDR_WIDTH = 32
+Parameter \S0_BASE = 0
+Parameter \S0_SIZE = 65536
+Parameter \S1_BASE = 65536
+Parameter \S1_SIZE = 65536
+Generating RTLIL representation for module `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder'.
+Parameter \NUM_MASTERS = 4
+
+3.3. Executing AST frontend in derive mode using pre-parsed AST for module `\axi4lite_qos_scheduler'.
+Parameter \NUM_MASTERS = 4
+Generating RTLIL representation for module `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100'.
+Parameter \ADDR_WIDTH = 32
+Parameter \S0_BASE = 0
+Parameter \S0_SIZE = 65536
+Parameter \S1_BASE = 65536
+Parameter \S1_SIZE = 65536
+Found cached RTLIL representation for module `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder'.
+Parameter \NUM_MASTERS = 4
+Found cached RTLIL representation for module `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100'.
+Parameter \NUM_MASTERS = 4
+Parameter \NUM_SLAVES = 2
+Parameter \DATA_WIDTH = 32
+
+3.4. Executing AST frontend in derive mode using pre-parsed AST for module `\axi4lite_response_router'.
+Parameter \NUM_MASTERS = 4
+Parameter \NUM_SLAVES = 2
+Parameter \DATA_WIDTH = 32
+Generating RTLIL representation for module `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router'.
+Parameter \NUM_MASTERS = 4
+Parameter \NUM_SLAVES = 2
+Parameter \ADDR_WIDTH = 32
+Parameter \S0_BASE = 0
+Parameter \S0_SIZE = 65536
+Parameter \S1_BASE = 65536
+Parameter \S1_SIZE = 65536
+
+3.5. Executing AST frontend in derive mode using pre-parsed AST for module `\axi4lite_read_arbiter'.
+Parameter \NUM_MASTERS = 4
+Parameter \NUM_SLAVES = 2
+Parameter \ADDR_WIDTH = 32
+Parameter \S0_BASE = 0
+Parameter \S0_SIZE = 65536
+Parameter \S1_BASE = 65536
+Parameter \S1_SIZE = 65536
+Generating RTLIL representation for module `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter'.
+Parameter \NUM_MASTERS = 4
+Parameter \NUM_SLAVES = 2
+Parameter \ADDR_WIDTH = 32
+Parameter \DATA_WIDTH = 32
+Parameter \STRB_WIDTH = 4
+Parameter \S0_BASE = 0
+Parameter \S0_SIZE = 65536
+Parameter \S1_BASE = 65536
+Parameter \S1_SIZE = 65536
+
+3.6. Executing AST frontend in derive mode using pre-parsed AST for module `\axi4lite_write_arbiter'.
+Parameter \NUM_MASTERS = 4
+Parameter \NUM_SLAVES = 2
+Parameter \ADDR_WIDTH = 32
+Parameter \DATA_WIDTH = 32
+Parameter \STRB_WIDTH = 4
+Parameter \S0_BASE = 0
+Parameter \S0_SIZE = 65536
+Parameter \S1_BASE = 65536
+Parameter \S1_SIZE = 65536
+Generating RTLIL representation for module `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter'.
+
+3.7. Analyzing design hierarchy..
+Top module:  \axi4lite_arbiter_top
+Used module:     $paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router
+Used module:     $paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter
+Used module:         \axi4lite_address_decoder
+Used module:         \axi4lite_qos_scheduler
+Used module:     $paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter
+Parameter \ADDR_WIDTH = 32
+Parameter \S0_BASE = 0
+Parameter \S0_SIZE = 65536
+Parameter \S1_BASE = 65536
+Parameter \S1_SIZE = 65536
+Found cached RTLIL representation for module `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder'.
+Parameter \NUM_MASTERS = 4
+Found cached RTLIL representation for module `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100'.
+Parameter \ADDR_WIDTH = 32
+Parameter \S0_BASE = 0
+Parameter \S0_SIZE = 65536
+Parameter \S1_BASE = 65536
+Parameter \S1_SIZE = 65536
+Found cached RTLIL representation for module `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder'.
+Parameter \NUM_MASTERS = 4
+Found cached RTLIL representation for module `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100'.
+
+3.8. Analyzing design hierarchy..
+Top module:  \axi4lite_arbiter_top
+Used module:     $paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router
+Used module:     $paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter
+Used module:         $paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder
+Used module:         $paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100
+Used module:     $paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter
+
+3.9. Analyzing design hierarchy..
+Top module:  \axi4lite_arbiter_top
+Used module:     $paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router
+Used module:     $paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter
+Used module:         $paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder
+Used module:         $paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100
+Used module:     $paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter
+Removing unused module `\axi4lite_read_arbiter'.
+Removing unused module `\axi4lite_write_arbiter'.
+Removing unused module `\axi4lite_response_router'.
+Removing unused module `\axi4lite_qos_scheduler'.
+Removing unused module `\axi4lite_address_decoder'.
+Removed 5 unused modules.
+Renaming module axi4lite_arbiter_top to axi4lite_arbiter_top.
+
+4. Executing PROC pass (convert processes to netlists).
+
+4.1. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 2 empty switches in `\axi4lite_arbiter_top.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:0$523'.
+Removing empty process `axi4lite_arbiter_top.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:0$523'.
+Cleaned up 2 empty switches.
+
+4.2. Executing PROC_RMDEAD pass (remove dead branches from decision trees).
+Marked 3 switch rules as full_case in process $proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:815$1028 in module $paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.
+Marked 3 switch rules as full_case in process $proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:798$1024 in module $paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.
+Removed 1 dead cases from process $proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958 in module $paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.
+Marked 13 switch rules as full_case in process $proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958 in module $paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.
+Marked 1 switch rules as full_case in process $proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:683$901 in module $paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.
+Marked 3 switch rules as full_case in process $proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:1000$890 in module $paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.
+Marked 4 switch rules as full_case in process $proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:989$855 in module $paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.
+Marked 4 switch rules as full_case in process $proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:950$846 in module $paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.
+Marked 2 switch rules as full_case in process $proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:943$845 in module $paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.
+Marked 1 switch rules as full_case in process $proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:925$841 in module $paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.
+Removed 3 dead cases from process $proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:528$781 in module $paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.
+Marked 13 switch rules as full_case in process $proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:528$781 in module $paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.
+Removed 3 dead cases from process $proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:493$743 in module $paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.
+Marked 10 switch rules as full_case in process $proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:493$743 in module $paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.
+Marked 2 switch rules as full_case in process $proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:421$708 in module $paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.
+Marked 8 switch rules as full_case in process $proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:350$672 in module $paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.
+Marked 44 switch rules as full_case in process $proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:171$643 in module $paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.
+Marked 5 switch rules as full_case in process $proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:137$635 in module $paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.
+Marked 4 switch rules as full_case in process $proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:22$534 in module $paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.
+Removed a total of 7 dead cases.
+
+4.3. Executing PROC_PRUNE pass (remove redundant assignments in processes).
+Removed 2 redundant assignments.
+Promoted 115 assignments to connections.
+
+4.4. Executing PROC_INIT pass (extract init attributes).
+
+4.5. Executing PROC_ARST pass (detect async resets in processes).
+Found async reset \aresetn in `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958'.
+Found async reset \aresetn in `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:950$846'.
+Found async reset \aresetn in `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:350$672'.
+
+4.6. Executing PROC_ROM pass (convert switches to ROMs).
+Converted 0 switches.
+<suppressed ~132 debug messages>
+
+4.7. Executing PROC_MUX pass (convert decision trees to multiplexers).
+Creating decoders for process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:815$1028'.
+     1/4: $1\m_axi_wvalid[1:0] [1]
+     2/4: $2\m_axi_wvalid[0:0]
+     3/4: $1\m_axi_wvalid[1:0] [0]
+     4/4: $3\m_axi_wvalid[1:1]
+Creating decoders for process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:798$1024'.
+     1/4: $1\m_axi_awvalid[1:0] [1]
+     2/4: $2\m_axi_awvalid[0:0]
+     3/4: $1\m_axi_awvalid[1:0] [0]
+     4/4: $3\m_axi_awvalid[1:1]
+Creating decoders for process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958'.
+     1/48: $7$lookahead\w_buf_valid$957[3:0]$1009
+     2/48: $3$bitselwrite$pos$/work/openlane/axi4lite_arbiter_top_sv2v.v:791$900[1:0]$1007
+     3/48: $7$lookahead\aw_buf_valid$956[3:0]$1008
+     4/48: $3$bitselwrite$pos$/work/openlane/axi4lite_arbiter_top_sv2v.v:790$899[1:0]$1006
+     5/48: $6$lookahead\w_buf_valid$957[3:0]$987
+     6/48: $6$lookahead\aw_buf_valid$956[3:0]$986
+     7/48: $2$bitselwrite$pos$/work/openlane/axi4lite_arbiter_top_sv2v.v:791$900[1:0]$985
+     8/48: $2$bitselwrite$pos$/work/openlane/axi4lite_arbiter_top_sv2v.v:790$899[1:0]$984
+     9/48: $5$lookahead\w_buf_valid$957[3:3]$983
+    10/48: $0\w_buf_strb[15:0] [15:12]
+    11/48: $0\w_buf_strb[15:0] [11:8]
+    12/48: $0\w_buf_data[127:0] [95:64]
+    13/48: $0\w_buf_data[127:0] [127:96]
+    14/48: $0\w_buf_strb[15:0] [7:4]
+    15/48: $0\w_buf_data[127:0] [63:32]
+    16/48: $4$lookahead\w_buf_valid$957[2:2]$981
+    17/48: $0\w_buf_strb[15:0] [3:0]
+    18/48: $0\w_buf_data[127:0] [31:0]
+    19/48: $5$lookahead\aw_buf_valid$956[3:3]$975
+    20/48: $0\aw_buf_prot[11:0] [11:9]
+    21/48: $0\aw_buf_prot[11:0] [8:6]
+    22/48: $0\aw_buf_addr[127:0] [95:64]
+    23/48: $0\aw_buf_addr[127:0] [127:96]
+    24/48: $0\aw_buf_prot[11:0] [5:3]
+    25/48: $0\aw_buf_addr[127:0] [63:32]
+    26/48: $4$lookahead\aw_buf_valid$956[2:2]$973
+    27/48: $0\aw_buf_prot[11:0] [2:0]
+    28/48: $0\aw_buf_addr[127:0] [31:0]
+    29/48: $1$lookahead\w_buf_valid$957[3:0]$967
+    30/48: $1$lookahead\aw_buf_valid$956[3:0]$966
+    31/48: $1$bitselwrite$pos$/work/openlane/axi4lite_arbiter_top_sv2v.v:791$900[1:0]$965
+    32/48: $1$bitselwrite$pos$/work/openlane/axi4lite_arbiter_top_sv2v.v:790$899[1:0]$964
+    33/48: $1\sv2v_autoblock_6.m[31:0]
+    34/48: $1\sv2v_autoblock_5.m[31:0]
+    35/48: $0\arb_tx_done[0:0]
+    36/48: $1\sv2v_autoblock_4.m[31:0]
+    37/48: $0\latched_wstrb[3:0]
+    38/48: $0\latched_wdata[31:0]
+    39/48: $0\latched_prot[2:0]
+    40/48: $0\latched_addr[31:0]
+    41/48: $0\target_invalid_r[0:0]
+    42/48: $0\target_slave_r[1:0]
+    43/48: $0\owner_id_r[1:0]
+    44/48: $0\w_state[1:0]
+    45/48: $3$lookahead\w_buf_valid$957[1:1]$979
+    46/48: $2$lookahead\w_buf_valid$957[0:0]$977
+    47/48: $3$lookahead\aw_buf_valid$956[1:1]$971
+    48/48: $2$lookahead\aw_buf_valid$956[0:0]$969
+Creating decoders for process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:717$943'.
+Creating decoders for process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:709$918'.
+Creating decoders for process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:704$905'.
+Creating decoders for process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:683$901'.
+     1/1: $1\decode_addr[31:0]
+Creating decoders for process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:1000$890'.
+     1/4: $1\m_axi_arvalid[1:0] [1]
+     2/4: $2\m_axi_arvalid[0:0]
+     3/4: $1\m_axi_arvalid[1:0] [0]
+     4/4: $3\m_axi_arvalid[1:1]
+Creating decoders for process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:989$855'.
+     1/13: $4\s_axi_arready[3:0]
+     2/13: $4$bitselwrite$pos$/work/openlane/axi4lite_arbiter_top_sv2v.v:997$840[1:0]$882
+     3/13: $3\s_axi_arready[3:0]
+     4/13: $3$bitselwrite$pos$/work/openlane/axi4lite_arbiter_top_sv2v.v:995$839[1:0]$873
+     5/13: $3$bitselwrite$pos$/work/openlane/axi4lite_arbiter_top_sv2v.v:997$840[1:0]$874
+     6/13: $2\s_axi_arready[3:0]
+     7/13: $2$bitselwrite$pos$/work/openlane/axi4lite_arbiter_top_sv2v.v:993$838[1:0]$863
+     8/13: $2$bitselwrite$pos$/work/openlane/axi4lite_arbiter_top_sv2v.v:997$840[1:0]$865
+     9/13: $2$bitselwrite$pos$/work/openlane/axi4lite_arbiter_top_sv2v.v:995$839[1:0]$864
+    10/13: $1$bitselwrite$pos$/work/openlane/axi4lite_arbiter_top_sv2v.v:997$840[1:0]$862
+    11/13: $1$bitselwrite$pos$/work/openlane/axi4lite_arbiter_top_sv2v.v:995$839[1:0]$861
+    12/13: $1$bitselwrite$pos$/work/openlane/axi4lite_arbiter_top_sv2v.v:993$838[1:0]$860
+    13/13: $1\s_axi_arready[3:0]
+Creating decoders for process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:950$846'.
+     1/7: $0\arb_tx_done[0:0]
+     2/7: $0\r_state[1:0]
+     3/7: $0\latched_prot[2:0]
+     4/7: $0\latched_addr[31:0]
+     5/7: $0\target_invalid_r[0:0]
+     6/7: $0\target_slave_r[1:0]
+     7/7: $0\owner_id_r[1:0]
+Creating decoders for process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:943$845'.
+     1/2: $2\target_arready[0:0]
+     2/2: $1\target_arready[0:0]
+Creating decoders for process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:925$841'.
+     1/1: $1\decode_addr[31:0]
+Creating decoders for process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:528$781'.
+     1/85: $7\m_rresp[7:0] [7:6]
+     2/85: $7\m_rresp[7:0] [1:0]
+     3/85: $7\m_rresp[7:0] [5:4]
+     4/85: $7\m_rresp[7:0] [3:2]
+     5/85: $7\m_rdata[127:0] [127:96]
+     6/85: $7\m_rdata[127:0] [31:0]
+     7/85: $7\m_rdata[127:0] [95:64]
+     8/85: $7\m_rdata[127:0] [63:32]
+     9/85: $7\m_rvalid[3:0] [2]
+    10/85: $7\m_rvalid[3:0] [1]
+    11/85: $7\m_rvalid[3:0] [3]
+    12/85: $7\m_rvalid[3:0] [0]
+    13/85: $4\r_resp_handshake[0:0]
+    14/85: $4\s_rready[1:1]
+    15/85: $6\m_rresp[7:0]
+    16/85: $4$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:563$742[1:0]$830
+    17/85: $6\m_rdata[127:0]
+    18/85: $4$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:562$741[31:0]$829
+    19/85: $6\m_rvalid[3:0]
+    20/85: $4$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:561$740[0:0]$828
+    21/85: $5\m_rresp[7:0] [7:6]
+    22/85: $5\m_rresp[7:0] [1:0]
+    23/85: $5\m_rresp[7:0] [5:4]
+    24/85: $5\m_rresp[7:0] [3:2]
+    25/85: $5\m_rdata[127:0] [127:96]
+    26/85: $5\m_rdata[127:0] [31:0]
+    27/85: $5\m_rdata[127:0] [95:64]
+    28/85: $5\m_rdata[127:0] [63:32]
+    29/85: $5\m_rvalid[3:0] [2]
+    30/85: $5\m_rvalid[3:0] [1]
+    31/85: $5\m_rvalid[3:0] [3]
+    32/85: $5\m_rvalid[3:0] [0]
+    33/85: $3\r_resp_handshake[0:0]
+    34/85: $3\s_rready[1:0] [0]
+    35/85: $4\m_rresp[7:0]
+    36/85: $3$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:556$739[1:0]$817
+    37/85: $4\m_rdata[127:0]
+    38/85: $3$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:555$738[31:0]$816
+    39/85: $4\m_rvalid[3:0]
+    40/85: $3$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:554$737[0:0]$815
+    41/85: $3$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:563$742[1:0]$820
+    42/85: $3$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:562$741[31:0]$819
+    43/85: $3$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:561$740[0:0]$818
+    44/85: $3\s_rready[1:0] [1]
+    45/85: $3\m_rresp[7:0] [7:6]
+    46/85: $3\m_rresp[7:0] [1:0]
+    47/85: $3\m_rresp[7:0] [5:4]
+    48/85: $3\m_rresp[7:0] [3:2]
+    49/85: $3\m_rdata[127:0] [127:96]
+    50/85: $3\m_rdata[127:0] [31:0]
+    51/85: $3\m_rdata[127:0] [95:64]
+    52/85: $3\m_rdata[127:0] [63:32]
+    53/85: $3\m_rvalid[3:0] [2]
+    54/85: $3\m_rvalid[3:0] [1]
+    55/85: $3\m_rvalid[3:0] [3]
+    56/85: $3\m_rvalid[3:0] [0]
+    57/85: $2\r_resp_handshake[0:0]
+    58/85: $2\m_rresp[7:0]
+    59/85: $2$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:550$736[1:0]$803
+    60/85: $2\m_rdata[127:0]
+    61/85: $2$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:549$735[0:0]$802
+    62/85: $2\m_rvalid[3:0]
+    63/85: $2$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:548$734[0:0]$801
+    64/85: $2$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:563$742[1:0]$809
+    65/85: $2$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:562$741[31:0]$808
+    66/85: $2$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:561$740[0:0]$807
+    67/85: $2$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:556$739[1:0]$806
+    68/85: $2$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:555$738[31:0]$805
+    69/85: $2$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:554$737[0:0]$804
+    70/85: $2\s_rready[1:0]
+    71/85: $1$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:563$742[1:0]$799
+    72/85: $1$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:562$741[31:0]$798
+    73/85: $1$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:561$740[0:0]$797
+    74/85: $1$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:556$739[1:0]$796
+    75/85: $1$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:555$738[31:0]$795
+    76/85: $1$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:554$737[0:0]$794
+    77/85: $1$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:550$736[1:0]$793
+    78/85: $1$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:549$735[0:0]$792
+    79/85: $1$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:548$734[0:0]$791
+    80/85: $1\r_resp_handshake[0:0]
+    81/85: $1\m_rvalid[3:0]
+    82/85: $1\m_rresp[7:0]
+    83/85: $1\m_rdata[127:0]
+    84/85: $1\s_rready[1:0]
+    85/85: $1\r_owner_rready[0:0]
+Creating decoders for process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:493$743'.
+     1/59: $7\m_bresp[7:0] [7:6]
+     2/59: $7\m_bresp[7:0] [1:0]
+     3/59: $7\m_bresp[7:0] [5:4]
+     4/59: $7\m_bresp[7:0] [3:2]
+     5/59: $7\m_bvalid[3:0] [2]
+     6/59: $7\m_bvalid[3:0] [1]
+     7/59: $7\m_bvalid[3:0] [3]
+     8/59: $7\m_bvalid[3:0] [0]
+     9/59: $4\w_resp_handshake[0:0]
+    10/59: $4\s_bready[1:1]
+    11/59: $6\m_bresp[7:0]
+    12/59: $4$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:522$733[1:0]$775
+    13/59: $6\m_bvalid[3:0]
+    14/59: $4$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:521$732[0:0]$774
+    15/59: $5\m_bresp[7:0] [7:6]
+    16/59: $5\m_bresp[7:0] [1:0]
+    17/59: $5\m_bresp[7:0] [5:4]
+    18/59: $5\m_bresp[7:0] [3:2]
+    19/59: $5\m_bvalid[3:0] [2]
+    20/59: $5\m_bvalid[3:0] [1]
+    21/59: $5\m_bvalid[3:0] [3]
+    22/59: $5\m_bvalid[3:0] [0]
+    23/59: $3\w_resp_handshake[0:0]
+    24/59: $3\s_bready[1:0] [0]
+    25/59: $4\m_bresp[7:0]
+    26/59: $3$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:516$731[1:0]$766
+    27/59: $4\m_bvalid[3:0]
+    28/59: $3$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:515$730[0:0]$765
+    29/59: $3$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:522$733[1:0]$768
+    30/59: $3$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:521$732[0:0]$767
+    31/59: $3\s_bready[1:0] [1]
+    32/59: $3\m_bresp[7:0] [7:6]
+    33/59: $3\m_bresp[7:0] [1:0]
+    34/59: $3\m_bresp[7:0] [5:4]
+    35/59: $3\m_bresp[7:0] [3:2]
+    36/59: $3\m_bvalid[3:0] [2]
+    37/59: $3\m_bvalid[3:0] [1]
+    38/59: $3\m_bvalid[3:0] [3]
+    39/59: $3\m_bvalid[3:0] [0]
+    40/59: $2\w_resp_handshake[0:0]
+    41/59: $2\m_bresp[7:0]
+    42/59: $2$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:511$729[1:0]$757
+    43/59: $2\m_bvalid[3:0]
+    44/59: $2$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:510$728[0:0]$756
+    45/59: $2$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:522$733[1:0]$761
+    46/59: $2$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:521$732[0:0]$760
+    47/59: $2$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:516$731[1:0]$759
+    48/59: $2$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:515$730[0:0]$758
+    49/59: $2\s_bready[1:0]
+    50/59: $1$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:522$733[1:0]$755
+    51/59: $1$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:521$732[0:0]$754
+    52/59: $1$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:516$731[1:0]$753
+    53/59: $1$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:515$730[0:0]$752
+    54/59: $1$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:511$729[1:0]$751
+    55/59: $1$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:510$728[0:0]$750
+    56/59: $1\w_resp_handshake[0:0]
+    57/59: $1\m_bvalid[3:0]
+    58/59: $1\m_bresp[7:0]
+    59/59: $1\s_bready[1:0]
+Creating decoders for process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:421$708'.
+     1/9: $2\grant_valid[0:0]
+     2/9: $2\master_id[1:0]
+     3/9: $2\grant[3:0]
+     4/9: $2$bitselwrite$pos$/work/openlane/axi4lite_arbiter_top_sv2v.v:431$610[1:0]$720
+     5/9: $1\grant_valid[0:0]
+     6/9: $1\master_id[1:0]
+     7/9: $1\grant[3:0]
+     8/9: $1$bitselwrite$pos$/work/openlane/axi4lite_arbiter_top_sv2v.v:426$609[1:0]$711
+     9/9: $1$bitselwrite$pos$/work/openlane/axi4lite_arbiter_top_sv2v.v:431$610[1:0]$712
+Creating decoders for process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:350$672'.
+     1/11: $0\f_first_cycle[0:0]
+     2/11: $0\m0_burst_count[7:0]
+     3/11: $0\age_m3[7:0]
+     4/11: $0\age_m2[7:0]
+     5/11: $0\age_m1[7:0]
+     6/11: $0\rr_ptr[1:0]
+     7/11: $0\budget_3[3:0]
+     8/11: $0\budget_2[3:0]
+     9/11: $0\budget_1[3:0]
+    10/11: $0\is_active[0:0]
+    11/11: $0\current_master[1:0]
+Creating decoders for process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:171$643'.
+     1/88: $44\cand_valid[0:0]
+     2/88: $44\next_cand[1:0]
+     3/88: $43\cand_valid[0:0]
+     4/88: $43\next_cand[1:0]
+     5/88: $42\cand_valid[0:0]
+     6/88: $42\next_cand[1:0]
+     7/88: $41\cand_valid[0:0]
+     8/88: $41\next_cand[1:0]
+     9/88: $40\cand_valid[0:0]
+    10/88: $40\next_cand[1:0]
+    11/88: $39\cand_valid[0:0]
+    12/88: $39\next_cand[1:0]
+    13/88: $38\cand_valid[0:0]
+    14/88: $38\next_cand[1:0]
+    15/88: $37\cand_valid[0:0]
+    16/88: $37\next_cand[1:0]
+    17/88: $36\cand_valid[0:0]
+    18/88: $36\next_cand[1:0]
+    19/88: $35\cand_valid[0:0]
+    20/88: $35\next_cand[1:0]
+    21/88: $34\cand_valid[0:0]
+    22/88: $34\next_cand[1:0]
+    23/88: $33\cand_valid[0:0]
+    24/88: $33\next_cand[1:0]
+    25/88: $32\cand_valid[0:0]
+    26/88: $32\next_cand[1:0]
+    27/88: $31\cand_valid[0:0]
+    28/88: $31\next_cand[1:0]
+    29/88: $30\cand_valid[0:0]
+    30/88: $30\next_cand[1:0]
+    31/88: $29\cand_valid[0:0]
+    32/88: $29\next_cand[1:0]
+    33/88: $28\cand_valid[0:0]
+    34/88: $28\next_cand[1:0]
+    35/88: $27\cand_valid[0:0]
+    36/88: $27\next_cand[1:0]
+    37/88: $26\cand_valid[0:0]
+    38/88: $26\next_cand[1:0]
+    39/88: $25\cand_valid[0:0]
+    40/88: $25\next_cand[1:0]
+    41/88: $24\cand_valid[0:0]
+    42/88: $24\next_cand[1:0]
+    43/88: $23\cand_valid[0:0]
+    44/88: $23\next_cand[1:0]
+    45/88: $22\cand_valid[0:0]
+    46/88: $22\next_cand[1:0]
+    47/88: $21\cand_valid[0:0]
+    48/88: $21\next_cand[1:0]
+    49/88: $20\cand_valid[0:0]
+    50/88: $20\next_cand[1:0]
+    51/88: $19\cand_valid[0:0]
+    52/88: $19\next_cand[1:0]
+    53/88: $18\cand_valid[0:0]
+    54/88: $18\next_cand[1:0]
+    55/88: $17\cand_valid[0:0]
+    56/88: $17\next_cand[1:0]
+    57/88: $16\cand_valid[0:0]
+    58/88: $16\next_cand[1:0]
+    59/88: $15\cand_valid[0:0]
+    60/88: $15\next_cand[1:0]
+    61/88: $14\cand_valid[0:0]
+    62/88: $14\next_cand[1:0]
+    63/88: $13\cand_valid[0:0]
+    64/88: $13\next_cand[1:0]
+    65/88: $12\cand_valid[0:0]
+    66/88: $12\next_cand[1:0]
+    67/88: $11\cand_valid[0:0]
+    68/88: $11\next_cand[1:0]
+    69/88: $10\cand_valid[0:0]
+    70/88: $10\next_cand[1:0]
+    71/88: $9\cand_valid[0:0]
+    72/88: $9\next_cand[1:0]
+    73/88: $8\cand_valid[0:0]
+    74/88: $8\next_cand[1:0]
+    75/88: $7\cand_valid[0:0]
+    76/88: $7\next_cand[1:0]
+    77/88: $6\cand_valid[0:0]
+    78/88: $6\next_cand[1:0]
+    79/88: $5\cand_valid[0:0]
+    80/88: $5\next_cand[1:0]
+    81/88: $4\cand_valid[0:0]
+    82/88: $4\next_cand[1:0]
+    83/88: $3\cand_valid[0:0]
+    84/88: $3\next_cand[1:0]
+    85/88: $2\cand_valid[0:0]
+    86/88: $2\next_cand[1:0]
+    87/88: $1\cand_valid[0:0]
+    88/88: $1\next_cand[1:0]
+Creating decoders for process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:137$635'.
+     1/14: $3\eff_b3[3:0]
+     2/14: $5\eff_rr_ptr[1:0]
+     3/14: $3\eff_b2[3:0]
+     4/14: $4\eff_rr_ptr[1:0]
+     5/14: $3\eff_b1[3:0]
+     6/14: $3\eff_rr_ptr[1:0]
+     7/14: $2\eff_rr_ptr[1:0]
+     8/14: $2\eff_b1[3:0]
+     9/14: $2\eff_b3[3:0]
+    10/14: $2\eff_b2[3:0]
+    11/14: $1\eff_rr_ptr[1:0]
+    12/14: $1\eff_b3[3:0]
+    13/14: $1\eff_b2[3:0]
+    14/14: $1\eff_b1[3:0]
+Creating decoders for process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:120$625'.
+Creating decoders for process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:92$618'.
+Creating decoders for process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:85$611'.
+Creating decoders for process `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:22$534'.
+     1/8: $2\invalid_addr[0:0]
+     2/8: $2\valid_addr[0:0]
+     3/8: $2\slave_sel[1:0]
+     4/8: $1\invalid_addr[0:0]
+     5/8: $1\valid_addr[0:0]
+     6/8: $1\slave_sel[1:0]
+     7/8: $1\match_s1[0:0]
+     8/8: $1\match_s0[0:0]
+
+4.8. Executing PROC_DLATCH pass (convert process syncs to latches).
+No latch inferred for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\m_axi_wdata' from process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:815$1028'.
+No latch inferred for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\m_axi_wstrb' from process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:815$1028'.
+No latch inferred for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\m_axi_wvalid' from process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:815$1028'.
+No latch inferred for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\sv2v_autoblock_8.s' from process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:815$1028'.
+No latch inferred for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\m_axi_awaddr' from process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:798$1024'.
+No latch inferred for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\m_axi_awprot' from process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:798$1024'.
+No latch inferred for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\m_axi_awvalid' from process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:798$1024'.
+No latch inferred for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\sv2v_autoblock_7.s' from process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:798$1024'.
+No latch inferred for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\write_eligible' from process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:717$943'.
+No latch inferred for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\sv2v_autoblock_3.m' from process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:717$943'.
+No latch inferred for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\s_axi_awready' from process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:709$918'.
+No latch inferred for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\s_axi_wready' from process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:709$918'.
+No latch inferred for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\sv2v_autoblock_2.m' from process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:709$918'.
+No latch inferred for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\buf_locked' from process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:704$905'.
+No latch inferred for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\sv2v_autoblock_1.m' from process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:704$905'.
+No latch inferred for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\decode_addr' from process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:683$901'.
+No latch inferred for signal `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.\m_axi_araddr' from process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:1000$890'.
+No latch inferred for signal `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.\m_axi_arprot' from process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:1000$890'.
+No latch inferred for signal `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.\m_axi_arvalid' from process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:1000$890'.
+No latch inferred for signal `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.\sv2v_autoblock_1.s' from process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:1000$890'.
+No latch inferred for signal `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.\s_axi_arready' from process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:989$855'.
+No latch inferred for signal `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$bitselwrite$pos$/work/openlane/axi4lite_arbiter_top_sv2v.v:993$838' from process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:989$855'.
+No latch inferred for signal `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$bitselwrite$pos$/work/openlane/axi4lite_arbiter_top_sv2v.v:995$839' from process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:989$855'.
+No latch inferred for signal `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$bitselwrite$pos$/work/openlane/axi4lite_arbiter_top_sv2v.v:997$840' from process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:989$855'.
+No latch inferred for signal `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.\target_arready' from process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:943$845'.
+No latch inferred for signal `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.\decode_addr' from process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:925$841'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.\s_rready' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:528$781'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.\m_rdata' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:528$781'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.\m_rresp' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:528$781'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.\m_rvalid' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:528$781'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.\r_resp_handshake' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:528$781'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.\r_owner_rready' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:528$781'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.\sv2v_autoblock_3.i' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:528$781'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.\sv2v_autoblock_4.i' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:528$781'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:548$734' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:528$781'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:549$735' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:528$781'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:550$736' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:528$781'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:554$737' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:528$781'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:555$738' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:528$781'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:556$739' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:528$781'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:561$740' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:528$781'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:562$741' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:528$781'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:563$742' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:528$781'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.\s_bready' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:493$743'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.\m_bresp' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:493$743'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.\m_bvalid' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:493$743'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.\w_resp_handshake' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:493$743'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.\sv2v_autoblock_1.i' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:493$743'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.\sv2v_autoblock_2.i' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:493$743'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:510$728' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:493$743'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:511$729' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:493$743'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:515$730' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:493$743'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:516$731' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:493$743'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:521$732' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:493$743'.
+No latch inferred for signal `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$bitselwrite$rvalue$/work/openlane/axi4lite_arbiter_top_sv2v.v:522$733' from process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:493$743'.
+No latch inferred for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\grant' from process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:421$708'.
+No latch inferred for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\master_id' from process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:421$708'.
+No latch inferred for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\grant_valid' from process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:421$708'.
+No latch inferred for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$bitselwrite$pos$/work/openlane/axi4lite_arbiter_top_sv2v.v:426$609' from process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:421$708'.
+No latch inferred for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$bitselwrite$pos$/work/openlane/axi4lite_arbiter_top_sv2v.v:431$610' from process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:421$708'.
+No latch inferred for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\next_cand' from process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:171$643'.
+No latch inferred for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\cand_valid' from process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:171$643'.
+No latch inferred for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\eff_b1' from process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:137$635'.
+No latch inferred for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\eff_b2' from process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:137$635'.
+No latch inferred for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\eff_b3' from process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:137$635'.
+No latch inferred for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\eff_rr_ptr' from process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:137$635'.
+No latch inferred for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\m1_aged' from process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:120$625'.
+No latch inferred for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\m2_aged' from process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:120$625'.
+No latch inferred for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\m3_aged' from process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:120$625'.
+No latch inferred for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\any_aged' from process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:120$625'.
+No latch inferred for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\age_thresh' from process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:92$618'.
+No latch inferred for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\burst_limit' from process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:92$618'.
+No latch inferred for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\w1' from process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:85$611'.
+No latch inferred for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\w2' from process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:85$611'.
+No latch inferred for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\w3' from process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:85$611'.
+No latch inferred for signal `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.\slave_sel' from process `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:22$534'.
+No latch inferred for signal `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.\valid_addr' from process `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:22$534'.
+No latch inferred for signal `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.\invalid_addr' from process `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:22$534'.
+No latch inferred for signal `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.\match_s0' from process `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:22$534'.
+No latch inferred for signal `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.\match_s1' from process `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:22$534'.
+No latch inferred for signal `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.\sv2v_cast_64$func$/work/openlane/axi4lite_arbiter_top_sv2v.v:23$524.$result' from process `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:22$534'.
+No latch inferred for signal `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.\sv2v_cast_64$func$/work/openlane/axi4lite_arbiter_top_sv2v.v:23$524.inp' from process `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:22$534'.
+No latch inferred for signal `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.\sv2v_cast_64$func$/work/openlane/axi4lite_arbiter_top_sv2v.v:23$526.$result' from process `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:22$534'.
+No latch inferred for signal `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.\sv2v_cast_64$func$/work/openlane/axi4lite_arbiter_top_sv2v.v:23$526.inp' from process `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:22$534'.
+No latch inferred for signal `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.\sv2v_cast_64$func$/work/openlane/axi4lite_arbiter_top_sv2v.v:27$529.$result' from process `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:22$534'.
+No latch inferred for signal `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.\sv2v_cast_64$func$/work/openlane/axi4lite_arbiter_top_sv2v.v:27$529.inp' from process `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:22$534'.
+No latch inferred for signal `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.\sv2v_cast_64$func$/work/openlane/axi4lite_arbiter_top_sv2v.v:27$531.$result' from process `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:22$534'.
+No latch inferred for signal `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.\sv2v_cast_64$func$/work/openlane/axi4lite_arbiter_top_sv2v.v:27$531.inp' from process `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:22$534'.
+
+4.9. Executing PROC_DFF pass (convert process syncs to FFs).
+Creating register for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\aw_buf_valid' using process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958'.
+  created $adff cell `$procdff$4608' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\aw_buf_addr' using process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958'.
+  created $adff cell `$procdff$4609' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\aw_buf_prot' using process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958'.
+  created $adff cell `$procdff$4610' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\w_buf_valid' using process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958'.
+  created $adff cell `$procdff$4611' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\w_buf_data' using process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958'.
+  created $adff cell `$procdff$4612' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\w_buf_strb' using process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958'.
+  created $adff cell `$procdff$4613' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\w_state' using process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958'.
+  created $adff cell `$procdff$4614' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\owner_id_r' using process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958'.
+  created $adff cell `$procdff$4615' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\target_slave_r' using process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958'.
+  created $adff cell `$procdff$4616' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\target_invalid_r' using process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958'.
+  created $adff cell `$procdff$4617' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\latched_addr' using process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958'.
+  created $adff cell `$procdff$4618' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\latched_prot' using process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958'.
+  created $adff cell `$procdff$4619' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\latched_wdata' using process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958'.
+  created $adff cell `$procdff$4620' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\latched_wstrb' using process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958'.
+  created $adff cell `$procdff$4621' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\arb_tx_done' using process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958'.
+  created $adff cell `$procdff$4622' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\sv2v_autoblock_4.m' using process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958'.
+  created $adff cell `$procdff$4623' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\sv2v_autoblock_5.m' using process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958'.
+  created $dff cell `$procdff$4626' with positive edge clock.
+Creating register for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.\sv2v_autoblock_6.m' using process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958'.
+  created $dff cell `$procdff$4629' with positive edge clock.
+Creating register for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$bitselwrite$pos$/work/openlane/axi4lite_arbiter_top_sv2v.v:790$899' using process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958'.
+  created $adff cell `$procdff$4630' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$bitselwrite$pos$/work/openlane/axi4lite_arbiter_top_sv2v.v:791$900' using process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958'.
+  created $adff cell `$procdff$4631' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$lookahead\aw_buf_valid$956' using process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958'.
+  created $adff cell `$procdff$4632' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$lookahead\w_buf_valid$957' using process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958'.
+  created $adff cell `$procdff$4633' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.\owner_id_r' using process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:950$846'.
+  created $adff cell `$procdff$4634' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.\target_slave_r' using process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:950$846'.
+  created $adff cell `$procdff$4635' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.\target_invalid_r' using process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:950$846'.
+  created $adff cell `$procdff$4636' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.\latched_addr' using process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:950$846'.
+  created $adff cell `$procdff$4637' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.\latched_prot' using process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:950$846'.
+  created $adff cell `$procdff$4638' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.\arb_tx_done' using process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:950$846'.
+  created $adff cell `$procdff$4639' with positive edge clock and negative level reset.
+Creating register for signal `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.\r_state' using process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:950$846'.
+  created $adff cell `$procdff$4640' with positive edge clock and negative level reset.
+Creating register for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\current_master' using process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:350$672'.
+  created $adff cell `$procdff$4641' with positive edge clock and negative level reset.
+Creating register for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\is_active' using process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:350$672'.
+  created $adff cell `$procdff$4642' with positive edge clock and negative level reset.
+Creating register for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\budget_1' using process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:350$672'.
+  created $adff cell `$procdff$4643' with positive edge clock and negative level reset.
+Creating register for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\budget_2' using process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:350$672'.
+  created $adff cell `$procdff$4644' with positive edge clock and negative level reset.
+Creating register for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\budget_3' using process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:350$672'.
+  created $adff cell `$procdff$4645' with positive edge clock and negative level reset.
+Creating register for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\rr_ptr' using process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:350$672'.
+  created $adff cell `$procdff$4646' with positive edge clock and negative level reset.
+Creating register for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\age_m1' using process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:350$672'.
+  created $adff cell `$procdff$4647' with positive edge clock and negative level reset.
+Creating register for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\age_m2' using process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:350$672'.
+  created $adff cell `$procdff$4648' with positive edge clock and negative level reset.
+Creating register for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\age_m3' using process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:350$672'.
+  created $adff cell `$procdff$4649' with positive edge clock and negative level reset.
+Creating register for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\m0_burst_count' using process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:350$672'.
+  created $adff cell `$procdff$4650' with positive edge clock and negative level reset.
+Creating register for signal `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.\f_first_cycle' using process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:350$672'.
+  created $adff cell `$procdff$4651' with positive edge clock and negative level reset.
+
+4.10. Executing PROC_MEMWR pass (convert process memory writes to cells).
+
+4.11. Executing PROC_CLEAN pass (remove empty switches from decision trees).
+Found and cleaned up 3 empty switches in `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:815$1028'.
+Removing empty process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:815$1028'.
+Found and cleaned up 3 empty switches in `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:798$1024'.
+Removing empty process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:798$1024'.
+Found and cleaned up 15 empty switches in `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958'.
+Removing empty process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:722$958'.
+Removing empty process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:717$943'.
+Removing empty process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:709$918'.
+Removing empty process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:704$905'.
+Found and cleaned up 1 empty switch in `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:683$901'.
+Removing empty process `$paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:683$901'.
+Found and cleaned up 3 empty switches in `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:1000$890'.
+Removing empty process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:1000$890'.
+Found and cleaned up 4 empty switches in `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:989$855'.
+Removing empty process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:989$855'.
+Found and cleaned up 6 empty switches in `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:950$846'.
+Removing empty process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:950$846'.
+Found and cleaned up 2 empty switches in `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:943$845'.
+Removing empty process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:943$845'.
+Found and cleaned up 1 empty switch in `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:925$841'.
+Removing empty process `$paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:925$841'.
+Found and cleaned up 13 empty switches in `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:528$781'.
+Removing empty process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:528$781'.
+Found and cleaned up 10 empty switches in `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:493$743'.
+Removing empty process `$paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:493$743'.
+Found and cleaned up 2 empty switches in `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:421$708'.
+Removing empty process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:421$708'.
+Found and cleaned up 16 empty switches in `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:350$672'.
+Removing empty process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:350$672'.
+Found and cleaned up 44 empty switches in `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:171$643'.
+Removing empty process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:171$643'.
+Found and cleaned up 5 empty switches in `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:137$635'.
+Removing empty process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:137$635'.
+Removing empty process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:120$625'.
+Removing empty process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:92$618'.
+Removing empty process `$paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:85$611'.
+Found and cleaned up 4 empty switches in `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:22$534'.
+Removing empty process `$paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.$proc$/work/openlane/axi4lite_arbiter_top_sv2v.v:22$534'.
+Cleaned up 132 empty switches.
+
+4.12. Executing OPT_EXPR pass (perform const folding).
+Optimizing module axi4lite_arbiter_top.
+Optimizing module $paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.
+<suppressed ~17 debug messages>
+Optimizing module $paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.
+<suppressed ~13 debug messages>
+Optimizing module $paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.
+<suppressed ~32 debug messages>
+Optimizing module $paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.
+<suppressed ~45 debug messages>
+Optimizing module $paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.
+<suppressed ~2 debug messages>
+
+5. Executing FLATTEN pass (flatten design).
+Deleting now unused module $paramod$70e768f93198a4a8c4f7d958f2c0abe528626c73\axi4lite_write_arbiter.
+Deleting now unused module $paramod$81ce42896b6420f5b5e2661c2ae9db4347cc4ddf\axi4lite_read_arbiter.
+Deleting now unused module $paramod$b358acc07f1df1ca7668b3eda652fc0a3794bba8\axi4lite_response_router.
+Deleting now unused module $paramod\axi4lite_qos_scheduler\NUM_MASTERS=s32'00000000000000000000000000000100.
+Deleting now unused module $paramod$8607e6e28e9a0ecf78b5ef5ea17d8b714c8188a1\axi4lite_address_decoder.
+<suppressed ~7 debug messages>
+
+6. Executing OPT_CLEAN pass (remove unused cells and wires).
+Finding unused cells or wires in module \axi4lite_arbiter_top..
+Removed 204 unused cells and 2511 unused wires.
+<suppressed ~359 debug messages>
+
+End of script. Logfile hash: d3213f9777, CPU: user 0.23s system 0.05s, MEM: 178.09 MB peak
+Yosys 0.38 (git sha1 543faed9c8c, clang++ 16.0.6 -fPIC -Os)
+Time spent: 22% 4x read_verilog (0 sec), 19% 1x flatten (0 sec), ...

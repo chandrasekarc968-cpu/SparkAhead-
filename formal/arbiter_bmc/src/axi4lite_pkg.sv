@@ -11,6 +11,7 @@
 `timescale 1ns / 1ps
 
 package axi4lite_pkg;
+    /* verilator lint_off UNUSEDPARAM */
 
     // -------------------------------------------------------------------------
     // AXI4-Lite Response Codes (ARM IHI 0022E §A3.4.4)

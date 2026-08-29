@@ -24,7 +24,6 @@ module axi4lite_read_arbiter #(
     parameter int NUM_MASTERS = 4,
     parameter int NUM_SLAVES  = 2,
     parameter int ADDR_WIDTH  = 32,
-    parameter int DATA_WIDTH  = 32,
     // Address map
     parameter logic [ADDR_WIDTH-1:0] S0_BASE = 32'h0000_0000,
     parameter logic [ADDR_WIDTH-1:0] S0_SIZE = 32'h0001_0000,

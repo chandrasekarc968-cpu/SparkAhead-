@@ -3,13 +3,13 @@
 # Project    : VELTRAXX'26 PS02 — Multi-Master AXI4-Lite Arbiter
 # Description: Synopsys Design Constraints (SDC) for synthesis and STA.
 #              Tool-neutral — compatible with any SDC-compliant synthesis tool.
-#              Target: 100 MHz (10 ns period), AMBA AXI4-Lite clock domain.
+#              Target: 83.3 MHz (12 ns period), AMBA AXI4-Lite clock domain.
 # ==============================================================================
 
 # ------------------------------------------------------------------------------
 # Clock Definition — 100 MHz
 # ------------------------------------------------------------------------------
-create_clock -name aclk -period 10.0 [get_ports aclk]
+create_clock -name aclk -period 12.0 [get_ports aclk]
 
 # ------------------------------------------------------------------------------
 # Clock Uncertainty — covers PLL jitter + board skew

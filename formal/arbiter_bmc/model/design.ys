@@ -1,4 +1,4 @@
-# running in formal/arbiter_bmc/src/
+# running in /mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/
 read -formal axi4lite_pkg.sv
 read -formal axi4lite_address_decoder.sv
 read -formal axi4lite_qos_scheduler.sv

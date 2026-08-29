@@ -42,7 +42,9 @@ module axi4lite_qos_scheduler #(
     input  logic                                aresetn,
 
     // --- Runtime QoS Configuration ---
+    /* verilator lint_off UNUSEDSIGNAL */
     input  logic [3:0]                          cfg_weight_m0,
+    /* verilator lint_on UNUSEDSIGNAL */
     input  logic [3:0]                          cfg_weight_m1,
     input  logic [3:0]                          cfg_weight_m2,
     input  logic [3:0]                          cfg_weight_m3,
@@ -65,9 +67,8 @@ module axi4lite_qos_scheduler #(
     // =========================================================================
     // 1. Weight Clamping (zero → 1)
     // =========================================================================
-    logic [3:0] w0, w1, w2, w3;
+    logic [3:0] w1, w2, w3;
     always_comb begin
-        w0 = (cfg_weight_m0 == 4'd0) ? 4'd1 : cfg_weight_m0;
         w1 = (cfg_weight_m1 == 4'd0) ? 4'd1 : cfg_weight_m1;
         w2 = (cfg_weight_m2 == 4'd0) ? 4'd1 : cfg_weight_m2;
         w3 = (cfg_weight_m3 == 4'd0) ? 4'd1 : cfg_weight_m3;

@@ -46,7 +46,6 @@ module axi4lite_response_router #(
 
     // Write response handshake indicator
     output logic                                     w_resp_handshake, // BVALID && BREADY for owner
-    output logic                                     w_owner_bready,   // Owner's BREADY
 
     // --- Read Response Control ---
     input  logic                                     r_active,       // Read FSM in response phase
@@ -88,11 +87,8 @@ module axi4lite_response_router #(
             s_bready[i] = 1'b0;
         end
         w_resp_handshake = 1'b0;
-        w_owner_bready   = 1'b0;
 
         if (w_active) begin
-            w_owner_bready = m_bready[w_owner_id];
-
             if (w_target_invalid) begin
                 // Internal DECERR response
                 m_bvalid[w_owner_id] = 1'b1;

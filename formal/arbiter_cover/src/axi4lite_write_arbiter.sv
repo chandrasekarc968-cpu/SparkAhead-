@@ -75,7 +75,6 @@ module axi4lite_write_arbiter #(
 
     // Feedback from response router
     input  logic                                     w_resp_handshake, // B handshake done
-    input  logic                                     w_owner_bready,   // Owner's BREADY
 
     // --- Slave-Side Write Channels ---
     // AW to slaves
@@ -137,7 +136,6 @@ module axi4lite_write_arbiter #(
     // 3. QoS Scheduler
     // =========================================================================
     logic                     arb_tx_done;
-    logic [NUM_MASTERS-1:0]   arb_grant;
     logic [ID_W-1:0]          arb_master_id;
     logic                     arb_grant_valid;
 
@@ -145,6 +143,7 @@ module axi4lite_write_arbiter #(
     logic                     arb_starvation_unused;
     /* verilator lint_on UNUSEDSIGNAL */
 
+    /* verilator lint_off PINCONNECTEMPTY */
     axi4lite_qos_scheduler #(
         .NUM_MASTERS (NUM_MASTERS)
     ) u_write_qos (
@@ -159,11 +158,12 @@ module axi4lite_write_arbiter #(
         .cfg_master0_burst_limit(cfg_master0_burst_limit),
         .req                    (write_eligible),
         .transaction_complete   (arb_tx_done),
-        .grant                  (arb_grant),
+        .grant                  (),
         .master_id              (arb_master_id),
         .grant_valid            (arb_grant_valid),
         .starvation_flag        (arb_starvation_unused)
     );
+    /* verilator lint_on PINCONNECTEMPTY */
 
     // =========================================================================
     // 4. Address Decoder (Decode the selected master's buffered AW address)

@@ -1,0 +1,96 @@
+
+===========================================================================
+report_checks -unconstrained
+===========================================================================
+======================= max_ff_n40C_1v95 Corner ===================================
+
+Startpoint: m_axi_arready[1] (input port clocked by aclk)
+Endpoint: s_axi_arready[3] (output port clocked by aclk)
+Path Group: aclk
+Path Type: max
+
+Fanout         Cap        Slew       Delay        Time   Description
+---------------------------------------------------------------------------------------------
+                                  0.000000    0.000000   clock aclk (rise edge)
+                                  0.000000    0.000000   clock network delay (propagated)
+                                  3.000000    3.000000 ^ input external delay
+     1    0.003364    0.000000    0.000000    3.000000 ^ m_axi_arready[1] (in)
+                                                         m_axi_arready[1] (net)
+                      0.000178    0.000089    3.000089 ^ input32/A (sky130_fd_sc_hd__clkbuf_1)
+     1    0.003433    0.037256    0.047752    3.047841 ^ input32/X (sky130_fd_sc_hd__clkbuf_1)
+                                                         net32 (net)
+                      0.037257    0.000228    3.048069 ^ _4257_/B (sky130_fd_sc_hd__nand2_1)
+     1    0.005868    0.099853    0.039205    3.087274 v _4257_/Y (sky130_fd_sc_hd__nand2_1)
+                                                         _1447_ (net)
+                      0.099857    0.000477    3.087751 v _4260_/A2 (sky130_fd_sc_hd__o211a_4)
+     3    0.075345    0.089432    0.224304    3.312055 v _4260_/X (sky130_fd_sc_hd__o211a_4)
+                                                         _1450_ (net)
+                      0.104626    0.028093    3.340149 v _4261_/B (sky130_fd_sc_hd__nor2_4)
+     4    0.092123    0.410722    0.320687    3.660836 ^ _4261_/Y (sky130_fd_sc_hd__nor2_4)
+                                                         _1451_ (net)
+                      0.410883    0.006937    3.667773 ^ _4268_/A (sky130_fd_sc_hd__inv_2)
+     2    0.013107    0.083815    0.032571    3.700344 v _4268_/Y (sky130_fd_sc_hd__inv_2)
+                                                         _1455_ (net)
+                      0.083829    0.000915    3.701260 v _4269_/B (sky130_fd_sc_hd__nor2_4)
+     1    0.088640    0.395654    0.301335    4.002594 ^ _4269_/Y (sky130_fd_sc_hd__nor2_4)
+                                                         net782 (net)
+                      0.401332    0.038009    4.040604 ^ output782/A (sky130_fd_sc_hd__buf_1)
+     1    0.000543    0.023236    0.036852    4.077456 ^ output782/X (sky130_fd_sc_hd__buf_1)
+                                                         s_axi_arready[3] (net)
+                      0.023236    0.000016    4.077472 ^ s_axi_arready[3] (out)
+                                              4.077472   data arrival time
+
+                                 12.000000   12.000000   clock aclk (rise edge)
+                                  0.000000   12.000000   clock network delay (propagated)
+                                 -0.300000   11.700000   clock uncertainty
+                                  0.000000   11.700000   clock reconvergence pessimism
+                                 -3.000000    8.699999   output external delay
+                                              8.699999   data required time
+---------------------------------------------------------------------------------------------
+                                              8.699999   data required time
+                                             -4.077472   data arrival time
+---------------------------------------------------------------------------------------------
+                                              4.622528   slack (MET)
+
+
+
+
+===========================================================================
+report_checks --slack_max -0.01
+============================================================================
+======================= max_ff_n40C_1v95 Corner ===================================
+
+No paths found.
+
+
+===========================================================================
+ report_check_types -max_slew -max_cap -max_fanout -violators
+============================================================================
+======================= max_ff_n40C_1v95 Corner ===================================
+
+
+
+===========================================================================
+report_parasitic_annotation -report_unannotated
+============================================================================
+Found 5 unannotated drivers.
+ cfg_weight_m0[0]
+ cfg_weight_m0[1]
+ cfg_weight_m0[2]
+ cfg_weight_m0[3]
+ _6631__949/HI
+Found 0 partially unannotated drivers.
+
+===========================================================================
+max slew violation count 0
+max fanout violation count 0
+max cap violation count 0
+============================================================================
+
+===========================================================================
+check_setup -verbose -unconstrained_endpoints -multiple_clock -no_clock -no_input_delay -loops -generated_clocks
+===========================================================================
+Warning: There is 1 input port missing set_input_delay.
+  aresetn
+Warning: There is 1 unconstrained endpoint.
+  _6631_/D

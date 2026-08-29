@@ -4,7 +4,7 @@
         "dir::axi4lite_arbiter_top_sv2v.v"
     ],
     "CLOCK_PORT": "aclk",
-    "CLOCK_PERIOD": 10.0,
+    "CLOCK_PERIOD": 12.0,
 
     "DESIGN_IS_CORE": true,
 
@@ -12,6 +12,7 @@
     "DIE_AREA": [0.0, 0.0, 900.0, 900.0],
 
     "PL_TARGET_DENSITY_PCT": 55,
+    "DIODE_INSERTION_STRATEGY": 3,
 
     "SYNTH_STRATEGY": "AREA 3",
     "SYNTH_BUFFERING": 1,

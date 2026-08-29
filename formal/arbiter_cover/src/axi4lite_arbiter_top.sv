@@ -147,7 +147,6 @@ module axi4lite_arbiter_top #(
     logic                   w_target_invalid;
     logic                   w_resp_phase;
     logic                   w_resp_handshake;
-    logic                   w_owner_bready;
 
     // =========================================================================
     // 2. Read Arbiter ↔ Response Router Interconnect
@@ -202,7 +201,6 @@ module axi4lite_arbiter_top #(
         .w_target_invalid       (w_target_invalid),
         .w_resp_phase           (w_resp_phase),
         .w_resp_handshake       (w_resp_handshake),
-        .w_owner_bready         (w_owner_bready),
         // Slave AW
         .m_axi_awaddr           (m_axi_awaddr),
         .m_axi_awprot           (m_axi_awprot),
@@ -222,7 +220,6 @@ module axi4lite_arbiter_top #(
         .NUM_MASTERS (NUM_MASTERS),
         .NUM_SLAVES  (NUM_SLAVES),
         .ADDR_WIDTH  (ADDR_WIDTH),
-        .DATA_WIDTH  (DATA_WIDTH),
         .S0_BASE     (S0_BASE),
         .S0_SIZE     (S0_SIZE),
         .S1_BASE     (S1_BASE),
@@ -276,7 +273,6 @@ module axi4lite_arbiter_top #(
         .m_bvalid           (s_axi_bvalid),
         .m_bready           (s_axi_bready),
         .w_resp_handshake   (w_resp_handshake),
-        .w_owner_bready     (w_owner_bready),
         // Read response
         .r_active           (r_resp_phase),
         .r_owner_id         (r_owner_id),

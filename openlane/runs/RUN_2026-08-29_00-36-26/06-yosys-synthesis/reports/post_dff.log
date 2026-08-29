@@ -1,0 +1,38 @@
+53. Printing statistics.
+
+=== axi4lite_arbiter_top ===
+
+   Number of wires:               3971
+   Number of wire bits:           5353
+   Number of public wires:          94
+   Number of public wire bits:    1372
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:               4684
+     $_ANDNOT_                     782
+     $_AND_                        112
+     $_MUX_                       1325
+     $_NAND_                       159
+     $_NOR_                        137
+     $_NOT_                        583
+     $_ORNOT_                       75
+     $_OR_                         854
+     $_XNOR_                        16
+     $_XOR_                        122
+     sky130_fd_sc_hd__dfrtp_2      508
+     sky130_fd_sc_hd__dfstp_2       11
+
+   Area for cell type $_NOT_ is unknown!
+   Area for cell type $_AND_ is unknown!
+   Area for cell type $_NAND_ is unknown!
+   Area for cell type $_OR_ is unknown!
+   Area for cell type $_NOR_ is unknown!
+   Area for cell type $_XOR_ is unknown!
+   Area for cell type $_XNOR_ is unknown!
+   Area for cell type $_ANDNOT_ is unknown!
+   Area for cell type $_ORNOT_ is unknown!
+   Area for cell type $_MUX_ is unknown!
+
+   Chip area for module '\axi4lite_arbiter_top': 13636.828800
+

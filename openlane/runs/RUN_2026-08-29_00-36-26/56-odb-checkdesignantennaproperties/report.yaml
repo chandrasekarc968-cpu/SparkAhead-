@@ -1,0 +1,8 @@
+- cell: axi4lite_arbiter_top
+  inout: []
+  input:
+  - cfg_weight_m0[0]
+  - cfg_weight_m0[1]
+  - cfg_weight_m0[2]
+  - cfg_weight_m0[3]
+  output: []

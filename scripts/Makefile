@@ -33,9 +33,15 @@ lint:
 	@mkdir -p $(OUT_DIR) $(LOG_DIR)
 	@echo "=== LINT ==="
 	@if command -v verilator &>/dev/null; then \
-		verilator --lint-only -Wall --timing \
-			$(RTL_FILES) \
-			2>&1 | tee $(LOG_DIR)/lint.log; \
+		cd "$(PROJ_ROOT)" && verilator --lint-only -Wall --timing \
+			src/rtl/axi4lite_pkg.sv \
+			src/rtl/axi4lite_address_decoder.sv \
+			src/rtl/axi4lite_qos_scheduler.sv \
+			src/rtl/axi4lite_response_router.sv \
+			src/rtl/axi4lite_write_arbiter.sv \
+			src/rtl/axi4lite_read_arbiter.sv \
+			src/rtl/axi4lite_arbiter_top.sv \
+			2>&1 | tee "$(LOG_DIR)/lint.log"; \
 	elif command -v iverilog &>/dev/null; then \
 		iverilog -g2012 -Wall -o /dev/null \
 			$(RTL_FILES) \
@@ -86,8 +92,8 @@ formal:
 	@mkdir -p $(OUT_DIR) $(LOG_DIR)
 	@echo "=== FORMAL VERIFICATION ==="
 	@if command -v sby &>/dev/null; then \
-		cd $(PROJ_ROOT) && sby -f $(FORMAL_DIR)/arbiter.sby \
-			2>&1 | tee $(LOG_DIR)/formal.log; \
+		cd "$(PROJ_ROOT)" && sby -f "$(FORMAL_DIR)/arbiter.sby" \
+			2>&1 | tee "$(LOG_DIR)/formal.log"; \
 	else \
 		echo "ERROR: sby (SymbiYosys) not found"; exit 1; \
 	fi
