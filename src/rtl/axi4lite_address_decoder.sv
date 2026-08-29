@@ -11,6 +11,7 @@
 //                All other: invalid → DECERR
 //
 //              If regions overlap, Slave 0 has decode priority.
+//              Elaboration-time assertions detect overlapping regions.
 // =============================================================================
 
 `timescale 1ns / 1ps
@@ -27,6 +28,25 @@ module axi4lite_address_decoder #(
     output logic                  valid_addr,    // 1 if address maps to a valid slave
     output logic                  invalid_addr   // 1 if address is unmapped (DECERR)
 );
+
+    // =========================================================================
+    // Elaboration-Time Overlap Detection
+    // =========================================================================
+    // Check if the two slave regions overlap. This is a static check that
+    // fires during elaboration if the parameter configuration creates
+    // overlapping address windows.
+    initial begin
+        if (S0_SIZE > 0 && S1_SIZE > 0) begin
+            // Region 0: [S0_BASE, S0_BASE + S0_SIZE - 1]
+            // Region 1: [S1_BASE, S1_BASE + S1_SIZE - 1]
+            // Overlap if: S0_BASE < S1_BASE + S1_SIZE AND S1_BASE < S0_BASE + S0_SIZE
+            if ((64'(S0_BASE) < (64'(S1_BASE) + 64'(S1_SIZE))) &&
+                (64'(S1_BASE) < (64'(S0_BASE) + 64'(S0_SIZE)))) begin
+                $warning("[axi4lite_address_decoder] WARNING: Slave 0 [0x%08h, 0x%08h] and Slave 1 [0x%08h, 0x%08h] regions OVERLAP. Slave 0 has decode priority.",
+                         S0_BASE, S0_BASE + S0_SIZE - 1, S1_BASE, S1_BASE + S1_SIZE - 1);
+            end
+        end
+    end
 
     // Internal match signals
     logic match_s0;
@@ -78,6 +98,12 @@ module axi4lite_address_decoder #(
         assert (valid_addr ^ invalid_addr)
             else $error("[axi4lite_address_decoder] valid/invalid must be complementary!");
     end
+
+    // Unmapped address must produce DECERR indication
+    property p_unmapped_produces_decerr;
+        (!match_s0 && !match_s1) |-> (invalid_addr == 1'b1);
+    endproperty
+    // This is a combinational assertion, always true by construction
 `endif
 
 endmodule

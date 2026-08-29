@@ -4,6 +4,11 @@
 # Description: Synopsys Design Constraints (SDC) for synthesis and STA.
 #              Tool-neutral — compatible with any SDC-compliant synthesis tool.
 #              Target: 100 MHz (10 ns period), AMBA AXI4-Lite clock domain.
+#
+# Reset Convention: Asynchronous active-low reset (aresetn).
+#   RTL uses: always_ff @(posedge aclk or negedge aresetn)
+#   SDC uses: set_false_path from aresetn to avoid constraining the reset
+#   tree against functional clock paths. Recovery/removal checked by STA.
 # ==============================================================================
 
 # ------------------------------------------------------------------------------
@@ -91,7 +96,8 @@ set_output_delay -clock aclk -max 3.0 [get_ports {m_axi_rready*}]
 set_output_delay -clock aclk -min 0.5 [get_ports {m_axi_rready*}]
 
 # ------------------------------------------------------------------------------
-# Asynchronous Reset
+# Asynchronous Active-Low Reset
+# The RTL uses: always_ff @(posedge aclk or negedge aresetn)
 # False-path from aresetn to avoid constraining the reset tree
 # against functional clock paths. Recovery/removal checked by STA tool.
 # ------------------------------------------------------------------------------

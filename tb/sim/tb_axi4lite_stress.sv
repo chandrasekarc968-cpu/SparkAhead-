@@ -37,9 +37,9 @@ module tb_axi4lite_stress;
     always #5 aclk = ~aclk;
 
     // QoS Config
-    logic [3:0] cfg_weight_m0 = 4'd1;
-    logic [3:0] cfg_weight_m1 = 4'd3;
-    logic [3:0] cfg_weight_m2 = 4'd2;
+    logic [3:0] cfg_weight_m0 = 4'd4;
+    logic [3:0] cfg_weight_m1 = 4'd2;
+    logic [3:0] cfg_weight_m2 = 4'd1;
     logic [3:0] cfg_weight_m3 = 4'd1;
     logic       cfg_master0_priority = 1'b0; // disable for fairness testing
     logic [7:0] cfg_age_threshold = 8'd32;

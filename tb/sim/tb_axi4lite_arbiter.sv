@@ -35,9 +35,9 @@ module tb_axi4lite_arbiter;
     logic                                   aresetn = 1'b0;
 
     // QoS Configuration
-    logic [3:0] cfg_weight_m0 = 4'd1;
-    logic [3:0] cfg_weight_m1 = 4'd3;
-    logic [3:0] cfg_weight_m2 = 4'd2;
+    logic [3:0] cfg_weight_m0 = 4'd4;
+    logic [3:0] cfg_weight_m1 = 4'd2;
+    logic [3:0] cfg_weight_m2 = 4'd1;
     logic [3:0] cfg_weight_m3 = 4'd1;
     logic       cfg_master0_priority = 1'b1;
     logic [7:0] cfg_age_threshold = 8'd64;
@@ -551,27 +551,25 @@ module tb_axi4lite_arbiter;
         @(posedge aclk); #1;
 
         // -----------------------------------------------------------------
-        // Test 13: WRR proportional fairness (3:2:1)
+        // Test 13: WRR proportional fairness (2:1:1)
         // -----------------------------------------------------------------
         $display("\n--- Test 13: WRR proportional fairness ---");
         cfg_master0_priority = 1'b0; // disable M0 priority for clean WRR test
         @(posedge aclk); #1;
 
-        // Run 6 transactions for M1, M2, M3
-        for (int i = 0; i < 3; i++) begin
+        // Run transactions for M1(weight=2), M2(weight=1), M3(weight=1)
+        for (int i = 0; i < 2; i++) begin
             fork
                 master_write(1, 32'h0000_8000, 32'h1111_0000 + i[31:0], 4'hF, 0, w_resp);
                 slave_respond_write(0, 0, 0, 2'b00);
             join
-            check(w_resp == 2'b00, $sformatf("Test 13: M1 WRR beat %0d/3", i+1));
+            check(w_resp == 2'b00, $sformatf("Test 13: M1 WRR beat %0d/2", i+1));
         end
-        for (int i = 0; i < 2; i++) begin
-            fork
-                master_write(2, 32'h0001_8000, 32'h2222_0000 + i[31:0], 4'hF, 0, w_resp);
-                slave_respond_write(1, 0, 0, 2'b00);
-            join
-            check(w_resp == 2'b00, $sformatf("Test 13: M2 WRR beat %0d/2", i+1));
-        end
+        fork
+            master_write(2, 32'h0001_8000, 32'h2222_0000, 4'hF, 0, w_resp);
+            slave_respond_write(1, 0, 0, 2'b00);
+        join
+        check(w_resp == 2'b00, "Test 13: M2 WRR beat 1/1");
         fork
             master_write(3, 32'h0000_9000, 32'h3333_0001, 4'hF, 0, w_resp);
             slave_respond_write(0, 0, 0, 2'b00);

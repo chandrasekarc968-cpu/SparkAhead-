@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # ==============================================================================
 # sim.sh — Run directed or stress simulation
 # ==============================================================================
@@ -50,5 +50,9 @@ if command -v iverilog &>/dev/null; then
     echo "Simulation complete."
 else
     echo "ERROR: iverilog not found. Install Icarus Verilog."
+    echo "  Ubuntu/Debian: sudo apt install iverilog"
+    echo "  macOS:         brew install icarus-verilog"
+    echo "  Windows:       https://bleyer.org/icarus/"
+    echo "  oss-cad-suite: https://github.com/YosysHQ/oss-cad-suite-build"
     exit 1
 fi

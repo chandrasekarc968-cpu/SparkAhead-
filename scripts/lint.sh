@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # ==============================================================================
 # lint.sh — Lint all RTL source files
 # ==============================================================================
@@ -18,6 +18,7 @@ RTL_FILES=(
 )
 
 echo "=== AXI4-Lite Arbiter Lint ==="
+echo "  RTL files: ${#RTL_FILES[@]}"
 
 if command -v verilator &>/dev/null; then
     echo "Using verilator..."
@@ -29,5 +30,8 @@ elif command -v iverilog &>/dev/null; then
     echo "Lint PASSED (iverilog)"
 else
     echo "ERROR: No linter found. Install verilator or iverilog."
+    echo "  verilator: https://verilator.org"
+    echo "  iverilog:  https://steveicarus.github.io/iverilog/"
+    echo "  oss-cad-suite: https://github.com/YosysHQ/oss-cad-suite-build"
     exit 1
 fi
