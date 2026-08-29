@@ -470,8 +470,8 @@ module arbiter_formal (
     // This is a cover property — ensure the solver can reach this state.
     always @(posedge aclk) begin
         if (f_active && aresetn) begin
-            cover (0 != 2'b00 &&
-                   0 != 2'b00);
+            cover (m_axi_awvalid[0] &&
+                   m_axi_arvalid[1]);
         end
     end
 

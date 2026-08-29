@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-<testsuite timestamp="2026-08-29T03:11:40" hostname="kavi" package="arbiter" id="0" name="cover" tests="68" errors="0" failures="2" time="2" skipped="59">
+<testsuite timestamp="2026-08-29T03:29:13" hostname="kavi" package="arbiter" id="0" name="cover" tests="68" errors="0" failures="0" time="1" skipped="59">
 <properties>
 <property name="os" value="Linux"/>
 <property name="expect" value="PASS"/>
-<property name="status" value="FAIL"/>
+<property name="status" value="PASS"/>
 </properties>
 <testcase classname="cover" name="build execution" time="0">
-<failure type="FAIL" message="Task returned status FAIL." />
 </testcase>
 <testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:228.13-228.44" time="0" type="ASSERT" location="arbiter_formal.sv:228.13-228.44" id="_witness_.check_assert_arbiter_formal_sv_228_138">
 <skipped />
@@ -54,290 +53,258 @@
 <testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:308.17-308.87" time="0" type="ASSERT" location="arbiter_formal.sv:308.17-308.87" id="_witness_.check_assert_arbiter_formal_sv_308_237">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:355.25-355.51" time="0" type="ASSERT" location="arbiter_formal.sv:355.25-355.51" id="_witness_.check_assert_arbiter_formal_sv_355_486">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:355.25-355.51" time="0" type="ASSERT" location="arbiter_formal.sv:355.25-355.51" id="_witness_.check_assert_arbiter_formal_sv_355_487">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:355.25-355.51" time="0" type="ASSERT" location="arbiter_formal.sv:355.25-355.51" id="_witness_.check_assert_arbiter_formal_sv_355_525">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:355.25-355.51" time="0" type="ASSERT" location="arbiter_formal.sv:355.25-355.51" id="_witness_.check_assert_arbiter_formal_sv_355_526">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:356.25-356.69" time="0" type="ASSERT" location="arbiter_formal.sv:356.25-356.69" id="_witness_.check_assert_arbiter_formal_sv_356_487">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:356.25-356.69" time="0" type="ASSERT" location="arbiter_formal.sv:356.25-356.69" id="_witness_.check_assert_arbiter_formal_sv_356_488">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:356.25-356.69" time="0" type="ASSERT" location="arbiter_formal.sv:356.25-356.69" id="_witness_.check_assert_arbiter_formal_sv_356_526">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:356.25-356.69" time="0" type="ASSERT" location="arbiter_formal.sv:356.25-356.69" id="_witness_.check_assert_arbiter_formal_sv_356_527">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:357.25-357.69" time="0" type="ASSERT" location="arbiter_formal.sv:357.25-357.69" id="_witness_.check_assert_arbiter_formal_sv_357_489">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:357.25-357.69" time="0" type="ASSERT" location="arbiter_formal.sv:357.25-357.69" id="_witness_.check_assert_arbiter_formal_sv_357_490">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:357.25-357.69" time="0" type="ASSERT" location="arbiter_formal.sv:357.25-357.69" id="_witness_.check_assert_arbiter_formal_sv_357_528">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:357.25-357.69" time="0" type="ASSERT" location="arbiter_formal.sv:357.25-357.69" id="_witness_.check_assert_arbiter_formal_sv_357_529">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:366.25-366.50" time="0" type="ASSERT" location="arbiter_formal.sv:366.25-366.50" id="_witness_.check_assert_arbiter_formal_sv_366_499">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:366.25-366.50" time="0" type="ASSERT" location="arbiter_formal.sv:366.25-366.50" id="_witness_.check_assert_arbiter_formal_sv_366_500">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:366.25-366.50" time="0" type="ASSERT" location="arbiter_formal.sv:366.25-366.50" id="_witness_.check_assert_arbiter_formal_sv_366_538">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:366.25-366.50" time="0" type="ASSERT" location="arbiter_formal.sv:366.25-366.50" id="_witness_.check_assert_arbiter_formal_sv_366_539">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:367.25-367.67" time="0" type="ASSERT" location="arbiter_formal.sv:367.25-367.67" id="_witness_.check_assert_arbiter_formal_sv_367_500">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:367.25-367.67" time="0" type="ASSERT" location="arbiter_formal.sv:367.25-367.67" id="_witness_.check_assert_arbiter_formal_sv_367_501">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:367.25-367.67" time="0" type="ASSERT" location="arbiter_formal.sv:367.25-367.67" id="_witness_.check_assert_arbiter_formal_sv_367_539">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:367.25-367.67" time="0" type="ASSERT" location="arbiter_formal.sv:367.25-367.67" id="_witness_.check_assert_arbiter_formal_sv_367_540">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:368.25-368.67" time="0" type="ASSERT" location="arbiter_formal.sv:368.25-368.67" id="_witness_.check_assert_arbiter_formal_sv_368_502">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:368.25-368.67" time="0" type="ASSERT" location="arbiter_formal.sv:368.25-368.67" id="_witness_.check_assert_arbiter_formal_sv_368_503">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:368.25-368.67" time="0" type="ASSERT" location="arbiter_formal.sv:368.25-368.67" id="_witness_.check_assert_arbiter_formal_sv_368_541">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:368.25-368.67" time="0" type="ASSERT" location="arbiter_formal.sv:368.25-368.67" id="_witness_.check_assert_arbiter_formal_sv_368_542">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:377.25-377.51" time="0" type="ASSERT" location="arbiter_formal.sv:377.25-377.51" id="_witness_.check_assert_arbiter_formal_sv_377_512">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:377.25-377.51" time="0" type="ASSERT" location="arbiter_formal.sv:377.25-377.51" id="_witness_.check_assert_arbiter_formal_sv_377_513">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:377.25-377.51" time="0" type="ASSERT" location="arbiter_formal.sv:377.25-377.51" id="_witness_.check_assert_arbiter_formal_sv_377_551">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:377.25-377.51" time="0" type="ASSERT" location="arbiter_formal.sv:377.25-377.51" id="_witness_.check_assert_arbiter_formal_sv_377_552">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:378.25-378.69" time="0" type="ASSERT" location="arbiter_formal.sv:378.25-378.69" id="_witness_.check_assert_arbiter_formal_sv_378_513">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:378.25-378.69" time="0" type="ASSERT" location="arbiter_formal.sv:378.25-378.69" id="_witness_.check_assert_arbiter_formal_sv_378_514">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:378.25-378.69" time="0" type="ASSERT" location="arbiter_formal.sv:378.25-378.69" id="_witness_.check_assert_arbiter_formal_sv_378_552">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:378.25-378.69" time="0" type="ASSERT" location="arbiter_formal.sv:378.25-378.69" id="_witness_.check_assert_arbiter_formal_sv_378_553">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:379.25-379.69" time="0" type="ASSERT" location="arbiter_formal.sv:379.25-379.69" id="_witness_.check_assert_arbiter_formal_sv_379_515">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:379.25-379.69" time="0" type="ASSERT" location="arbiter_formal.sv:379.25-379.69" id="_witness_.check_assert_arbiter_formal_sv_379_516">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:379.25-379.69" time="0" type="ASSERT" location="arbiter_formal.sv:379.25-379.69" id="_witness_.check_assert_arbiter_formal_sv_379_554">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:379.25-379.69" time="0" type="ASSERT" location="arbiter_formal.sv:379.25-379.69" id="_witness_.check_assert_arbiter_formal_sv_379_555">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:404.25-404.76" time="0" type="ASSERT" location="arbiter_formal.sv:404.25-404.76" id="_witness_.check_assert_arbiter_formal_sv_404_559">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:404.25-404.76" time="0" type="ASSERT" location="arbiter_formal.sv:404.25-404.76" id="_witness_.check_assert_arbiter_formal_sv_404_560">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:404.25-404.76" time="0" type="ASSERT" location="arbiter_formal.sv:404.25-404.76" id="_witness_.check_assert_arbiter_formal_sv_404_567">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:404.25-404.76" time="0" type="ASSERT" location="arbiter_formal.sv:404.25-404.76" id="_witness_.check_assert_arbiter_formal_sv_404_568">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:404.25-404.76" time="0" type="ASSERT" location="arbiter_formal.sv:404.25-404.76" id="_witness_.check_assert_arbiter_formal_sv_404_575">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:404.25-404.76" time="0" type="ASSERT" location="arbiter_formal.sv:404.25-404.76" id="_witness_.check_assert_arbiter_formal_sv_404_576">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:408.25-408.75" time="0" type="ASSERT" location="arbiter_formal.sv:408.25-408.75" id="_witness_.check_assert_arbiter_formal_sv_408_562">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:408.25-408.75" time="0" type="ASSERT" location="arbiter_formal.sv:408.25-408.75" id="_witness_.check_assert_arbiter_formal_sv_408_563">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:408.25-408.75" time="0" type="ASSERT" location="arbiter_formal.sv:408.25-408.75" id="_witness_.check_assert_arbiter_formal_sv_408_570">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:408.25-408.75" time="0" type="ASSERT" location="arbiter_formal.sv:408.25-408.75" id="_witness_.check_assert_arbiter_formal_sv_408_571">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:408.25-408.75" time="0" type="ASSERT" location="arbiter_formal.sv:408.25-408.75" id="_witness_.check_assert_arbiter_formal_sv_408_578">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:408.25-408.75" time="0" type="ASSERT" location="arbiter_formal.sv:408.25-408.75" id="_witness_.check_assert_arbiter_formal_sv_408_579">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:431.25-431.50" time="0" type="ASSERT" location="arbiter_formal.sv:431.25-431.50" id="_witness_.check_assert_arbiter_formal_sv_431_595">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:431.25-431.50" time="0" type="ASSERT" location="arbiter_formal.sv:431.25-431.50" id="_witness_.check_assert_arbiter_formal_sv_431_596">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:431.25-431.50" time="0" type="ASSERT" location="arbiter_formal.sv:431.25-431.50" id="_witness_.check_assert_arbiter_formal_sv_431_618">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:431.25-431.50" time="0" type="ASSERT" location="arbiter_formal.sv:431.25-431.50" id="_witness_.check_assert_arbiter_formal_sv_431_619">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:431.25-431.50" time="0" type="ASSERT" location="arbiter_formal.sv:431.25-431.50" id="_witness_.check_assert_arbiter_formal_sv_431_641">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:431.25-431.50" time="0" type="ASSERT" location="arbiter_formal.sv:431.25-431.50" id="_witness_.check_assert_arbiter_formal_sv_431_642">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:431.25-431.50" time="0" type="ASSERT" location="arbiter_formal.sv:431.25-431.50" id="_witness_.check_assert_arbiter_formal_sv_431_664">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:431.25-431.50" time="0" type="ASSERT" location="arbiter_formal.sv:431.25-431.50" id="_witness_.check_assert_arbiter_formal_sv_431_665">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:432.25-432.67" time="0" type="ASSERT" location="arbiter_formal.sv:432.25-432.67" id="_witness_.check_assert_arbiter_formal_sv_432_596">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:432.25-432.67" time="0" type="ASSERT" location="arbiter_formal.sv:432.25-432.67" id="_witness_.check_assert_arbiter_formal_sv_432_597">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:432.25-432.67" time="0" type="ASSERT" location="arbiter_formal.sv:432.25-432.67" id="_witness_.check_assert_arbiter_formal_sv_432_619">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:432.25-432.67" time="0" type="ASSERT" location="arbiter_formal.sv:432.25-432.67" id="_witness_.check_assert_arbiter_formal_sv_432_620">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:432.25-432.67" time="0" type="ASSERT" location="arbiter_formal.sv:432.25-432.67" id="_witness_.check_assert_arbiter_formal_sv_432_642">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:432.25-432.67" time="0" type="ASSERT" location="arbiter_formal.sv:432.25-432.67" id="_witness_.check_assert_arbiter_formal_sv_432_643">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:432.25-432.67" time="0" type="ASSERT" location="arbiter_formal.sv:432.25-432.67" id="_witness_.check_assert_arbiter_formal_sv_432_665">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:432.25-432.67" time="0" type="ASSERT" location="arbiter_formal.sv:432.25-432.67" id="_witness_.check_assert_arbiter_formal_sv_432_666">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:441.25-441.50" time="0" type="ASSERT" location="arbiter_formal.sv:441.25-441.50" id="_witness_.check_assert_arbiter_formal_sv_441_606">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:441.25-441.50" time="0" type="ASSERT" location="arbiter_formal.sv:441.25-441.50" id="_witness_.check_assert_arbiter_formal_sv_441_607">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:441.25-441.50" time="0" type="ASSERT" location="arbiter_formal.sv:441.25-441.50" id="_witness_.check_assert_arbiter_formal_sv_441_629">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:441.25-441.50" time="0" type="ASSERT" location="arbiter_formal.sv:441.25-441.50" id="_witness_.check_assert_arbiter_formal_sv_441_630">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:441.25-441.50" time="0" type="ASSERT" location="arbiter_formal.sv:441.25-441.50" id="_witness_.check_assert_arbiter_formal_sv_441_652">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:441.25-441.50" time="0" type="ASSERT" location="arbiter_formal.sv:441.25-441.50" id="_witness_.check_assert_arbiter_formal_sv_441_653">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:441.25-441.50" time="0" type="ASSERT" location="arbiter_formal.sv:441.25-441.50" id="_witness_.check_assert_arbiter_formal_sv_441_675">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:441.25-441.50" time="0" type="ASSERT" location="arbiter_formal.sv:441.25-441.50" id="_witness_.check_assert_arbiter_formal_sv_441_676">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:442.25-442.67" time="0" type="ASSERT" location="arbiter_formal.sv:442.25-442.67" id="_witness_.check_assert_arbiter_formal_sv_442_607">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:442.25-442.67" time="0" type="ASSERT" location="arbiter_formal.sv:442.25-442.67" id="_witness_.check_assert_arbiter_formal_sv_442_608">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:442.25-442.67" time="0" type="ASSERT" location="arbiter_formal.sv:442.25-442.67" id="_witness_.check_assert_arbiter_formal_sv_442_630">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:442.25-442.67" time="0" type="ASSERT" location="arbiter_formal.sv:442.25-442.67" id="_witness_.check_assert_arbiter_formal_sv_442_631">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:442.25-442.67" time="0" type="ASSERT" location="arbiter_formal.sv:442.25-442.67" id="_witness_.check_assert_arbiter_formal_sv_442_653">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:442.25-442.67" time="0" type="ASSERT" location="arbiter_formal.sv:442.25-442.67" id="_witness_.check_assert_arbiter_formal_sv_442_654">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:442.25-442.67" time="0" type="ASSERT" location="arbiter_formal.sv:442.25-442.67" id="_witness_.check_assert_arbiter_formal_sv_442_676">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:442.25-442.67" time="0" type="ASSERT" location="arbiter_formal.sv:442.25-442.67" id="_witness_.check_assert_arbiter_formal_sv_442_677">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:443.25-443.67" time="0" type="ASSERT" location="arbiter_formal.sv:443.25-443.67" id="_witness_.check_assert_arbiter_formal_sv_443_609">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:443.25-443.67" time="0" type="ASSERT" location="arbiter_formal.sv:443.25-443.67" id="_witness_.check_assert_arbiter_formal_sv_443_610">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:443.25-443.67" time="0" type="ASSERT" location="arbiter_formal.sv:443.25-443.67" id="_witness_.check_assert_arbiter_formal_sv_443_632">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:443.25-443.67" time="0" type="ASSERT" location="arbiter_formal.sv:443.25-443.67" id="_witness_.check_assert_arbiter_formal_sv_443_633">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:443.25-443.67" time="0" type="ASSERT" location="arbiter_formal.sv:443.25-443.67" id="_witness_.check_assert_arbiter_formal_sv_443_655">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:443.25-443.67" time="0" type="ASSERT" location="arbiter_formal.sv:443.25-443.67" id="_witness_.check_assert_arbiter_formal_sv_443_656">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:443.25-443.67" time="0" type="ASSERT" location="arbiter_formal.sv:443.25-443.67" id="_witness_.check_assert_arbiter_formal_sv_443_678">
+<testcase classname="cover" name="Property ASSERT in arbiter_formal at arbiter_formal.sv:443.25-443.67" time="0" type="ASSERT" location="arbiter_formal.sv:443.25-443.67" id="_witness_.check_assert_arbiter_formal_sv_443_679">
 <skipped />
 </testcase>
-<testcase classname="cover" name="Property COVER in arbiter_formal at arbiter_formal.sv:320.13-320.68" time="0" type="COVER" location="arbiter_formal.sv:320.13-320.68" id="_witness_.check_cover_arbiter_formal_sv_320_243" tracefile="engine_0/trace4.vcd">
+<testcase classname="cover" name="Property COVER in arbiter_formal at arbiter_formal.sv:320.13-320.68" time="0" type="COVER" location="arbiter_formal.sv:320.13-320.68" id="_witness_.check_cover_arbiter_formal_sv_320_243" tracefile="engine_0/trace5.vcd">
 </testcase>
-<testcase classname="cover" name="Property COVER in arbiter_formal at arbiter_formal.sv:326.13-326.68" time="0" type="COVER" location="arbiter_formal.sv:326.13-326.68" id="_witness_.check_cover_arbiter_formal_sv_326_250" tracefile="engine_0/trace3.vcd">
+<testcase classname="cover" name="Property COVER in arbiter_formal at arbiter_formal.sv:326.13-326.68" time="0" type="COVER" location="arbiter_formal.sv:326.13-326.68" id="_witness_.check_cover_arbiter_formal_sv_326_250" tracefile="engine_0/trace2.vcd">
 </testcase>
-<testcase classname="cover" name="Property COVER in arbiter_formal at arbiter_formal.sv:332.13-333.90" time="0" type="COVER" location="arbiter_formal.sv:332.13-333.90" id="_witness_.check_cover_arbiter_formal_sv_332_257" tracefile="engine_0/trace4.vcd">
+<testcase classname="cover" name="Property COVER in arbiter_formal at arbiter_formal.sv:332.13-333.90" time="0" type="COVER" location="arbiter_formal.sv:332.13-333.90" id="_witness_.check_cover_arbiter_formal_sv_332_257" tracefile="engine_0/trace5.vcd">
 </testcase>
-<testcase classname="cover" name="Property COVER in arbiter_formal at arbiter_formal.sv:339.13-339.51" time="0" type="COVER" location="arbiter_formal.sv:339.13-339.51" id="_witness_.check_cover_arbiter_formal_sv_339_269" tracefile="engine_0/trace4.vcd">
+<testcase classname="cover" name="Property COVER in arbiter_formal at arbiter_formal.sv:339.13-339.51" time="0" type="COVER" location="arbiter_formal.sv:339.13-339.51" id="_witness_.check_cover_arbiter_formal_sv_339_269" tracefile="engine_0/trace5.vcd">
 </testcase>
-<testcase classname="cover" name="Property COVER in arbiter_formal at arbiter_formal.sv:473.13-474.31" time="0" type="COVER" location="arbiter_formal.sv:473.13-474.31" id="_witness_.check_cover_arbiter_formal_sv_473_275">
-<failure type="COVER" message="Property COVER in arbiter_formal at arbiter_formal.sv:473.13-474.31 failed." />
+<testcase classname="cover" name="Property COVER in arbiter_formal at arbiter_formal.sv:473.13-474.37" time="0" type="COVER" location="arbiter_formal.sv:473.13-474.37" id="_witness_.check_cover_arbiter_formal_sv_473_275" tracefile="engine_0/trace3.vcd">
 </testcase>
-<testcase classname="cover" name="Property COVER in arbiter_formal at arbiter_formal.sv:485.13-485.52" time="0" type="COVER" location="arbiter_formal.sv:485.13-485.52" id="_witness_.check_cover_arbiter_formal_sv_485_278" tracefile="engine_0/trace1.vcd">
+<testcase classname="cover" name="Property COVER in arbiter_formal at arbiter_formal.sv:485.13-485.52" time="0" type="COVER" location="arbiter_formal.sv:485.13-485.52" id="_witness_.check_cover_arbiter_formal_sv_485_279" tracefile="engine_0/trace1.vcd">
 </testcase>
-<testcase classname="cover" name="Property COVER in arbiter_formal at arbiter_formal.sv:492.13-492.51" time="0" type="COVER" location="arbiter_formal.sv:492.13-492.51" id="_witness_.check_cover_arbiter_formal_sv_492_281" tracefile="engine_0/trace0.vcd">
+<testcase classname="cover" name="Property COVER in arbiter_formal at arbiter_formal.sv:492.13-492.51" time="0" type="COVER" location="arbiter_formal.sv:492.13-492.51" id="_witness_.check_cover_arbiter_formal_sv_492_282" tracefile="engine_0/trace0.vcd">
 </testcase>
-<testcase classname="cover" name="Property COVER in arbiter_formal at arbiter_formal.sv:499.13-499.92" time="0" type="COVER" location="arbiter_formal.sv:499.13-499.92" id="_witness_.check_cover_arbiter_formal_sv_499_284" tracefile="engine_0/trace4.vcd">
+<testcase classname="cover" name="Property COVER in arbiter_formal at arbiter_formal.sv:499.13-499.92" time="0" type="COVER" location="arbiter_formal.sv:499.13-499.92" id="_witness_.check_cover_arbiter_formal_sv_499_285" tracefile="engine_0/trace5.vcd">
 </testcase>
-<testcase classname="cover" name="Property COVER in arbiter_formal at arbiter_formal.sv:500.13-500.91" time="0" type="COVER" location="arbiter_formal.sv:500.13-500.91" id="_witness_.check_cover_arbiter_formal_sv_500_290" tracefile="engine_0/trace2.vcd">
+<testcase classname="cover" name="Property COVER in arbiter_formal at arbiter_formal.sv:500.13-500.91" time="0" type="COVER" location="arbiter_formal.sv:500.13-500.91" id="_witness_.check_cover_arbiter_formal_sv_500_291" tracefile="engine_0/trace4.vcd">
 </testcase>
-<system-out>SBY  3:11:37 [formal/arbiter_bmc] Removing directory '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc'.
-SBY  3:11:37 [formal/arbiter_cover] Removing directory '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover'.
-SBY  3:11:37 [formal/arbiter_cover] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_pkg.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover/src/axi4lite_pkg.sv'.
-SBY  3:11:37 [formal/arbiter_cover] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/age_counter.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover/src/age_counter.sv'.
-SBY  3:11:37 [formal/arbiter_cover] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/write_mux.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover/src/write_mux.sv'.
-SBY  3:11:37 [formal/arbiter_cover] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/read_mux.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover/src/read_mux.sv'.
-SBY  3:11:37 [formal/arbiter_cover] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/default_slave.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover/src/default_slave.sv'.
-SBY  3:11:37 [formal/arbiter_cover] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/addr_decoder.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover/src/addr_decoder.sv'.
-SBY  3:11:37 [formal/arbiter_cover] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/wrr_scheduler.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover/src/wrr_scheduler.sv'.
-SBY  3:11:37 [formal/arbiter_cover] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/resp_demux.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover/src/resp_demux.sv'.
-SBY  3:11:37 [formal/arbiter_cover] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/write_arbiter.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover/src/write_arbiter.sv'.
-SBY  3:11:37 [formal/arbiter_cover] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/read_arbiter.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover/src/read_arbiter.sv'.
-SBY  3:11:37 [formal/arbiter_cover] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_arbiter_top.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover/src/axi4lite_arbiter_top.sv'.
-SBY  3:11:37 [formal/arbiter_cover] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_formal.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover/src/arbiter_formal.sv'.
-SBY  3:11:37 [formal/arbiter_cover] engine_0: smtbmc z3
-SBY  3:11:37 [formal/arbiter_cover] base: starting process &quot;cd formal/arbiter_cover/src; yosys -ql ../model/design.log ../model/design.ys&quot;
-SBY  3:11:38 [formal/arbiter_cover] base: arbiter_formal.sv:294: Warning: Identifier `\dut.u_write_arbiter.w_target_invalid_r' is implicitly declared.
-SBY  3:11:38 [formal/arbiter_cover] base: arbiter_formal.sv:295: Warning: Identifier `\dut.u_write_arbiter.w_owner_id_r' is implicitly declared.
-SBY  3:11:38 [formal/arbiter_cover] base: arbiter_formal.sv:305: Warning: Identifier `\dut.u_read_arbiter.r_target_invalid_r' is implicitly declared.
-SBY  3:11:38 [formal/arbiter_cover] base: arbiter_formal.sv:306: Warning: Identifier `\dut.u_read_arbiter.r_owner_id_r' is implicitly declared.
-SBY  3:11:38 [formal/arbiter_cover] base: arbiter_formal.sv:485: Warning: Identifier `\dut.u_write_arbiter.arb_tx_done' is implicitly declared.
-SBY  3:11:38 [formal/arbiter_cover] base: arbiter_formal.sv:492: Warning: Identifier `\dut.u_read_arbiter.arb_tx_done' is implicitly declared.
-SBY  3:11:38 [formal/arbiter_cover] base: Warning: Wire arbiter_formal.\dut.u_read_arbiter.arb_tx_done is used but has no driver.
-SBY  3:11:38 [formal/arbiter_cover] base: Warning: Wire arbiter_formal.\dut.u_write_arbiter.arb_tx_done is used but has no driver.
-SBY  3:11:38 [formal/arbiter_cover] base: Warning: Wire arbiter_formal.\dut.u_read_arbiter.r_owner_id_r is used but has no driver.
-SBY  3:11:38 [formal/arbiter_cover] base: Warning: Wire arbiter_formal.\dut.u_write_arbiter.w_owner_id_r is used but has no driver.
-SBY  3:11:38 [formal/arbiter_cover] base: finished (returncode=0)
-SBY  3:11:38 [formal/arbiter_cover] prep: starting process &quot;cd formal/arbiter_cover/model; yosys -ql design_prep.log design_prep.ys&quot;
-SBY  3:11:38 [formal/arbiter_cover] prep: Warning: Wire arbiter_formal.\dut.u_read_arbiter.r_owner_id_r is used but has no driver.
-SBY  3:11:38 [formal/arbiter_cover] prep: Warning: Wire arbiter_formal.\dut.u_write_arbiter.w_owner_id_r is used but has no driver.
-SBY  3:11:38 [formal/arbiter_cover] prep: Warning: Wire arbiter_formal.\dut.u_write_arbiter.arb_tx_done is used but has no driver.
-SBY  3:11:38 [formal/arbiter_cover] prep: Warning: Wire arbiter_formal.\dut.u_read_arbiter.arb_tx_done is used but has no driver.
-SBY  3:11:38 [formal/arbiter_cover] prep: finished (returncode=0)
-SBY  3:11:38 [formal/arbiter_cover] smt2: starting process &quot;cd formal/arbiter_cover/model; yosys -ql design_smt2.log design_smt2.ys&quot;
-SBY  3:11:38 [formal/arbiter_cover] smt2: finished (returncode=0)
-SBY  3:11:38 [formal/arbiter_cover] engine_0: starting process &quot;cd formal/arbiter_cover; yosys-smtbmc -s z3 --presat -c --noprogress -t 40  --append 0 --dump-vcd engine_0/trace%.vcd --dump-yw engine_0/trace%.yw --dump-vlogtb engine_0/trace%_tb.v --dump-smtc engine_0/trace%.smtc model/design_smt2.smt2&quot;
-SBY  3:11:38 [formal/arbiter_cover] engine_0: ##   0:00:00  Solver: z3
-SBY  3:11:38 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 0..
-SBY  3:11:38 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 1..
-SBY  3:11:38 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 2..
-SBY  3:11:38 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 3..
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Reached cover statement in step 3 at arbiter_formal: arbiter_formal.sv:492.13-492.51 (_witness_.check_cover_arbiter_formal_sv_492_281)
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace0.vcd
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace0_tb.v
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace0.smtc
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace0.yw
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 3..
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Reached cover statement in step 3 at arbiter_formal: arbiter_formal.sv:485.13-485.52 (_witness_.check_cover_arbiter_formal_sv_485_278)
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace1.vcd
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace1_tb.v
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace1.smtc
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace1.yw
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 3..
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 4..
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 5..
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Reached cover statement in step 5 at arbiter_formal: arbiter_formal.sv:500.13-500.91 (_witness_.check_cover_arbiter_formal_sv_500_290)
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace2.vcd
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace2_tb.v
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace2.smtc
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace2.yw
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 5..
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Reached cover statement in step 5 at arbiter_formal: arbiter_formal.sv:326.13-326.68 (_witness_.check_cover_arbiter_formal_sv_326_250)
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace3.vcd
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace3_tb.v
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace3.smtc
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace3.yw
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 5..
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 6..
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 7..
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:01  Reached cover statement in step 7 at arbiter_formal: arbiter_formal.sv:499.13-499.92 (_witness_.check_cover_arbiter_formal_sv_499_284)
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:01  Reached cover statement in step 7 at arbiter_formal: arbiter_formal.sv:339.13-339.51 (_witness_.check_cover_arbiter_formal_sv_339_269)
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:01  Reached cover statement in step 7 at arbiter_formal: arbiter_formal.sv:332.13-333.90 (_witness_.check_cover_arbiter_formal_sv_332_257)
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:01  Reached cover statement in step 7 at arbiter_formal: arbiter_formal.sv:320.13-320.68 (_witness_.check_cover_arbiter_formal_sv_320_243)
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:01  Writing trace to VCD file: engine_0/trace4.vcd
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:01  Writing trace to Verilog testbench: engine_0/trace4_tb.v
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:01  Writing trace to constraints file: engine_0/trace4.smtc
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:01  Writing trace to Yosys witness file: engine_0/trace4.yw
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 7..
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 8..
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 9..
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 10..
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 11..
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 12..
-SBY  3:11:39 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 13..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 14..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 15..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 16..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 17..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 18..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 19..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 20..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 21..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 22..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 23..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 24..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 25..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 26..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 27..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 28..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 29..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 30..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 31..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 32..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 33..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 34..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 35..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 36..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 37..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 38..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Checking cover reachability in step 39..
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Unreached cover statement at arbiter_formal: arbiter_formal.sv:473.13-474.31 (_witness_.check_cover_arbiter_formal_sv_473_275)
-SBY  3:11:40 [formal/arbiter_cover] engine_0: ##   0:00:01  Status: failed
-SBY  3:11:40 [formal/arbiter_cover] engine_0: finished (returncode=1)
-SBY  3:11:40 [formal/arbiter_cover] engine_0: Status returned by engine: FAIL
-SBY  3:11:40 [formal/arbiter_cover] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:02 (2)
-SBY  3:11:40 [formal/arbiter_cover] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:02 (2)
-SBY  3:11:40 [formal/arbiter_cover] summary: engine_0 (smtbmc z3) returned FAIL
-SBY  3:11:40 [formal/arbiter_cover] summary: cover trace: formal/arbiter_cover/engine_0/trace0.vcd
-SBY  3:11:40 [formal/arbiter_cover] summary:   reached cover statement arbiter_formal._witness_.check_cover_arbiter_formal_sv_492_281 at arbiter_formal.sv:492.13-492.51 step 3
-SBY  3:11:40 [formal/arbiter_cover] summary: cover trace: formal/arbiter_cover/engine_0/trace1.vcd
-SBY  3:11:40 [formal/arbiter_cover] summary:   reached cover statement arbiter_formal._witness_.check_cover_arbiter_formal_sv_485_278 at arbiter_formal.sv:485.13-485.52 step 3
-SBY  3:11:40 [formal/arbiter_cover] summary: cover trace: formal/arbiter_cover/engine_0/trace2.vcd
-SBY  3:11:40 [formal/arbiter_cover] summary:   reached cover statement arbiter_formal._witness_.check_cover_arbiter_formal_sv_500_290 at arbiter_formal.sv:500.13-500.91 step 5
-SBY  3:11:40 [formal/arbiter_cover] summary: cover trace: formal/arbiter_cover/engine_0/trace3.vcd
-SBY  3:11:40 [formal/arbiter_cover] summary:   reached cover statement arbiter_formal._witness_.check_cover_arbiter_formal_sv_326_250 at arbiter_formal.sv:326.13-326.68 step 5
-SBY  3:11:40 [formal/arbiter_cover] summary: cover trace: formal/arbiter_cover/engine_0/trace4.vcd
-SBY  3:11:40 [formal/arbiter_cover] summary:   reached cover statement arbiter_formal._witness_.check_cover_arbiter_formal_sv_320_243 at arbiter_formal.sv:320.13-320.68 step 7
-SBY  3:11:40 [formal/arbiter_cover] summary:   reached cover statement arbiter_formal._witness_.check_cover_arbiter_formal_sv_332_257 at arbiter_formal.sv:332.13-333.90 step 7
-SBY  3:11:40 [formal/arbiter_cover] summary:   reached cover statement arbiter_formal._witness_.check_cover_arbiter_formal_sv_339_269 at arbiter_formal.sv:339.13-339.51 step 7
-SBY  3:11:40 [formal/arbiter_cover] summary:   reached cover statement arbiter_formal._witness_.check_cover_arbiter_formal_sv_499_284 at arbiter_formal.sv:499.13-499.92 step 7
-SBY  3:11:40 [formal/arbiter_cover] summary: unreached cover statements:
-SBY  3:11:40 [formal/arbiter_cover] summary:   arbiter_formal._witness_.check_cover_arbiter_formal_sv_473_275 at arbiter_formal.sv:473.13-474.31
-SBY  3:11:40 [formal/arbiter_cover] DONE (FAIL, rc=2)
+<system-out>SBY  3:29:12 [formal/arbiter_bmc] Removing directory '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc'.
+SBY  3:29:12 [formal/arbiter_cover] Removing directory '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover'.
+SBY  3:29:12 [formal/arbiter_cover] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_pkg.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover/src/axi4lite_pkg.sv'.
+SBY  3:29:12 [formal/arbiter_cover] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/age_counter.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover/src/age_counter.sv'.
+SBY  3:29:12 [formal/arbiter_cover] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/write_mux.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover/src/write_mux.sv'.
+SBY  3:29:12 [formal/arbiter_cover] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/read_mux.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover/src/read_mux.sv'.
+SBY  3:29:12 [formal/arbiter_cover] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/default_slave.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover/src/default_slave.sv'.
+SBY  3:29:12 [formal/arbiter_cover] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/addr_decoder.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover/src/addr_decoder.sv'.
+SBY  3:29:12 [formal/arbiter_cover] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/wrr_scheduler.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover/src/wrr_scheduler.sv'.
+SBY  3:29:12 [formal/arbiter_cover] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/resp_demux.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover/src/resp_demux.sv'.
+SBY  3:29:12 [formal/arbiter_cover] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/write_arbiter.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover/src/write_arbiter.sv'.
+SBY  3:29:12 [formal/arbiter_cover] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/read_arbiter.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover/src/read_arbiter.sv'.
+SBY  3:29:12 [formal/arbiter_cover] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_arbiter_top.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover/src/axi4lite_arbiter_top.sv'.
+SBY  3:29:12 [formal/arbiter_cover] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_formal.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_cover/src/arbiter_formal.sv'.
+SBY  3:29:12 [formal/arbiter_cover] engine_0: smtbmc z3
+SBY  3:29:12 [formal/arbiter_cover] base: starting process &quot;cd formal/arbiter_cover/src; yosys -ql ../model/design.log ../model/design.ys&quot;
+SBY  3:29:12 [formal/arbiter_cover] base: arbiter_formal.sv:294: Warning: Identifier `\dut.u_write_arbiter.w_target_invalid_r' is implicitly declared.
+SBY  3:29:12 [formal/arbiter_cover] base: arbiter_formal.sv:295: Warning: Identifier `\dut.u_write_arbiter.w_owner_id_r' is implicitly declared.
+SBY  3:29:12 [formal/arbiter_cover] base: arbiter_formal.sv:305: Warning: Identifier `\dut.u_read_arbiter.r_target_invalid_r' is implicitly declared.
+SBY  3:29:12 [formal/arbiter_cover] base: arbiter_formal.sv:306: Warning: Identifier `\dut.u_read_arbiter.r_owner_id_r' is implicitly declared.
+SBY  3:29:12 [formal/arbiter_cover] base: arbiter_formal.sv:485: Warning: Identifier `\dut.u_write_arbiter.arb_tx_done' is implicitly declared.
+SBY  3:29:12 [formal/arbiter_cover] base: arbiter_formal.sv:492: Warning: Identifier `\dut.u_read_arbiter.arb_tx_done' is implicitly declared.
+SBY  3:29:12 [formal/arbiter_cover] base: Warning: Wire arbiter_formal.\dut.u_read_arbiter.arb_tx_done is used but has no driver.
+SBY  3:29:12 [formal/arbiter_cover] base: Warning: Wire arbiter_formal.\dut.u_write_arbiter.arb_tx_done is used but has no driver.
+SBY  3:29:12 [formal/arbiter_cover] base: Warning: Wire arbiter_formal.\dut.u_read_arbiter.r_owner_id_r is used but has no driver.
+SBY  3:29:12 [formal/arbiter_cover] base: Warning: Wire arbiter_formal.\dut.u_write_arbiter.w_owner_id_r is used but has no driver.
+SBY  3:29:12 [formal/arbiter_cover] base: finished (returncode=0)
+SBY  3:29:12 [formal/arbiter_cover] prep: starting process &quot;cd formal/arbiter_cover/model; yosys -ql design_prep.log design_prep.ys&quot;
+SBY  3:29:12 [formal/arbiter_cover] prep: Warning: Wire arbiter_formal.\dut.u_read_arbiter.r_owner_id_r is used but has no driver.
+SBY  3:29:12 [formal/arbiter_cover] prep: Warning: Wire arbiter_formal.\dut.u_write_arbiter.w_owner_id_r is used but has no driver.
+SBY  3:29:12 [formal/arbiter_cover] prep: Warning: Wire arbiter_formal.\dut.u_write_arbiter.arb_tx_done is used but has no driver.
+SBY  3:29:12 [formal/arbiter_cover] prep: Warning: Wire arbiter_formal.\dut.u_read_arbiter.arb_tx_done is used but has no driver.
+SBY  3:29:12 [formal/arbiter_cover] prep: finished (returncode=0)
+SBY  3:29:12 [formal/arbiter_cover] smt2: starting process &quot;cd formal/arbiter_cover/model; yosys -ql design_smt2.log design_smt2.ys&quot;
+SBY  3:29:12 [formal/arbiter_cover] smt2: finished (returncode=0)
+SBY  3:29:12 [formal/arbiter_cover] engine_0: starting process &quot;cd formal/arbiter_cover; yosys-smtbmc -s z3 --presat -c --noprogress -t 40  --append 0 --dump-vcd engine_0/trace%.vcd --dump-yw engine_0/trace%.yw --dump-vlogtb engine_0/trace%_tb.v --dump-smtc engine_0/trace%.smtc model/design_smt2.smt2&quot;
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Solver: z3
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 0..
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 1..
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 2..
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 3..
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Reached cover statement in step 3 at arbiter_formal: arbiter_formal.sv:492.13-492.51 (_witness_.check_cover_arbiter_formal_sv_492_282)
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace0.vcd
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace0_tb.v
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace0.smtc
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace0.yw
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 3..
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Reached cover statement in step 3 at arbiter_formal: arbiter_formal.sv:485.13-485.52 (_witness_.check_cover_arbiter_formal_sv_485_279)
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace1.vcd
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace1_tb.v
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace1.smtc
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace1.yw
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 3..
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 4..
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 5..
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Reached cover statement in step 5 at arbiter_formal: arbiter_formal.sv:326.13-326.68 (_witness_.check_cover_arbiter_formal_sv_326_250)
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace2.vcd
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace2_tb.v
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace2.smtc
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace2.yw
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 5..
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Reached cover statement in step 5 at arbiter_formal: arbiter_formal.sv:473.13-474.37 (_witness_.check_cover_arbiter_formal_sv_473_275)
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace3.vcd
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace3_tb.v
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace3.smtc
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace3.yw
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 5..
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Reached cover statement in step 5 at arbiter_formal: arbiter_formal.sv:500.13-500.91 (_witness_.check_cover_arbiter_formal_sv_500_291)
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace4.vcd
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace4_tb.v
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace4.smtc
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace4.yw
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 5..
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 6..
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 7..
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Reached cover statement in step 7 at arbiter_formal: arbiter_formal.sv:499.13-499.92 (_witness_.check_cover_arbiter_formal_sv_499_285)
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Reached cover statement in step 7 at arbiter_formal: arbiter_formal.sv:339.13-339.51 (_witness_.check_cover_arbiter_formal_sv_339_269)
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Reached cover statement in step 7 at arbiter_formal: arbiter_formal.sv:332.13-333.90 (_witness_.check_cover_arbiter_formal_sv_332_257)
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Reached cover statement in step 7 at arbiter_formal: arbiter_formal.sv:320.13-320.68 (_witness_.check_cover_arbiter_formal_sv_320_243)
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace5.vcd
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace5_tb.v
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace5.smtc
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace5.yw
+SBY  3:29:13 [formal/arbiter_cover] engine_0: ##   0:00:00  Status: passed
+SBY  3:29:13 [formal/arbiter_cover] engine_0: finished (returncode=0)
+SBY  3:29:13 [formal/arbiter_cover] engine_0: Status returned by engine: pass
+SBY  3:29:13 [formal/arbiter_cover] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:01 (1)
+SBY  3:29:13 [formal/arbiter_cover] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:01 (1)
+SBY  3:29:13 [formal/arbiter_cover] summary: engine_0 (smtbmc z3) returned pass
+SBY  3:29:13 [formal/arbiter_cover] summary: cover trace: formal/arbiter_cover/engine_0/trace0.vcd
+SBY  3:29:13 [formal/arbiter_cover] summary:   reached cover statement arbiter_formal._witness_.check_cover_arbiter_formal_sv_492_282 at arbiter_formal.sv:492.13-492.51 step 3
+SBY  3:29:13 [formal/arbiter_cover] summary: cover trace: formal/arbiter_cover/engine_0/trace1.vcd
+SBY  3:29:13 [formal/arbiter_cover] summary:   reached cover statement arbiter_formal._witness_.check_cover_arbiter_formal_sv_485_279 at arbiter_formal.sv:485.13-485.52 step 3
+SBY  3:29:13 [formal/arbiter_cover] summary: cover trace: formal/arbiter_cover/engine_0/trace2.vcd
+SBY  3:29:13 [formal/arbiter_cover] summary:   reached cover statement arbiter_formal._witness_.check_cover_arbiter_formal_sv_326_250 at arbiter_formal.sv:326.13-326.68 step 5
+SBY  3:29:13 [formal/arbiter_cover] summary: cover trace: formal/arbiter_cover/engine_0/trace3.vcd
+SBY  3:29:13 [formal/arbiter_cover] summary:   reached cover statement arbiter_formal._witness_.check_cover_arbiter_formal_sv_473_275 at arbiter_formal.sv:473.13-474.37 step 5
+SBY  3:29:13 [formal/arbiter_cover] summary: cover trace: formal/arbiter_cover/engine_0/trace4.vcd
+SBY  3:29:13 [formal/arbiter_cover] summary:   reached cover statement arbiter_formal._witness_.check_cover_arbiter_formal_sv_500_291 at arbiter_formal.sv:500.13-500.91 step 5
+SBY  3:29:13 [formal/arbiter_cover] summary: and 1 further trace
+SBY  3:29:13 [formal/arbiter_cover] summary: see formal/arbiter_cover/PASS for a complete summary
+SBY  3:29:13 [formal/arbiter_cover] DONE (PASS, rc=0)
 </system-out>
 <system-err>
 </system-err>
