@@ -1,60 +1,20 @@
-# ==============================================================================
-# VELTRAXX'26 PS02 — Multi-Master AXI4-Lite Arbiter (Root Makefile)
-# ==============================================================================
-# Convenience wrapper — delegates to scripts/Makefile
-# ==============================================================================
+# Root Makefile for VELTRAXX'26 PS02
+# Forwards all targets to scripts/Makefile
 
-SCRIPTS_DIR := scripts
+.DEFAULT_GOAL := help
 
-.PHONY: lint sim sim-stress formal synth pnr openlane rtl-to-gds showcase check-config wave clean all check
+%:
+	@$(MAKE) -f scripts/Makefile $@
 
-# Default target
-all: lint sim sim-stress
-
-# Run all checks (CI target)
-check: lint sim sim-stress formal synth openlane
-
-# --------------------------------------------------------------------------
-# Verification targets
-# --------------------------------------------------------------------------
-lint:
-	$(MAKE) -C $(SCRIPTS_DIR) lint
-
-sim:
-	$(MAKE) -C $(SCRIPTS_DIR) sim
-
-sim-stress:
-	$(MAKE) -C $(SCRIPTS_DIR) sim-stress
-
-formal:
-	$(MAKE) -C $(SCRIPTS_DIR) formal
-
-# --------------------------------------------------------------------------
-# Synthesis & Physical Design
-# --------------------------------------------------------------------------
-synth:
-	$(MAKE) -C $(SCRIPTS_DIR) synth
-
-pnr:
-	$(MAKE) -C $(SCRIPTS_DIR) pnr
-
-openlane:
-	$(MAKE) -C $(SCRIPTS_DIR) openlane
-
-rtl-to-gds:
-	$(MAKE) -C $(SCRIPTS_DIR) rtl-to-gds
-
-# --------------------------------------------------------------------------
-# Demo & Utilities
-# --------------------------------------------------------------------------
-showcase:
-	$(MAKE) -C $(SCRIPTS_DIR) showcase
-
-check-config:
-	$(MAKE) -C $(SCRIPTS_DIR) check-config
-
-wave:
-	$(MAKE) -C $(SCRIPTS_DIR) wave
-
-clean:
-	$(MAKE) -C $(SCRIPTS_DIR) clean
+help:
+	@echo "VELTRAXX'26 PS02 — Multi-Master AXI4-Lite Arbiter"
+	@echo ""
+	@echo "Available targets:"
+	@echo "  lint        - Run syntax checks (Verilator/Icarus)"
+	@echo "  sim         - Run directed simulation testbench"
+	@echo "  sim-stress  - Run random stress simulation"
+	@echo "  formal      - Run SymbiYosys formal verification"
+	@echo "  synth       - Run Yosys synthesis"
+	@echo "  pnr         - Run OpenLane PnR flow"
+	@echo "  showcase    - Run lightweight demo"
+	@echo "  clean       - Remove generated files"

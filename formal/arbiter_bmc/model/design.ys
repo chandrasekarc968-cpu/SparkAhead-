@@ -1,15 +1,18 @@
-# running in /mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/
+# running in formal/arbiter_bmc/src/
 read -formal axi4lite_pkg.sv
-read -formal axi4lite_address_decoder.sv
-read -formal axi4lite_qos_scheduler.sv
-read -formal axi4lite_response_router.sv
-read -formal axi4lite_write_arbiter.sv
-read -formal axi4lite_read_arbiter.sv
+read -formal age_counter.sv
+read -formal write_mux.sv
+read -formal read_mux.sv
+read -formal default_slave.sv
+read -formal addr_decoder.sv
+read -formal wrr_scheduler.sv
+read -formal resp_demux.sv
+read -formal write_arbiter.sv
+read -formal read_arbiter.sv
 read -formal axi4lite_arbiter_top.sv
 read -formal arbiter_formal.sv
 hierarchy -top arbiter_formal
-flatten
-prep -flatten -nordff -top arbiter_formal
+prep -top arbiter_formal
 
 hierarchy -smtcheck
 rename -witness

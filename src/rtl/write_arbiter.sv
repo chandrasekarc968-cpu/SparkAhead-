@@ -29,7 +29,7 @@
 
 `timescale 1ns / 1ps
 
-module axi4lite_write_arbiter #(
+module write_arbiter #(
     parameter int NUM_MASTERS = 4,
     parameter int NUM_SLAVES  = 2,
     parameter int ADDR_WIDTH  = 32,
@@ -124,9 +124,9 @@ module axi4lite_write_arbiter #(
     write_state_t w_state;
 
     // Latched transaction metadata
-    logic [ID_W-1:0]              owner_id_r;
-    logic [NUM_SLAVES-1:0]        target_slave_r;
-    logic                         target_invalid_r;
+    logic [ID_W-1:0]              w_owner_id_r;
+    logic [NUM_SLAVES-1:0]        w_target_slave_r;
+    logic                         w_target_invalid_r;
     logic [ADDR_WIDTH-1:0]        latched_addr;
     logic [2:0]                   latched_prot;
     logic [DATA_WIDTH-1:0]        latched_wdata;
@@ -136,6 +136,7 @@ module axi4lite_write_arbiter #(
     // 3. QoS Scheduler
     // =========================================================================
     logic                     arb_tx_done;
+    assign arb_tx_done = (w_state == W_RESP) && w_resp_handshake;
     logic [ID_W-1:0]          arb_master_id;
     logic                     arb_grant_valid;
 
@@ -144,7 +145,7 @@ module axi4lite_write_arbiter #(
     /* verilator lint_on UNUSEDSIGNAL */
 
     /* verilator lint_off PINCONNECTEMPTY */
-    axi4lite_qos_scheduler #(
+    wrr_scheduler #(
         .NUM_MASTERS (NUM_MASTERS)
     ) u_write_qos (
         .aclk                   (aclk),
@@ -184,7 +185,7 @@ module axi4lite_write_arbiter #(
         end
     end
 
-    axi4lite_address_decoder #(
+    addr_decoder #(
         .ADDR_WIDTH (ADDR_WIDTH),
         .S0_BASE    (S0_BASE),
         .S0_SIZE    (S0_SIZE),
@@ -207,7 +208,7 @@ module axi4lite_write_arbiter #(
 
     always_comb begin
         for (int m = 0; m < NUM_MASTERS; m++) begin
-            buf_locked[m] = (w_state != W_IDLE) && (owner_id_r == ID_W'(m));
+            buf_locked[m] = (w_state != W_IDLE) && (w_owner_id_r == ID_W'(m));
         end
     end
 
@@ -228,7 +229,7 @@ module axi4lite_write_arbiter #(
     // =========================================================================
     // 6. Buffer Capture and FSM
     // =========================================================================
-    always_ff @(posedge aclk or negedge aresetn) begin
+    always_ff @(posedge aclk) begin
         if (!aresetn) begin
             aw_buf_valid     <= '0;
             w_buf_valid      <= '0;
@@ -239,16 +240,14 @@ module axi4lite_write_arbiter #(
                 w_buf_strb[m]  <= '0;
             end
             w_state          <= W_IDLE;
-            owner_id_r       <= '0;
-            target_slave_r   <= '0;
-            target_invalid_r <= 1'b0;
+            w_owner_id_r       <= '0;
+            w_target_slave_r   <= '0;
+            w_target_invalid_r <= 1'b0;
             latched_addr     <= '0;
             latched_prot     <= '0;
             latched_wdata    <= '0;
             latched_wstrb    <= '0;
-            arb_tx_done      <= 1'b0;
         end else begin
-            arb_tx_done <= 1'b0;
 
             // -----------------------------------------------------------------
             // AW Buffer Capture (independent of FSM state)
@@ -279,38 +278,38 @@ module axi4lite_write_arbiter #(
                 W_IDLE: begin
                     if (arb_grant_valid) begin
                         // Latch transaction metadata from buffers
-                        owner_id_r       <= arb_master_id;
+                        w_owner_id_r       <= arb_master_id;
                         latched_addr     <= aw_buf_addr[arb_master_id];
                         latched_prot     <= aw_buf_prot[arb_master_id];
                         latched_wdata    <= w_buf_data[arb_master_id];
                         latched_wstrb    <= w_buf_strb[arb_master_id];
-                        target_slave_r   <= decode_slave_sel;
-                        target_invalid_r <= decode_invalid;
+                        w_target_slave_r   <= decode_slave_sel;
+                        w_target_invalid_r <= decode_invalid;
                         w_state          <= W_ADDR;
                     end
                 end
 
                 W_ADDR: begin
-                    if (target_invalid_r) begin
+                    if (w_target_invalid_r) begin
                         // DECERR: skip slave AW, go straight to W_DATA
                         w_state <= W_DATA;
                     end else begin
                         // Wait for target slave to accept AW
-                        if ((target_slave_r[0] && m_axi_awready[0]) ||
-                            (target_slave_r[1] && m_axi_awready[1])) begin
+                        if ((w_target_slave_r[0] && m_axi_awready[0]) ||
+                            (w_target_slave_r[1] && m_axi_awready[1])) begin
                             w_state <= W_DATA;
                         end
                     end
                 end
 
                 W_DATA: begin
-                    if (target_invalid_r) begin
+                    if (w_target_invalid_r) begin
                         // DECERR: skip slave W, go straight to W_RESP
                         w_state <= W_RESP;
                     end else begin
                         // Wait for target slave to accept W
-                        if ((target_slave_r[0] && m_axi_wready[0]) ||
-                            (target_slave_r[1] && m_axi_wready[1])) begin
+                        if ((w_target_slave_r[0] && m_axi_wready[0]) ||
+                            (w_target_slave_r[1] && m_axi_wready[1])) begin
                             w_state <= W_RESP;
                         end
                     end
@@ -319,56 +318,44 @@ module axi4lite_write_arbiter #(
                 W_RESP: begin
                     if (w_resp_handshake) begin
                         // Transaction complete — free buffers
-                        aw_buf_valid[owner_id_r] <= 1'b0;
-                        w_buf_valid[owner_id_r]  <= 1'b0;
-                        arb_tx_done              <= 1'b1;
+                        aw_buf_valid[w_owner_id_r] <= 1'b0;
+                        w_buf_valid[w_owner_id_r]  <= 1'b0;
                         w_state                  <= W_IDLE;
                     end
                 end
 
-                default: w_state <= W_IDLE;
             endcase
         end
     end
 
-    // =========================================================================
-    // 7. Slave-Side AW Output Mux
-    // =========================================================================
-    always_comb begin
-        for (int s = 0; s < NUM_SLAVES; s++) begin
-            m_axi_awaddr[s]  = latched_addr;
-            m_axi_awprot[s]  = latched_prot;
-            m_axi_awvalid[s] = 1'b0;
-        end
-
-        if (w_state == W_ADDR && !target_invalid_r) begin
-            if (target_slave_r[0]) m_axi_awvalid[0] = 1'b1;
-            if (target_slave_r[1]) m_axi_awvalid[1] = 1'b1;
-        end
-    end
-
-    // =========================================================================
-    // 8. Slave-Side W Output Mux
-    // =========================================================================
-    always_comb begin
-        for (int s = 0; s < NUM_SLAVES; s++) begin
-            m_axi_wdata[s]  = latched_wdata;
-            m_axi_wstrb[s]  = latched_wstrb;
-            m_axi_wvalid[s] = 1'b0;
-        end
-
-        if (w_state == W_DATA && !target_invalid_r) begin
-            if (target_slave_r[0]) m_axi_wvalid[0] = 1'b1;
-            if (target_slave_r[1]) m_axi_wvalid[1] = 1'b1;
-        end
-    end
+    write_mux #(
+        .NUM_SLAVES(NUM_SLAVES),
+        .ADDR_WIDTH(ADDR_WIDTH),
+        .DATA_WIDTH(DATA_WIDTH),
+        .STRB_WIDTH(STRB_WIDTH)
+    ) u_write_mux (
+        .latched_awaddr  (latched_addr),
+        .latched_awprot  (latched_prot),
+        .latched_wdata   (latched_wdata),
+        .latched_wstrb   (latched_wstrb),
+        .w_state_is_addr (w_state == W_ADDR),
+        .w_state_is_data (w_state == W_DATA),
+        .target_slave_r  (w_target_slave_r),
+        .target_invalid_r(w_target_invalid_r),
+        .m_axi_awaddr    (m_axi_awaddr),
+        .m_axi_awprot    (m_axi_awprot),
+        .m_axi_awvalid   (m_axi_awvalid),
+        .m_axi_wdata     (m_axi_wdata),
+        .m_axi_wstrb     (m_axi_wstrb),
+        .m_axi_wvalid    (m_axi_wvalid)
+    );
 
     // =========================================================================
     // 9. Output Assignments
     // =========================================================================
-    assign w_owner_id      = owner_id_r;
-    assign w_target_slave  = target_slave_r;
-    assign w_target_invalid = target_invalid_r;
+    assign w_owner_id      = w_owner_id_r;
+    assign w_target_slave  = w_target_slave_r;
+    assign w_target_invalid = w_target_invalid_r;
     assign w_resp_phase    = (w_state == W_RESP);
 
     // =========================================================================
@@ -378,25 +365,21 @@ module axi4lite_write_arbiter #(
     // Owner must not change while FSM is active
     property p_w_owner_stable;
         @(posedge aclk) disable iff (!aresetn)
-        (w_state != W_IDLE) |=> (owner_id_r == $past(owner_id_r));
+        (w_state != W_IDLE) |=> (w_owner_id_r == $past(w_owner_id_r));
     endproperty
-    assert property (p_w_owner_stable)
-        else $error("[axi4lite_write_arbiter] Write owner changed mid-transaction!");
+    assert property (p_w_owner_stable) 
 
     // No buffer overwrite: AW buffer not written while valid
     property p_no_aw_overwrite;
         @(posedge aclk) disable iff (!aresetn)
         (aw_buf_valid[0] && s_axi_awvalid[0]) |-> !s_axi_awready[0];
     endproperty
-    assert property (p_no_aw_overwrite)
-        else $error("[axi4lite_write_arbiter] AW buffer overwrite attempted!");
+    assert property (p_no_aw_overwrite) 
 
     // At most one slave AWVALID
     always_comb begin
-        assert ($onehot0(m_axi_awvalid))
-            else $error("[axi4lite_write_arbiter] Multiple slave AWVALID!");
-        assert ($onehot0(m_axi_wvalid))
-            else $error("[axi4lite_write_arbiter] Multiple slave WVALID!");
+        assert ($onehot0(m_axi_awvalid)); 
+        assert ($onehot0(m_axi_wvalid)); 
     end
 `endif
 

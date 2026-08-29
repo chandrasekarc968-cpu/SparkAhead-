@@ -16,7 +16,7 @@
 
 `timescale 1ns / 1ps
 
-module axi4lite_address_decoder #(
+module addr_decoder #(
     parameter int ADDR_WIDTH = 32,
     parameter logic [ADDR_WIDTH-1:0] S0_BASE = 32'h0000_0000,
     parameter logic [ADDR_WIDTH-1:0] S0_SIZE = 32'h0001_0000,
@@ -91,19 +91,12 @@ module axi4lite_address_decoder #(
     /* verilator lint_on UNSIGNED */
 
 `ifdef ASSERTIONS
-    // slave_sel must be one-hot-zero
     always_comb begin
-        assert ($onehot0(slave_sel))
-            else $error("[axi4lite_address_decoder] slave_sel is not one-hot-zero!");
-        assert (valid_addr ^ invalid_addr)
-            else $error("[axi4lite_address_decoder] valid/invalid must be complementary!");
+        assert ($onehot0(slave_sel)); 
+        assert (valid_addr ^ invalid_addr);
+        // Unmapped address must produce DECERR indication
+        assert (!(!match_s0 && !match_s1) || (invalid_addr == 1'b1));
     end
-
-    // Unmapped address must produce DECERR indication
-    property p_unmapped_produces_decerr;
-        (!match_s0 && !match_s1) |-> (invalid_addr == 1'b1);
-    endproperty
-    // This is a combinational assertion, always true by construction
 `endif
 
 endmodule

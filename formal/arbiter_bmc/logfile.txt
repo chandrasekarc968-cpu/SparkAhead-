@@ -1,20 +1,102 @@
-SBY  0:34:21 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc] Removing directory '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc'.
-SBY  0:34:21 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_pkg.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/axi4lite_pkg.sv'.
-SBY  0:34:21 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_address_decoder.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/axi4lite_address_decoder.sv'.
-SBY  0:34:21 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_qos_scheduler.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/axi4lite_qos_scheduler.sv'.
-SBY  0:34:21 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_response_router.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/axi4lite_response_router.sv'.
-SBY  0:34:21 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_write_arbiter.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/axi4lite_write_arbiter.sv'.
-SBY  0:34:21 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_read_arbiter.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/axi4lite_read_arbiter.sv'.
-SBY  0:34:21 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_arbiter_top.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/axi4lite_arbiter_top.sv'.
-SBY  0:34:21 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_formal.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/arbiter_formal.sv'.
-SBY  0:34:21 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc] engine_0: smtbmc z3
-SBY  0:34:21 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc] base: starting process "cd /mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src; yosys -ql ../model/design.log ../model/design.ys"
-SBY  0:34:21 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc] base: bash: line 1: cd: too many arguments
-SBY  0:34:21 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc] base: Can't open log file `../model/design.log' for writing!
-SBY  0:34:21 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc] base: finished (returncode=1)
-SBY  0:34:21 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc] base: task failed. ERROR.
-SBY  0:34:21 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:00 (0)
-SBY  0:34:21 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
-SBY  0:34:21 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc] summary: engine_0 (smtbmc z3) did not return a status
-SBY  0:34:21 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc] summary: engine_0 did not produce any traces
-SBY  0:34:21 [/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc] DONE (ERROR, rc=16)
+SBY  3:11:37 [formal/arbiter_bmc] Removing directory '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc'.
+SBY  3:11:37 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_pkg.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/axi4lite_pkg.sv'.
+SBY  3:11:37 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/age_counter.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/age_counter.sv'.
+SBY  3:11:37 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/write_mux.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/write_mux.sv'.
+SBY  3:11:37 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/read_mux.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/read_mux.sv'.
+SBY  3:11:37 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/default_slave.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/default_slave.sv'.
+SBY  3:11:37 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/addr_decoder.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/addr_decoder.sv'.
+SBY  3:11:37 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/wrr_scheduler.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/wrr_scheduler.sv'.
+SBY  3:11:37 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/resp_demux.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/resp_demux.sv'.
+SBY  3:11:37 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/write_arbiter.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/write_arbiter.sv'.
+SBY  3:11:37 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/read_arbiter.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/read_arbiter.sv'.
+SBY  3:11:37 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_arbiter_top.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/axi4lite_arbiter_top.sv'.
+SBY  3:11:37 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_formal.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/arbiter_formal.sv'.
+SBY  3:11:37 [formal/arbiter_bmc] engine_0: smtbmc z3
+SBY  3:11:37 [formal/arbiter_bmc] base: starting process "cd formal/arbiter_bmc/src; yosys -ql ../model/design.log ../model/design.ys"
+SBY  3:11:38 [formal/arbiter_bmc] base: arbiter_formal.sv:294: Warning: Identifier `\dut.u_write_arbiter.w_target_invalid_r' is implicitly declared.
+SBY  3:11:38 [formal/arbiter_bmc] base: arbiter_formal.sv:295: Warning: Identifier `\dut.u_write_arbiter.w_owner_id_r' is implicitly declared.
+SBY  3:11:38 [formal/arbiter_bmc] base: arbiter_formal.sv:305: Warning: Identifier `\dut.u_read_arbiter.r_target_invalid_r' is implicitly declared.
+SBY  3:11:38 [formal/arbiter_bmc] base: arbiter_formal.sv:306: Warning: Identifier `\dut.u_read_arbiter.r_owner_id_r' is implicitly declared.
+SBY  3:11:38 [formal/arbiter_bmc] base: arbiter_formal.sv:485: Warning: Identifier `\dut.u_write_arbiter.arb_tx_done' is implicitly declared.
+SBY  3:11:38 [formal/arbiter_bmc] base: arbiter_formal.sv:492: Warning: Identifier `\dut.u_read_arbiter.arb_tx_done' is implicitly declared.
+SBY  3:11:38 [formal/arbiter_bmc] base: Warning: Wire arbiter_formal.\dut.u_read_arbiter.arb_tx_done is used but has no driver.
+SBY  3:11:38 [formal/arbiter_bmc] base: Warning: Wire arbiter_formal.\dut.u_write_arbiter.arb_tx_done is used but has no driver.
+SBY  3:11:38 [formal/arbiter_bmc] base: Warning: Wire arbiter_formal.\dut.u_read_arbiter.r_owner_id_r is used but has no driver.
+SBY  3:11:38 [formal/arbiter_bmc] base: Warning: Wire arbiter_formal.\dut.u_write_arbiter.w_owner_id_r is used but has no driver.
+SBY  3:11:38 [formal/arbiter_bmc] base: finished (returncode=0)
+SBY  3:11:38 [formal/arbiter_bmc] prep: starting process "cd formal/arbiter_bmc/model; yosys -ql design_prep.log design_prep.ys"
+SBY  3:11:38 [formal/arbiter_bmc] prep: Warning: Wire arbiter_formal.\dut.u_write_arbiter.w_owner_id_r is used but has no driver.
+SBY  3:11:38 [formal/arbiter_bmc] prep: Warning: Wire arbiter_formal.\dut.u_read_arbiter.r_owner_id_r is used but has no driver.
+SBY  3:11:38 [formal/arbiter_bmc] prep: finished (returncode=0)
+SBY  3:11:38 [formal/arbiter_bmc] smt2: starting process "cd formal/arbiter_bmc/model; yosys -ql design_smt2.log design_smt2.ys"
+SBY  3:11:38 [formal/arbiter_bmc] smt2: finished (returncode=0)
+SBY  3:11:38 [formal/arbiter_bmc] engine_0: starting process "cd formal/arbiter_bmc; yosys-smtbmc -s z3 --presat --noprogress -t 40  --append 0 --dump-vcd engine_0/trace.vcd --dump-yw engine_0/trace.yw --dump-vlogtb engine_0/trace_tb.v --dump-smtc engine_0/trace.smtc model/design_smt2.smt2"
+SBY  3:11:38 [formal/arbiter_bmc] engine_0: ##   0:00:00  Solver: z3
+SBY  3:11:38 [formal/arbiter_bmc] engine_0: ##   0:00:00  Checking assumptions in step 0..
+SBY  3:11:38 [formal/arbiter_bmc] engine_0: ##   0:00:00  Checking assertions in step 0..
+SBY  3:11:38 [formal/arbiter_bmc] engine_0: ##   0:00:00  Checking assumptions in step 1..
+SBY  3:11:38 [formal/arbiter_bmc] engine_0: ##   0:00:00  Checking assertions in step 1..
+SBY  3:11:38 [formal/arbiter_bmc] engine_0: ##   0:00:00  Checking assumptions in step 2..
+SBY  3:11:38 [formal/arbiter_bmc] engine_0: ##   0:00:00  Checking assertions in step 2..
+SBY  3:11:38 [formal/arbiter_bmc] engine_0: ##   0:00:00  Checking assumptions in step 3..
+SBY  3:11:38 [formal/arbiter_bmc] engine_0: ##   0:00:00  Checking assertions in step 3..
+SBY  3:11:39 [formal/arbiter_bmc] engine_0: ##   0:00:00  Checking assumptions in step 4..
+SBY  3:11:39 [formal/arbiter_bmc] engine_0: ##   0:00:00  Checking assertions in step 4..
+SBY  3:11:39 [formal/arbiter_bmc] engine_0: ##   0:00:00  Checking assumptions in step 5..
+SBY  3:11:39 [formal/arbiter_bmc] engine_0: ##   0:00:00  Checking assertions in step 5..
+SBY  3:11:39 [formal/arbiter_bmc] engine_0: ##   0:00:00  Checking assumptions in step 6..
+SBY  3:11:39 [formal/arbiter_bmc] engine_0: ##   0:00:00  Checking assertions in step 6..
+SBY  3:11:39 [formal/arbiter_bmc] engine_0: ##   0:00:01  Checking assumptions in step 7..
+SBY  3:11:40 [formal/arbiter_bmc] engine_0: ##   0:00:01  Checking assertions in step 7..
+SBY  3:11:40 [formal/arbiter_bmc] engine_0: ##   0:00:02  Checking assumptions in step 8..
+SBY  3:11:40 [formal/arbiter_bmc] engine_0: ##   0:00:02  Checking assertions in step 8..
+SBY  3:11:42 [formal/arbiter_bmc] engine_0: ##   0:00:03  Checking assumptions in step 9..
+SBY  3:11:42 [formal/arbiter_bmc] engine_0: ##   0:00:03  Checking assertions in step 9..
+SBY  3:11:43 [formal/arbiter_bmc] engine_0: ##   0:00:04  Checking assumptions in step 10..
+SBY  3:11:44 [formal/arbiter_bmc] engine_0: ##   0:00:05  Checking assertions in step 10..
+SBY  3:11:46 [formal/arbiter_bmc] engine_0: ##   0:00:07  Checking assumptions in step 11..
+SBY  3:11:47 [formal/arbiter_bmc] engine_0: ##   0:00:09  Checking assertions in step 11..
+SBY  3:11:49 [formal/arbiter_bmc] engine_0: ##   0:00:11  Checking assumptions in step 12..
+SBY  3:11:50 [formal/arbiter_bmc] engine_0: ##   0:00:11  Checking assertions in step 12..
+SBY  3:11:52 [formal/arbiter_bmc] engine_0: ##   0:00:13  Checking assumptions in step 13..
+SBY  3:11:53 [formal/arbiter_bmc] engine_0: ##   0:00:14  Checking assertions in step 13..
+SBY  3:11:57 [formal/arbiter_bmc] engine_0: ##   0:00:18  Checking assumptions in step 14..
+SBY  3:11:58 [formal/arbiter_bmc] engine_0: ##   0:00:20  Checking assertions in step 14..
+SBY  3:12:03 [formal/arbiter_bmc] engine_0: ##   0:00:25  Checking assumptions in step 15..
+SBY  3:12:05 [formal/arbiter_bmc] engine_0: ##   0:00:26  Checking assertions in step 15..
+SBY  3:12:10 [formal/arbiter_bmc] engine_0: ##   0:00:31  Checking assumptions in step 16..
+SBY  3:12:10 [formal/arbiter_bmc] engine_0: ##   0:00:32  Checking assertions in step 16..
+SBY  3:12:16 [formal/arbiter_bmc] engine_0: ##   0:00:37  Checking assumptions in step 17..
+SBY  3:12:19 [formal/arbiter_bmc] engine_0: ##   0:00:40  Checking assertions in step 17..
+SBY  3:12:28 [formal/arbiter_bmc] engine_0: ##   0:00:49  Checking assumptions in step 18..
+SBY  3:12:31 [formal/arbiter_bmc] engine_0: ##   0:00:53  Checking assertions in step 18..
+SBY  3:12:41 [formal/arbiter_bmc] engine_0: ##   0:01:03  Checking assumptions in step 19..
+SBY  3:12:45 [formal/arbiter_bmc] engine_0: ##   0:01:06  Checking assertions in step 19..
+SBY  3:12:53 [formal/arbiter_bmc] engine_0: ##   0:01:14  Checking assumptions in step 20..
+SBY  3:13:00 [formal/arbiter_bmc] engine_0: ##   0:01:21  Checking assertions in step 20..
+SBY  3:13:08 [formal/arbiter_bmc] engine_0: ##   0:01:29  Checking assumptions in step 21..
+SBY  3:13:11 [formal/arbiter_bmc] engine_0: ##   0:01:33  Checking assertions in step 21..
+SBY  3:13:15 [formal/arbiter_bmc] engine_0: ##   0:01:36  Checking assumptions in step 22..
+SBY  3:13:23 [formal/arbiter_bmc] engine_0: ##   0:01:44  Checking assertions in step 22..
+SBY  3:13:36 [formal/arbiter_bmc] engine_0: ##   0:01:58  Checking assumptions in step 23..
+SBY  3:13:46 [formal/arbiter_bmc] engine_0: ##   0:02:07  Checking assertions in step 23..
+SBY  3:13:50 [formal/arbiter_bmc] engine_0: ##   0:02:12  Checking assumptions in step 24..
+SBY  3:13:53 [formal/arbiter_bmc] engine_0: ##   0:02:14  Checking assertions in step 24..
+SBY  3:14:08 [formal/arbiter_bmc] engine_0: ##   0:02:29  Checking assumptions in step 25..
+SBY  3:14:26 [formal/arbiter_bmc] engine_0: ##   0:02:47  Checking assertions in step 25..
+SBY  3:14:40 [formal/arbiter_bmc] engine_0: ##   0:03:02  Checking assumptions in step 26..
+SBY  3:14:53 [formal/arbiter_bmc] engine_0: ##   0:03:14  Checking assertions in step 26..
+SBY  3:15:08 [formal/arbiter_bmc] engine_0: ##   0:03:29  Checking assumptions in step 27..
+SBY  3:15:15 [formal/arbiter_bmc] engine_0: ##   0:03:36  Checking assertions in step 27..
+SBY  3:15:37 [formal/arbiter_bmc] engine_0: ##   0:03:58  Checking assumptions in step 28..
+SBY  3:15:54 [formal/arbiter_bmc] engine_0: ##   0:04:15  Checking assertions in step 28..
+SBY  3:16:09 [formal/arbiter_bmc] engine_0: ##   0:04:30  Checking assumptions in step 29..
+SBY  3:16:19 [formal/arbiter_bmc] engine_0: ##   0:04:40  Checking assertions in step 29..
+SBY  3:16:37 [formal/arbiter_bmc] engine_0: ##   0:04:58  Checking assumptions in step 30..
+SBY  3:16:46 [formal/arbiter_bmc] engine_0: ##   0:05:07  Checking assertions in step 30..
+SBY  3:17:10 [formal/arbiter_bmc] engine_0: ##   0:05:32  Checking assumptions in step 31..
+SBY  3:17:42 [formal/arbiter_bmc] engine_0: ##   0:06:04  Checking assertions in step 31..
+SBY  3:18:05 [formal/arbiter_bmc] engine_0: ##   0:06:26  Checking assumptions in step 32..
+SBY  3:18:25 [formal/arbiter_bmc] engine_0: ##   0:06:47  Checking assertions in step 32..
+SBY  3:18:44 [formal/arbiter_bmc] engine_0: ##   0:07:06  Checking assumptions in step 33..
+SBY  3:19:11 [formal/arbiter_bmc] engine_0: ##   0:07:32  Checking assertions in step 33..

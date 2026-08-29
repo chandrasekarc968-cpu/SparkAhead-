@@ -12,23 +12,30 @@ smtbmc z3
 
 [script]
 read -formal axi4lite_pkg.sv
-read -formal axi4lite_address_decoder.sv
-read -formal axi4lite_qos_scheduler.sv
-read -formal axi4lite_response_router.sv
-read -formal axi4lite_write_arbiter.sv
-read -formal axi4lite_read_arbiter.sv
+read -formal age_counter.sv
+read -formal write_mux.sv
+read -formal read_mux.sv
+read -formal default_slave.sv
+read -formal addr_decoder.sv
+read -formal wrr_scheduler.sv
+read -formal resp_demux.sv
+read -formal write_arbiter.sv
+read -formal read_arbiter.sv
 read -formal axi4lite_arbiter_top.sv
 read -formal arbiter_formal.sv
 hierarchy -top arbiter_formal
-flatten
-prep -flatten -nordff -top arbiter_formal
+prep -top arbiter_formal
 
 [files]
 src/rtl/axi4lite_pkg.sv
-src/rtl/axi4lite_address_decoder.sv
-src/rtl/axi4lite_qos_scheduler.sv
-src/rtl/axi4lite_response_router.sv
-src/rtl/axi4lite_write_arbiter.sv
-src/rtl/axi4lite_read_arbiter.sv
+src/rtl/age_counter.sv
+src/rtl/write_mux.sv
+src/rtl/read_mux.sv
+src/rtl/default_slave.sv
+src/rtl/addr_decoder.sv
+src/rtl/wrr_scheduler.sv
+src/rtl/resp_demux.sv
+src/rtl/write_arbiter.sv
+src/rtl/read_arbiter.sv
 src/rtl/axi4lite_arbiter_top.sv
 formal/arbiter_formal.sv

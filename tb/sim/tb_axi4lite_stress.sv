@@ -101,8 +101,10 @@ module tb_axi4lite_stress;
     axi4lite_arbiter_top #(
         .NUM_MASTERS (NUM_MASTERS), .NUM_SLAVES (NUM_SLAVES),
         .ADDR_WIDTH (ADDR_WIDTH),   .DATA_WIDTH (DATA_WIDTH),
-        .S0_BASE (32'h0000_0000),   .S0_SIZE (32'h0001_0000),
-        .S1_BASE (32'h0001_0000),   .S1_SIZE (32'h0001_0000)
+        .SLAVE0_BASE (32'h0000_0000),
+        .SLAVE0_SIZE (32'h0001_0000),
+        .SLAVE1_BASE (32'h0001_0000),
+        .SLAVE1_SIZE (32'h0001_0000)
     ) dut (
         .aclk(aclk), .aresetn(aresetn),
         .cfg_weight_m0(cfg_weight_m0), .cfg_weight_m1(cfg_weight_m1),
@@ -197,9 +199,11 @@ module tb_axi4lite_stress;
                     m_axi_bvalid[s]  <= 1'b0;
                     m_axi_bresp[s]   <= 2'b00;
                 end else begin
+                    // Advance LFSR continuously
+                    slave_lfsr[s] <= lfsr_next(slave_lfsr[s]);
+
                     // AW handshake with random backpressure
                     if (m_axi_awvalid[s] && !m_axi_awready[s]) begin
-                        slave_lfsr[s] <= lfsr_next(slave_lfsr[s]);
                         m_axi_awready[s] <= (slave_lfsr[s][1:0] != 2'b11); // 75% accept
                     end else begin
                         m_axi_awready[s] <= 1'b0;
@@ -295,10 +299,12 @@ module tb_axi4lite_stress;
                         fork
                             begin
                                 do @(posedge aclk); while (!s_axi_awready[m]);
+                                $display("%0t: stress M%0d: AW accepted", $time, m);
                                 #1; s_axi_awvalid[m] = 1'b0;
                             end
                             begin
                                 do @(posedge aclk); while (!s_axi_wready[m]);
+                                $display("%0t: stress M%0d: W accepted", $time, m);
                                 #1; s_axi_wvalid[m] = 1'b0;
                             end
                         join
@@ -306,6 +312,7 @@ module tb_axi4lite_stress;
                         repeat (delay) @(posedge aclk);
                         #1; s_axi_bready[m] = 1'b1;
                         do @(posedge aclk); while (!s_axi_bvalid[m]);
+                        $display("%0t: stress M%0d: B accepted", $time, m);
                         resp = s_axi_bresp[m];
                         #1; s_axi_bready[m] = 1'b0;
 
@@ -319,11 +326,13 @@ module tb_axi4lite_stress;
                         s_axi_arvalid[m] = 1'b1;
 
                         do @(posedge aclk); while (!s_axi_arready[m]);
+                        $display("%0t: stress M%0d: AR accepted", $time, m);
                         #1; s_axi_arvalid[m] = 1'b0;
 
                         repeat (delay) @(posedge aclk);
                         #1; s_axi_rready[m] = 1'b1;
                         do @(posedge aclk); while (!s_axi_rvalid[m]);
+                        $display("%0t: stress M%0d: R accepted", $time, m);
                         resp = s_axi_rresp[m];
                         #1; s_axi_rready[m] = 1'b0;
 
@@ -367,6 +376,7 @@ module tb_axi4lite_stress;
         end
     end
 
+    /* Icarus Verilog does not support $past
     // =========================================================================
     // VALID/Payload Stability Monitors (DUT outputs)
     // =========================================================================
@@ -440,6 +450,7 @@ module tb_axi4lite_stress;
             end
         end
     endgenerate
+    */
 
     // =========================================================================
     // Completion and Report
@@ -449,7 +460,7 @@ module tb_axi4lite_stress;
         aresetn = 1'b1;
 
         // Wait for all masters to finish
-        wait (master_done[0] && master_done[1] && master_done[2] && master_done[3]);
+        while (!(master_done[0] && master_done[1] && master_done[2] && master_done[3])) @(posedge aclk);
         repeat (100) @(posedge aclk);
 
         $display("\n=============================================================================");

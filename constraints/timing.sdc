@@ -5,10 +5,9 @@
 #              Tool-neutral — compatible with any SDC-compliant synthesis tool.
 #              Target: 100 MHz (10 ns period), AMBA AXI4-Lite clock domain.
 #
-# Reset Convention: Asynchronous active-low reset (aresetn).
-#   RTL uses: always_ff @(posedge aclk or negedge aresetn)
-#   SDC uses: set_false_path from aresetn to avoid constraining the reset
-#   tree against functional clock paths. Recovery/removal checked by STA.
+# Reset Convention: Synchronous active-low reset (aresetn).
+#   RTL uses: always_ff @(posedge aclk) begin if (!aresetn) ...
+#   SDC must include aresetn in timing analysis.
 # ==============================================================================
 
 # ------------------------------------------------------------------------------
@@ -96,12 +95,11 @@ set_output_delay -clock aclk -max 3.0 [get_ports {m_axi_rready*}]
 set_output_delay -clock aclk -min 0.5 [get_ports {m_axi_rready*}]
 
 # ------------------------------------------------------------------------------
-# Asynchronous Active-Low Reset
-# The RTL uses: always_ff @(posedge aclk or negedge aresetn)
-# False-path from aresetn to avoid constraining the reset tree
-# against functional clock paths. Recovery/removal checked by STA tool.
+# Synchronous Active-Low Reset
+# The RTL uses: always_ff @(posedge aclk) begin if (!aresetn) ...
+# Reset is part of the datapath timing graph and must be timed.
 # ------------------------------------------------------------------------------
-set_false_path -from [get_ports aresetn]
+# set_false_path -from [get_ports aresetn]  <-- Removed for synchronous reset
 
 # ------------------------------------------------------------------------------
 # QoS Config Multicycle Paths

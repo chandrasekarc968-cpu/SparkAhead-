@@ -21,7 +21,7 @@
 
 `timescale 1ns / 1ps
 
-module axi4lite_response_router #(
+module resp_demux #(
     parameter int NUM_MASTERS = 4,
     parameter int NUM_SLAVES  = 2,
     parameter int DATA_WIDTH  = 32
@@ -72,27 +72,42 @@ module axi4lite_response_router #(
     output logic                                     r_owner_rready    // Owner's RREADY
 );
 
-    localparam logic [1:0] RESP_DECERR = 2'b11;
+
+    // Instantiate default slave for DECERR responses
+    logic [1:0]            decerr_bresp;
+    logic                  decerr_bvalid;
+    logic [DATA_WIDTH-1:0] decerr_rdata;
+    logic [1:0]            decerr_rresp;
+    logic                  decerr_rvalid;
+
+    default_slave #(
+        .DATA_WIDTH (DATA_WIDTH)
+    ) u_default_slave (
+        .w_active         (w_active),
+        .w_target_invalid (w_target_invalid),
+        .decerr_bresp     (decerr_bresp),
+        .decerr_bvalid    (decerr_bvalid),
+        .r_active         (r_active),
+        .r_target_invalid (r_target_invalid),
+        .decerr_rdata     (decerr_rdata),
+        .decerr_rresp     (decerr_rresp),
+        .decerr_rvalid    (decerr_rvalid)
+    );
 
     // =========================================================================
     // Write Response (B Channel) Routing
     // =========================================================================
     always_comb begin
-        // Default: all deasserted
-        for (int i = 0; i < NUM_MASTERS; i++) begin
-            m_bresp[i]  = 2'b00;
-            m_bvalid[i] = 1'b0;
-        end
-        for (int i = 0; i < NUM_SLAVES; i++) begin
-            s_bready[i] = 1'b0;
-        end
+        m_bresp          = '0;
+        m_bvalid         = '0;
+        s_bready         = '0;
         w_resp_handshake = 1'b0;
 
         if (w_active) begin
             if (w_target_invalid) begin
                 // Internal DECERR response
-                m_bvalid[w_owner_id] = 1'b1;
-                m_bresp[w_owner_id]  = RESP_DECERR;
+                m_bvalid[w_owner_id] = decerr_bvalid;
+                m_bresp[w_owner_id]  = decerr_bresp;
                 w_resp_handshake     = m_bready[w_owner_id];
             end else begin
                 // Route from target slave to owner master
@@ -115,15 +130,10 @@ module axi4lite_response_router #(
     // Read Response (R Channel) Routing
     // =========================================================================
     always_comb begin
-        // Default: all deasserted
-        for (int i = 0; i < NUM_MASTERS; i++) begin
-            m_rdata[i]  = '0;
-            m_rresp[i]  = 2'b00;
-            m_rvalid[i] = 1'b0;
-        end
-        for (int i = 0; i < NUM_SLAVES; i++) begin
-            s_rready[i] = 1'b0;
-        end
+        m_rdata          = '0;
+        m_rresp          = '0;
+        m_rvalid         = '0;
+        s_rready         = '0;
         r_resp_handshake = 1'b0;
         r_owner_rready   = 1'b0;
 
@@ -132,9 +142,9 @@ module axi4lite_response_router #(
 
             if (r_target_invalid) begin
                 // Internal DECERR response with zero data
-                m_rvalid[r_owner_id] = 1'b1;
-                m_rdata[r_owner_id]  = '0;
-                m_rresp[r_owner_id]  = RESP_DECERR;
+                m_rvalid[r_owner_id] = decerr_rvalid;
+                m_rdata[r_owner_id]  = decerr_rdata;
+                m_rresp[r_owner_id]  = decerr_rresp;
                 r_resp_handshake     = m_rready[r_owner_id];
             end else begin
                 // Route from target slave to owner master
@@ -161,10 +171,10 @@ module axi4lite_response_router #(
 `ifdef ASSERTIONS
     // Only one BVALID at a time
     always_comb begin
-        assert ($onehot0(m_bvalid))
-            else $error("[axi4lite_response_router] Multiple BVALID asserted!");
-        assert ($onehot0(m_rvalid))
-            else $error("[axi4lite_response_router] Multiple RVALID asserted!");
+        assert ($onehot0(m_bvalid));
+            ;
+        assert ($onehot0(m_rvalid));
+            ;
     end
 `endif
 

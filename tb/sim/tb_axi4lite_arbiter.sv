@@ -104,10 +104,10 @@ module tb_axi4lite_arbiter;
         .NUM_SLAVES    (NUM_SLAVES),
         .ADDR_WIDTH    (ADDR_WIDTH),
         .DATA_WIDTH    (DATA_WIDTH),
-        .S0_BASE       (32'h0000_0000),
-        .S0_SIZE       (32'h0001_0000),
-        .S1_BASE       (32'h0001_0000),
-        .S1_SIZE       (32'h0001_0000)
+        .SLAVE0_BASE (32'h0000_0000),
+        .SLAVE0_SIZE (32'h0001_0000),
+        .SLAVE1_BASE (32'h0001_0000),
+        .SLAVE1_SIZE (32'h0001_0000)
     ) dut (
         .aclk                   (aclk),
         .aresetn                (aresetn),
@@ -188,9 +188,11 @@ module tb_axi4lite_arbiter;
     );
         // Assert AW and W simultaneously
         @(posedge aclk); #1;
+        $display("%0t: M%0d asserting AW and W", $time, m_id);
         s_axi_awaddr[m_id]  = addr;
-        s_axi_awprot[m_id]  = 3'b000;
         s_axi_awvalid[m_id] = 1'b1;
+        s_axi_awprot[m_id]  = 3'b000;
+        
         s_axi_wdata[m_id]   = data;
         s_axi_wstrb[m_id]   = strb;
         s_axi_wvalid[m_id]  = 1'b1;
@@ -199,10 +201,12 @@ module tb_axi4lite_arbiter;
         fork
             begin : aw_phase
                 do @(posedge aclk); while (!s_axi_awready[m_id]);
+                $display("%0t: M%0d AW accepted", $time, m_id);
                 #1; s_axi_awvalid[m_id] = 1'b0;
             end
             begin : w_phase
                 do @(posedge aclk); while (!s_axi_wready[m_id]);
+                $display("%0t: M%0d W accepted", $time, m_id);
                 #1; s_axi_wvalid[m_id] = 1'b0;
             end
         join
@@ -211,6 +215,7 @@ module tb_axi4lite_arbiter;
         repeat (bready_delay) @(posedge aclk);
         #1; s_axi_bready[m_id] = 1'b1;
         do @(posedge aclk); while (!s_axi_bvalid[m_id]);
+        $display("%0t: M%0d B accepted", $time, m_id);
         resp = s_axi_bresp[m_id];
         #1; s_axi_bready[m_id] = 1'b0;
     endtask
@@ -328,23 +333,28 @@ module tb_axi4lite_arbiter;
         input int          w_delay,
         input logic [1:0]  resp
     );
-        // Wait for AW
-        while (!m_axi_awvalid[s_id]) @(posedge aclk);
+        $display("%0t: S%0d waiting for AW", $time, s_id);
+        do @(posedge aclk); while (!m_axi_awvalid[s_id]);
+        $display("%0t: S%0d AW valid detected", $time, s_id);
         repeat (aw_delay) @(posedge aclk);
         #1; m_axi_awready[s_id] = 1'b1;
         @(posedge aclk); #1; m_axi_awready[s_id] = 1'b0;
 
+        $display("%0t: S%0d waiting for W", $time, s_id);
         // Wait for W
-        while (!m_axi_wvalid[s_id]) @(posedge aclk);
+        do @(posedge aclk); while (!m_axi_wvalid[s_id]);
+        $display("%0t: S%0d W valid detected", $time, s_id);
         repeat (w_delay) @(posedge aclk);
         #1; m_axi_wready[s_id] = 1'b1;
         @(posedge aclk); #1; m_axi_wready[s_id] = 1'b0;
 
-        // Issue B response
-        #1;
+        $display("%0t: S%0d sending B", $time, s_id);
+        // Send B response
         m_axi_bresp[s_id]  = resp;
         m_axi_bvalid[s_id] = 1'b1;
+        
         do @(posedge aclk); while (!m_axi_bready[s_id]);
+        $display("%0t: S%0d B ready detected", $time, s_id);
         #1; m_axi_bvalid[s_id] = 1'b0;
     endtask
 
@@ -1093,14 +1103,20 @@ module tb_axi4lite_arbiter;
         s_axi_wstrb[1]   = 4'hF;
         s_axi_wvalid[1]  = 1'b1;
 
-        // Wait for AW to be buffered
-        do @(posedge aclk); while (!s_axi_awready[1]);
-        #1; s_axi_awvalid[1] = 1'b0;
-        do @(posedge aclk); while (!s_axi_wready[1]);
-        #1; s_axi_wvalid[1] = 1'b0;
+        // Wait for DUT to accept from master
+        fork
+            begin
+                do @(posedge aclk); while (!s_axi_awready[1]);
+                #1; s_axi_awvalid[1] = 1'b0;
+            end
+            begin
+                do @(posedge aclk); while (!s_axi_wready[1]);
+                #1; s_axi_wvalid[1] = 1'b0;
+            end
+        join
 
         // Accept AW on slave
-        while (!m_axi_awvalid[0]) @(posedge aclk);
+        do @(posedge aclk); while (!m_axi_awvalid[0]);
         #1; m_axi_awready[0] = 1'b1;
         @(posedge aclk); #1; m_axi_awready[0] = 1'b0;
 
@@ -1146,10 +1162,10 @@ module tb_axi4lite_arbiter;
         join
 
         // Accept AW and W on slave 1
-        while (!m_axi_awvalid[1]) @(posedge aclk);
+        do @(posedge aclk); while (!m_axi_awvalid[1]);
         #1; m_axi_awready[1] = 1'b1;
         @(posedge aclk); #1; m_axi_awready[1] = 1'b0;
-        while (!m_axi_wvalid[1]) @(posedge aclk);
+        do @(posedge aclk); while (!m_axi_wvalid[1]);
         #1; m_axi_wready[1] = 1'b1;
         @(posedge aclk); #1; m_axi_wready[1] = 1'b0;
 

@@ -1,39 +1,162 @@
-SBY  1:02:49 [formal/arbiter_bmc] Removing directory '/tmp/sparkahead_formal_syxDt6/formal/arbiter_bmc'.
-SBY  1:02:49 [formal/arbiter_bmc] Copy '/tmp/sparkahead_formal_syxDt6/src/rtl/axi4lite_pkg.sv' to '/tmp/sparkahead_formal_syxDt6/formal/arbiter_bmc/src/axi4lite_pkg.sv'.
-SBY  1:02:49 [formal/arbiter_bmc] Copy '/tmp/sparkahead_formal_syxDt6/src/rtl/axi4lite_address_decoder.sv' to '/tmp/sparkahead_formal_syxDt6/formal/arbiter_bmc/src/axi4lite_address_decoder.sv'.
-SBY  1:02:49 [formal/arbiter_bmc] Copy '/tmp/sparkahead_formal_syxDt6/src/rtl/axi4lite_qos_scheduler.sv' to '/tmp/sparkahead_formal_syxDt6/formal/arbiter_bmc/src/axi4lite_qos_scheduler.sv'.
-SBY  1:02:49 [formal/arbiter_bmc] Copy '/tmp/sparkahead_formal_syxDt6/src/rtl/axi4lite_response_router.sv' to '/tmp/sparkahead_formal_syxDt6/formal/arbiter_bmc/src/axi4lite_response_router.sv'.
-SBY  1:02:49 [formal/arbiter_bmc] Copy '/tmp/sparkahead_formal_syxDt6/src/rtl/axi4lite_write_arbiter.sv' to '/tmp/sparkahead_formal_syxDt6/formal/arbiter_bmc/src/axi4lite_write_arbiter.sv'.
-SBY  1:02:49 [formal/arbiter_bmc] Copy '/tmp/sparkahead_formal_syxDt6/src/rtl/axi4lite_read_arbiter.sv' to '/tmp/sparkahead_formal_syxDt6/formal/arbiter_bmc/src/axi4lite_read_arbiter.sv'.
-SBY  1:02:49 [formal/arbiter_bmc] Copy '/tmp/sparkahead_formal_syxDt6/src/rtl/axi4lite_arbiter_top.sv' to '/tmp/sparkahead_formal_syxDt6/formal/arbiter_bmc/src/axi4lite_arbiter_top.sv'.
-SBY  1:02:49 [formal/arbiter_bmc] Copy '/tmp/sparkahead_formal_syxDt6/formal/arbiter_formal.sv' to '/tmp/sparkahead_formal_syxDt6/formal/arbiter_bmc/src/arbiter_formal.sv'.
-SBY  1:02:49 [formal/arbiter_bmc] engine_0: smtbmc z3
-SBY  1:02:49 [formal/arbiter_cover] Removing directory '/tmp/sparkahead_formal_syxDt6/formal/arbiter_cover'.
-SBY  1:02:49 [formal/arbiter_cover] Copy '/tmp/sparkahead_formal_syxDt6/src/rtl/axi4lite_pkg.sv' to '/tmp/sparkahead_formal_syxDt6/formal/arbiter_cover/src/axi4lite_pkg.sv'.
-SBY  1:02:49 [formal/arbiter_cover] Copy '/tmp/sparkahead_formal_syxDt6/src/rtl/axi4lite_address_decoder.sv' to '/tmp/sparkahead_formal_syxDt6/formal/arbiter_cover/src/axi4lite_address_decoder.sv'.
-SBY  1:02:49 [formal/arbiter_cover] Copy '/tmp/sparkahead_formal_syxDt6/src/rtl/axi4lite_qos_scheduler.sv' to '/tmp/sparkahead_formal_syxDt6/formal/arbiter_cover/src/axi4lite_qos_scheduler.sv'.
-SBY  1:02:49 [formal/arbiter_cover] Copy '/tmp/sparkahead_formal_syxDt6/src/rtl/axi4lite_response_router.sv' to '/tmp/sparkahead_formal_syxDt6/formal/arbiter_cover/src/axi4lite_response_router.sv'.
-SBY  1:02:49 [formal/arbiter_cover] Copy '/tmp/sparkahead_formal_syxDt6/src/rtl/axi4lite_write_arbiter.sv' to '/tmp/sparkahead_formal_syxDt6/formal/arbiter_cover/src/axi4lite_write_arbiter.sv'.
-SBY  1:02:49 [formal/arbiter_cover] Copy '/tmp/sparkahead_formal_syxDt6/src/rtl/axi4lite_read_arbiter.sv' to '/tmp/sparkahead_formal_syxDt6/formal/arbiter_cover/src/axi4lite_read_arbiter.sv'.
-SBY  1:02:49 [formal/arbiter_cover] Copy '/tmp/sparkahead_formal_syxDt6/src/rtl/axi4lite_arbiter_top.sv' to '/tmp/sparkahead_formal_syxDt6/formal/arbiter_cover/src/axi4lite_arbiter_top.sv'.
-SBY  1:02:49 [formal/arbiter_cover] Copy '/tmp/sparkahead_formal_syxDt6/formal/arbiter_formal.sv' to '/tmp/sparkahead_formal_syxDt6/formal/arbiter_cover/src/arbiter_formal.sv'.
-SBY  1:02:49 [formal/arbiter_cover] engine_0: smtbmc z3
-SBY  1:02:49 [formal/arbiter_bmc] base: starting process "cd formal/arbiter_bmc/src; yosys -ql ../model/design.log ../model/design.ys"
-SBY  1:02:49 [formal/arbiter_cover] base: starting process "cd formal/arbiter_cover/src; yosys -ql ../model/design.log ../model/design.ys"
-SBY  1:02:49 [formal/arbiter_bmc] base: arbiter_formal.sv:283: ERROR: Failed to resolve identifier \dut.u_write_arbiter.aw_buf_valid for width detection!
-SBY  1:02:49 [formal/arbiter_bmc] base: finished (returncode=1)
-SBY  1:02:49 [formal/arbiter_bmc] base: task failed. ERROR.
-SBY  1:02:49 [formal/arbiter_bmc] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:00 (0)
-SBY  1:02:49 [formal/arbiter_bmc] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
-SBY  1:02:49 [formal/arbiter_bmc] summary: engine_0 (smtbmc z3) did not return a status
-SBY  1:02:49 [formal/arbiter_bmc] summary: engine_0 did not produce any traces
-SBY  1:02:49 [formal/arbiter_bmc] DONE (ERROR, rc=16)
-SBY  1:02:49 [formal/arbiter_cover] base: arbiter_formal.sv:283: ERROR: Failed to resolve identifier \dut.u_write_arbiter.aw_buf_valid for width detection!
-SBY  1:02:49 [formal/arbiter_cover] base: finished (returncode=1)
-SBY  1:02:49 [formal/arbiter_cover] base: task failed. ERROR.
-SBY  1:02:49 [formal/arbiter_cover] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:00 (0)
-SBY  1:02:49 [formal/arbiter_cover] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
-SBY  1:02:49 [formal/arbiter_cover] summary: engine_0 (smtbmc z3) did not return a status
-SBY  1:02:49 [formal/arbiter_cover] summary: engine_0 did not produce any traces
-SBY  1:02:49 [formal/arbiter_cover] DONE (ERROR, rc=16)
-SBY  1:02:49 The following tasks failed: ['bmc', 'cover']
+SBY  2:46:33 [formal/arbiter_bmc] Removing directory '/tmp/sparkahead_formal_UpNybU/formal/arbiter_bmc'.
+SBY  2:46:33 [formal/arbiter_bmc] Copy '/tmp/sparkahead_formal_UpNybU/src/rtl/axi4lite_pkg.sv' to '/tmp/sparkahead_formal_UpNybU/formal/arbiter_bmc/src/axi4lite_pkg.sv'.
+SBY  2:46:33 [formal/arbiter_bmc] Copy '/tmp/sparkahead_formal_UpNybU/src/rtl/age_counter.sv' to '/tmp/sparkahead_formal_UpNybU/formal/arbiter_bmc/src/age_counter.sv'.
+SBY  2:46:33 [formal/arbiter_bmc] Copy '/tmp/sparkahead_formal_UpNybU/src/rtl/write_mux.sv' to '/tmp/sparkahead_formal_UpNybU/formal/arbiter_bmc/src/write_mux.sv'.
+SBY  2:46:33 [formal/arbiter_bmc] Copy '/tmp/sparkahead_formal_UpNybU/src/rtl/read_mux.sv' to '/tmp/sparkahead_formal_UpNybU/formal/arbiter_bmc/src/read_mux.sv'.
+SBY  2:46:33 [formal/arbiter_bmc] Copy '/tmp/sparkahead_formal_UpNybU/src/rtl/default_slave.sv' to '/tmp/sparkahead_formal_UpNybU/formal/arbiter_bmc/src/default_slave.sv'.
+SBY  2:46:33 [formal/arbiter_bmc] Copy '/tmp/sparkahead_formal_UpNybU/src/rtl/addr_decoder.sv' to '/tmp/sparkahead_formal_UpNybU/formal/arbiter_bmc/src/addr_decoder.sv'.
+SBY  2:46:33 [formal/arbiter_bmc] Copy '/tmp/sparkahead_formal_UpNybU/src/rtl/wrr_scheduler.sv' to '/tmp/sparkahead_formal_UpNybU/formal/arbiter_bmc/src/wrr_scheduler.sv'.
+SBY  2:46:33 [formal/arbiter_bmc] Copy '/tmp/sparkahead_formal_UpNybU/src/rtl/resp_demux.sv' to '/tmp/sparkahead_formal_UpNybU/formal/arbiter_bmc/src/resp_demux.sv'.
+SBY  2:46:33 [formal/arbiter_bmc] Copy '/tmp/sparkahead_formal_UpNybU/src/rtl/write_arbiter.sv' to '/tmp/sparkahead_formal_UpNybU/formal/arbiter_bmc/src/write_arbiter.sv'.
+SBY  2:46:33 [formal/arbiter_bmc] Copy '/tmp/sparkahead_formal_UpNybU/src/rtl/read_arbiter.sv' to '/tmp/sparkahead_formal_UpNybU/formal/arbiter_bmc/src/read_arbiter.sv'.
+SBY  2:46:33 [formal/arbiter_bmc] Copy '/tmp/sparkahead_formal_UpNybU/src/rtl/axi4lite_arbiter_top.sv' to '/tmp/sparkahead_formal_UpNybU/formal/arbiter_bmc/src/axi4lite_arbiter_top.sv'.
+SBY  2:46:33 [formal/arbiter_bmc] Copy '/tmp/sparkahead_formal_UpNybU/formal/arbiter_formal.sv' to '/tmp/sparkahead_formal_UpNybU/formal/arbiter_bmc/src/arbiter_formal.sv'.
+SBY  2:46:33 [formal/arbiter_bmc] engine_0: smtbmc z3
+SBY  2:46:33 [formal/arbiter_cover] Removing directory '/tmp/sparkahead_formal_UpNybU/formal/arbiter_cover'.
+SBY  2:46:33 [formal/arbiter_cover] Copy '/tmp/sparkahead_formal_UpNybU/src/rtl/axi4lite_pkg.sv' to '/tmp/sparkahead_formal_UpNybU/formal/arbiter_cover/src/axi4lite_pkg.sv'.
+SBY  2:46:33 [formal/arbiter_cover] Copy '/tmp/sparkahead_formal_UpNybU/src/rtl/age_counter.sv' to '/tmp/sparkahead_formal_UpNybU/formal/arbiter_cover/src/age_counter.sv'.
+SBY  2:46:33 [formal/arbiter_cover] Copy '/tmp/sparkahead_formal_UpNybU/src/rtl/write_mux.sv' to '/tmp/sparkahead_formal_UpNybU/formal/arbiter_cover/src/write_mux.sv'.
+SBY  2:46:33 [formal/arbiter_cover] Copy '/tmp/sparkahead_formal_UpNybU/src/rtl/read_mux.sv' to '/tmp/sparkahead_formal_UpNybU/formal/arbiter_cover/src/read_mux.sv'.
+SBY  2:46:33 [formal/arbiter_cover] Copy '/tmp/sparkahead_formal_UpNybU/src/rtl/default_slave.sv' to '/tmp/sparkahead_formal_UpNybU/formal/arbiter_cover/src/default_slave.sv'.
+SBY  2:46:33 [formal/arbiter_cover] Copy '/tmp/sparkahead_formal_UpNybU/src/rtl/addr_decoder.sv' to '/tmp/sparkahead_formal_UpNybU/formal/arbiter_cover/src/addr_decoder.sv'.
+SBY  2:46:33 [formal/arbiter_cover] Copy '/tmp/sparkahead_formal_UpNybU/src/rtl/wrr_scheduler.sv' to '/tmp/sparkahead_formal_UpNybU/formal/arbiter_cover/src/wrr_scheduler.sv'.
+SBY  2:46:33 [formal/arbiter_cover] Copy '/tmp/sparkahead_formal_UpNybU/src/rtl/resp_demux.sv' to '/tmp/sparkahead_formal_UpNybU/formal/arbiter_cover/src/resp_demux.sv'.
+SBY  2:46:33 [formal/arbiter_cover] Copy '/tmp/sparkahead_formal_UpNybU/src/rtl/write_arbiter.sv' to '/tmp/sparkahead_formal_UpNybU/formal/arbiter_cover/src/write_arbiter.sv'.
+SBY  2:46:33 [formal/arbiter_cover] Copy '/tmp/sparkahead_formal_UpNybU/src/rtl/read_arbiter.sv' to '/tmp/sparkahead_formal_UpNybU/formal/arbiter_cover/src/read_arbiter.sv'.
+SBY  2:46:33 [formal/arbiter_cover] Copy '/tmp/sparkahead_formal_UpNybU/src/rtl/axi4lite_arbiter_top.sv' to '/tmp/sparkahead_formal_UpNybU/formal/arbiter_cover/src/axi4lite_arbiter_top.sv'.
+SBY  2:46:33 [formal/arbiter_cover] Copy '/tmp/sparkahead_formal_UpNybU/formal/arbiter_formal.sv' to '/tmp/sparkahead_formal_UpNybU/formal/arbiter_cover/src/arbiter_formal.sv'.
+SBY  2:46:33 [formal/arbiter_cover] engine_0: smtbmc z3
+SBY  2:46:33 [formal/arbiter_bmc] base: starting process "cd formal/arbiter_bmc/src; yosys -ql ../model/design.log ../model/design.ys"
+SBY  2:46:33 [formal/arbiter_cover] base: starting process "cd formal/arbiter_cover/src; yosys -ql ../model/design.log ../model/design.ys"
+SBY  2:46:33 [formal/arbiter_bmc] base: arbiter_formal.sv:262: Warning: Identifier `\dut.u_write_arbiter.w_state' is implicitly declared.
+SBY  2:46:33 [formal/arbiter_bmc] base: arbiter_formal.sv:264: Warning: Identifier `\dut.u_write_arbiter.owner_id_r' is implicitly declared.
+SBY  2:46:33 [formal/arbiter_bmc] base: arbiter_formal.sv:272: Warning: Identifier `\dut.u_read_arbiter.r_state' is implicitly declared.
+SBY  2:46:33 [formal/arbiter_bmc] base: arbiter_formal.sv:274: Warning: Identifier `\dut.u_read_arbiter.owner_id_r' is implicitly declared.
+SBY  2:46:33 [formal/arbiter_bmc] base: arbiter_formal.sv:312: Warning: Identifier `\dut.u_write_arbiter.target_invalid_r' is implicitly declared.
+SBY  2:46:33 [formal/arbiter_bmc] base: arbiter_formal.sv:323: Warning: Identifier `\dut.u_read_arbiter.target_invalid_r' is implicitly declared.
+SBY  2:46:33 [formal/arbiter_bmc] base: arbiter_formal.sv:528: Warning: Identifier `\dut.u_write_arbiter.arb_tx_done' is implicitly declared.
+SBY  2:46:33 [formal/arbiter_bmc] base: arbiter_formal.sv:535: Warning: Identifier `\dut.u_read_arbiter.arb_tx_done' is implicitly declared.
+SBY  2:46:33 [formal/arbiter_cover] base: arbiter_formal.sv:262: Warning: Identifier `\dut.u_write_arbiter.w_state' is implicitly declared.
+SBY  2:46:33 [formal/arbiter_cover] base: arbiter_formal.sv:264: Warning: Identifier `\dut.u_write_arbiter.owner_id_r' is implicitly declared.
+SBY  2:46:33 [formal/arbiter_cover] base: arbiter_formal.sv:272: Warning: Identifier `\dut.u_read_arbiter.r_state' is implicitly declared.
+SBY  2:46:33 [formal/arbiter_cover] base: arbiter_formal.sv:274: Warning: Identifier `\dut.u_read_arbiter.owner_id_r' is implicitly declared.
+SBY  2:46:33 [formal/arbiter_cover] base: arbiter_formal.sv:312: Warning: Identifier `\dut.u_write_arbiter.target_invalid_r' is implicitly declared.
+SBY  2:46:33 [formal/arbiter_cover] base: arbiter_formal.sv:323: Warning: Identifier `\dut.u_read_arbiter.target_invalid_r' is implicitly declared.
+SBY  2:46:33 [formal/arbiter_cover] base: arbiter_formal.sv:528: Warning: Identifier `\dut.u_write_arbiter.arb_tx_done' is implicitly declared.
+SBY  2:46:33 [formal/arbiter_cover] base: arbiter_formal.sv:535: Warning: Identifier `\dut.u_read_arbiter.arb_tx_done' is implicitly declared.
+SBY  2:46:33 [formal/arbiter_cover] base: Warning: Wire arbiter_formal.\dut.u_read_arbiter.arb_tx_done is used but has no driver.
+SBY  2:46:33 [formal/arbiter_cover] base: Warning: Wire arbiter_formal.\dut.u_write_arbiter.arb_tx_done is used but has no driver.
+SBY  2:46:33 [formal/arbiter_cover] base: Warning: Wire arbiter_formal.\dut.u_read_arbiter.owner_id_r is used but has no driver.
+SBY  2:46:33 [formal/arbiter_cover] base: Warning: Wire arbiter_formal.\dut.u_write_arbiter.owner_id_r is used but has no driver.
+SBY  2:46:33 [formal/arbiter_cover] base: Warning: Wire arbiter_formal.\dut.u_read_arbiter.r_state is used but has no driver.
+SBY  2:46:33 [formal/arbiter_cover] base: Warning: Wire arbiter_formal.\dut.u_write_arbiter.w_state is used but has no driver.
+SBY  2:46:33 [formal/arbiter_bmc] base: Warning: Wire arbiter_formal.\dut.u_read_arbiter.arb_tx_done is used but has no driver.
+SBY  2:46:33 [formal/arbiter_bmc] base: Warning: Wire arbiter_formal.\dut.u_write_arbiter.arb_tx_done is used but has no driver.
+SBY  2:46:33 [formal/arbiter_bmc] base: Warning: Wire arbiter_formal.\dut.u_read_arbiter.owner_id_r is used but has no driver.
+SBY  2:46:33 [formal/arbiter_bmc] base: Warning: Wire arbiter_formal.\dut.u_write_arbiter.owner_id_r is used but has no driver.
+SBY  2:46:33 [formal/arbiter_bmc] base: Warning: Wire arbiter_formal.\dut.u_read_arbiter.r_state is used but has no driver.
+SBY  2:46:33 [formal/arbiter_bmc] base: Warning: Wire arbiter_formal.\dut.u_write_arbiter.w_state is used but has no driver.
+SBY  2:46:33 [formal/arbiter_bmc] base: finished (returncode=0)
+SBY  2:46:33 [formal/arbiter_cover] base: finished (returncode=0)
+SBY  2:46:33 [formal/arbiter_bmc] prep: starting process "cd formal/arbiter_bmc/model; yosys -ql design_prep.log design_prep.ys"
+SBY  2:46:33 [formal/arbiter_cover] prep: starting process "cd formal/arbiter_cover/model; yosys -ql design_prep.log design_prep.ys"
+SBY  2:46:33 [formal/arbiter_bmc] prep: Warning: Wire arbiter_formal.\dut.u_write_arbiter.w_state is used but has no driver.
+SBY  2:46:33 [formal/arbiter_bmc] prep: Warning: Wire arbiter_formal.\dut.u_read_arbiter.r_state is used but has no driver.
+SBY  2:46:33 [formal/arbiter_bmc] prep: Warning: Wire arbiter_formal.\dut.u_write_arbiter.owner_id_r is used but has no driver.
+SBY  2:46:33 [formal/arbiter_bmc] prep: Warning: Wire arbiter_formal.\dut.u_read_arbiter.owner_id_r is used but has no driver.
+SBY  2:46:33 [formal/arbiter_cover] prep: Warning: Wire arbiter_formal.\dut.u_read_arbiter.owner_id_r is used but has no driver.
+SBY  2:46:33 [formal/arbiter_cover] prep: Warning: Wire arbiter_formal.\dut.u_write_arbiter.owner_id_r is used but has no driver.
+SBY  2:46:33 [formal/arbiter_cover] prep: Warning: Wire arbiter_formal.\dut.u_read_arbiter.r_state is used but has no driver.
+SBY  2:46:33 [formal/arbiter_cover] prep: Warning: Wire arbiter_formal.\dut.u_write_arbiter.w_state is used but has no driver.
+SBY  2:46:33 [formal/arbiter_cover] prep: Warning: Wire arbiter_formal.\dut.u_write_arbiter.arb_tx_done is used but has no driver.
+SBY  2:46:33 [formal/arbiter_cover] prep: Warning: Wire arbiter_formal.\dut.u_read_arbiter.arb_tx_done is used but has no driver.
+SBY  2:46:33 [formal/arbiter_cover] prep: finished (returncode=0)
+SBY  2:46:33 [formal/arbiter_cover] smt2: starting process "cd formal/arbiter_cover/model; yosys -ql design_smt2.log design_smt2.ys"
+SBY  2:46:33 [formal/arbiter_bmc] prep: finished (returncode=0)
+SBY  2:46:33 [formal/arbiter_bmc] smt2: starting process "cd formal/arbiter_bmc/model; yosys -ql design_smt2.log design_smt2.ys"
+SBY  2:46:33 [formal/arbiter_cover] smt2: finished (returncode=0)
+SBY  2:46:33 [formal/arbiter_cover] engine_0: starting process "cd formal/arbiter_cover; yosys-smtbmc -s z3 --presat -c --noprogress -t 40  --append 0 --dump-vcd engine_0/trace%.vcd --dump-yw engine_0/trace%.yw --dump-vlogtb engine_0/trace%_tb.v --dump-smtc engine_0/trace%.smtc model/design_smt2.smt2"
+SBY  2:46:33 [formal/arbiter_bmc] smt2: finished (returncode=0)
+SBY  2:46:33 [formal/arbiter_bmc] engine_0: starting process "cd formal/arbiter_bmc; yosys-smtbmc -s z3 --presat --noprogress -t 40  --append 0 --dump-vcd engine_0/trace.vcd --dump-yw engine_0/trace.yw --dump-vlogtb engine_0/trace_tb.v --dump-smtc engine_0/trace.smtc model/design_smt2.smt2"
+SBY  2:46:33 [formal/arbiter_cover] engine_0: ##   0:00:00  Solver: z3
+SBY  2:46:33 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 0..
+SBY  2:46:33 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 1..
+SBY  2:46:33 [formal/arbiter_bmc] engine_0: ##   0:00:00  Solver: z3
+SBY  2:46:33 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 2..
+SBY  2:46:33 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 3..
+SBY  2:46:33 [formal/arbiter_cover] engine_0: ##   0:00:00  Reached cover statement in step 3 at arbiter_formal: arbiter_formal.sv:535.13-535.51 (_witness_.check_cover_arbiter_formal_sv_535_323)
+SBY  2:46:33 [formal/arbiter_cover] engine_0: ##   0:00:00  Reached cover statement in step 3 at arbiter_formal: arbiter_formal.sv:528.13-528.52 (_witness_.check_cover_arbiter_formal_sv_528_320)
+SBY  2:46:33 [formal/arbiter_cover] engine_0: ##   0:00:00  Reached cover statement in step 3 at arbiter_formal: arbiter_formal.sv:516.13-517.56 (_witness_.check_cover_arbiter_formal_sv_516_314)
+SBY  2:46:33 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace0.vcd
+SBY  2:46:33 [formal/arbiter_bmc] engine_0: ##   0:00:00  Checking assumptions in step 0..
+SBY  2:46:33 [formal/arbiter_bmc] engine_0: ##   0:00:00  Checking assertions in step 0..
+SBY  2:46:33 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace0_tb.v
+SBY  2:46:33 [formal/arbiter_bmc] engine_0: ##   0:00:00  Checking assumptions in step 1..
+SBY  2:46:33 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace0.smtc
+SBY  2:46:33 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace0.yw
+SBY  2:46:33 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 3..
+SBY  2:46:33 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 4..
+SBY  2:46:33 [formal/arbiter_bmc] engine_0: ##   0:00:00  Checking assertions in step 1..
+SBY  2:46:33 [formal/arbiter_bmc] engine_0: ##   0:00:00  Checking assumptions in step 2..
+SBY  2:46:33 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 5..
+SBY  2:46:33 [formal/arbiter_bmc] engine_0: ##   0:00:00  Checking assertions in step 2..
+SBY  2:46:33 [formal/arbiter_bmc] engine_0: ##   0:00:00  Checking assumptions in step 3..
+SBY  2:46:34 [formal/arbiter_bmc] engine_0: ##   0:00:00  Checking assertions in step 3..
+SBY  2:46:34 [formal/arbiter_bmc] engine_0: ##   0:00:00  BMC failed!
+SBY  2:46:34 [formal/arbiter_bmc] engine_0: ##   0:00:00  Assert failed in arbiter_formal: arbiter_formal.sv:264.17-264.97 (_witness_.check_assert_arbiter_formal_sv_264_230)
+SBY  2:46:34 [formal/arbiter_bmc] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace.vcd
+SBY  2:46:34 [formal/arbiter_bmc] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace_tb.v
+SBY  2:46:34 [formal/arbiter_bmc] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace.smtc
+SBY  2:46:34 [formal/arbiter_bmc] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace.yw
+SBY  2:46:34 [formal/arbiter_cover] engine_0: ##   0:00:00  Reached cover statement in step 5 at arbiter_formal: arbiter_formal.sv:543.13-543.89 (_witness_.check_cover_arbiter_formal_sv_543_332)
+SBY  2:46:34 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace1.vcd
+SBY  2:46:34 [formal/arbiter_bmc] engine_0: ##   0:00:00  Status: failed
+SBY  2:46:34 [formal/arbiter_bmc] engine_0: finished (returncode=1)
+SBY  2:46:34 [formal/arbiter_bmc] engine_0: Status returned by engine: FAIL
+SBY  2:46:34 [formal/arbiter_bmc] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY  2:46:34 [formal/arbiter_bmc] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY  2:46:34 [formal/arbiter_bmc] summary: engine_0 (smtbmc z3) returned FAIL
+SBY  2:46:34 [formal/arbiter_bmc] summary: counterexample trace: formal/arbiter_bmc/engine_0/trace.vcd
+SBY  2:46:34 [formal/arbiter_bmc] summary:   failed assertion arbiter_formal._witness_.check_assert_arbiter_formal_sv_264_230 at arbiter_formal.sv:264.17-264.97 step 3
+SBY  2:46:34 [formal/arbiter_bmc] DONE (FAIL, rc=2)
+SBY  2:46:34 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace1_tb.v
+SBY  2:46:34 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace1.smtc
+SBY  2:46:34 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace1.yw
+SBY  2:46:34 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 5..
+SBY  2:46:34 [formal/arbiter_cover] engine_0: ##   0:00:00  Reached cover statement in step 5 at arbiter_formal: arbiter_formal.sv:344.13-344.68 (_witness_.check_cover_arbiter_formal_sv_344_274)
+SBY  2:46:34 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace2.vcd
+SBY  2:46:34 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace2_tb.v
+SBY  2:46:34 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace2.smtc
+SBY  2:46:34 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace2.yw
+SBY  2:46:34 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 5..
+SBY  2:46:34 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 6..
+SBY  2:46:34 [formal/arbiter_cover] engine_0: ##   0:00:00  Checking cover reachability in step 7..
+SBY  2:46:34 [formal/arbiter_cover] engine_0: ##   0:00:00  Reached cover statement in step 7 at arbiter_formal: arbiter_formal.sv:542.13-542.90 (_witness_.check_cover_arbiter_formal_sv_542_326)
+SBY  2:46:34 [formal/arbiter_cover] engine_0: ##   0:00:00  Reached cover statement in step 7 at arbiter_formal: arbiter_formal.sv:357.13-357.51 (_witness_.check_cover_arbiter_formal_sv_357_293)
+SBY  2:46:34 [formal/arbiter_cover] engine_0: ##   0:00:00  Reached cover statement in step 7 at arbiter_formal: arbiter_formal.sv:350.13-351.90 (_witness_.check_cover_arbiter_formal_sv_350_281)
+SBY  2:46:34 [formal/arbiter_cover] engine_0: ##   0:00:00  Reached cover statement in step 7 at arbiter_formal: arbiter_formal.sv:338.13-338.68 (_witness_.check_cover_arbiter_formal_sv_338_267)
+SBY  2:46:34 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to VCD file: engine_0/trace3.vcd
+SBY  2:46:34 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace3_tb.v
+SBY  2:46:34 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to constraints file: engine_0/trace3.smtc
+SBY  2:46:34 [formal/arbiter_cover] engine_0: ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace3.yw
+SBY  2:46:34 [formal/arbiter_cover] engine_0: ##   0:00:00  Status: passed
+SBY  2:46:34 [formal/arbiter_cover] engine_0: finished (returncode=0)
+SBY  2:46:34 [formal/arbiter_cover] engine_0: Status returned by engine: pass
+SBY  2:46:34 [formal/arbiter_cover] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY  2:46:34 [formal/arbiter_cover] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:01 (1)
+SBY  2:46:34 [formal/arbiter_cover] summary: engine_0 (smtbmc z3) returned pass
+SBY  2:46:34 [formal/arbiter_cover] summary: cover trace: formal/arbiter_cover/engine_0/trace0.vcd
+SBY  2:46:34 [formal/arbiter_cover] summary:   reached cover statement arbiter_formal._witness_.check_cover_arbiter_formal_sv_516_314 at arbiter_formal.sv:516.13-517.56 step 3
+SBY  2:46:34 [formal/arbiter_cover] summary:   reached cover statement arbiter_formal._witness_.check_cover_arbiter_formal_sv_528_320 at arbiter_formal.sv:528.13-528.52 step 3
+SBY  2:46:34 [formal/arbiter_cover] summary:   reached cover statement arbiter_formal._witness_.check_cover_arbiter_formal_sv_535_323 at arbiter_formal.sv:535.13-535.51 step 3
+SBY  2:46:34 [formal/arbiter_cover] summary: cover trace: formal/arbiter_cover/engine_0/trace1.vcd
+SBY  2:46:34 [formal/arbiter_cover] summary:   reached cover statement arbiter_formal._witness_.check_cover_arbiter_formal_sv_543_332 at arbiter_formal.sv:543.13-543.89 step 5
+SBY  2:46:34 [formal/arbiter_cover] summary: cover trace: formal/arbiter_cover/engine_0/trace2.vcd
+SBY  2:46:34 [formal/arbiter_cover] summary:   reached cover statement arbiter_formal._witness_.check_cover_arbiter_formal_sv_344_274 at arbiter_formal.sv:344.13-344.68 step 5
+SBY  2:46:34 [formal/arbiter_cover] summary: cover trace: formal/arbiter_cover/engine_0/trace3.vcd
+SBY  2:46:34 [formal/arbiter_cover] summary:   reached cover statement arbiter_formal._witness_.check_cover_arbiter_formal_sv_338_267 at arbiter_formal.sv:338.13-338.68 step 7
+SBY  2:46:34 [formal/arbiter_cover] summary:   reached cover statement arbiter_formal._witness_.check_cover_arbiter_formal_sv_350_281 at arbiter_formal.sv:350.13-351.90 step 7
+SBY  2:46:34 [formal/arbiter_cover] summary:   reached cover statement arbiter_formal._witness_.check_cover_arbiter_formal_sv_357_293 at arbiter_formal.sv:357.13-357.51 step 7
+SBY  2:46:34 [formal/arbiter_cover] summary:   reached cover statement arbiter_formal._witness_.check_cover_arbiter_formal_sv_542_326 at arbiter_formal.sv:542.13-542.90 step 7
+SBY  2:46:34 [formal/arbiter_cover] DONE (PASS, rc=0)
+SBY  2:46:34 The following tasks failed: ['bmc']

@@ -1,41 +1,18 @@
 // =============================================================================
-// File       : axi4lite_qos_scheduler.sv
+// File       : wrr_scheduler.sv
 // Project    : VELTRAXX'26 PS02 — Multi-Master AXI4-Lite Arbiter
 // Description: Dynamic QoS Weighted Round-Robin Arbiter with:
 //              - Runtime-configurable 4-bit weights (clamped: 0→1)
 //              - Master 0 preemptive priority (arbitration-boundary only)
 //              - Master 0 consecutive burst limiting (saturating counter)
-//              - Per-master anti-starvation aging (saturating counters)
+//              - Per-master anti-starvation aging via age_counter.sv
 //              - Budget-based WRR with deterministic round boundaries
 //              - Zero dead-cycle back-to-back scheduling
-//
-// Weight Clamping: A weight of 0 is internally treated as 1. Valid range: 1–15.
-//
-// Budget-Based WRR Algorithm:
-//   Each master M1–M3 maintains a budget counter initialized to its weight.
-//   On each grant, the budget decrements by 1. When the budget reaches 0,
-//   it reloads to the weight value and the round-robin pointer advances.
-//   A new round begins when the pointer wraps or all budgets are exhausted.
-//
-// Master 0 Priority ("Preemption"):
-//   Master 0 may win arbitration whenever cfg_master0_priority is asserted
-//   and M0 has a pending request, UNLESS:
-//     (a) The M0 burst counter has reached cfg_master0_burst_limit, OR
-//     (b) Any lower-priority master has aged to cfg_age_threshold.
-//   "Preemption" means priority at the arbitration decision boundary.
-//   M0 can NEVER interrupt an in-flight AXI transaction.
-//
-// Anti-Starvation Aging:
-//   Each master M1–M3 has an 8-bit saturating age counter that increments
-//   every cycle the master has a pending request but is not granted.
-//   When age >= cfg_age_threshold, that master is promoted above normal WRR
-//   and M0 priority. Ties among aged masters are broken by the RR pointer.
-//   The age counter resets to 0 after a grant.
 // =============================================================================
 
 `timescale 1ns / 1ps
 
-module axi4lite_qos_scheduler #(
+module wrr_scheduler #(
     parameter int NUM_MASTERS = 4
 ) (
     input  logic                                aclk,
@@ -105,15 +82,38 @@ module axi4lite_qos_scheduler #(
     // Round-robin pointer (ranges over M1=1, M2=2, M3=3)
     logic [ID_W-1:0] rr_ptr;
 
-    // Per-master aging counters (8-bit, saturating)
-    logic [7:0] age_m1, age_m2, age_m3;
-
     // Master 0 consecutive burst counter (8-bit, saturating)
     logic [7:0] m0_burst_count;
 
     // =========================================================================
-    // 3. Aging Status
+    // 3. Aging Status via age_counter.sv
     // =========================================================================
+    logic [7:0] age_m1, age_m2, age_m3;
+
+    age_counter u_age_m1 (
+        .aclk       (aclk),
+        .aresetn    (aresetn),
+        .req        (m1_req),
+        .is_active  (is_active && current_master == ID_W'(1)),
+        .age        (age_m1)
+    );
+
+    age_counter u_age_m2 (
+        .aclk       (aclk),
+        .aresetn    (aresetn),
+        .req        (m2_req),
+        .is_active  (is_active && current_master == ID_W'(2)),
+        .age        (age_m2)
+    );
+
+    age_counter u_age_m3 (
+        .aclk       (aclk),
+        .aresetn    (aresetn),
+        .req        (m3_req),
+        .is_active  (is_active && current_master == ID_W'(3)),
+        .age        (age_m3)
+    );
+
     logic m1_aged, m2_aged, m3_aged;
     logic any_aged;
 
@@ -135,8 +135,6 @@ module axi4lite_qos_scheduler #(
     // =========================================================================
     // 5. Effective State for Next Decision (Combinational)
     // =========================================================================
-    // When the current transaction completes, update budgets and RR pointer
-    // for the next decision cycle.
     logic [3:0]       eff_b1, eff_b2, eff_b3;
     logic [ID_W-1:0]  eff_rr_ptr;
 
@@ -146,7 +144,7 @@ module axi4lite_qos_scheduler #(
         eff_b3     = budget_3;
         eff_rr_ptr = rr_ptr;
 
-        if (is_active && transaction_complete) begin
+        if (is_active && has_lower_req) begin
             case (current_master)
                 ID_W'(1): begin
                     if (budget_1 > 4'd1) begin
@@ -160,7 +158,9 @@ module axi4lite_qos_scheduler #(
                     if (budget_2 > 4'd1) begin
                         eff_b2 = budget_2 - 4'd1;
                     end else begin
+                        eff_b1     = w1;
                         eff_b2     = w2;
+                        eff_b3     = w3;
                         eff_rr_ptr = ID_W'(3);
                     end
                 end
@@ -187,8 +187,7 @@ module axi4lite_qos_scheduler #(
         next_cand  = '0;
         cand_valid = 1'b0;
 
-        // --- Priority 1: Anti-starvation override ---
-        // Aged masters get highest priority. Tie-break by RR pointer.
+        // Priority 1: Anti-starvation override
         if (any_aged) begin
             case (eff_rr_ptr)
                 ID_W'(1): begin
@@ -213,16 +212,13 @@ module axi4lite_qos_scheduler #(
                 end
             endcase
         end
-
-        // --- Priority 2: Master 0 preemptive priority ---
+        // Priority 2: Master 0 preemptive priority
         else if (m0_req && cfg_master0_priority && !m0_burst_exhausted) begin
             next_cand  = '0;
             cand_valid = 1'b1;
         end
-
-        // --- Priority 3: WRR among M1–M3 ---
+        // Priority 3: WRR among M1–M3
         else if (has_lower_req) begin
-            // Try budget-based WRR first
             case (eff_rr_ptr)
                 ID_W'(1): begin
                     if (m1_req && (eff_b1 > 4'd0)) begin next_cand = ID_W'(1); cand_valid = 1'b1; end
@@ -246,7 +242,6 @@ module axi4lite_qos_scheduler #(
                 end
             endcase
 
-            // Fallback: all budgets exhausted — reload and try simple RR
             if (!cand_valid) begin
                 case (eff_rr_ptr)
                     ID_W'(1): begin
@@ -272,8 +267,7 @@ module axi4lite_qos_scheduler #(
                 endcase
             end
         end
-
-        // --- Priority 4: M0 without priority flag or after burst exhaustion ---
+        // Priority 4: M0 without priority flag or after burst exhaustion
         else if (m0_req) begin
             next_cand  = '0;
             cand_valid = 1'b1;
@@ -285,22 +279,17 @@ module axi4lite_qos_scheduler #(
     // =========================================================================
     logic f_first_cycle;
 
-    always_ff @(posedge aclk or negedge aresetn) begin
+    always_ff @(posedge aclk) begin
         if (!aresetn) begin
             current_master   <= '0;
             is_active        <= 1'b0;
             rr_ptr           <= ID_W'(1);
-            budget_1         <= 4'd1;  // Safe constant; reloaded on first active cycle
+            budget_1         <= 4'd1;  
             budget_2         <= 4'd1;
             budget_3         <= 4'd1;
-            age_m1           <= 8'd0;
-            age_m2           <= 8'd0;
-            age_m3           <= 8'd0;
             m0_burst_count   <= 8'd0;
             f_first_cycle    <= 1'b1;
         end else begin
-
-            // B5 fix: reload budgets from clamped weights on first cycle after reset
             if (f_first_cycle) begin
                 budget_1      <= w1;
                 budget_2      <= w2;
@@ -308,62 +297,25 @@ module axi4lite_qos_scheduler #(
                 f_first_cycle <= 1'b0;
             end
 
-            // -----------------------------------------------------------------
-            // Aging Timer Logic: increment for waiting, unrequested masters
-            // Saturate at 8'hFF to avoid wrap-around.
-            // -----------------------------------------------------------------
-            if (m1_req && !(is_active && current_master == ID_W'(1)))
-                age_m1 <= (age_m1 < 8'hFF) ? age_m1 + 8'd1 : 8'hFF;
-            else if (!m1_req)
-                age_m1 <= 8'd0;
-
-            if (m2_req && !(is_active && current_master == ID_W'(2)))
-                age_m2 <= (age_m2 < 8'hFF) ? age_m2 + 8'd1 : 8'hFF;
-            else if (!m2_req)
-                age_m2 <= 8'd0;
-
-            if (m3_req && !(is_active && current_master == ID_W'(3)))
-                age_m3 <= (age_m3 < 8'hFF) ? age_m3 + 8'd1 : 8'hFF;
-            else if (!m3_req)
-                age_m3 <= 8'd0;
-
-            // -----------------------------------------------------------------
-            // State Transitions
-            // -----------------------------------------------------------------
             if (is_active) begin
                 if (transaction_complete) begin
-                    // Update WRR state
                     budget_1 <= eff_b1;
                     budget_2 <= eff_b2;
                     budget_3 <= eff_b3;
                     rr_ptr   <= eff_rr_ptr;
 
-                    // Reset age for the completing master
-                    case (current_master)
-                        ID_W'(1): age_m1 <= 8'd0;
-                        ID_W'(2): age_m2 <= 8'd0;
-                        ID_W'(3): age_m3 <= 8'd0;
-                        default: ;
-                    endcase
-
-                    // Update M0 burst counter
                     if (current_master == '0) begin
-                        // M0 just finished; check if next is also M0
                         if (cand_valid && next_cand == '0) begin
                             m0_burst_count <= (m0_burst_count < 8'hFF) ?
                                               m0_burst_count + 8'd1 : 8'hFF;
                         end
-                        // If next is not M0, counter will be reset below
                     end else begin
-                        // Non-M0 just finished; reset M0 burst counter
                         m0_burst_count <= 8'd0;
                     end
 
-                    // Transition to next candidate if available
                     if (cand_valid) begin
                         current_master <= next_cand;
                         is_active      <= 1'b1;
-                        // If transitioning to non-M0 from M0, reset burst count
                         if (current_master == '0 && next_cand != '0)
                             m0_burst_count <= 8'd0;
                     end else begin
@@ -371,11 +323,9 @@ module axi4lite_qos_scheduler #(
                     end
                 end
             end else begin
-                // IDLE → grant first candidate
                 if (cand_valid) begin
                     current_master <= next_cand;
                     is_active      <= 1'b1;
-                    // Start M0 burst count if M0 is first
                     if (next_cand == '0)
                         m0_burst_count <= 8'd1;
                     else
@@ -413,24 +363,22 @@ module axi4lite_qos_scheduler #(
         $onehot0(grant);
     endproperty
     assert property (p_grant_onehot0)
-        else $error("[axi4lite_qos_scheduler] Multiple masters granted simultaneously!");
+        ;
 
     property p_active_implies_grant;
         @(posedge aclk) disable iff (!aresetn)
         is_active |-> grant_valid;
     endproperty
     assert property (p_active_implies_grant)
-        else $error("[axi4lite_qos_scheduler] Active without grant_valid!");
+        ;
 
     property p_owner_stable_when_active;
         @(posedge aclk) disable iff (!aresetn)
         (is_active && !transaction_complete) |=> (current_master == $past(current_master));
     endproperty
     assert property (p_owner_stable_when_active)
-        else $error("[axi4lite_qos_scheduler] Owner changed while active without tx_complete!");
+        ;
 
-    // Grant-implies-request: when combinational grant fires for a candidate,
-    // that candidate must have a pending request.
     genvar gi;
     generate
         for (gi = 0; gi < NUM_MASTERS; gi++) begin : gen_grant_req_check
@@ -439,19 +387,16 @@ module axi4lite_qos_scheduler #(
                 grant[gi] |-> req[gi];
             endproperty
             assert property (p_grant_implies_req)
-                else $error("[axi4lite_qos_scheduler] Grant[%0d] without request!", gi);
+                ;
         end
     endgenerate
 
-    // No stale grant: after transaction_complete, if the previously active
-    // master has dropped its request and no new candidate is valid, grant_valid
-    // must deassert within 1 cycle.
     property p_no_stale_grant;
         @(posedge aclk) disable iff (!aresetn)
         (is_active && transaction_complete && !cand_valid) |=> !grant_valid;
     endproperty
     assert property (p_no_stale_grant)
-        else $error("[axi4lite_qos_scheduler] Stale grant persists after tx_complete with no candidate!");
+        ;
 `endif
 
 endmodule

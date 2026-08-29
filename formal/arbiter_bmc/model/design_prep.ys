@@ -1,4 +1,4 @@
-# running in /mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/model/
+# running in formal/arbiter_bmc/model/
 read_rtlil design.il
 scc -select; simplemap; select -clear
 memory_nordff

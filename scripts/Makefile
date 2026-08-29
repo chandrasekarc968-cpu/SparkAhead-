@@ -6,7 +6,7 @@
 # ==============================================================================
 
 SHELL      := /bin/bash
-PROJ_ROOT  := $(shell cd .. && pwd)
+PROJ_ROOT  := $(abspath $(dir $(lastword $(MAKEFILE_LIST)))/..)
 RTL_DIR    := $(PROJ_ROOT)/src/rtl
 TB_DIR     := $(PROJ_ROOT)/tb/sim
 FORMAL_DIR := $(PROJ_ROOT)/formal
@@ -15,11 +15,15 @@ LOG_DIR    := $(PROJ_ROOT)/logs
 
 # RTL files (order matters: leaf modules first)
 RTL_FILES  := "$(RTL_DIR)/axi4lite_pkg.sv" \
-              "$(RTL_DIR)/axi4lite_address_decoder.sv" \
-              "$(RTL_DIR)/axi4lite_qos_scheduler.sv" \
-              "$(RTL_DIR)/axi4lite_response_router.sv" \
-              "$(RTL_DIR)/axi4lite_write_arbiter.sv" \
-              "$(RTL_DIR)/axi4lite_read_arbiter.sv" \
+              "$(RTL_DIR)/age_counter.sv" \
+              "$(RTL_DIR)/write_mux.sv" \
+              "$(RTL_DIR)/read_mux.sv" \
+              "$(RTL_DIR)/default_slave.sv" \
+              "$(RTL_DIR)/addr_decoder.sv" \
+              "$(RTL_DIR)/wrr_scheduler.sv" \
+              "$(RTL_DIR)/resp_demux.sv" \
+              "$(RTL_DIR)/write_arbiter.sv" \
+              "$(RTL_DIR)/read_arbiter.sv" \
               "$(RTL_DIR)/axi4lite_arbiter_top.sv"
 
 # Default simulation top
@@ -36,11 +40,15 @@ lint:
 	@if command -v verilator &>/dev/null; then \
 		cd "$(PROJ_ROOT)" && verilator --lint-only -Wall --timing \
 			src/rtl/axi4lite_pkg.sv \
-			src/rtl/axi4lite_address_decoder.sv \
-			src/rtl/axi4lite_qos_scheduler.sv \
-			src/rtl/axi4lite_response_router.sv \
-			src/rtl/axi4lite_write_arbiter.sv \
-			src/rtl/axi4lite_read_arbiter.sv \
+			src/rtl/age_counter.sv \
+			src/rtl/write_mux.sv \
+			src/rtl/read_mux.sv \
+			src/rtl/default_slave.sv \
+			src/rtl/addr_decoder.sv \
+			src/rtl/wrr_scheduler.sv \
+			src/rtl/resp_demux.sv \
+			src/rtl/write_arbiter.sv \
+			src/rtl/read_arbiter.sv \
 			src/rtl/axi4lite_arbiter_top.sv \
 			2>&1 | tee "$(LOG_DIR)/lint.log"; \
 	elif command -v iverilog &>/dev/null; then \
@@ -61,11 +69,15 @@ sim:
 	@if command -v iverilog &>/dev/null; then \
 		cd "$(PROJ_ROOT)" && iverilog -g2012 -Wall -o outputs/$(SIM_TOP).vvp \
 			src/rtl/axi4lite_pkg.sv \
-			src/rtl/axi4lite_address_decoder.sv \
-			src/rtl/axi4lite_qos_scheduler.sv \
-			src/rtl/axi4lite_response_router.sv \
-			src/rtl/axi4lite_write_arbiter.sv \
-			src/rtl/axi4lite_read_arbiter.sv \
+			src/rtl/age_counter.sv \
+			src/rtl/write_mux.sv \
+			src/rtl/read_mux.sv \
+			src/rtl/default_slave.sv \
+			src/rtl/addr_decoder.sv \
+			src/rtl/wrr_scheduler.sv \
+			src/rtl/resp_demux.sv \
+			src/rtl/write_arbiter.sv \
+			src/rtl/read_arbiter.sv \
 			src/rtl/axi4lite_arbiter_top.sv \
 			tb/sim/$(SIM_TOP).sv \
 			2>&1 | tee "$(LOG_DIR)/sim_compile.log"; \
@@ -85,11 +97,15 @@ sim-stress:
 	@if command -v iverilog &>/dev/null; then \
 		cd "$(PROJ_ROOT)" && iverilog -g2012 -Wall -o outputs/tb_axi4lite_stress.vvp \
 			src/rtl/axi4lite_pkg.sv \
-			src/rtl/axi4lite_address_decoder.sv \
-			src/rtl/axi4lite_qos_scheduler.sv \
-			src/rtl/axi4lite_response_router.sv \
-			src/rtl/axi4lite_write_arbiter.sv \
-			src/rtl/axi4lite_read_arbiter.sv \
+			src/rtl/age_counter.sv \
+			src/rtl/write_mux.sv \
+			src/rtl/read_mux.sv \
+			src/rtl/default_slave.sv \
+			src/rtl/addr_decoder.sv \
+			src/rtl/wrr_scheduler.sv \
+			src/rtl/resp_demux.sv \
+			src/rtl/write_arbiter.sv \
+			src/rtl/read_arbiter.sv \
 			src/rtl/axi4lite_arbiter_top.sv \
 			tb/sim/tb_axi4lite_stress.sv \
 			2>&1 | tee "$(LOG_DIR)/stress_compile.log"; \

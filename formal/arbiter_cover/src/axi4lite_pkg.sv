@@ -41,13 +41,19 @@ package axi4lite_pkg;
 
     // -------------------------------------------------------------------------
     // Default QoS Configuration
+    // Spec: WRR_WEIGHTS = {4,2,1,1} for M0,M1,M2,M3
     // -------------------------------------------------------------------------
-    localparam logic [3:0] DEFAULT_WEIGHT_M0       = 4'd1;
-    localparam logic [3:0] DEFAULT_WEIGHT_M1       = 4'd3;
-    localparam logic [3:0] DEFAULT_WEIGHT_M2       = 4'd2;
+    localparam logic [3:0] DEFAULT_WEIGHT_M0       = 4'd4;
+    localparam logic [3:0] DEFAULT_WEIGHT_M1       = 4'd2;
+    localparam logic [3:0] DEFAULT_WEIGHT_M2       = 4'd1;
     localparam logic [3:0] DEFAULT_WEIGHT_M3       = 4'd1;
     localparam logic [7:0] DEFAULT_AGE_THRESHOLD   = 8'd64;
     localparam logic [7:0] DEFAULT_M0_BURST_LIMIT  = 8'd16;
+
+    // -------------------------------------------------------------------------
+    // Preemption Enable (PREEMPT_EN = 1)
+    // -------------------------------------------------------------------------
+    localparam int         DEFAULT_PREEMPT_EN      = 1;
 
     // -------------------------------------------------------------------------
     // Weight Clamping

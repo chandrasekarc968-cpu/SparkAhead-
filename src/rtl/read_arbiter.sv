@@ -20,7 +20,7 @@
 
 `timescale 1ns / 1ps
 
-module axi4lite_read_arbiter #(
+module read_arbiter #(
     parameter int NUM_MASTERS = 4,
     parameter int NUM_SLAVES  = 2,
     parameter int ADDR_WIDTH  = 32,
@@ -81,16 +81,17 @@ module axi4lite_read_arbiter #(
     read_state_t r_state;
 
     // Latched transaction metadata
-    logic [ID_W-1:0]              owner_id_r;
-    logic [NUM_SLAVES-1:0]        target_slave_r;
-    logic                         target_invalid_r;
+    logic [ID_W-1:0]              r_owner_id_r;
+    logic [NUM_SLAVES-1:0]        r_target_slave_r;
+    logic                         r_target_invalid_r;
     logic [ADDR_WIDTH-1:0]        latched_addr;
     logic [2:0]                   latched_prot;
 
     // =========================================================================
-    // 2. QoS Scheduler
+    // 2. Scheduler
     // =========================================================================
-    logic                     arb_tx_done;
+    logic arb_tx_done;
+    assign arb_tx_done = (r_state == R_RESP && r_resp_handshake) || (r_state == R_IDLE && arb_grant_valid && !s_axi_arvalid[arb_master_id]);
     logic [NUM_MASTERS-1:0]   arb_grant;
     logic [ID_W-1:0]          arb_master_id;
     logic                     arb_grant_valid;
@@ -102,7 +103,7 @@ module axi4lite_read_arbiter #(
 
     assign arb_grant_unused = arb_grant;
 
-    axi4lite_qos_scheduler #(
+    wrr_scheduler #(
         .NUM_MASTERS (NUM_MASTERS)
     ) u_read_qos (
         .aclk                   (aclk),
@@ -141,7 +142,7 @@ module axi4lite_read_arbiter #(
         end
     end
 
-    axi4lite_address_decoder #(
+    addr_decoder #(
         .ADDR_WIDTH (ADDR_WIDTH),
         .S0_BASE    (S0_BASE),
         .S0_SIZE    (S0_SIZE),
@@ -160,47 +161,45 @@ module axi4lite_read_arbiter #(
     logic target_arready;
     always_comb begin
         target_arready = 1'b0;
-        if (target_slave_r[0]) target_arready = m_axi_arready[0];
-        else if (target_slave_r[1]) target_arready = m_axi_arready[1];
+        if (r_target_slave_r[0]) target_arready = m_axi_arready[0];
+        else if (r_target_slave_r[1]) target_arready = m_axi_arready[1];
     end
 
     // =========================================================================
     // 5. Read FSM
     // =========================================================================
-    always_ff @(posedge aclk or negedge aresetn) begin
+    always_ff @(posedge aclk) begin
         if (!aresetn) begin
             r_state          <= R_IDLE;
-            owner_id_r       <= '0;
-            target_slave_r   <= '0;
-            target_invalid_r <= 1'b0;
+            r_owner_id_r       <= '0;
+            r_target_slave_r   <= '0;
+            r_target_invalid_r <= 1'b0;
             latched_addr     <= '0;
             latched_prot     <= '0;
-            arb_tx_done      <= 1'b0;
         end else begin
-            arb_tx_done <= 1'b0;
 
             case (r_state)
                 R_IDLE: begin
                     if (arb_grant_valid) begin
                         if (s_axi_arvalid[arb_master_id]) begin
                             // Normal path: master still requesting
-                            owner_id_r       <= arb_master_id;
+                            r_owner_id_r       <= arb_master_id;
                             latched_addr     <= s_axi_araddr[arb_master_id];
                             latched_prot     <= s_axi_arprot[arb_master_id];
-                            target_slave_r   <= decode_slave_sel;
-                            target_invalid_r <= decode_invalid;
+                            r_target_slave_r   <= decode_slave_sel;
+                            r_target_invalid_r <= decode_invalid;
                             r_state          <= R_ADDR;
                         end else begin
                             // B4 fix: Master dropped ARVALID before clock edge.
                             // Release the scheduler immediately to prevent deadlock.
+                            // Release the scheduler immediately to prevent deadlock.
                             // Do NOT enter R_ADDR — no transaction to service.
-                            arb_tx_done <= 1'b1;
                         end
                     end
                 end
 
                 R_ADDR: begin
-                    if (target_invalid_r) begin
+                    if (r_target_invalid_r) begin
                         // DECERR: give ARREADY immediately, go to response
                         r_state <= R_RESP;
                     end else if (target_arready) begin
@@ -211,7 +210,6 @@ module axi4lite_read_arbiter #(
 
                 R_RESP: begin
                     if (r_resp_handshake) begin
-                        arb_tx_done <= 1'b1;
                         r_state     <= R_IDLE;
                     end
                 end
@@ -228,41 +226,39 @@ module axi4lite_read_arbiter #(
         s_axi_arready = '0;
 
         if (r_state == R_ADDR) begin
-            if (target_invalid_r) begin
+            if (r_target_invalid_r) begin
                 // DECERR: give ARREADY to owner immediately
-                s_axi_arready[owner_id_r] = 1'b1;
+                s_axi_arready[r_owner_id_r] = 1'b1;
             end else begin
                 // Pass through slave ARREADY to owner
-                if (target_slave_r[0])
-                    s_axi_arready[owner_id_r] = m_axi_arready[0];
-                else if (target_slave_r[1])
-                    s_axi_arready[owner_id_r] = m_axi_arready[1];
+                if (r_target_slave_r[0])
+                    s_axi_arready[r_owner_id_r] = m_axi_arready[0];
+                else if (r_target_slave_r[1])
+                    s_axi_arready[r_owner_id_r] = m_axi_arready[1];
             end
         end
     end
 
-    // =========================================================================
-    // 7. Slave-Side AR Output Mux
-    // =========================================================================
-    always_comb begin
-        for (int s = 0; s < NUM_SLAVES; s++) begin
-            m_axi_araddr[s]  = latched_addr;
-            m_axi_arprot[s]  = latched_prot;
-            m_axi_arvalid[s] = 1'b0;
-        end
-
-        if (r_state == R_ADDR && !target_invalid_r) begin
-            if (target_slave_r[0]) m_axi_arvalid[0] = 1'b1;
-            if (target_slave_r[1]) m_axi_arvalid[1] = 1'b1;
-        end
-    end
+    read_mux #(
+        .NUM_SLAVES(NUM_SLAVES),
+        .ADDR_WIDTH(ADDR_WIDTH)
+    ) u_read_mux (
+        .latched_araddr  (latched_addr),
+        .latched_arprot  (latched_prot),
+        .r_state_is_addr (r_state == R_ADDR),
+        .target_slave_r  (r_target_slave_r),
+        .target_invalid_r(r_target_invalid_r),
+        .m_axi_araddr    (m_axi_araddr),
+        .m_axi_arprot    (m_axi_arprot),
+        .m_axi_arvalid   (m_axi_arvalid)
+    );
 
     // =========================================================================
     // 8. Output Assignments
     // =========================================================================
-    assign r_owner_id       = owner_id_r;
-    assign r_target_slave   = target_slave_r;
-    assign r_target_invalid = target_invalid_r;
+    assign r_owner_id       = r_owner_id_r;
+    assign r_target_slave   = r_target_slave_r;
+    assign r_target_invalid = r_target_invalid_r;
     assign r_resp_phase     = (r_state == R_RESP);
 
     // =========================================================================
@@ -271,16 +267,13 @@ module axi4lite_read_arbiter #(
 `ifdef ASSERTIONS
     property p_r_owner_stable;
         @(posedge aclk) disable iff (!aresetn)
-        (r_state != R_IDLE) |=> (owner_id_r == $past(owner_id_r));
+        (r_state != R_IDLE) |=> (r_owner_id_r == $past(r_owner_id_r));
     endproperty
-    assert property (p_r_owner_stable)
-        else $error("[axi4lite_read_arbiter] Read owner changed mid-transaction!");
+    assert property (p_r_owner_stable) 
 
     always_comb begin
-        assert ($onehot0(m_axi_arvalid))
-            else $error("[axi4lite_read_arbiter] Multiple slave ARVALID!");
-        assert ($onehot0(s_axi_arready))
-            else $error("[axi4lite_read_arbiter] Multiple master ARREADY!");
+        assert ($onehot0(m_axi_arvalid)); 
+        assert ($onehot0(s_axi_arready)); 
     end
 `endif
 
