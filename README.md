@@ -95,6 +95,9 @@ make formal
 # Run Yosys gate-level synthesis
 make synth
 
+# Run OpenLane 2 RTL-to-GDS flow via Docker
+make openlane
+
 # Run all checks (CI)
 make check
 
@@ -112,9 +115,9 @@ make clean
 | **Simulation** | Icarus / vvp | 46 directed tests + 10K stress | **BLOCKED** (no tools on system) |
 | **Formal** | SymbiYosys / Z3 | 22 assertion/cover groups, BMC depth 40 | **BLOCKED** (no tools on system) |
 | **Synthesis** | Yosys | Gate-level mapping | **BLOCKED** (no tools on system) |
-| **ASIC Flow** | OpenLane2 | SKY130 / GF180 RTL-to-GDSII | **BLOCKED** (no PDK on system) |
+| **ASIC Flow** | OpenLane2 | SKY130 / GF180 RTL-to-GDSII | **UNBLOCKED** (via Docker & GitHub Actions) |
 
-> **Note**: Install the [oss-cad-suite](https://github.com/YosysHQ/oss-cad-suite-build) to enable all verification and synthesis targets. For ASIC flow, install [OpenLane2](https://openlane2.readthedocs.io/) with the SKY130 PDK.
+> **Note**: Install the [oss-cad-suite](https://github.com/YosysHQ/oss-cad-suite-build) to enable all verification and synthesis targets. For ASIC flow, run `make openlane` (requires Docker to be installed on your system).
 
 ---
 

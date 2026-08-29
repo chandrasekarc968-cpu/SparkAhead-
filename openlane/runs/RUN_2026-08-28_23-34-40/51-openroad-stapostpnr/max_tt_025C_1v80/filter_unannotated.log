@@ -1,0 +1,21 @@
+[WARNING ORD-0039] .openroad ignored with -python
+Unannotated report:
+['report_parasitic_annotation -report_unannotated\n',
+ '============================================================================\n',
+ 'Found 5 unannotated drivers.\n',
+ ' cfg_weight_m0[0]\n',
+ ' cfg_weight_m0[1]\n',
+ ' cfg_weight_m0[2]\n',
+ ' cfg_weight_m0[3]\n',
+ ' _6669__951/HI\n',
+ 'Found 0 partially unannotated drivers.\n',
+ '\n']
+Reported nets:
+['cfg_weight_m0[0]',
+ 'cfg_weight_m0[1]',
+ 'cfg_weight_m0[2]',
+ 'cfg_weight_m0[3]',
+ '_6669__951/HI']
+Filtered nets:
+[]
+done

@@ -1,19 +1,19 @@
-SBY 18:16:47 [formal/arbiter_bmc] Removing directory '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc'.
-SBY 18:16:47 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_pkg.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/axi4lite_pkg.sv'.
-SBY 18:16:47 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_address_decoder.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/axi4lite_address_decoder.sv'.
-SBY 18:16:47 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_qos_scheduler.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/axi4lite_qos_scheduler.sv'.
-SBY 18:16:47 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_response_router.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/axi4lite_response_router.sv'.
-SBY 18:16:47 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_write_arbiter.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/axi4lite_write_arbiter.sv'.
-SBY 18:16:47 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_read_arbiter.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/axi4lite_read_arbiter.sv'.
-SBY 18:16:47 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_arbiter_top.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/axi4lite_arbiter_top.sv'.
-SBY 18:16:47 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_formal.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/arbiter_formal.sv'.
-SBY 18:16:47 [formal/arbiter_bmc] engine_0: smtbmc z3
-SBY 18:16:48 [formal/arbiter_bmc] base: starting process "cd formal/arbiter_bmc/src; yosys -ql ../model/design.log ../model/design.ys"
-SBY 18:16:48 [formal/arbiter_bmc] base: axi4lite_pkg.sv:56: ERROR: syntax error, unexpected '?', expecting ';'
-SBY 18:16:48 [formal/arbiter_bmc] base: finished (returncode=1)
-SBY 18:16:48 [formal/arbiter_bmc] base: task failed. ERROR.
-SBY 18:16:48 [formal/arbiter_bmc] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:00 (0)
-SBY 18:16:48 [formal/arbiter_bmc] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
-SBY 18:16:48 [formal/arbiter_bmc] summary: engine_0 (smtbmc z3) did not return a status
-SBY 18:16:48 [formal/arbiter_bmc] summary: engine_0 did not produce any traces
-SBY 18:16:48 [formal/arbiter_bmc] DONE (ERROR, rc=16)
+SBY 18:30:18 [formal/arbiter_bmc] Removing directory '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc'.
+SBY 18:30:18 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_pkg.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/axi4lite_pkg.sv'.
+SBY 18:30:18 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_address_decoder.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/axi4lite_address_decoder.sv'.
+SBY 18:30:18 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_qos_scheduler.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/axi4lite_qos_scheduler.sv'.
+SBY 18:30:18 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_response_router.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/axi4lite_response_router.sv'.
+SBY 18:30:18 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_write_arbiter.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/axi4lite_write_arbiter.sv'.
+SBY 18:30:18 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_read_arbiter.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/axi4lite_read_arbiter.sv'.
+SBY 18:30:18 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/src/rtl/axi4lite_arbiter_top.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/axi4lite_arbiter_top.sv'.
+SBY 18:30:18 [formal/arbiter_bmc] Copy '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_formal.sv' to '/mnt/c/Users/Chand/Documents/New folder/SparkAhead-/SparkAhead-/formal/arbiter_bmc/src/arbiter_formal.sv'.
+SBY 18:30:18 [formal/arbiter_bmc] engine_0: smtbmc z3
+SBY 18:30:18 [formal/arbiter_bmc] base: starting process "cd formal/arbiter_bmc/src; yosys -ql ../model/design.log ../model/design.ys"
+SBY 18:30:18 [formal/arbiter_bmc] base: arbiter_formal.sv:283: ERROR: Failed to resolve identifier \dut.u_write_arbiter.aw_buf_valid for width detection!
+SBY 18:30:18 [formal/arbiter_bmc] base: finished (returncode=1)
+SBY 18:30:18 [formal/arbiter_bmc] base: task failed. ERROR.
+SBY 18:30:18 [formal/arbiter_bmc] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY 18:30:18 [formal/arbiter_bmc] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:00 (0)
+SBY 18:30:18 [formal/arbiter_bmc] summary: engine_0 (smtbmc z3) did not return a status
+SBY 18:30:18 [formal/arbiter_bmc] summary: engine_0 did not produce any traces
+SBY 18:30:18 [formal/arbiter_bmc] DONE (ERROR, rc=16)

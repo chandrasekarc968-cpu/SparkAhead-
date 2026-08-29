@@ -14,7 +14,9 @@ read -formal axi4lite_write_arbiter.sv
 read -formal axi4lite_read_arbiter.sv
 read -formal axi4lite_arbiter_top.sv
 read -formal arbiter_formal.sv
-prep -top arbiter_formal
+hierarchy -top arbiter_formal
+flatten
+prep -flatten -nordff -top arbiter_formal
 
 [files]
 src/rtl/axi4lite_pkg.sv

@@ -6,13 +6,13 @@
 
 SCRIPTS_DIR := scripts
 
-.PHONY: lint sim sim-stress formal synth wave clean all check
+.PHONY: lint sim sim-stress formal synth openlane wave clean all check
 
 # Default target
 all: lint sim sim-stress
 
 # Run all checks (CI target)
-check: lint sim sim-stress formal synth
+check: lint sim sim-stress formal synth openlane
 
 lint:
 	$(MAKE) -C $(SCRIPTS_DIR) lint
@@ -28,6 +28,9 @@ formal:
 
 synth:
 	$(MAKE) -C $(SCRIPTS_DIR) synth
+
+openlane:
+	$(MAKE) -C $(SCRIPTS_DIR) openlane
 
 wave:
 	$(MAKE) -C $(SCRIPTS_DIR) wave

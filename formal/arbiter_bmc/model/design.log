@@ -10,4 +10,45 @@
 
 1. Executing Verilog-2005 frontend: axi4lite_pkg.sv
 Parsing formal SystemVerilog input from `axi4lite_pkg.sv' to AST representation.
-axi4lite_pkg.sv:56: ERROR: syntax error, unexpected '?', expecting ';'
+Successfully finished Verilog frontend.
+
+2. Executing Verilog-2005 frontend: axi4lite_address_decoder.sv
+Parsing formal SystemVerilog input from `axi4lite_address_decoder.sv' to AST representation.
+Storing AST representation for module `$abstract\axi4lite_address_decoder'.
+Successfully finished Verilog frontend.
+
+3. Executing Verilog-2005 frontend: axi4lite_qos_scheduler.sv
+Parsing formal SystemVerilog input from `axi4lite_qos_scheduler.sv' to AST representation.
+Storing AST representation for module `$abstract\axi4lite_qos_scheduler'.
+Successfully finished Verilog frontend.
+
+4. Executing Verilog-2005 frontend: axi4lite_response_router.sv
+Parsing formal SystemVerilog input from `axi4lite_response_router.sv' to AST representation.
+Storing AST representation for module `$abstract\axi4lite_response_router'.
+Successfully finished Verilog frontend.
+
+5. Executing Verilog-2005 frontend: axi4lite_write_arbiter.sv
+Parsing formal SystemVerilog input from `axi4lite_write_arbiter.sv' to AST representation.
+Storing AST representation for module `$abstract\axi4lite_write_arbiter'.
+Successfully finished Verilog frontend.
+
+6. Executing Verilog-2005 frontend: axi4lite_read_arbiter.sv
+Parsing formal SystemVerilog input from `axi4lite_read_arbiter.sv' to AST representation.
+Storing AST representation for module `$abstract\axi4lite_read_arbiter'.
+Successfully finished Verilog frontend.
+
+7. Executing Verilog-2005 frontend: axi4lite_arbiter_top.sv
+Parsing formal SystemVerilog input from `axi4lite_arbiter_top.sv' to AST representation.
+Storing AST representation for module `$abstract\axi4lite_arbiter_top'.
+Successfully finished Verilog frontend.
+
+8. Executing Verilog-2005 frontend: arbiter_formal.sv
+Parsing formal SystemVerilog input from `arbiter_formal.sv' to AST representation.
+Storing AST representation for module `$abstract\arbiter_formal'.
+Successfully finished Verilog frontend.
+
+9. Executing HIERARCHY pass (managing design hierarchy).
+
+10. Executing AST frontend in derive mode using pre-parsed AST for module `\arbiter_formal'.
+Generating RTLIL representation for module `\arbiter_formal'.
+arbiter_formal.sv:283: ERROR: Failed to resolve identifier \dut.u_write_arbiter.aw_buf_valid for width detection!

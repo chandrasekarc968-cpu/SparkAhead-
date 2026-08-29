@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  rtl-to-gds:
+    name: RTL to GDS Flow (OpenLane)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Cache PDKs
+        uses: actions/cache@v4
+        with:
+          path: ~/.volare
+          key: ${{ runner.os }}-volare-pdk
+
+      - name: Run OpenLane Flow
+        run: |
+          curl -sL https://github.com/zachjs/sv2v/releases/download/v0.0.11/sv2v-Linux.zip -o sv2v.zip
+          unzip -qo sv2v.zip
+          ./sv2v-Linux/sv2v \
+            src/rtl/axi4lite_pkg.sv \
+            src/rtl/axi4lite_address_decoder.sv \
+            src/rtl/axi4lite_qos_scheduler.sv \
+            src/rtl/axi4lite_response_router.sv \
+            src/rtl/axi4lite_write_arbiter.sv \
+            src/rtl/axi4lite_read_arbiter.sv \
+            src/rtl/axi4lite_arbiter_top.sv \
+            > openlane/axi4lite_arbiter_top_sv2v.v
+            
+          docker run --rm \
+            -v ${{ github.workspace }}:/work \
+            -v ~/.volare:/root/.volare \
+            ghcr.io/efabless/openlane2:2.0.4 \
+            bash -c "openlane /work/openlane/config.json && chown -R $(id -u):$(id -g) /work/openlane/runs"
+
+      - name: Upload OpenLane Output Artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: openlane-results
+          path: openlane/runs/

@@ -1,0 +1,14 @@
+Subprocess had a non-zero exit.
+Last 10 line(s):
+Generating RTLIL representation for module `\axi4lite_address_decoder'.
+Successfully finished Verilog frontend.
+
+4. Executing Verilog-2005 frontend: /work/src/rtl/axi4lite_qos_scheduler.sv
+Parsing SystemVerilog input from `/work/src/rtl/axi4lite_qos_scheduler.sv' to AST representation.
+Generating RTLIL representation for module `\axi4lite_qos_scheduler'.
+Successfully finished Verilog frontend.
+
+5. Executing Verilog-2005 frontend: /work/src/rtl/axi4lite_response_router.sv
+/work/src/rtl/axi4lite_response_router.sv:36: ERROR: syntax error, unexpected '[', expecting TOK_ID
+
+Full log file: 'work/openlane/runs/RUN_2026-08-28_23-29-59/05-yosys-jsonheader/yosys-jsonheader.log'

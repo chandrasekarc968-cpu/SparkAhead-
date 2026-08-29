@@ -1,0 +1,87 @@
+
+===========================================================================
+report_checks -unconstrained
+===========================================================================
+======================= nom_ff_n40C_1v95 Corner ===================================
+
+Startpoint: m_axi_rdata[29] (input port clocked by aclk)
+Endpoint: s_axi_rdata[61] (output port clocked by aclk)
+Path Group: aclk
+Path Type: max
+
+Fanout         Cap        Slew       Delay        Time   Description
+---------------------------------------------------------------------------------------------
+                                  0.000000    0.000000   clock aclk (rise edge)
+                                  0.000000    0.000000   clock network delay (propagated)
+                                  3.000000    3.000000 v input external delay
+     1    0.004090    0.000000    0.000000    3.000000 v m_axi_rdata[29] (in)
+                                                         m_axi_rdata[29] (net)
+                      0.000138    0.000069    3.000069 v input62/A (sky130_fd_sc_hd__buf_1)
+     1    0.008509    0.038745    0.062957    3.063026 v input62/X (sky130_fd_sc_hd__buf_1)
+                                                         net62 (net)
+                      0.038746    0.000260    3.063285 v _4385_/A2 (sky130_fd_sc_hd__o21ai_4)
+     4    0.185127    0.918210    0.611540    3.674825 ^ _4385_/Y (sky130_fd_sc_hd__o21ai_4)
+                                                         _1521_ (net)
+                      0.937753    0.106829    3.781654 ^ _4426_/A (sky130_fd_sc_hd__nor2_1)
+     1    0.022966    0.224623    0.127729    3.909383 v _4426_/Y (sky130_fd_sc_hd__nor2_1)
+                                                         net884 (net)
+                      0.224667    0.002436    3.911819 v output884/A (sky130_fd_sc_hd__buf_1)
+     1    0.000509    0.016559    0.101877    4.013696 v output884/X (sky130_fd_sc_hd__buf_1)
+                                                         s_axi_rdata[61] (net)
+                      0.016559    0.000006    4.013701 v s_axi_rdata[61] (out)
+                                              4.013701   data arrival time
+
+                                 10.000000   10.000000   clock aclk (rise edge)
+                                  0.000000   10.000000   clock network delay (propagated)
+                                 -0.300000    9.700000   clock uncertainty
+                                  0.000000    9.700000   clock reconvergence pessimism
+                                 -3.000000    6.700000   output external delay
+                                              6.700000   data required time
+---------------------------------------------------------------------------------------------
+                                              6.700000   data required time
+                                             -4.013701   data arrival time
+---------------------------------------------------------------------------------------------
+                                              2.686299   slack (MET)
+
+
+
+
+===========================================================================
+report_checks --slack_max -0.01
+============================================================================
+======================= nom_ff_n40C_1v95 Corner ===================================
+
+No paths found.
+
+
+===========================================================================
+ report_check_types -max_slew -max_cap -max_fanout -violators
+============================================================================
+======================= nom_ff_n40C_1v95 Corner ===================================
+
+
+
+===========================================================================
+report_parasitic_annotation -report_unannotated
+============================================================================
+Found 5 unannotated drivers.
+ cfg_weight_m0[0]
+ cfg_weight_m0[1]
+ cfg_weight_m0[2]
+ cfg_weight_m0[3]
+ _6669__951/HI
+Found 0 partially unannotated drivers.
+
+===========================================================================
+max slew violation count 0
+max fanout violation count 0
+max cap violation count 0
+============================================================================
+
+===========================================================================
+check_setup -verbose -unconstrained_endpoints -multiple_clock -no_clock -no_input_delay -loops -generated_clocks
+===========================================================================
+Warning: There is 1 input port missing set_input_delay.
+  aresetn
+Warning: There is 1 unconstrained endpoint.
+  _6669_/D

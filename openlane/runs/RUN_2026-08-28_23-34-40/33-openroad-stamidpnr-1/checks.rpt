@@ -1,0 +1,203 @@
+
+===========================================================================
+report_checks -unconstrained
+===========================================================================
+======================= nom_tt_025C_1v80 Corner ===================================
+
+Startpoint: m_axi_arready[1] (input port clocked by aclk)
+Endpoint: s_axi_arready[3] (output port clocked by aclk)
+Path Group: aclk
+Path Type: max
+
+Fanout         Cap        Slew       Delay        Time   Description
+---------------------------------------------------------------------------------------------
+                                  0.000000    0.000000   clock aclk (rise edge)
+                                  0.000000    0.000000   clock network delay (propagated)
+                                  3.000000    3.000000 ^ input external delay
+     1    0.003195    0.000000    0.000000    3.000000 ^ m_axi_arready[1] (in)
+                                                         m_axi_arready[1] (net)
+                      0.000043    0.000022    3.000021 ^ input32/A (sky130_fd_sc_hd__clkbuf_1)
+     1    0.002664    0.044153    0.063876    3.063897 ^ input32/X (sky130_fd_sc_hd__clkbuf_1)
+                                                         net32 (net)
+                      0.044153    0.000007    3.063904 ^ _4271_/B (sky130_fd_sc_hd__nand2_1)
+     1    0.009438    0.148206    0.081835    3.145739 v _4271_/Y (sky130_fd_sc_hd__nand2_1)
+                                                         _1442_ (net)
+                      0.148206    0.000412    3.146152 v _4274_/A2 (sky130_fd_sc_hd__o211a_4)
+     2    0.055044    0.097361    0.336909    3.483060 v _4274_/X (sky130_fd_sc_hd__o211a_4)
+                                                         _1445_ (net)
+                      0.102309    0.016825    3.499885 v _4275_/B (sky130_fd_sc_hd__nor2_1)
+     4    0.014508    0.269604    0.247212    3.747097 ^ _4275_/Y (sky130_fd_sc_hd__nor2_1)
+                                                         _1446_ (net)
+                      0.269604    0.000278    3.747375 ^ _4282_/A (sky130_fd_sc_hd__inv_2)
+     2    0.011449    0.073242    0.087446    3.834821 v _4282_/Y (sky130_fd_sc_hd__inv_2)
+                                                         _1450_ (net)
+                      0.073242    0.000066    3.834888 v _4283_/B (sky130_fd_sc_hd__nor2_4)
+     1    0.032447    0.217258    0.198827    4.033715 ^ _4283_/Y (sky130_fd_sc_hd__nor2_4)
+                                                         net782 (net)
+                      0.217513    0.005991    4.039706 ^ output782/A (sky130_fd_sc_hd__buf_1)
+     1    0.000538    0.023956    0.095524    4.135229 ^ output782/X (sky130_fd_sc_hd__buf_1)
+                                                         s_axi_arready[3] (net)
+                      0.023956    0.000002    4.135231 ^ s_axi_arready[3] (out)
+                                              4.135231   data arrival time
+
+                                 10.000000   10.000000   clock aclk (rise edge)
+                                  0.000000   10.000000   clock network delay (propagated)
+                                 -0.300000    9.700000   clock uncertainty
+                                  0.000000    9.700000   clock reconvergence pessimism
+                                 -3.000000    6.700000   output external delay
+                                              6.700000   data required time
+---------------------------------------------------------------------------------------------
+                                              6.700000   data required time
+                                             -4.135231   data arrival time
+---------------------------------------------------------------------------------------------
+                                              2.564769   slack (MET)
+
+
+
+
+===========================================================================
+report_checks --slack_max -0.01
+============================================================================
+======================= nom_tt_025C_1v80 Corner ===================================
+
+No paths found.
+
+
+===========================================================================
+ report_check_types -max_slew -max_cap -max_fanout -violators
+============================================================================
+======================= nom_tt_025C_1v80 Corner ===================================
+
+
+
+===========================================================================
+report_parasitic_annotation -report_unannotated
+============================================================================
+Found 109 unannotated drivers.
+ aclk
+ cfg_weight_m0[0]
+ cfg_weight_m0[1]
+ cfg_weight_m0[2]
+ cfg_weight_m0[3]
+ _6669__951/HI
+ clkbuf_0_aclk/X
+ clkbuf_2_0_0_aclk/X
+ clkbuf_2_1_0_aclk/X
+ clkbuf_2_2_0_aclk/X
+ clkbuf_2_3_0_aclk/X
+ clkbuf_3_0__f_aclk/X
+ clkbuf_3_1__f_aclk/X
+ clkbuf_3_2__f_aclk/X
+ clkbuf_3_3__f_aclk/X
+ clkbuf_3_4__f_aclk/X
+ clkbuf_3_5__f_aclk/X
+ clkbuf_3_6__f_aclk/X
+ clkbuf_3_7__f_aclk/X
+ clkbuf_leaf_0_aclk/X
+ clkbuf_leaf_100_aclk/X
+ clkbuf_leaf_101_aclk/X
+ clkbuf_leaf_102_aclk/X
+ clkbuf_leaf_103_aclk/X
+ clkbuf_leaf_104_aclk/X
+ clkbuf_leaf_105_aclk/X
+ clkbuf_leaf_10_aclk/X
+ clkbuf_leaf_11_aclk/X
+ clkbuf_leaf_12_aclk/X
+ clkbuf_leaf_14_aclk/X
+ clkbuf_leaf_15_aclk/X
+ clkbuf_leaf_16_aclk/X
+ clkbuf_leaf_17_aclk/X
+ clkbuf_leaf_18_aclk/X
+ clkbuf_leaf_19_aclk/X
+ clkbuf_leaf_20_aclk/X
+ clkbuf_leaf_21_aclk/X
+ clkbuf_leaf_22_aclk/X
+ clkbuf_leaf_23_aclk/X
+ clkbuf_leaf_24_aclk/X
+ clkbuf_leaf_25_aclk/X
+ clkbuf_leaf_26_aclk/X
+ clkbuf_leaf_27_aclk/X
+ clkbuf_leaf_28_aclk/X
+ clkbuf_leaf_2_aclk/X
+ clkbuf_leaf_32_aclk/X
+ clkbuf_leaf_33_aclk/X
+ clkbuf_leaf_34_aclk/X
+ clkbuf_leaf_35_aclk/X
+ clkbuf_leaf_36_aclk/X
+ clkbuf_leaf_37_aclk/X
+ clkbuf_leaf_38_aclk/X
+ clkbuf_leaf_39_aclk/X
+ clkbuf_leaf_3_aclk/X
+ clkbuf_leaf_41_aclk/X
+ clkbuf_leaf_42_aclk/X
+ clkbuf_leaf_43_aclk/X
+ clkbuf_leaf_44_aclk/X
+ clkbuf_leaf_47_aclk/X
+ clkbuf_leaf_48_aclk/X
+ clkbuf_leaf_49_aclk/X
+ clkbuf_leaf_4_aclk/X
+ clkbuf_leaf_50_aclk/X
+ clkbuf_leaf_51_aclk/X
+ clkbuf_leaf_52_aclk/X
+ clkbuf_leaf_53_aclk/X
+ clkbuf_leaf_54_aclk/X
+ clkbuf_leaf_55_aclk/X
+ clkbuf_leaf_56_aclk/X
+ clkbuf_leaf_57_aclk/X
+ clkbuf_leaf_58_aclk/X
+ clkbuf_leaf_59_aclk/X
+ clkbuf_leaf_5_aclk/X
+ clkbuf_leaf_60_aclk/X
+ clkbuf_leaf_62_aclk/X
+ clkbuf_leaf_63_aclk/X
+ clkbuf_leaf_64_aclk/X
+ clkbuf_leaf_65_aclk/X
+ clkbuf_leaf_66_aclk/X
+ clkbuf_leaf_67_aclk/X
+ clkbuf_leaf_68_aclk/X
+ clkbuf_leaf_69_aclk/X
+ clkbuf_leaf_6_aclk/X
+ clkbuf_leaf_70_aclk/X
+ clkbuf_leaf_71_aclk/X
+ clkbuf_leaf_72_aclk/X
+ clkbuf_leaf_73_aclk/X
+ clkbuf_leaf_74_aclk/X
+ clkbuf_leaf_75_aclk/X
+ clkbuf_leaf_77_aclk/X
+ clkbuf_leaf_78_aclk/X
+ clkbuf_leaf_79_aclk/X
+ clkbuf_leaf_7_aclk/X
+ clkbuf_leaf_80_aclk/X
+ clkbuf_leaf_81_aclk/X
+ clkbuf_leaf_82_aclk/X
+ clkbuf_leaf_85_aclk/X
+ clkbuf_leaf_86_aclk/X
+ clkbuf_leaf_87_aclk/X
+ clkbuf_leaf_88_aclk/X
+ clkbuf_leaf_8_aclk/X
+ clkbuf_leaf_91_aclk/X
+ clkbuf_leaf_92_aclk/X
+ clkbuf_leaf_93_aclk/X
+ clkbuf_leaf_95_aclk/X
+ clkbuf_leaf_96_aclk/X
+ clkbuf_leaf_97_aclk/X
+ clkbuf_leaf_98_aclk/X
+ clkbuf_leaf_9_aclk/X
+Found 0 partially unannotated drivers.
+
+===========================================================================
+max slew violation count 0
+Writing metric design__max_slew_violation__count__corner:nom_tt_025C_1v80: 0
+max fanout violation count 0
+Writing metric design__max_fanout_violation__count__corner:nom_tt_025C_1v80: 0
+max cap violation count 0
+Writing metric design__max_cap_violation__count__corner:nom_tt_025C_1v80: 0
+============================================================================
+
+===========================================================================
+check_setup -verbose -unconstrained_endpoints -multiple_clock -no_clock -no_input_delay -loops -generated_clocks
+===========================================================================
+Warning: There is 1 input port missing set_input_delay.
+  aresetn
+Warning: There is 1 unconstrained endpoint.
+  _6669_/D

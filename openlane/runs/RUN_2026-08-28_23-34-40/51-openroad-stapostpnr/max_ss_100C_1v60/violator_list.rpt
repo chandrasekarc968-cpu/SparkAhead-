@@ -1,0 +1,49 @@
+
+===========================================================================
+Violator List
+============================================================================
+[hold in-reg] s_axi_wvalid[0] -> _6979_/D : -0.102651
+[hold in-reg] s_axi_wvalid[0] -> _6982_/D : -0.100439
+[hold in-reg] s_axi_wvalid[1] -> _6948_/D : -0.083843
+[hold in-reg] s_axi_wvalid[0] -> _6984_/D : -0.083267
+[hold in-reg] s_axi_wvalid[0] -> _6978_/D : -0.071751
+[hold in-reg] s_axi_wvalid[0] -> _6983_/D : -0.070154
+[hold in-reg] s_axi_wvalid[1] -> _6951_/D : -0.066985
+[hold in-reg] s_axi_wvalid[1] -> _6946_/D : -0.066983
+[hold in-reg] s_axi_wvalid[1] -> _6952_/D : -0.059433
+[hold in-reg] s_axi_awvalid[1] -> _7053_/D : -0.051636
+[hold in-reg] s_axi_araddr[24] -> _7173_/D : -0.049782
+[hold in-reg] s_axi_araddr[90] -> _7175_/D : -0.047830
+[hold in-reg] cfg_weight_m2[1] -> _6696_/D : -0.023742
+[hold in-reg] s_axi_arprot[10] -> _7146_/D : -0.012306
+[hold in-reg] s_axi_wvalid[2] -> _6915_/D : -0.006819
+[hold in-reg] s_axi_wvalid[2] -> _6916_/D : -0.004659
+[hold in-reg] s_axi_wvalid[2] -> _6914_/D : -0.001567
+[setup reg-out] _7183_/Q -> s_axi_rdata[61] : -0.659738
+[setup reg-out] _7183_/Q -> s_axi_rdata[24] : -0.377297
+[setup reg-out] _7183_/Q -> s_axi_rdata[116] : -0.326935
+[setup reg-out] _7183_/Q -> s_axi_rdata[20] : -0.320411
+[setup reg-out] _7183_/Q -> s_axi_rdata[121] : -0.313591
+[setup reg-out] _7183_/Q -> s_axi_rdata[52] : -0.299911
+[setup reg-out] _7183_/Q -> s_axi_rdata[25] : -0.277778
+[setup reg-out] _7183_/Q -> s_axi_rdata[55] : -0.277665
+[setup reg-out] _7183_/Q -> s_axi_rdata[57] : -0.276888
+[setup reg-out] _7183_/Q -> s_axi_rdata[119] : -0.275154
+[setup reg-out] _7183_/Q -> s_axi_rdata[89] : -0.274494
+[setup reg-out] _7183_/Q -> s_axi_rdata[84] : -0.266570
+[setup reg-out] _7183_/Q -> s_axi_rdata[23] : -0.252645
+[setup reg-reg] _6713_/Q -> _6783_/D : -0.251506
+[setup reg-out] _7183_/Q -> s_axi_rdata[21] : -0.249431
+[setup reg-out] _7183_/Q -> s_axi_rdata[117] : -0.239790
+[setup reg-out] _7183_/Q -> s_axi_rdata[53] : -0.236653
+[setup reg-out] _7183_/Q -> s_axi_rdata[71] : -0.230258
+[setup reg-reg] _6713_/Q -> _6781_/D : -0.223543
+[setup reg-out] _7183_/Q -> s_axi_rdata[87] : -0.199399
+[setup reg-out] _7183_/Q -> s_axi_rdata[85] : -0.193384
+[setup reg-out] _7183_/Q -> s_axi_rdata[58] : -0.175603
+[setup reg-out] _7183_/Q -> s_axi_rdata[29] : -0.118239
+[setup reg-out] _7183_/Q -> s_axi_rdata[125] : -0.115903
+[setup reg-out] _7183_/Q -> s_axi_rdata[120] : -0.100049
+[setup reg-out] _7183_/Q -> s_axi_rdata[93] : -0.069167
+[setup reg-out] _7183_/Q -> s_axi_rdata[56] : -0.063200
+[setup reg-out] _7183_/Q -> s_axi_rdata[88] : -0.057756

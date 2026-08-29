@@ -1,0 +1,170 @@
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:174:13: Operator ASSIGN expects 2 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_read_arbiter.u_read_qos'
+  174 |   next_cand = 1'sb0;
+      |             ^
+                      ... For warning description see https://verilator.org/warn/WIDTHEXPAND?v=5.018
+                      ... Use "/* verilator lint_off WIDTHEXPAND */" and lint_on around source to disable this message.
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:232:14: Operator ASSIGN expects 2 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_read_arbiter.u_read_qos'
+  232 |    next_cand = 1'sb0;
+      |              ^
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:347:14: Operator ASSIGN expects 2 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_read_arbiter.u_read_qos'
+  347 |    next_cand = 1'sb0;
+      |              ^
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:354:19: Operator ASSIGNDLY expects 2 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_read_arbiter.u_read_qos'
+  354 |    current_master <= 1'sb0;
+      |                   ^~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:424:9: Operator ASSIGN expects 4 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                      : ... note: In instance 'axi4lite_arbiter_top.u_read_arbiter.u_read_qos'
+  424 |   grant = 1'sb0;
+      |         ^
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:425:13: Operator ASSIGN expects 2 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_read_arbiter.u_read_qos'
+  425 |   master_id = 1'sb0;
+      |             ^
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:23:26: Operator FUNCREF 'sv2v_cast_64' expects 64 bits on the Function Argument, but Function Argument's VARREF 'addr' generates 32 bits.
+                                                                      : ... note: In instance 'axi4lite_arbiter_top.u_read_arbiter.u_read_decoder'
+   23 |   if (((S0_SIZE > 0) && (sv2v_cast_64(addr) >= sv2v_cast_64(S0_BASE))) && (sv2v_cast_64(addr) < (sv2v_cast_64(S0_BASE) + sv2v_cast_64(S0_SIZE))))
+      |                          ^~~~~~~~~~~~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:23:48: Operator FUNCREF 'sv2v_cast_64' expects 64 bits on the Function Argument, but Function Argument's VARREF 'S0_BASE' generates 32 bits.
+                                                                      : ... note: In instance 'axi4lite_arbiter_top.u_read_arbiter.u_read_decoder'
+   23 |   if (((S0_SIZE > 0) && (sv2v_cast_64(addr) >= sv2v_cast_64(S0_BASE))) && (sv2v_cast_64(addr) < (sv2v_cast_64(S0_BASE) + sv2v_cast_64(S0_SIZE))))
+      |                                                ^~~~~~~~~~~~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:23:76: Operator FUNCREF 'sv2v_cast_64' expects 64 bits on the Function Argument, but Function Argument's VARREF 'addr' generates 32 bits.
+                                                                      : ... note: In instance 'axi4lite_arbiter_top.u_read_arbiter.u_read_decoder'
+   23 |   if (((S0_SIZE > 0) && (sv2v_cast_64(addr) >= sv2v_cast_64(S0_BASE))) && (sv2v_cast_64(addr) < (sv2v_cast_64(S0_BASE) + sv2v_cast_64(S0_SIZE))))
+      |                                                                            ^~~~~~~~~~~~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:23:98: Operator FUNCREF 'sv2v_cast_64' expects 64 bits on the Function Argument, but Function Argument's VARREF 'S0_BASE' generates 32 bits.
+                                                                      : ... note: In instance 'axi4lite_arbiter_top.u_read_arbiter.u_read_decoder'
+   23 |   if (((S0_SIZE > 0) && (sv2v_cast_64(addr) >= sv2v_cast_64(S0_BASE))) && (sv2v_cast_64(addr) < (sv2v_cast_64(S0_BASE) + sv2v_cast_64(S0_SIZE))))
+      |                                                                                                  ^~~~~~~~~~~~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:23:122: Operator FUNCREF 'sv2v_cast_64' expects 64 bits on the Function Argument, but Function Argument's VARREF 'S0_SIZE' generates 32 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_read_arbiter.u_read_decoder'
+   23 |   if (((S0_SIZE > 0) && (sv2v_cast_64(addr) >= sv2v_cast_64(S0_BASE))) && (sv2v_cast_64(addr) < (sv2v_cast_64(S0_BASE) + sv2v_cast_64(S0_SIZE))))
+      |                                                                                                                          ^~~~~~~~~~~~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:27:26: Operator FUNCREF 'sv2v_cast_64' expects 64 bits on the Function Argument, but Function Argument's VARREF 'addr' generates 32 bits.
+                                                                      : ... note: In instance 'axi4lite_arbiter_top.u_read_arbiter.u_read_decoder'
+   27 |   if (((S1_SIZE > 0) && (sv2v_cast_64(addr) >= sv2v_cast_64(S1_BASE))) && (sv2v_cast_64(addr) < (sv2v_cast_64(S1_BASE) + sv2v_cast_64(S1_SIZE))))
+      |                          ^~~~~~~~~~~~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:27:48: Operator FUNCREF 'sv2v_cast_64' expects 64 bits on the Function Argument, but Function Argument's VARREF 'S1_BASE' generates 32 bits.
+                                                                      : ... note: In instance 'axi4lite_arbiter_top.u_read_arbiter.u_read_decoder'
+   27 |   if (((S1_SIZE > 0) && (sv2v_cast_64(addr) >= sv2v_cast_64(S1_BASE))) && (sv2v_cast_64(addr) < (sv2v_cast_64(S1_BASE) + sv2v_cast_64(S1_SIZE))))
+      |                                                ^~~~~~~~~~~~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:27:76: Operator FUNCREF 'sv2v_cast_64' expects 64 bits on the Function Argument, but Function Argument's VARREF 'addr' generates 32 bits.
+                                                                      : ... note: In instance 'axi4lite_arbiter_top.u_read_arbiter.u_read_decoder'
+   27 |   if (((S1_SIZE > 0) && (sv2v_cast_64(addr) >= sv2v_cast_64(S1_BASE))) && (sv2v_cast_64(addr) < (sv2v_cast_64(S1_BASE) + sv2v_cast_64(S1_SIZE))))
+      |                                                                            ^~~~~~~~~~~~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:27:98: Operator FUNCREF 'sv2v_cast_64' expects 64 bits on the Function Argument, but Function Argument's VARREF 'S1_BASE' generates 32 bits.
+                                                                      : ... note: In instance 'axi4lite_arbiter_top.u_read_arbiter.u_read_decoder'
+   27 |   if (((S1_SIZE > 0) && (sv2v_cast_64(addr) >= sv2v_cast_64(S1_BASE))) && (sv2v_cast_64(addr) < (sv2v_cast_64(S1_BASE) + sv2v_cast_64(S1_SIZE))))
+      |                                                                                                  ^~~~~~~~~~~~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:27:122: Operator FUNCREF 'sv2v_cast_64' expects 64 bits on the Function Argument, but Function Argument's VARREF 'S1_SIZE' generates 32 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_read_arbiter.u_read_decoder'
+   27 |   if (((S1_SIZE > 0) && (sv2v_cast_64(addr) >= sv2v_cast_64(S1_BASE))) && (sv2v_cast_64(addr) < (sv2v_cast_64(S1_BASE) + sv2v_cast_64(S1_SIZE))))
+      |                                                                                                                          ^~~~~~~~~~~~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:693:15: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_write_arbiter'
+  693 |   decode_addr = 1'sb0;
+      |               ^
+%Warning-WIDTHTRUNC: /work/openlane/axi4lite_arbiter_top_sv2v.v:716:57: Operator FUNCREF 'sv2v_cast_1F7B3_signed' expects 2 bits on the Function Argument, but Function Argument's VARREF 'm' generates 32 bits.
+                                                                      : ... note: In instance 'axi4lite_arbiter_top.u_write_arbiter'
+  716 |    buf_locked[m] = (w_state != 2'b00) && (owner_id_r == sv2v_cast_1F7B3_signed(m));
+      |                                                         ^~~~~~~~~~~~~~~~~~~~~~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:733:17: Operator ASSIGNDLY expects 4 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_write_arbiter'
+  733 |    aw_buf_valid <= 1'sb0;
+      |                 ^~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:734:16: Operator ASSIGNDLY expects 4 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_write_arbiter'
+  734 |    w_buf_valid <= 1'sb0;
+      |                ^~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:739:47: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_write_arbiter'
+  739 |       aw_buf_addr[m * ADDR_WIDTH+:ADDR_WIDTH] <= 1'sb0;
+      |                                               ^~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:740:29: Operator ASSIGNDLY expects 3 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_write_arbiter'
+  740 |       aw_buf_prot[m * 3+:3] <= 1'sb0;
+      |                             ^~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:741:46: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_write_arbiter'
+  741 |       w_buf_data[m * DATA_WIDTH+:DATA_WIDTH] <= 1'sb0;
+      |                                              ^~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:742:46: Operator ASSIGNDLY expects 4 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_write_arbiter'
+  742 |       w_buf_strb[m * STRB_WIDTH+:STRB_WIDTH] <= 1'sb0;
+      |                                              ^~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:746:15: Operator ASSIGNDLY expects 2 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_write_arbiter'
+  746 |    owner_id_r <= 1'sb0;
+      |               ^~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:747:19: Operator ASSIGNDLY expects 2 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_write_arbiter'
+  747 |    target_slave_r <= 1'sb0;
+      |                   ^~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:749:17: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_write_arbiter'
+  749 |    latched_addr <= 1'sb0;
+      |                 ^~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:750:17: Operator ASSIGNDLY expects 3 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_write_arbiter'
+  750 |    latched_prot <= 1'sb0;
+      |                 ^~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:751:18: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_write_arbiter'
+  751 |    latched_wdata <= 1'sb0;
+      |                  ^~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:752:18: Operator ASSIGNDLY expects 4 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_write_arbiter'
+  752 |    latched_wstrb <= 1'sb0;
+      |                  ^~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:936:15: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_read_arbiter'
+  936 |   decode_addr = 1'sb0;
+      |               ^
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:963:15: Operator ASSIGNDLY expects 2 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_read_arbiter'
+  963 |    owner_id_r <= 1'sb0;
+      |               ^~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:964:19: Operator ASSIGNDLY expects 2 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_read_arbiter'
+  964 |    target_slave_r <= 1'sb0;
+      |                   ^~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:966:17: Operator ASSIGNDLY expects 32 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_read_arbiter'
+  966 |    latched_addr <= 1'sb0;
+      |                 ^~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:967:17: Operator ASSIGNDLY expects 3 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_read_arbiter'
+  967 |    latched_prot <= 1'sb0;
+      |                 ^~
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:1000:17: Operator ASSIGN expects 4 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                        : ... note: In instance 'axi4lite_arbiter_top.u_read_arbiter'
+ 1000 |   s_axi_arready = 1'sb0;
+      |                 ^
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:539:42: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_response_router'
+  539 |      m_rdata[i * DATA_WIDTH+:DATA_WIDTH] = 1'sb0;
+      |                                          ^
+%Warning-WIDTHEXPAND: /work/openlane/axi4lite_arbiter_top_sv2v.v:555:50: Operator ASSIGN expects 32 bits on the Assign RHS, but Assign RHS's CONST '1'sh0' generates 1 bits.
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_response_router'
+  555 |     m_rdata[r_owner_id * DATA_WIDTH+:DATA_WIDTH] = 1'sb0;
+      |                                                  ^
+%Warning-UNUSEDPARAM: /work/openlane/axi4lite_arbiter_top_sv2v.v:873:26: Parameter is not used: 'DATA_WIDTH'
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_read_arbiter'
+  873 |  parameter signed [31:0] DATA_WIDTH = 32;
+      |                          ^~~~~~~~~~
+%Warning-UNUSEDSIGNAL: /work/openlane/axi4lite_arbiter_top_sv2v.v:640:13: Signal is not used: 'w_owner_bready'
+                                                                        : ... note: In instance 'axi4lite_arbiter_top.u_write_arbiter'
+  640 |  input wire w_owner_bready;
+      |             ^~~~~~~~~~~~~~
+%Warning-UNUSEDSIGNAL: /work/openlane/axi4lite_arbiter_top_sv2v.v:667:27: Signal is not used: 'arb_grant'
+                                                                        : ... note: In instance 'axi4lite_arbiter_top.u_write_arbiter'
+  667 |  wire [NUM_MASTERS - 1:0] arb_grant;
+      |                           ^~~~~~~~~
+%Warning-UNUSEDSIGNAL: /work/openlane/axi4lite_arbiter_top_sv2v.v:82:12: Signal is not used: 'w0'
+                                                                       : ... note: In instance 'axi4lite_arbiter_top.u_read_arbiter.u_read_qos'
+   82 |  reg [3:0] w0;
+      |            ^~

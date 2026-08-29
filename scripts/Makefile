@@ -13,18 +13,18 @@ OUT_DIR    := $(PROJ_ROOT)/build
 LOG_DIR    := $(PROJ_ROOT)/logs
 
 # RTL files (order matters: leaf modules first)
-RTL_FILES  := $(RTL_DIR)/axi4lite_pkg.sv \
-              $(RTL_DIR)/axi4lite_address_decoder.sv \
-              $(RTL_DIR)/axi4lite_qos_scheduler.sv \
-              $(RTL_DIR)/axi4lite_response_router.sv \
-              $(RTL_DIR)/axi4lite_write_arbiter.sv \
-              $(RTL_DIR)/axi4lite_read_arbiter.sv \
-              $(RTL_DIR)/axi4lite_arbiter_top.sv
+RTL_FILES  := "$(RTL_DIR)/axi4lite_pkg.sv" \
+              "$(RTL_DIR)/axi4lite_address_decoder.sv" \
+              "$(RTL_DIR)/axi4lite_qos_scheduler.sv" \
+              "$(RTL_DIR)/axi4lite_response_router.sv" \
+              "$(RTL_DIR)/axi4lite_write_arbiter.sv" \
+              "$(RTL_DIR)/axi4lite_read_arbiter.sv" \
+              "$(RTL_DIR)/axi4lite_arbiter_top.sv"
 
 # Default simulation top
 SIM_TOP    ?= tb_axi4lite_arbiter
 
-.PHONY: lint sim sim-stress formal synth wave clean
+.PHONY: lint sim sim-stress formal synth openlane wave clean
 
 # --------------------------------------------------------------------------
 # Lint: Verilator --lint-only or iverilog syntax-only
@@ -109,6 +109,15 @@ synth:
 		echo "ERROR: yosys not found"; exit 1; \
 	fi
 	@echo "=== SYNTHESIS COMPLETE ==="
+
+# --------------------------------------------------------------------------
+# OpenLane: RTL to GDS Flow via Docker
+# --------------------------------------------------------------------------
+openlane:
+	@mkdir -p "$(OUT_DIR)" "$(LOG_DIR)"
+	@echo "=== OPENLANE RTL-TO-GDS ==="
+	@bash "$(PROJ_ROOT)/scripts/openlane.sh" 2>&1 | tee "$(LOG_DIR)/openlane.log"
+	@echo "=== OPENLANE COMPLETE ==="
 
 # --------------------------------------------------------------------------
 # Wave: Open waveform viewer

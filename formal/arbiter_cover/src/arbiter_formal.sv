@@ -323,25 +323,29 @@ module arbiter_formal (
     // =========================================================================
 
     // C1. A write transaction completes
-    cover property (@(posedge aclk)
-        f_active && aresetn &&
-        |s_axi_bvalid && |(s_axi_bvalid & s_axi_bready));
+    always @(posedge aclk) begin
+        if (f_active && aresetn)
+            cover (|s_axi_bvalid && |(s_axi_bvalid & s_axi_bready));
+    end
 
     // C2. A read transaction completes
-    cover property (@(posedge aclk)
-        f_active && aresetn &&
-        |s_axi_rvalid && |(s_axi_rvalid & s_axi_rready));
+    always @(posedge aclk) begin
+        if (f_active && aresetn)
+            cover (|s_axi_rvalid && |(s_axi_rvalid & s_axi_rready));
+    end
 
     // C3. A DECERR response is generated
-    cover property (@(posedge aclk)
-        f_active && aresetn &&
-        |s_axi_bvalid && (s_axi_bresp[0] == 2'b11 || s_axi_bresp[1] == 2'b11 ||
-                          s_axi_bresp[2] == 2'b11 || s_axi_bresp[3] == 2'b11));
+    always @(posedge aclk) begin
+        if (f_active && aresetn)
+            cover (|s_axi_bvalid && (s_axi_bresp[0] == 2'b11 || s_axi_bresp[1] == 2'b11 ||
+                                     s_axi_bresp[2] == 2'b11 || s_axi_bresp[3] == 2'b11));
+    end
 
     // C4. Concurrent read and write complete
-    cover property (@(posedge aclk)
-        f_active && aresetn &&
-        |s_axi_bvalid && |s_axi_rvalid);
+    always @(posedge aclk) begin
+        if (f_active && aresetn)
+            cover (|s_axi_bvalid && |s_axi_rvalid);
+    end
 
     // =========================================================================
     // 8. Slave-Side VALID Stability (IHI 0022E §A3.3.1)
