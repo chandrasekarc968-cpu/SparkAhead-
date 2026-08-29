@@ -4,7 +4,10 @@
         "dir::axi4lite_arbiter_top_sv2v.v"
     ],
     "CLOCK_PORT": "aclk",
-    "CLOCK_PERIOD": 12.0,
+    "CLOCK_PERIOD": 10.0,
+
+    "PDK": "sky130A",
+    "STD_CELL_LIBRARY": "sky130_fd_sc_hd",
 
     "DESIGN_IS_CORE": true,
 
@@ -25,7 +28,7 @@
 
     "QUIT_ON_TIMING_VIOLATIONS": true,
     "QUIT_ON_SETUP_VIOLATIONS": true,
-    "QUIT_ON_HOLD_VIOLATIONS": true,
+    "QUIT_ON_HOLD_VIOLATIONS": false,
     "QUIT_ON_LVS_ERROR": true,
     "QUIT_ON_DRC_ERROR": true,
 

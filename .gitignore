@@ -1,0 +1,61 @@
+# ==============================================================================
+# .gitignore — VELTRAXX'26 PS02 AXI4-Lite Arbiter
+# ==============================================================================
+
+# Python virtual environment
+.venv/
+__pycache__/
+*.pyc
+
+# PDK (downloaded by volare/OpenLane)
+pdk/
+
+# OpenLane run outputs (large, regenerated)
+openlane/runs/
+openlane/axi4lite_arbiter_top_sv2v.v
+
+# Build artifacts
+build/
+
+# Generated outputs (GDS, LEF, DEF, netlists)
+outputs/*.gds
+outputs/*.def
+outputs/*.lef
+outputs/*.nl.v
+outputs/*_netlist.v
+outputs/run_*/
+
+# Generated logs and metrics
+logs/*.log
+logs/*.csv
+logs/*.json
+
+# Simulation artifacts
+*.vcd
+*.vvp
+*.lxt
+*.lxt2
+*.fst
+
+# Formal verification working directories
+formal/arbiter_bmc/
+formal/arbiter_cover/
+formal/arbiter/
+
+# Editor / IDE
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# sv2v binary (platform-specific, downloaded at build time)
+scripts/sv2v
+scripts/wget-log
+
+# Nix
+result
+.direnv/

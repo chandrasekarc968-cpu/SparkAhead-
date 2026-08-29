@@ -16,3 +16,13 @@
 Threshold for Threshold-surpassing long wires is not set. The checker will be skipped.
 'VSRC_LOC_FILES' was not given a value, which may make the results of IR drop analysis inaccurate. If you are not integrating a top-level chip for manufacture, you may ignore this warning, otherwise, see the documentation for 'VSRC_LOC_FILES'.
 Cell 'axi4lite_arbiter_top' has (4) input pin(s) without antenna gate information. They might not be connected to a gate.
+Hold violations found in the following corners:
+* max_ss_100C_1v60
+Max Slew violations found in the following corners:
+* max_ss_100C_1v60
+* min_ss_100C_1v60
+* nom_ss_100C_1v60
+Max Cap violations found in the following corners:
+* max_ss_100C_1v60
+* min_ss_100C_1v60
+* nom_ss_100C_1v60

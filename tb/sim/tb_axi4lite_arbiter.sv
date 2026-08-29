@@ -903,7 +903,7 @@ module tb_axi4lite_arbiter;
         for (int mi = 0; mi < 4; mi++) begin
             fork
                 begin
-                    automatic int mid = mi;
+                    int mid; mid = mi;
                     master_read(mid, 32'h0000_1000 + mid[31:0]*4, 0, r_data, r_resp);
                 end
                 slave_respond_read(0, 0, 32'hBAAD_0000, 2'b00);
@@ -962,7 +962,7 @@ module tb_axi4lite_arbiter;
         // -----------------------------------------------------------------
         $display("\n--- Test 41: DECERR write all masters ---");
         for (int mi = 0; mi < 4; mi++) begin
-            automatic int mid = mi;
+            int mid; mid = mi;
             master_write(mid, 32'hFFFF_0000 + mid[31:0]*4, 32'hDEAD_0000 + mid[31:0], 4'hF, 0, w_resp);
             check(w_resp == 2'b11, $sformatf("Test 41: M%0d DECERR write", mid));
         end
@@ -972,7 +972,7 @@ module tb_axi4lite_arbiter;
         // -----------------------------------------------------------------
         $display("\n--- Test 42: DECERR read all masters ---");
         for (int mi = 0; mi < 4; mi++) begin
-            automatic int mid = mi;
+            int mid; mid = mi;
             master_read(mid, 32'hFFFF_0000 + mid[31:0]*4, 0, r_data, r_resp);
             check(r_resp == 2'b11, $sformatf("Test 42: M%0d DECERR read", mid));
             check(r_data == 32'h0, $sformatf("Test 42: M%0d DECERR RDATA zero", mid));
@@ -1008,7 +1008,7 @@ module tb_axi4lite_arbiter;
         fork
             begin : m0_flood
                 for (int b = 0; b < 12; b++) begin
-                    automatic int idx = b;
+                    int idx; idx = b;
                     @(posedge aclk); #1;
                     s_axi_awaddr[0]  = 32'h0000_1000;
                     s_axi_awprot[0]  = 3'b000;
