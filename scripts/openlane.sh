@@ -48,6 +48,17 @@ docker run --rm \
 if [ $? -eq 0 ]; then
     echo "=== OpenLane Flow COMPLETE ==="
     echo "Outputs are available in: openlane/runs/"
+    
+    # Copy real test data to global outputs/ and logs/ directories
+    echo "[INFO] Copying test data to logs/ and outputs/ directories..."
+    LATEST_RUN=$(ls -td "$PROJ_ROOT/openlane/runs/RUN_"* | head -n 1)
+    cp "$LATEST_RUN"/final/gds/*.gds "$PROJ_ROOT/outputs/" 2>/dev/null || true
+    cp "$LATEST_RUN"/final/lef/*.lef "$PROJ_ROOT/outputs/" 2>/dev/null || true
+    cp "$LATEST_RUN"/final/def/*.def "$PROJ_ROOT/outputs/" 2>/dev/null || true
+    cp "$LATEST_RUN"/final/nl/*.nl.v "$PROJ_ROOT/outputs/" 2>/dev/null || true
+    cp "$LATEST_RUN/flow.log" "$PROJ_ROOT/logs/openlane.log" 2>/dev/null || true
+    cp "$LATEST_RUN"/final/metrics.csv "$PROJ_ROOT/logs/openlane_metrics.csv" 2>/dev/null || true
+    cp "$LATEST_RUN"/final/metrics.json "$PROJ_ROOT/logs/openlane_metrics.json" 2>/dev/null || true
 else
     echo "=== OpenLane Flow FAILED ==="
     exit 1
