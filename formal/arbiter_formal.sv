@@ -290,10 +290,10 @@ module arbiter_formal (
     // A7. Write DECERR: when target is invalid and in W_RESP, BRESP must be DECERR
     always @(posedge aclk) begin
         if (f_active && aresetn) begin
-            if (0 == 2'b11 &&
-                dut.u_write_arbiter.w_target_invalid_r) begin
-                assert (s_axi_bvalid[dut.u_write_arbiter.w_owner_id_r]);
-                assert (s_axi_bresp[dut.u_write_arbiter.w_owner_id_r] == 2'b11);
+            if (dut.w_resp_phase &&
+                dut.w_target_invalid) begin
+                assert (s_axi_bvalid[dut.w_owner_id]);
+                assert (s_axi_bresp[dut.w_owner_id] == 2'b11);
             end
         end
     end
@@ -301,11 +301,11 @@ module arbiter_formal (
     // A8. Read DECERR
     always @(posedge aclk) begin
         if (f_active && aresetn) begin
-            if (0 == 2'b10 &&
-                dut.u_read_arbiter.r_target_invalid_r) begin
-                assert (s_axi_rvalid[dut.u_read_arbiter.r_owner_id_r]);
-                assert (s_axi_rresp[dut.u_read_arbiter.r_owner_id_r] == 2'b11);
-                assert (s_axi_rdata[dut.u_read_arbiter.r_owner_id_r] == 32'h0000_0000);
+            if (dut.r_resp_phase &&
+                dut.r_target_invalid) begin
+                assert (s_axi_rvalid[dut.r_owner_id]);
+                assert (s_axi_rresp[dut.r_owner_id] == 2'b11);
+                assert (s_axi_rdata[dut.r_owner_id] == 32'h0000_0000);
             end
         end
     end
@@ -399,13 +399,13 @@ module arbiter_formal (
         for (ri = 0; ri < 4; ri++) begin : gen_resp_isolation
             always @(posedge aclk) begin
                 if (f_active && aresetn) begin
-                    // If BVALID is asserted for master ri but ri is not the owner
-                    if (s_axi_bvalid[ri] && 0 == 2'b11) begin
-                        assert (dut.u_write_arbiter.w_owner_id_r == 2'(ri));
+                    // If BVALID is asserted for master ri, ri must be the owner
+                    if (s_axi_bvalid[ri] && dut.w_resp_phase) begin
+                        assert (dut.w_owner_id == 2'(ri));
                     end
-                    // If RVALID is asserted for master ri but ri is not the owner
-                    if (s_axi_rvalid[ri] && 0 == 2'b10) begin
-                        assert (dut.u_read_arbiter.r_owner_id_r == 2'(ri));
+                    // If RVALID is asserted for master ri, ri must be the owner
+                    if (s_axi_rvalid[ri] && dut.r_resp_phase) begin
+                        assert (dut.r_owner_id == 2'(ri));
                     end
                 end
             end
@@ -496,8 +496,8 @@ module arbiter_formal (
     // A22. Cover: DECERR write and DECERR read both complete
     always @(posedge aclk) begin
         if (f_active && aresetn) begin
-            cover (|s_axi_bvalid && s_axi_bresp[dut.u_write_arbiter.w_owner_id_r] == 2'b11);
-            cover (|s_axi_rvalid && s_axi_rresp[dut.u_read_arbiter.r_owner_id_r] == 2'b11);
+            cover (|s_axi_bvalid && s_axi_bresp[dut.w_owner_id] == 2'b11);
+            cover (|s_axi_rvalid && s_axi_rresp[dut.r_owner_id] == 2'b11);
         end
     end
 

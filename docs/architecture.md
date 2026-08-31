@@ -285,10 +285,10 @@ The `axi4lite_address_decoder` uses unsigned range comparisons with 64-bit arith
 ## 10. Clock & Reset Strategy
 
 - **Single global clock**: `aclk` (nominally 100 MHz)
-- **Asynchronous active-low reset**: `aresetn`
-  - RTL uses: `always_ff @(posedge aclk or negedge aresetn)`
-  - SDC uses: `set_false_path -from [get_ports aresetn]` for timing analysis
-  - Recovery/removal timing checked by STA tools
+- **Synchronous active-low reset**: `aresetn`
+  - RTL uses: `always_ff @(posedge aclk) begin if (!aresetn) ...`
+  - SDC includes `aresetn` in the timing graph (no false path)
+  - Reset is part of the datapath timing and is timed by STA
 - **On reset**:
   - FSMs return to IDLE states
   - All output VALID and READY signals driven to zero

@@ -20,11 +20,15 @@ LOG_DIR="${PROJ_ROOT}/logs"
 
 RTL_FILES=(
     "${RTL_DIR}/axi4lite_pkg.sv"
-    "${RTL_DIR}/axi4lite_address_decoder.sv"
-    "${RTL_DIR}/axi4lite_qos_scheduler.sv"
-    "${RTL_DIR}/axi4lite_response_router.sv"
-    "${RTL_DIR}/axi4lite_write_arbiter.sv"
-    "${RTL_DIR}/axi4lite_read_arbiter.sv"
+    "${RTL_DIR}/age_counter.sv"
+    "${RTL_DIR}/write_mux.sv"
+    "${RTL_DIR}/read_mux.sv"
+    "${RTL_DIR}/default_slave.sv"
+    "${RTL_DIR}/addr_decoder.sv"
+    "${RTL_DIR}/wrr_scheduler.sv"
+    "${RTL_DIR}/resp_demux.sv"
+    "${RTL_DIR}/write_arbiter.sv"
+    "${RTL_DIR}/read_arbiter.sv"
     "${RTL_DIR}/axi4lite_arbiter_top.sv"
 )
 

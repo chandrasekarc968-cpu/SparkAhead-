@@ -21,14 +21,14 @@
     "SYNTH_BUFFERING": 1,
     "SYNTH_SIZING": 1,
 
-    "CTS_CLK_BUFFER_LIST": "sky130_fd_sc_hd__clkbuf_4 sky130_fd_sc_hd__clkbuf_8",
+    "CTS_CLK_BUFFER_LIST": "sky130_fd_sc_hd__clkbuf_4 sky130_fd_sc_hd__clkbuf_8 sky130_fd_sc_hd__clkbuf_16",
     "CTS_SINK_CLUSTERING_SIZE": 25,
 
-    "RT_MAX_LAYER": "met4",
+    "RT_MAX_LAYER": "met5",
 
     "QUIT_ON_TIMING_VIOLATIONS": true,
     "QUIT_ON_SETUP_VIOLATIONS": true,
-    "QUIT_ON_HOLD_VIOLATIONS": false,
+    "QUIT_ON_HOLD_VIOLATIONS": true,
     "QUIT_ON_LVS_ERROR": true,
     "QUIT_ON_DRC_ERROR": true,
 
@@ -36,6 +36,12 @@
     "RUN_KLAYOUT_DRC": 1,
 
     "SDC_FILE": "dir::../constraints/timing.sdc",
+
+    "RUN_POST_GRT_DESIGN_REPAIR": true,
+    "GRT_RESIZER_TIMING_OPTIMIZATIONS": true,
+    "PL_RESIZER_MAX_SLEW_MARGIN": 20,
+    "GRT_ANTENNA_ITERS": 10,
+    "GRT_ANT_MARGIN": 15,
 
     "pdk::sky130*": {
         "PL_TARGET_DENSITY_PCT": 50,

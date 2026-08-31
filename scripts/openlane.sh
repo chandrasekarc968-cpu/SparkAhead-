@@ -30,11 +30,15 @@ fi
 echo "[INFO] Converting SystemVerilog to Verilog-2005 using sv2v..."
 "$PROJ_ROOT/scripts/sv2v" \
     "$PROJ_ROOT/src/rtl/axi4lite_pkg.sv" \
-    "$PROJ_ROOT/src/rtl/axi4lite_address_decoder.sv" \
-    "$PROJ_ROOT/src/rtl/axi4lite_qos_scheduler.sv" \
-    "$PROJ_ROOT/src/rtl/axi4lite_response_router.sv" \
-    "$PROJ_ROOT/src/rtl/axi4lite_write_arbiter.sv" \
-    "$PROJ_ROOT/src/rtl/axi4lite_read_arbiter.sv" \
+    "$PROJ_ROOT/src/rtl/age_counter.sv" \
+    "$PROJ_ROOT/src/rtl/write_mux.sv" \
+    "$PROJ_ROOT/src/rtl/read_mux.sv" \
+    "$PROJ_ROOT/src/rtl/default_slave.sv" \
+    "$PROJ_ROOT/src/rtl/addr_decoder.sv" \
+    "$PROJ_ROOT/src/rtl/wrr_scheduler.sv" \
+    "$PROJ_ROOT/src/rtl/resp_demux.sv" \
+    "$PROJ_ROOT/src/rtl/write_arbiter.sv" \
+    "$PROJ_ROOT/src/rtl/read_arbiter.sv" \
     "$PROJ_ROOT/src/rtl/axi4lite_arbiter_top.sv" \
     > "$PROJ_ROOT/openlane/axi4lite_arbiter_top_sv2v.v"
 

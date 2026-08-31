@@ -19,8 +19,8 @@ create_clock -name aclk -period 10.0 [get_ports aclk]
 # Clock Uncertainty — covers PLL jitter + board skew
 # For setup analysis:   Tperiod_effective = Tperiod - Tuncertainty
 # ------------------------------------------------------------------------------
-set_clock_uncertainty -setup 0.3 [get_clocks aclk]
-set_clock_uncertainty -hold  0.1 [get_clocks aclk]
+set_clock_uncertainty -setup 0.5 [get_clocks aclk]
+set_clock_uncertainty -hold  0.15 [get_clocks aclk]
 
 # ------------------------------------------------------------------------------
 # Input Delays — Master-side (upstream) inputs to arbiter
