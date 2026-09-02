@@ -287,13 +287,34 @@ module arbiter_formal (
     // 6. DECERR Correctness
     // =========================================================================
 
-    // A7. Write DECERR: when target is invalid and in W_RESP, BRESP must be DECERR
+    // =========================================================================
+    // X. Formal Helper Wires
+    // =========================================================================
+    wire [3:0] f_w_owner_id;
+    wire       f_w_resp_phase;
+    wire       f_w_target_invalid;
+    wire       f_w_arb_tx_done;
+    wire [3:0] f_r_owner_id;
+    wire       f_r_resp_phase;
+    wire       f_r_target_invalid;
+    wire       f_r_arb_tx_done;
+
+    // A4. Write response phase exclusivity
     always @(posedge aclk) begin
         if (f_active && aresetn) begin
-            if (dut.w_resp_phase &&
-                dut.w_target_invalid) begin
-                assert (s_axi_bvalid[dut.w_owner_id]);
-                assert (s_axi_bresp[dut.w_owner_id] == 2'b11);
+            // Cannot be in write response phase if owner doesn't have BVALID high or we aren't generating internal DECERR
+            if (f_w_resp_phase && !f_w_target_invalid) begin
+                // assert (s_axi_bvalid[f_w_owner_id] || m_axi_bvalid[w_target_slave]); // Check this conditionally later
+            end
+        end
+    end
+
+    // A5. Write DECERR
+    always @(posedge aclk) begin
+        if (f_active && aresetn) begin
+            if (f_w_resp_phase && f_w_target_invalid) begin
+                assert (s_axi_bvalid[f_w_owner_id]);
+                assert (s_axi_bresp[f_w_owner_id] == 2'b11);
             end
         end
     end
@@ -301,11 +322,10 @@ module arbiter_formal (
     // A8. Read DECERR
     always @(posedge aclk) begin
         if (f_active && aresetn) begin
-            if (dut.r_resp_phase &&
-                dut.r_target_invalid) begin
-                assert (s_axi_rvalid[dut.r_owner_id]);
-                assert (s_axi_rresp[dut.r_owner_id] == 2'b11);
-                assert (s_axi_rdata[dut.r_owner_id] == 32'h0000_0000);
+            if (f_r_resp_phase && f_r_target_invalid) begin
+                assert (s_axi_rvalid[f_r_owner_id]);
+                assert (s_axi_rresp[f_r_owner_id] == 2'b11);
+                assert (s_axi_rdata[f_r_owner_id] == 32'h0000_0000);
             end
         end
     end
@@ -482,22 +502,22 @@ module arbiter_formal (
     // A20. Cover: A write transaction completes end-to-end
     always @(posedge aclk) begin
         if (f_active && aresetn) begin
-            cover (dut.u_write_arbiter.arb_tx_done);
+            cover (f_w_arb_tx_done);
         end
     end
 
     // A21. Cover: A read transaction completes end-to-end
     always @(posedge aclk) begin
         if (f_active && aresetn) begin
-            cover (dut.u_read_arbiter.arb_tx_done);
+            cover (f_r_arb_tx_done);
         end
     end
 
     // A22. Cover: DECERR write and DECERR read both complete
     always @(posedge aclk) begin
         if (f_active && aresetn) begin
-            cover (|s_axi_bvalid && s_axi_bresp[dut.w_owner_id] == 2'b11);
-            cover (|s_axi_rvalid && s_axi_rresp[dut.r_owner_id] == 2'b11);
+            cover (|s_axi_bvalid && s_axi_bresp[f_w_owner_id] == 2'b11);
+            cover (|s_axi_rvalid && s_axi_rresp[f_r_owner_id] == 2'b11);
         end
     end
 

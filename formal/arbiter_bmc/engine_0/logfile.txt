@@ -7,79 +7,11 @@
 ##   0:00:00  Checking assertions in step 2..
 ##   0:00:00  Checking assumptions in step 3..
 ##   0:00:00  Checking assertions in step 3..
-##   0:00:00  Checking assumptions in step 4..
-##   0:00:00  Checking assertions in step 4..
-##   0:00:00  Checking assumptions in step 5..
-##   0:00:00  Checking assertions in step 5..
-##   0:00:00  Checking assumptions in step 6..
-##   0:00:00  Checking assertions in step 6..
-##   0:00:01  Checking assumptions in step 7..
-##   0:00:01  Checking assertions in step 7..
-##   0:00:01  Checking assumptions in step 8..
-##   0:00:02  Checking assertions in step 8..
-##   0:00:03  Checking assumptions in step 9..
-##   0:00:03  Checking assertions in step 9..
-##   0:00:04  Checking assumptions in step 10..
-##   0:00:04  Checking assertions in step 10..
-##   0:00:06  Checking assumptions in step 11..
-##   0:00:08  Checking assertions in step 11..
-##   0:00:10  Checking assumptions in step 12..
-##   0:00:10  Checking assertions in step 12..
-##   0:00:11  Checking assumptions in step 13..
-##   0:00:13  Checking assertions in step 13..
-##   0:00:17  Checking assumptions in step 14..
-##   0:00:18  Checking assertions in step 14..
-##   0:00:23  Checking assumptions in step 15..
-##   0:00:24  Checking assertions in step 15..
-##   0:00:28  Checking assumptions in step 16..
-##   0:00:29  Checking assertions in step 16..
-##   0:00:34  Checking assumptions in step 17..
-##   0:00:37  Checking assertions in step 17..
-##   0:00:45  Checking assumptions in step 18..
-##   0:00:48  Checking assertions in step 18..
-##   0:00:57  Checking assumptions in step 19..
-##   0:01:00  Checking assertions in step 19..
-##   0:01:08  Checking assumptions in step 20..
-##   0:01:14  Checking assertions in step 20..
-##   0:01:21  Checking assumptions in step 21..
-##   0:01:25  Checking assertions in step 21..
-##   0:01:29  Checking assumptions in step 22..
-##   0:01:36  Checking assertions in step 22..
-##   0:01:49  Checking assumptions in step 23..
-##   0:01:58  Checking assertions in step 23..
-##   0:02:02  Checking assumptions in step 24..
-##   0:02:04  Checking assertions in step 24..
-##   0:02:18  Checking assumptions in step 25..
-##   0:02:35  Checking assertions in step 25..
-##   0:02:49  Checking assumptions in step 26..
-##   0:03:02  Checking assertions in step 26..
-##   0:03:16  Checking assumptions in step 27..
-##   0:03:23  Checking assertions in step 27..
-##   0:03:44  Checking assumptions in step 28..
-##   0:04:01  Checking assertions in step 28..
-##   0:04:16  Checking assumptions in step 29..
-##   0:04:25  Checking assertions in step 29..
-##   0:04:42  Checking assumptions in step 30..
-##   0:04:51  Checking assertions in step 30..
-##   0:05:15  Checking assumptions in step 31..
-##   0:05:46  Checking assertions in step 31..
-##   0:06:07  Checking assumptions in step 32..
-##   0:06:28  Checking assertions in step 32..
-##   0:06:47  Checking assumptions in step 33..
-##   0:07:12  Checking assertions in step 33..
-##   0:07:53  Checking assumptions in step 34..
-##   0:08:13  Checking assertions in step 34..
-##   0:09:00  Checking assumptions in step 35..
-##   0:09:22  Checking assertions in step 35..
-##   0:10:15  Checking assumptions in step 36..
-##   0:10:45  Checking assertions in step 36..
-##   0:11:09  Checking assumptions in step 37..
-##   0:12:09  waiting for solver (1 minute)
-##   0:12:21  Checking assertions in step 37..
-##   0:12:55  Checking assumptions in step 38..
-##   0:13:55  waiting for solver (1 minute)
-##   0:14:14  Checking assertions in step 38..
-##   0:14:50  Checking assumptions in step 39..
-##   0:15:50  waiting for solver (1 minute)
-##   0:16:01  Checking assertions in step 39..
-##   0:16:23  Status: passed
+##   0:00:00  BMC failed!
+##   0:00:00  Assert failed in arbiter_formal: arbiter_formal.sv:317.17-317.60 (_witness_.check_assert_arbiter_formal_sv_317_228)
+##   0:00:00  Assert failed in arbiter_formal: arbiter_formal.sv:316.17-316.52 (_witness_.check_assert_arbiter_formal_sv_316_226)
+##   0:00:00  Writing trace to VCD file: engine_0/trace.vcd
+##   0:00:00  Writing trace to Verilog testbench: engine_0/trace_tb.v
+##   0:00:00  Writing trace to constraints file: engine_0/trace.smtc
+##   0:00:00  Writing trace to Yosys witness file: engine_0/trace.yw
+##   0:00:00  Status: failed

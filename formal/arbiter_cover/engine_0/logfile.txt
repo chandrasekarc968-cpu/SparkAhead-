@@ -3,13 +3,13 @@
 ##   0:00:00  Checking cover reachability in step 1..
 ##   0:00:00  Checking cover reachability in step 2..
 ##   0:00:00  Checking cover reachability in step 3..
-##   0:00:00  Reached cover statement in step 3 at arbiter_formal: arbiter_formal.sv:492.13-492.51 (_witness_.check_cover_arbiter_formal_sv_492_282)
+##   0:00:00  Reached cover statement in step 3 at arbiter_formal: arbiter_formal.sv:512.13-512.36 (_witness_.check_cover_arbiter_formal_sv_512_286)
 ##   0:00:00  Writing trace to VCD file: engine_0/trace0.vcd
 ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace0_tb.v
 ##   0:00:00  Writing trace to constraints file: engine_0/trace0.smtc
 ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace0.yw
 ##   0:00:00  Checking cover reachability in step 3..
-##   0:00:00  Reached cover statement in step 3 at arbiter_formal: arbiter_formal.sv:485.13-485.52 (_witness_.check_cover_arbiter_formal_sv_485_279)
+##   0:00:00  Reached cover statement in step 3 at arbiter_formal: arbiter_formal.sv:505.13-505.36 (_witness_.check_cover_arbiter_formal_sv_505_283)
 ##   0:00:00  Writing trace to VCD file: engine_0/trace1.vcd
 ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace1_tb.v
 ##   0:00:00  Writing trace to constraints file: engine_0/trace1.smtc
@@ -17,19 +17,19 @@
 ##   0:00:00  Checking cover reachability in step 3..
 ##   0:00:00  Checking cover reachability in step 4..
 ##   0:00:00  Checking cover reachability in step 5..
-##   0:00:00  Reached cover statement in step 5 at arbiter_formal: arbiter_formal.sv:326.13-326.68 (_witness_.check_cover_arbiter_formal_sv_326_250)
+##   0:00:00  Reached cover statement in step 5 at arbiter_formal: arbiter_formal.sv:520.13-520.72 (_witness_.check_cover_arbiter_formal_sv_520_295)
 ##   0:00:00  Writing trace to VCD file: engine_0/trace2.vcd
 ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace2_tb.v
 ##   0:00:00  Writing trace to constraints file: engine_0/trace2.smtc
 ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace2.yw
 ##   0:00:00  Checking cover reachability in step 5..
-##   0:00:00  Reached cover statement in step 5 at arbiter_formal: arbiter_formal.sv:473.13-474.37 (_witness_.check_cover_arbiter_formal_sv_473_275)
+##   0:00:00  Reached cover statement in step 5 at arbiter_formal: arbiter_formal.sv:493.13-494.37 (_witness_.check_cover_arbiter_formal_sv_493_279)
 ##   0:00:00  Writing trace to VCD file: engine_0/trace3.vcd
 ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace3_tb.v
 ##   0:00:00  Writing trace to constraints file: engine_0/trace3.smtc
 ##   0:00:00  Writing trace to Yosys witness file: engine_0/trace3.yw
 ##   0:00:00  Checking cover reachability in step 5..
-##   0:00:00  Reached cover statement in step 5 at arbiter_formal: arbiter_formal.sv:500.13-500.91 (_witness_.check_cover_arbiter_formal_sv_500_291)
+##   0:00:00  Reached cover statement in step 5 at arbiter_formal: arbiter_formal.sv:346.13-346.68 (_witness_.check_cover_arbiter_formal_sv_346_254)
 ##   0:00:00  Writing trace to VCD file: engine_0/trace4.vcd
 ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace4_tb.v
 ##   0:00:00  Writing trace to constraints file: engine_0/trace4.smtc
@@ -37,10 +37,10 @@
 ##   0:00:00  Checking cover reachability in step 5..
 ##   0:00:00  Checking cover reachability in step 6..
 ##   0:00:00  Checking cover reachability in step 7..
-##   0:00:00  Reached cover statement in step 7 at arbiter_formal: arbiter_formal.sv:499.13-499.92 (_witness_.check_cover_arbiter_formal_sv_499_285)
-##   0:00:00  Reached cover statement in step 7 at arbiter_formal: arbiter_formal.sv:339.13-339.51 (_witness_.check_cover_arbiter_formal_sv_339_269)
-##   0:00:00  Reached cover statement in step 7 at arbiter_formal: arbiter_formal.sv:332.13-333.90 (_witness_.check_cover_arbiter_formal_sv_332_257)
-##   0:00:00  Reached cover statement in step 7 at arbiter_formal: arbiter_formal.sv:320.13-320.68 (_witness_.check_cover_arbiter_formal_sv_320_243)
+##   0:00:00  Reached cover statement in step 7 at arbiter_formal: arbiter_formal.sv:519.13-519.72 (_witness_.check_cover_arbiter_formal_sv_519_289)
+##   0:00:00  Reached cover statement in step 7 at arbiter_formal: arbiter_formal.sv:359.13-359.51 (_witness_.check_cover_arbiter_formal_sv_359_273)
+##   0:00:00  Reached cover statement in step 7 at arbiter_formal: arbiter_formal.sv:352.13-353.90 (_witness_.check_cover_arbiter_formal_sv_352_261)
+##   0:00:00  Reached cover statement in step 7 at arbiter_formal: arbiter_formal.sv:340.13-340.68 (_witness_.check_cover_arbiter_formal_sv_340_247)
 ##   0:00:00  Writing trace to VCD file: engine_0/trace5.vcd
 ##   0:00:00  Writing trace to Verilog testbench: engine_0/trace5_tb.v
 ##   0:00:00  Writing trace to constraints file: engine_0/trace5.smtc

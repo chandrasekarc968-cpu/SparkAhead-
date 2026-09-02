@@ -140,6 +140,18 @@ module axi4lite_arbiter_top #(
     input  logic [NUM_SLAVES-1:0][1:0]                      m_axi_rresp,
     input  logic [NUM_SLAVES-1:0]                           m_axi_rvalid,
     output logic [NUM_SLAVES-1:0]                           m_axi_rready
+
+`ifdef FORMAL
+    ,
+    output logic [3:0] f_w_owner_id,
+    output logic       f_w_resp_phase,
+    output logic       f_w_target_invalid,
+    output logic       f_w_arb_tx_done,
+    output logic [3:0] f_r_owner_id,
+    output logic       f_r_resp_phase,
+    output logic       f_r_target_invalid,
+    output logic       f_r_arb_tx_done
+`endif
 );
 
     localparam int M_ID_WIDTH = (NUM_MASTERS > 1) ? $clog2(NUM_MASTERS) : 1;
@@ -224,6 +236,10 @@ module axi4lite_arbiter_top #(
         .m_axi_wstrb            (m_axi_wstrb),
         .m_axi_wvalid           (m_axi_wvalid),
         .m_axi_wready           (m_axi_wready)
+`ifdef FORMAL
+        ,
+        .f_arb_tx_done          (f_w_arb_tx_done)
+`endif
     );
 
     // =========================================================================
@@ -264,7 +280,20 @@ module axi4lite_arbiter_top #(
         .m_axi_arprot           (m_axi_arprot),
         .m_axi_arvalid          (m_axi_arvalid),
         .m_axi_arready          (m_axi_arready)
+`ifdef FORMAL
+        ,
+        .f_arb_tx_done          (f_r_arb_tx_done)
+`endif
     );
+
+`ifdef FORMAL
+    assign f_w_owner_id       = { {(4-M_ID_WIDTH){1'b0}}, w_owner_id };
+    assign f_w_resp_phase     = w_resp_phase;
+    assign f_w_target_invalid = w_target_invalid;
+    assign f_r_owner_id       = { {(4-M_ID_WIDTH){1'b0}}, r_owner_id };
+    assign f_r_resp_phase     = r_resp_phase;
+    assign f_r_target_invalid = r_target_invalid;
+`endif
 
     // =========================================================================
     // 5. Response Router Instance

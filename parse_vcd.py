@@ -1,35 +1,43 @@
 import sys
 
-def parse_vcd(vcd_path):
-    with open(vcd_path, 'r') as f:
-        lines = f.readlines()
-    
-    signals = {}
-    time = -1
-    
-    for line in lines:
+targets = ["r_resp_phase", "r_state", "r_owner_id", "s_axi_rvalid", "r_owner_id_r", "r_target_invalid", "r_target_invalid_r"]
+id_to_name = {}
+
+with open("formal/arbiter_bmc/engine_0/trace.vcd", "r") as f:
+    for line in f:
         line = line.strip()
-        if line.startswith('$var'):
+        if line.startswith("$var"):
             parts = line.split()
-            var_id = parts[3]
-            var_name = parts[4]
-            signals[var_id] = {'name': var_name, 'values': []}
-        elif line.startswith('#'):
+            vid = parts[3]
+            name = parts[4]
+            if name in targets:
+                id_to_name[vid] = name
+
+time = 0
+vals = {}
+history = {}
+
+with open("formal/arbiter_bmc/engine_0/trace.vcd", "r") as f:
+    for line in f:
+        line = line.strip()
+        if line.startswith("#"):
+            if time not in history:
+                history[time] = {}
+            history[time].update({id_to_name[k]: v for k, v in vals.items() if k in id_to_name})
             time = int(line[1:])
-        elif line.startswith('b'):
-            parts = line.split(' ')
-            if len(parts) >= 2:
-                val, var_id = parts[0], parts[1]
-                if var_id in signals:
-                    signals[var_id]['values'].append((time, val))
-        elif len(line) == 2 and line[0] in '01xXzZ':
-            val, var_id = line[0], line[1]
-            if var_id in signals:
-                signals[var_id]['values'].append((time, val))
+        elif len(line) > 0 and line[0] in "01xXzZ":
+            if " " in line:
+                val, vid = line.split(" ")
+                if vid in id_to_name:
+                    vals[vid] = val
+            else:
+                val, vid = line[0], line[1:]
+                if vid in id_to_name:
+                    vals[vid] = val
 
-    for vid, data in signals.items():
-        name = data['name']
-        if name in ['w_state', 'owner_id_r', 'aresetn', 'f_reset_count', 'f_active']:
-            print(f"{vid} ({name}): {data['values']}")
+if time not in history:
+    history[time] = {}
+history[time].update({id_to_name[k]: v for k, v in vals.items() if k in id_to_name})
 
-parse_vcd('formal/arbiter_bmc/engine_0/trace.vcd')
+for t in sorted(history.keys()):
+    print(f"Time {t}: {history[t]}")

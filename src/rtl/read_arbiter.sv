@@ -65,6 +65,11 @@ module read_arbiter #(
     output logic [NUM_SLAVES-1:0][2:0]               m_axi_arprot,
     output logic [NUM_SLAVES-1:0]                    m_axi_arvalid,
     input  logic [NUM_SLAVES-1:0]                    m_axi_arready
+
+`ifdef FORMAL
+    ,
+    output logic                                     f_arb_tx_done
+`endif
 );
 
     localparam int ID_W = $clog2(NUM_MASTERS);
@@ -258,6 +263,11 @@ module read_arbiter #(
     // =========================================================================
     assign r_owner_id       = r_owner_id_r;
     assign r_target_slave   = r_target_slave_r;
+
+`ifdef FORMAL
+    assign f_arb_tx_done = arb_tx_done;
+`endif
+
     assign r_target_invalid = r_target_invalid_r;
     assign r_resp_phase     = (r_state == R_RESP);
 

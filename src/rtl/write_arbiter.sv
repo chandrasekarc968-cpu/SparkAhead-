@@ -88,6 +88,10 @@ module write_arbiter #(
     output logic [NUM_SLAVES-1:0][STRB_WIDTH-1:0]    m_axi_wstrb,
     output logic [NUM_SLAVES-1:0]                    m_axi_wvalid,
     input  logic [NUM_SLAVES-1:0]                    m_axi_wready
+`ifdef FORMAL
+    ,
+    output logic                                     f_arb_tx_done
+`endif
 );
 
     localparam int ID_W = $clog2(NUM_MASTERS);
@@ -357,6 +361,10 @@ module write_arbiter #(
     assign w_target_slave  = w_target_slave_r;
     assign w_target_invalid = w_target_invalid_r;
     assign w_resp_phase    = (w_state == W_RESP);
+
+`ifdef FORMAL
+    assign f_arb_tx_done = arb_tx_done;
+`endif
 
     // =========================================================================
     // 10. Synthesis-Safe Assertions
